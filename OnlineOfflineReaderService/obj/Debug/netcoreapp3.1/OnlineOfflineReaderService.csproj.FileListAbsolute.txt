@@ -1,0 +1,15 @@
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/bin/Debug/netcoreapp3.1/OnlineOfflineReaderService.deps.json
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/bin/Debug/netcoreapp3.1/OnlineOfflineReaderService.runtimeconfig.json
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/bin/Debug/netcoreapp3.1/OnlineOfflineReaderService.runtimeconfig.dev.json
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/bin/Debug/netcoreapp3.1/OnlineOfflineReaderService.dll
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/bin/Debug/netcoreapp3.1/OnlineOfflineReaderService.pdb
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/bin/Debug/netcoreapp3.1/RabbitMQ.Client.dll
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/bin/Debug/netcoreapp3.1/System.Threading.Channels.dll
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/obj/Debug/netcoreapp3.1/OnlineOfflineReaderService.csprojAssemblyReference.cache
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/obj/Debug/netcoreapp3.1/OnlineOfflineReaderService.csproj.CoreCompileInputs.cache
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/obj/Debug/netcoreapp3.1/OnlineOfflineReaderService.AssemblyInfoInputs.cache
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/obj/Debug/netcoreapp3.1/OnlineOfflineReaderService.AssemblyInfo.cs
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/obj/Debug/netcoreapp3.1/OnlineOfflineReaderService.csproj.CopyComplete
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/obj/Debug/netcoreapp3.1/OnlineOfflineReaderService.dll
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/obj/Debug/netcoreapp3.1/OnlineOfflineReaderService.pdb
+/Users/jbmelberg/Projects/OnlineOfflineReaderService/OnlineOfflineReaderService/obj/Debug/netcoreapp3.1/OnlineOfflineReaderService.genruntimeconfig.cache
