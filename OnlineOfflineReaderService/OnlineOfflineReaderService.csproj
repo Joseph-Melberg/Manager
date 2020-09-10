@@ -7,6 +7,12 @@
 
   <ItemGroup>
     <Folder Include="Processors\" />
+    <Folder Include="Domain\" />
+    <Folder Include="DomainService\" />
+    <Folder Include="DomainService.Core\" />
+    <Folder Include="Infrastructure.Core\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Infrastructure.MySQL\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
