@@ -1,4 +1,5 @@
 ﻿using System;
+using OnlineOfflineReaderService.Domain;
 using OnlineOfflineReaderService.Infrastructure.Core;
 
 namespace OnlineOfflineReaderService.Infrastructure.MySql
@@ -8,13 +9,14 @@ namespace OnlineOfflineReaderService.Infrastructure.MySql
 
         private readonly IHeartBeatContext _heartBeatContext;
 
-        public HeartBeatRepository()
+        public HeartBeatRepository(IHeartBeatContext heartBeatContext)
         {
+            _heartBeatContext = heartBeatContext;
         }
 
-        public void Update(string Name, DateTime Timestamp)
+        public void Update(HeartBeatModel heartBeat)
         {
-            throw new NotImplementedException();
+            _heartBeatContext.HeartBeats.Add(heartBeat);
         }
     }
 }

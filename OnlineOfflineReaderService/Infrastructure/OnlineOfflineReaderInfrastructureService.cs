@@ -1,19 +1,21 @@
 ﻿using System;
+using OnlineOfflineReaderService.Domain;
 using OnlineOfflineReaderService.Infrastructure.Core;
 
 namespace OnlineOfflineReaderService.Infrastructure
 {
     public class OnlineOfflineReaderInfrastructureService : IOnlineOfflineReaderInfrastructureService
     {
-        public OnlineOfflineReaderInfrastructureService(IHeartBeatContext heartBeatContext)
+        private readonly IHeartBeatRepository _heartBeatRepository;
+        public OnlineOfflineReaderInfrastructureService(IHeartBeatRepository heartBeatRepository)
         {
-            _heartBeatContext = heartBeatContext;
+            _heartBeatRepository = heartBeatRepository;
         }
 
 
-        public void Update(string Name, DateTime timestamp)
+        public void Update(HeartBeatModel heartBeat)
         {
-            _heartBeatContext.
+            _heartBeatRepository.Update(heartBeat)
         }
     }
 }

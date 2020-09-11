@@ -6,7 +6,7 @@ namespace OnlineOfflineReaderService.Infrastructure.MySql
 {
     public class HeartBeatContext : DbContext
     {
-        public DbSet<HeartBeatModel> Temperature { get; set; }
+        public DbSet<HeartBeatModel> HeartBeats { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySQL("server=10.0.0.3;database=Inter;user=user;password=pass");

@@ -1,8 +1,10 @@
 ﻿using System;
+using OnlineOfflineReaderService.Domain;
+
 namespace OnlineOfflineReaderService.Infrastructure.Core
 {
     public interface IHeartBeatRepository
     {
-        void Update(string Name, DateTime Timestamp);
+        void Update(HeartBeatModel heartBeat);
     }
 }
