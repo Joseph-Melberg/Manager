@@ -1,21 +1,22 @@
 ﻿using System;
+using System.Threading.Tasks;
 using OnlineOfflineReaderService.Domain;
 using OnlineOfflineReaderService.Infrastructure.Core;
 
 namespace OnlineOfflineReaderService.Infrastructure
 {
-    public class OnlineOfflineReaderInfrastructureService : IOnlineOfflineReaderInfrastructureService
+    public class HeartBeatInfrastructureService : IHeartBeatInfrastructureService
     {
         private readonly IHeartBeatRepository _heartBeatRepository;
-        public OnlineOfflineReaderInfrastructureService(IHeartBeatRepository heartBeatRepository)
+        public HeartBeatInfrastructureService(IHeartBeatRepository heartBeatRepository)
         {
             _heartBeatRepository = heartBeatRepository;
         }
 
 
-        public void Update(HeartBeatModel heartBeat)
+        public async Task UpdateAsync(HeartBeatModel heartBeat)
         {
-            _heartBeatRepository.Update(heartBeat)
+            await _heartBeatRepository.UpdateAsync(heartBeat);
         }
     }
 }

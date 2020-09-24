@@ -1,45 +1,50 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using OnlineOfflineReaderService.DomainService.Core;
+using OnlineOfflineReaderService.DomainService;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using OnlineOfflineReaderService.Infrastructure.Core;
+using OnlineOfflineReaderService.Infrastructure;
+using OnlineOfflineReaderService.Infrastructure.MySql;
+using OnlineOfflineReaderService.Processors;
+using OnlineOfflineReaderService.Domain;
 
 namespace OnlineOfflineReaderService
 {
     class Program
     {
-        static string QueueName = "Reader";
+        private static IServiceProvider _serviceProvider;
         static async Task Main(string[] args)
         {
-            ConnectionFactory factory = new ConnectionFactory();
-            factory.UserName = "life";
-            factory.Password = "conway";
-            factory.VirtualHost = "/";
-            factory.DispatchConsumersAsync = true;
-            factory.HostName = "10.0.1.3";
-            factory.ClientProvidedName = "app:audit component:event-consumer";
-            IConnection connection = factory.CreateConnection();
+            RegisterServices();
+            await _serviceProvider.GetRequiredService<HeartBeatProccessor>().Run();
+            DisposeServices();
+        }
 
-            var channel = connection.CreateModel();
-            channel.ExchangeDeclare("inter", ExchangeType.Fanout,true);
-            channel.QueueDeclare(QueueName, false, false, false, null);
-            channel.QueueBind(QueueName, "inter", "/life", null);
-            var consumer = new AsyncEventingBasicConsumer(channel);
-            
-            consumer.Received += async (ch, ea) =>
+        private static void RegisterServices()
+        {
+
+            var services = new ServiceCollection();
+            services.AddSingleton<HeartBeatProccessor>();
+            services.AddTransient<IHeartBeatService, HeartBeatService>();
+            services.AddTransient<IHeartBeatInfrastructureService,
+                HeartBeatInfrastructureService>();
+            services.AddTransient<IHeartBeatContext, HeartBeatContext>();
+            services.AddTransient<IHeartBeatRepository, HeartBeatRepository>();
+            _serviceProvider = services.BuildServiceProvider();
+        }
+
+        private static void DisposeServices()
+        {
+            if (_serviceProvider == null)
             {
-                var body = ea.Body.ToArray();
-                // copy or deserialise the payload
-                // and process the message
-                // ...
-
-                channel.BasicAck(ea.DeliveryTag, false);
-                await Task.Yield();
-
-            };
-            String consumerTag = channel.BasicConsume(QueueName, false, consumer);
-            while (true)
+                return;
+            }
+            if (_serviceProvider is IDisposable)
             {
-                await Task.Yield();
+                ((IDisposable)_serviceProvider).Dispose();
             }
         }
     }

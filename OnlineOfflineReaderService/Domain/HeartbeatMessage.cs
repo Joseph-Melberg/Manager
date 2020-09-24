@@ -3,7 +3,7 @@ namespace OnlineOfflineReaderService.Domain
 {
     public class HeartBeatMessage
     {
-        public string Name;
-        public DateTime Timestamp;
+        public string Name { get; set; }
+        public string Mac { get; set; }
     }
 }

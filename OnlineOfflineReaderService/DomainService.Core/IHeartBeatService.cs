@@ -3,7 +3,7 @@ using OnlineOfflineReaderService.Domain;
 
 namespace OnlineOfflineReaderService.DomainService.Core
 {
-    public interface IOnlineOfflineReaderService
+    public interface IHeartBeatService
     {
         void Process(HeartBeatMessage message);
     }
