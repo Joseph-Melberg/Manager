@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/jbmelberg/Documents/Git/Manager/OnlineOfflineReaderService/OnlineOfflineReaderService.csproj": {}
+    "/Users/jbmelberg/Projects/Manager/OnlineOfflineReaderService/OnlineOfflineReaderService.csproj": {}
   },
   "projects": {
-    "/home/jbmelberg/Documents/Git/Manager/OnlineOfflineReaderService/OnlineOfflineReaderService.csproj": {
+    "/Users/jbmelberg/Projects/Manager/OnlineOfflineReaderService/OnlineOfflineReaderService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/jbmelberg/Documents/Git/Manager/OnlineOfflineReaderService/OnlineOfflineReaderService.csproj",
+        "projectUniqueName": "/Users/jbmelberg/Projects/Manager/OnlineOfflineReaderService/OnlineOfflineReaderService.csproj",
         "projectName": "OnlineOfflineReaderService",
-        "projectPath": "/home/jbmelberg/Documents/Git/Manager/OnlineOfflineReaderService/OnlineOfflineReaderService.csproj",
-        "packagesPath": "/home/jbmelberg/.nuget/packages/",
-        "outputPath": "/home/jbmelberg/Documents/Git/Manager/OnlineOfflineReaderService/obj/",
+        "projectPath": "/Users/jbmelberg/Projects/Manager/OnlineOfflineReaderService/OnlineOfflineReaderService.csproj",
+        "packagesPath": "/Users/jbmelberg/.nuget/packages/",
+        "outputPath": "/Users/jbmelberg/Projects/Manager/OnlineOfflineReaderService/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/jbmelberg/.nuget/NuGet/NuGet.Config"
+          "/Users/jbmelberg/.config/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -68,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.402/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
         }
       }
     }

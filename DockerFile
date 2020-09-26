@@ -1,5 +1,0 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-WORKDIR OnlineOfflineReaderService
-COPY OnlineOfflineReaderService/bin/Release/netcoreapp3.1/publish/ App/
-WORKDIR /App
-ENTRYPOINT ["dotnet", "OnlineOfflineReaderService.dll"]

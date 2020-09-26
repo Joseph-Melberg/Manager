@@ -30,7 +30,7 @@ namespace OnlineOfflineReaderService.Infrastructure.MySql
         {
             await this.SaveChangesAsync();
         }
-        //The fact that this isn't handled automatically is a little sad
+        //The fact that this isn't handled automatically is a little sad 
         public override EntityEntry<TEntity> Update<TEntity>(TEntity entity) where TEntity : class
         {
             if (entity == null)

@@ -1,33 +1,36 @@
 ﻿<Properties StartupConfiguration="{07A40CF9-E5B0-4C88-AF76-1F229196708F}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="OnlineOfflineReaderService/Infrastructure/MySql/HeartBeatContext.cs">
+  <MonoDevelop.Ide.ItemProperties.Inter.Infrastructure FirstBuild="True" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Inter.Infrastructure/Class1.cs">
     <Files>
-      <File FileName="OnlineOfflineReaderService/Program.cs" Line="21" Column="32" />
-      <File FileName="OnlineOfflineReaderService/Domain/HeartbeatMessage.cs" />
-      <File FileName="OnlineOfflineReaderService/Infrastructure/Core/IHeartBeatContext.cs" />
-      <File FileName="OnlineOfflineReaderService/Infrastructure/MySql/HeartBeatContext.cs" Line="33" Column="73" />
-      <File FileName="OnlineOfflineReaderService/Domain/HeartBeatModel.cs" />
-      <File FileName="OnlineOfflineReaderService/Infrastructure/Core/IHeartBeatRepository.cs" />
-      <File FileName="OnlineOfflineReaderService/Startup.cs" />
-      <File FileName="OnlineOfflineReaderService/Register.cs" />
-      <File FileName="OnlineOfflineReaderService/Processors/HeartBeatProccessor.cs" />
-      <File FileName="OnlineOfflineReaderService/Infrastructure/MySql/HeartBeatRepository.cs" />
-      <File FileName="OnlineOfflineReaderService/DomainService/HeartBeatService.cs" />
-      <File FileName="OnlineOfflineReaderService/Infrastructure.Core/IHeartBeatInfrastructureService.cs" />
-      <File FileName="OnlineOfflineReaderService/Infrastructure/HeartBeatInfrastructureService.cs" />
+      <File FileName="Inter.DomainServices/HeartbeatListenerService.cs" Line="18" Column="35" />
+      <File FileName="Inter.Domain/Class1.cs" />
+      <File FileName="Inter.DomainServices.Core/IHeartbeatListenerService.cs" />
+      <File FileName="Inter.DomainServices/Inter.DomainServices.csproj" />
+      <File FileName="Inter.Infrastructure.Core/Class1.cs" />
+      <File FileName="Inter.Infrastructure.Core/IHeartbeatListenerInfrastructureService.cs" Line="1" Column="1" />
+      <File FileName="Inter.Domain/HeartBeatModel.cs" />
+      <File FileName="Inter.Domain/HeartbeatMessage.cs" />
+      <File FileName="OnlineOfflineReaderService/Infrastructure/HeartBeatInfrastructureService.cs" Line="8" Column="55" />
+      <File FileName="OnlineOfflineReaderService/Infrastructure.Core/IHeartBeatInfrastructureService.cs" Line="8" Column="6" />
+      <File FileName="Inter.Infrastructure/Class1.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="OnlineOfflineReaderService" expanded="True">
+            <Node name="Inter.Domain" expanded="True" />
+            <Node name="Inter.DomainServices" expanded="True" />
+            <Node name="Inter.Infrastructure" expanded="True">
+              <Node name="Class1.cs" selected="True" />
+            </Node>
+            <Node name="Inter.Infrastructure.Core" expanded="True" />
             <Node name="OnlineOfflineReaderService" expanded="True">
               <Node name="Domain" expanded="True" />
               <Node name="DomainService" expanded="True" />
               <Node name="DomainService.Core" expanded="True" />
               <Node name="Infrastructure" expanded="True">
                 <Node name="Core" expanded="True" />
-                <Node name="MySql" expanded="True">
-                  <Node name="HeartBeatContext.cs" selected="True" />
-                </Node>
+                <Node name="MySql" expanded="True" />
               </Node>
               <Node name="Infrastructure.Core" expanded="True" />
               <Node name="Processors" expanded="True" />
@@ -38,8 +41,11 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.ItemProperties.OnlineOfflineReaderService PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.Inter.Domain FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Inter.DomainServices FirstBuild="True" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Inter.DomainServices.Core FirstBuild="True" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore>
       <Breakpoint file="/Users/jbmelberg/Projects/Manager/OnlineOfflineReaderService/Program.cs" relfile="OnlineOfflineReaderService/Program.cs" line="24" column="1" />
@@ -50,4 +56,5 @@
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Inter.Infrastructure.Core FirstBuild="True" />
 </Properties>
