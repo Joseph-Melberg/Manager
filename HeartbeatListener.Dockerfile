@@ -26,4 +26,11 @@ WORKDIR "/src/Applications/Inter.HeartbeatListenerAppService"
 RUN ls
 RUN dotnet build "Inter.HeartbeatListenerAppService.csproj" -c Release -o /app
 
+FROM build-env AS publish
+RUN dotnet publish "Inter.HeartbeatListenerAppService.csproj" -c Release -o /app
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 as final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "Inter.HeartbeatListenerAppService.dll"]
 
