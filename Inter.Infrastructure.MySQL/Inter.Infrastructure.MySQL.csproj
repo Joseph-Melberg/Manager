@@ -5,17 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="Corral\" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.21" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Inter.Infrastructure\Inter.Infrastructure.csproj" />
     <ProjectReference Include="..\Inter.Domain\Inter.Domain.csproj" />
-    <ProjectReference Include="..\Inter.Infrastructure.Core\Inter.Infrastructure.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Corral\IHeartbeatContext.cs" />
+    <Folder Include="Contexts\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 </Project>

@@ -1,12 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Inter.DomainServices.Core\Inter.DomainServices.Core.csproj" />
     <ProjectReference Include="..\Inter.Domain\Inter.Domain.csproj" />
-    <ProjectReference Include="..\Inter.Infrastructure.Core\Inter.Infrastructure.Core.csproj" />
+    <ProjectReference Include="..\Inter.Infrastructure.Core\Inter.Infrastructure.Core.csproj">
+      <ReferenceSourceTarget>ProjectReference</ReferenceSourceTarget>
+    </ProjectReference>
   </ItemGroup>
 </Project>

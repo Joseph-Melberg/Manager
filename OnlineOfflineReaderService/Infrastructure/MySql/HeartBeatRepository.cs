@@ -23,7 +23,6 @@ namespace OnlineOfflineReaderService.Infrastructure.MySql
             {
                 try
                 {
-
                     _heartBeatContext.HeartBeat.Update(heartBeat);
                 }
                 catch (Exception ex)
