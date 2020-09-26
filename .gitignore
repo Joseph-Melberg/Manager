@@ -1,0 +1,9 @@
+.dll
+/OnlineOfflineReaderService/obj/
+/OnlineOfflineReaderService/bin/
+OnlineOfflineReaderService/img
+.vs/
+*/obj
+*/bin
+Applications/Inter.HeartbeatListenerAppService/bin/
+Applications/Inter.HeartbeatListenerAppService/obj/
