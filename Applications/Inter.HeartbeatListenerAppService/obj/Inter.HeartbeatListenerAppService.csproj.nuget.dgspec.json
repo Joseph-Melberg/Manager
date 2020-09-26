@@ -1,0 +1,431 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/jbmelberg/Projects/Manager/Applications/Inter.HeartbeatListenerAppService/Inter.HeartbeatListenerAppService.csproj": {}
+  },
+  "projects": {
+    "/Users/jbmelberg/Projects/Manager/Applications/Inter.HeartbeatListenerAppService/Inter.HeartbeatListenerAppService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jbmelberg/Projects/Manager/Applications/Inter.HeartbeatListenerAppService/Inter.HeartbeatListenerAppService.csproj",
+        "projectName": "Inter.HeartbeatListenerAppService",
+        "projectPath": "/Users/jbmelberg/Projects/Manager/Applications/Inter.HeartbeatListenerAppService/Inter.HeartbeatListenerAppService.csproj",
+        "packagesPath": "/Users/jbmelberg/.nuget/packages/",
+        "outputPath": "/Users/jbmelberg/Projects/Manager/Applications/Inter.HeartbeatListenerAppService/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jbmelberg/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj"
+              },
+              "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj"
+              },
+              "/Users/jbmelberg/Projects/Manager/Inter.DomainServices/Inter.DomainServices.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices/Inter.DomainServices.csproj"
+              },
+              "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj"
+              },
+              "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj"
+              },
+              "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.2.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj",
+        "projectName": "Inter.Domain",
+        "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj",
+        "packagesPath": "/Users/jbmelberg/.nuget/packages/",
+        "outputPath": "/Users/jbmelberg/Projects/Manager/Inter.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jbmelberg/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj",
+        "projectName": "Inter.DomainServices.Core",
+        "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj",
+        "packagesPath": "/Users/jbmelberg/.nuget/packages/",
+        "outputPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jbmelberg/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/jbmelberg/Projects/Manager/Inter.DomainServices/Inter.DomainServices.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices/Inter.DomainServices.csproj",
+        "projectName": "Inter.DomainServices",
+        "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices/Inter.DomainServices.csproj",
+        "packagesPath": "/Users/jbmelberg/.nuget/packages/",
+        "outputPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jbmelberg/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj"
+              },
+              "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj"
+              },
+              "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj",
+        "projectName": "Inter.Infrastructure.Core",
+        "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj",
+        "packagesPath": "/Users/jbmelberg/.nuget/packages/",
+        "outputPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jbmelberg/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj",
+        "projectName": "Inter.Infrastructure.MySQL",
+        "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj",
+        "packagesPath": "/Users/jbmelberg/.nuget/packages/",
+        "outputPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.MySQL/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jbmelberg/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj"
+              },
+              "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "MySql.Data.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.21, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj",
+        "projectName": "Inter.Infrastructure",
+        "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj",
+        "packagesPath": "/Users/jbmelberg/.nuget/packages/",
+        "outputPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jbmelberg/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Domain/Inter.Domain.csproj"
+              },
+              "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj": {
+                "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

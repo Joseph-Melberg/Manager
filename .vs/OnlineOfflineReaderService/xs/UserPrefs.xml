@@ -1,0 +1,54 @@
+﻿<Properties StartupConfiguration="{4AC21041-4B9D-4300-A4AC-055BF338C757}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="OnlineOfflineReaderService/Program.cs">
+    <Files>
+      <File FileName="Inter.HeartbeatListenerAppService/Application/HeartbeatProccessor.cs" Line="16" Column="22" />
+      <File FileName="OnlineOfflineReaderService/Processors/HeartBeatProccessor.cs" Line="17" Column="51" />
+      <File FileName="OnlineOfflineReaderService/DomainService.Core/IHeartBeatService.cs" Line="7" Column="6" />
+      <File FileName="Inter.DomainServices.Core/IHeartbeatListenerService.cs" Line="9" Column="2" />
+      <File FileName="Inter.Infrastructure/Services/HeartbeatListenerInfrastructureService.cs" Line="19" Column="26" />
+      <File FileName="Inter.Infrastructure/Corral/IHeartbeatRepository.cs" Line="9" Column="29" />
+      <File FileName="Inter.Infrastructure.MySQL/Repositories/HeartbeatRepository.cs" Line="10" Column="50" />
+      <File FileName="Inter.HeartbeatListenerAppService/Program.cs" Line="14" Column="1" />
+      <File FileName="Inter.HeartbeatListenerAppService/Register.cs" Line="21" Column="43" />
+      <File FileName="OnlineOfflineReaderService/Program.cs" Line="29" Column="52" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="OnlineOfflineReaderService" expanded="True">
+            <Node name="Applications" expanded="True">
+              <Node name="Inter.HeartbeatListenerAppService" expanded="True">
+                <Node name="Application" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Inter.DomainServices.Core" expanded="True" />
+            <Node name="Inter.Infrastructure" expanded="True">
+              <Node name="Corral" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+            <Node name="Inter.Infrastructure.Core" expanded="True" />
+            <Node name="Inter.Infrastructure.MySQL" expanded="True">
+              <Node name="Contexts" expanded="True" />
+              <Node name="Repositories" expanded="True" />
+            </Node>
+            <Node name="OnlineOfflineReaderService" expanded="True">
+              <Node name="DomainService.Core" expanded="True" />
+              <Node name="Processors" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.OnlineOfflineReaderService PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Applications.Inter.HeartbeatListenerAppService PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/jbmelberg/Projects/Manager/OnlineOfflineReaderService/Processors/HeartBeatProccessor.cs" relfile="OnlineOfflineReaderService/Processors/HeartBeatProccessor.cs" line="67" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
