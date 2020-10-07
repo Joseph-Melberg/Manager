@@ -15,7 +15,10 @@ namespace Inter.Infrastructure.MySQL.Repositories
         {
             _heartBeatContext = heartBeatContext;
         }
-
+        public bool GetState(string name)
+        {
+            return _heartBeatContext.HeartBeat.FirstOrDefault(_ => _.name == name).online;
+        }
         public async Task UpdateAsync(HeartbeatModel heartBeat)
         {
 

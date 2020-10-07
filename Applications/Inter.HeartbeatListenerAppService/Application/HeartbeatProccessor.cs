@@ -66,7 +66,6 @@ namespace Inter.HeartbeatListenerAppService.Application
                 Console.WriteLine("That didn't work");
 
             }
-
         }
     }
 }

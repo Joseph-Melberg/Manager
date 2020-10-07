@@ -22,6 +22,9 @@ namespace Inter.Infrastructure.MySQL.Contexts
 
                 entity.HasKey(_ => _.name);
                 entity.Property(_ => _.timestamp);
+                entity.Property(_ => _.online);
+                entity.Property(_ => _.announced);
+                entity.Property(_ => _.mac);
             });
         }
         public async Task Save()

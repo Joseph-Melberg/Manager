@@ -15,7 +15,6 @@ namespace Inter.HeartbeatListenerAppService
     {
         public static ServiceCollection RegisterServices(ServiceCollection services)
         {
-
             services.AddSingleton<HeartbeatProccessor>();
             services.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
             services.AddTransient<IHeartbeatListenerInfrastructureService,

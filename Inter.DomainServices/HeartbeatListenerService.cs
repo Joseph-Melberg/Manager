@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
@@ -13,15 +14,19 @@ namespace Inter.DomainServices
             _infraservice = infrastructureService;
         }
 
-        public void Process(HeartbeatMessage message)
+        public async Task Process(HeartbeatMessage message)
         {
+            //We only need to announce if it was off
+            var shouldAnnounce = ! _infraservice.GetHeartbeatState(message.Name);
             var model = new HeartbeatModel()
             {
                 name = message.Name,
                 mac = message.Mac,
-                timestamp = DateTime.Now
+                timestamp = DateTime.Now,
+                announced = shouldAnnounce,
+                online = true
             };
-            _infraservice.UpdateAsync(model);
+            await _infraservice.UpdateAsync(model);
         }
     }
 }

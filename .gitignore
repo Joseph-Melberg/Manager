@@ -7,3 +7,6 @@ OnlineOfflineReaderService/img
 */bin
 Applications/Inter.HeartbeatListenerAppService/bin/
 Applications/Inter.HeartbeatListenerAppService/obj/
+Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService/obj/
+Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService/bin/
+Applications/Inter.LifeAlert/obj/

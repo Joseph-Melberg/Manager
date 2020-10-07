@@ -13,7 +13,10 @@ namespace Inter.Infrastructure.Services
             _heartbeatRepository = heartBeatRepository;
         }
 
-
+        public bool GetHeartbeatState(string name)
+        {
+            return _heartbeatRepository.GetState(name);
+        }
         public async Task UpdateAsync(HeartbeatModel heartBeat)
         {
             await _heartbeatRepository.UpdateAsync(heartBeat);

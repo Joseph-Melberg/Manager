@@ -1,9 +1,10 @@
-﻿using Inter.Domain;
+﻿using System.Threading.Tasks;
+using Inter.Domain;
 
 namespace Inter.DomainServices.Core
 {
     public interface IHeartbeatListenerService
     {
-        void Process(HeartbeatMessage message);
+        Task Process(HeartbeatMessage message);
     }
 }
