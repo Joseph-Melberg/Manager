@@ -5,14 +5,28 @@ using System.Linq;
 using System.Text;
 using System.Net.Mail;
 using System.Net;
+using Inter.Infrastructure.Corral;
+using Inter.Domain;
+using System.Threading.Tasks;
 
 namespace Inter.Infrastructure.Services
 {
     public class LifeAlertInfrastructureService : ILifeAlertInfrastructureService
     {
-
-        public LifeAlertInfrastructureService()
+        private readonly IHeartbeatRepository _heartbeatRepository;
+        public LifeAlertInfrastructureService(IHeartbeatRepository heartbeatRepository)
         {
+            _heartbeatRepository = heartbeatRepository;
+        }
+
+        public HeartbeatModel[] GetStatuses()
+        {
+            return _heartbeatRepository.GetStatuses();
+        }
+
+        public Task UpdateNode(HeartbeatModel model)
+        {
+            return _heartbeatRepository.UpdateAsync(model);
         }
 
         public void SendMessage(string recipient,string subject, string message)
@@ -27,7 +41,7 @@ namespace Inter.Infrastructure.Services
 
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("InterEmailService@gmail.com", "");
+                    smtp.Credentials = new NetworkCredential("InterEmailService@gmail.com", "*Quba572nWSt");
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }
