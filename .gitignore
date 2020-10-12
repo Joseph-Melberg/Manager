@@ -13,3 +13,4 @@ Applications/Inter.LifeAlert/obj/
 Api/InterApi/obj/
 Api/InterApi/obj
 *.deb
+**/*.cache
