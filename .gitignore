@@ -10,3 +10,7 @@ Applications/Inter.HeartbeatListenerAppService/obj/
 Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService/obj/
 Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService/bin/
 Applications/Inter.LifeAlert/obj/
+Api/InterApi/obj/
+Api/InterApi/obj
+*.deb
+**/*.cache
