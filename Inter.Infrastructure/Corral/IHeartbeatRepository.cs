@@ -7,7 +7,7 @@ namespace Inter.Infrastructure.Corral
     public interface IHeartbeatRepository
     {
         HeartbeatModel[] GetStatuses();
-        bool GetState(string name);
+        HeartbeatModel GetStatus(string name);
         Task UpdateAsync(HeartbeatModel heartBeat);
     }
 }

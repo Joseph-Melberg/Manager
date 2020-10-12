@@ -21,9 +21,9 @@ namespace Inter.Infrastructure.MySQL.Repositories
             return _heartBeatContext.HeartBeat.ToArray();
         }
 
-        public bool GetState(string name)
+        public HeartbeatModel GetStatus(string name)
         {
-            return _heartBeatContext.HeartBeat.FirstOrDefault(_ => _.name == name).online;
+             return _heartBeatContext.HeartBeat.FirstOrDefault(_ => _.name == name);
         }
 
         public async Task UpdateAsync(HeartbeatModel heartBeat)

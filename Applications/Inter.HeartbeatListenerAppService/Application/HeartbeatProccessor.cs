@@ -11,7 +11,7 @@ namespace Inter.HeartbeatListenerAppService.Application
     public class HeartbeatProccessor
     {
 
-        static string QueueName = "Reader";
+        static string QueueName = "Readerclone ";
         private readonly IHeartbeatListenerService _service;
         public HeartbeatProccessor(IHeartbeatListenerService service)
         {
