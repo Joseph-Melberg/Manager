@@ -22,9 +22,9 @@ namespace Inter.Infrastructure.Services
             }
             return result.online;
         }
-        public async Task UpdateAsync(HeartbeatModel heartBeat)
+        public Task UpdateAsync(HeartbeatModel heartBeat)
         {
-            await _heartbeatRepository.UpdateAsync(heartBeat);
+            return _heartbeatRepository.UpdateAsync(heartBeat);
         }
     }
 }

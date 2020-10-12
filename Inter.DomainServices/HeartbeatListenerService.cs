@@ -27,6 +27,7 @@ namespace Inter.DomainServices
                 online = true
             };
             await _infraservice.UpdateAsync(model);
+            Console.WriteLine($"{message.Name} was proccessed");
         }
     }
 }

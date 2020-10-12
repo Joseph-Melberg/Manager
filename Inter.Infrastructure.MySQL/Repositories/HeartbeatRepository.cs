@@ -26,7 +26,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
              return _heartBeatContext.HeartBeat.FirstOrDefault(_ => _.name == name);
         }
 
-        public async Task UpdateAsync(HeartbeatModel heartBeat)
+        public Task UpdateAsync(HeartbeatModel heartBeat)
         {
 
             if (_heartBeatContext.HeartBeat.Any(_ => _.name == heartBeat.name))
@@ -37,14 +37,24 @@ namespace Inter.Infrastructure.MySQL.Repositories
                 }
                 catch (Exception ex)
                 {
-
+                    Console.WriteLine(ex);
                 }
             }
             else
             {
-                _heartBeatContext.HeartBeat.Add(heartBeat);
+                Console.WriteLine($"Node {heartBeat.name} was added");
+                try
+                {
+                    _heartBeatContext.HeartBeat.Add(heartBeat);
+
+                }
+                catch ( Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
-            await _heartBeatContext.Save();
+
+            return _heartBeatContext.Save();
         }
     }
 }

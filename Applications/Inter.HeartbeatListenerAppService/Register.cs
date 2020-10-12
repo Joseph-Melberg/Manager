@@ -20,7 +20,7 @@ namespace Inter.HeartbeatListenerAppService
             services.AddTransient<IHeartbeatListenerInfrastructureService,
                 HeartbeatListenerInfrastructureService>();
             services.AddTransient<IHeartbeatContext, HeartbeatContext>();
-            services.AddTransient<IHeartbeatRepository, HeartbeatRepository>();
+            services.AddScoped<IHeartbeatRepository, HeartbeatRepository>();
             return services;
         }
     }
