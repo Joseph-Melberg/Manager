@@ -25,28 +25,24 @@ namespace Inter.DomainServices
 
 
                     var announcedState = nodeState.announced;
-                    var isStale = nodeState.timestamp.AddMinutes(5) < DateTime.Now;
+                    var isStale = nodeState.timestamp.AddMinutes(2) < DateTime.Now;
                     var isAlive = nodeState.online;
 
                     Console.WriteLine($"{nodeState.name} is \n announce alive:{announcedState} \n stale:{isStale} \n alive {isAlive}");
-                    if (isAlive)
+                    if (isAlive & isStale)
                     {
-
-                        if (isStale)
-                        {
-                            Console.WriteLine($"{nodeState.name} is dead");
-                            _infra.SendMessage("6302478698@txt.att.net", "Report", $"{nodeState.name} is offline");
-                            nodeState.announced = false;
-                            nodeState.online = false;
-                            await _infra.UpdateNode(nodeState);
-                        }
-                        else if (!announcedState)
-                        {
-                            Console.WriteLine($"{nodeState.name} is alive");
-                            _infra.SendMessage("6302478698@txt.att.net", "Report", $"{nodeState.name} is online");
-                            nodeState.announced = true;
-                            await _infra.UpdateNode(nodeState);
-                        }
+                        Console.WriteLine($"{nodeState.name} is dead");
+                        _infra.SendMessage("6302478698@txt.att.net", "Report", $"{nodeState.name} is offline");
+                        nodeState.announced = false;
+                        nodeState.online = false;
+                        await _infra.UpdateNode(nodeState);
+                    }
+                    else if (!announcedState & !isStale)
+                    {
+                        Console.WriteLine($"{nodeState.name} is alive");
+                        _infra.SendMessage("6302478698@txt.att.net", "Report", $"{nodeState.name} is online");
+                        nodeState.announced = true;
+                        await _infra.UpdateNode(nodeState);
                     }
                 }
                 catch (Exception ex)
