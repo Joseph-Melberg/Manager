@@ -42,6 +42,7 @@ namespace Inter.DomainServices
                         Console.WriteLine($"{nodeState.name} is alive");
                         _infra.SendMessage("6302478698@txt.att.net", "Report", $"{nodeState.name} is online");
                         nodeState.announced = true;
+                        nodeState.online = true;
                         await _infra.UpdateNode(nodeState);
                     }
                 }
