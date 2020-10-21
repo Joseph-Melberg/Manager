@@ -11,7 +11,7 @@ namespace Inter.HeartbeatListenerAppService.Application
     public class HeartbeatProccessor
     {
 
-        static string QueueName = "Readerclone ";
+        static string QueueName = "Reader";
         private readonly IHeartbeatListenerService _service;
         public HeartbeatProccessor(IHeartbeatListenerService service)
         {
@@ -37,10 +37,11 @@ namespace Inter.HeartbeatListenerAppService.Application
             consumer.Received += async (ch, ea) =>
             {
 
-                channel.BasicAck(ea.DeliveryTag, false);
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 Handle(message);
+
+                channel.BasicAck(ea.DeliveryTag, false);
                 await Task.Yield();
 
             };
@@ -54,7 +55,7 @@ namespace Inter.HeartbeatListenerAppService.Application
         {
 
 
-            Console.WriteLine(" [x] Received {0}", mess);
+            Console.WriteLine(" [x] Received {0} at {1}", mess, DateTime.Now);
             mess = mess.Replace("'", "\"");
             try
             {
