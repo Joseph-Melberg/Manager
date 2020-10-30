@@ -1,4 +1,5 @@
-.dll
+*.dll
+*.pdb
 /OnlineOfflineReaderService/obj/
 /OnlineOfflineReaderService/bin/
 OnlineOfflineReaderService/img

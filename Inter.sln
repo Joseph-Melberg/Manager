@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{DBAA07C4-D46
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterApi", "Api\InterApi\InterApi.csproj", "{4D76BED7-279B-4E0A-8C8D-6193CAAF2B05}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.LogRecieverAppService", "Applications\Inter.LogRecieverAppService\Inter.LogRecieverAppService\Inter.LogRecieverAppService.csproj", "{EA632545-E5A5-4F57-85F2-2FF1FE8844E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +67,15 @@ Global
 		{4D76BED7-279B-4E0A-8C8D-6193CAAF2B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D76BED7-279B-4E0A-8C8D-6193CAAF2B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D76BED7-279B-4E0A-8C8D-6193CAAF2B05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA632545-E5A5-4F57-85F2-2FF1FE8844E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA632545-E5A5-4F57-85F2-2FF1FE8844E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA632545-E5A5-4F57-85F2-2FF1FE8844E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA632545-E5A5-4F57-85F2-2FF1FE8844E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FE016E01-FDBE-4DEA-A298-C81488FC4B42} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 		{7D90462C-46DB-4B6D-B659-C96A6A8AC02C} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 		{4D76BED7-279B-4E0A-8C8D-6193CAAF2B05} = {DBAA07C4-D46D-4394-98AC-7D23FACE35B8}
+		{EA632545-E5A5-4F57-85F2-2FF1FE8844E6} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 	EndGlobalSection
 EndGlobal
