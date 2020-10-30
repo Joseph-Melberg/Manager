@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Inter.DomainServices.Core\Inter.DomainServices.Core.csproj" />
+    <ProjectReference Include="..\..\..\Inter.Domain\Inter.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Inter.DomainServices\Inter.DomainServices.csproj" />
+    <ProjectReference Include="..\..\Inter.HeartbeatListenerAppService\Inter.HeartbeatListenerAppService.csproj" />
+    <ProjectReference Include="..\..\..\Inter.Infrastructure\Inter.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Inter.Infrastructure.MySQL\Inter.Infrastructure.MySQL.csproj" />
+    <ProjectReference Include="..\..\..\Inter.Infrastructure.Core\Inter.Infrastructure.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.9" />
+  </ItemGroup>
+</Project>

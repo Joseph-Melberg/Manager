@@ -6,32 +6,32 @@ using Inter.Domain;
 using Inter.DomainServices.Core;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-namespace Inter.HeartbeatListenerAppService.Application
-{
-    public class HeartbeatProccessor
-    {
 
-        static string QueueName = "Reader";
-        private readonly IHeartbeatListenerService _service;
-        public HeartbeatProccessor(IHeartbeatListenerService service)
+namespace Inter.LogRecieverAppService.Application
+{
+    public class LogProcessor
+    {
+        static string QueueName = "logqueue";
+        private readonly ILogListenerService _service;
+        public LogProcessor(ILogListenerService service)
         {
             _service = service;
         }
         public async Task Run()
         {
             ConnectionFactory factory = new ConnectionFactory();
-            factory.UserName = "life";
-            factory.Password = "conway";
+            factory.UserName = "log";
+            factory.Password = "oldspice";
             factory.VirtualHost = "/";
             factory.DispatchConsumersAsync = true;
-            factory.HostName = "centurionx.net";
+            factory.HostName = "rabbit.centurionx.net";
             factory.ClientProvidedName = "app:audit component:event-consumer";
             IConnection connection = factory.CreateConnection();
 
             var channel = connection.CreateModel();
             channel.ExchangeDeclare("Inter", ExchangeType.Direct, true);
             channel.QueueDeclare(QueueName, false, false, false, null);
-            channel.QueueBind(QueueName, "Inter", "/life", null);
+            channel.QueueBind(QueueName, "Inter", "/log", null);
             var consumer = new AsyncEventingBasicConsumer(channel);
 
             consumer.Received += async (ch, ea) =>
@@ -59,7 +59,7 @@ namespace Inter.HeartbeatListenerAppService.Application
             mess = mess.Replace("'", "\"");
             try
             {
-                var result = JsonSerializer.Deserialize<HeartbeatMessage>(mess);
+                var result = JsonSerializer.Deserialize<LogMessage>(mess);
                 _service.Process(result);
             }
             catch (Exception ex)
