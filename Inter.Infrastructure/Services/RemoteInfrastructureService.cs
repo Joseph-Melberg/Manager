@@ -11,7 +11,7 @@ namespace Inter.Infrastructure.Services
 
         public Task<bool> Register(string name)
         {
-            
+            return null;
         }
     }
 }
