@@ -7,6 +7,10 @@ namespace Inter.Infrastructure.MySQL.Contexts
 {
     public class DefaultContext : DbContext
     {
+        
+
+
+
         //Not really sure why this isn't implemented correctly in the first place
         public override EntityEntry<TEntity> Update<TEntity>(TEntity entity) where TEntity : class
         {

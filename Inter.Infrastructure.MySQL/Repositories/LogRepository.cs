@@ -6,13 +6,12 @@ using Inter.Infrastructure.MySQL.Contexts;
 
 namespace Inter.Infrastructure.MySQL.Repositories
 {
-    public class LogRepository : ILogRepository
+    public class LogRepository: BaseRepository<ILogContext>, ILogRepository
     {
-        private readonly ILogContext _context;
-        public LogRepository(ILogContext context)
+        public LogRepository(ILogContext context) : base(context)
         {
-            _context = context;
         }
+
         public Task AddLog(LogModel logModel)
         {
             _context.Log.AddAsync(logModel);
