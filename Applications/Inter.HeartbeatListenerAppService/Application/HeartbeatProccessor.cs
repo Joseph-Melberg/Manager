@@ -48,7 +48,8 @@ namespace Inter.HeartbeatListenerAppService.Application
             String consumerTag = channel.BasicConsume(QueueName, false, consumer);
             while (true)
             {
-                await Task.Yield();
+                //The next line reduces the cpu usage from 60% down below 10%
+                System.Threading.Thread.Sleep(1000);
             }
         }
         public void Handle(string mess)
