@@ -1,1 +1,1 @@
-docker build -t interheartbeatlistener -f HeartbeatListener.Dockerfile .
+docker build -t docker.centurionx.net/interheartbeatlistener -f HeartbeatListener.Dockerfile .
