@@ -16,7 +16,6 @@ namespace Inter.LifeAlertAppService
             services.AddTransient<ILifeAlertService, LifeAlertService>();
             services.AddTransient<ILifeAlertInfrastructureService,
                 LifeAlertInfrastructureService>();
-            services.AddTransient<IHeartbeatContext, HeartbeatContext>();
             services.AddTransient<IHeartbeatRepository, HeartbeatRepository>();
             return services;
         }

@@ -17,7 +17,6 @@ namespace Inter.LogRecieverAppService
             services.AddTransient<ILogListenerService, LogListenerService>();
             services.AddTransient<ILogListenerInfrastructureService,
                 LogListenerInfrastructureService>();
-            services.AddTransient<ILogContext, LogContext>();
             services.AddScoped<ILogRepository, LogRepository>();
             return services;
         }

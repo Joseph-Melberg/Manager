@@ -10,6 +10,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
         public BaseRepository(TContext context)
         {
             Context = context;
+
         }
     }
 }
