@@ -15,3 +15,7 @@ Api/InterApi/obj/
 Api/InterApi/obj
 *.deb
 **/*.cache
+Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService/obj/Inter.LogRecieverAppService.csproj.nuget.dgspec.json
+Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService/obj/Inter.LogRecieverAppService.csproj.nuget.dgspec.json
+Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService/obj/project.assets.json
+Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService/obj/Inter.LogRecieverAppService.csproj.nuget.dgspec.json

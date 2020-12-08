@@ -3,6 +3,6 @@ namespace Inter.Infrastructure.MySQL
 {
     public interface IMySQLConnectionStringProvider
     {
-        string ConnectionString(string contextName);
+        string GetConnectionString(string contextName);
     }
 }

@@ -6,7 +6,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
     public class BaseRepository<TContext>
         where TContext : DefaultContext
     {
-        private readonly TContext Context;
+        protected TContext Context;
         public BaseRepository(TContext context)
         {
             Context = context;

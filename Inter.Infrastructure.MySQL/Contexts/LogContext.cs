@@ -5,13 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Inter.Infrastructure.MySQL.Contexts
 {
-    public class LogContext : DefaultContext, ILogContext
+    public class LogContext : DefaultContext
     {
         public DbSet<LogModel> Log { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        
+        public LogContext(IMySQLConnectionStringProvider provider) : base(provider)
         {
-            optionsBuilder.UseMySQL("server=10.0.0.3;database=Inter;user=user;password=pass");
+
         }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

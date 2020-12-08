@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Inter.Infrastructure.MySQL.Contexts
 {
-    public class HeartbeatContext : DefaultContext, IHeartbeatContext
+    public class HeartbeatContext : DefaultContext
     {
+     
         public DbSet<HeartbeatModel> HeartBeat { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public HeartbeatContext(IMySQLConnectionStringProvider provider) : base(provider)
         {
-            optionsBuilder.UseMySQL("server=10.0.0.3;database=Inter;user=user;password=pass");
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
