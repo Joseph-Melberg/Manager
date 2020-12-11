@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Inter.HeartbeatListenerAppService.Application;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration.FileExtensions;
 
 namespace Inter.HeartbeatListenerAppService
 {
@@ -24,15 +23,13 @@ namespace Inter.HeartbeatListenerAppService
         {
 
             var services = new ServiceCollection();
-            Register.RegisterServices(services);
-            // Build configuration
             configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
                 .AddJsonFile("appsettings.json", false)
                 .Build();
 
-            services.AddSingleton<IConfigurationRoot>(configuration);
-            // Add access to generic IConfigurationRoot
+            services.AddSingleton<IConfiguration>(configuration);
+            Register.RegisterServices(services);
             _serviceProvider = services.BuildServiceProvider();
         }
 

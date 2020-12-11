@@ -7,9 +7,17 @@ namespace Inter.Infrastructure.MySQL.Contexts
 {
     public class DefaultContext : DbContext
     {
-        
+        private readonly IMySQLConnectionStringProvider _connectionStringProvider;
+        public DefaultContext(IMySQLConnectionStringProvider provider){
+            _connectionStringProvider = provider;
+        } 
 
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var connectionString = _connectionStringProvider.GetConnectionString(this.GetType().Name)
+                ?? throw new Exception($"Unable to find connection string: {this.GetType().Name}");
+            optionsBuilder.UseMySQL(connectionString, builder => {});
+        }
 
         //Not really sure why this isn't implemented correctly in the first place
         public override EntityEntry<TEntity> Update<TEntity>(TEntity entity) where TEntity : class

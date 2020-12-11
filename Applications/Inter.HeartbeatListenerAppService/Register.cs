@@ -1,9 +1,9 @@
-﻿using System;
-using Inter.DomainServices;
+﻿using Inter.DomainServices;
 using Inter.DomainServices.Core;
 using Inter.HeartbeatListenerAppService.Application;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
+using Inter.Infrastructure.MySQL;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Services;
@@ -19,8 +19,7 @@ namespace Inter.HeartbeatListenerAppService
             services.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
             services.AddTransient<IHeartbeatListenerInfrastructureService,
                 HeartbeatListenerInfrastructureService>();
-            services.AddTransient<IHeartbeatContext, HeartbeatContext>();
-            services.AddScoped<IHeartbeatRepository, HeartbeatRepository>();
+            MySQLModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(services);
             return services;
         }
     }
