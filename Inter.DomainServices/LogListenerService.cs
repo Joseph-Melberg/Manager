@@ -14,7 +14,7 @@ namespace Inter.DomainServices
             _infrastructureService = infrastructureService;
         }
 
-        public Task Process(LogMessage message)
+        public async Task Process(LogMessage message)
         {
             LogModel logModel = new LogModel
             {
@@ -26,7 +26,7 @@ namespace Inter.DomainServices
                 Timestamp = DateTime.UtcNow,
                 Title = message.Title.ToString()
             };
-            return _infrastructureService.AddLog(logModel);
+            await _infrastructureService.AddLog(logModel);
         }
     }
 }

@@ -28,6 +28,8 @@ namespace Inter.Infrastructure.MySQL.Contexts
                 entity.Property(_ => _.MAC);
             });
         }
+
+
         public async Task Save()
         {
             await SaveChangesAsync();

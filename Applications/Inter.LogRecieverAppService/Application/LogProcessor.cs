@@ -64,8 +64,7 @@ namespace Inter.LogRecieverAppService.Application
             }
             catch (Exception ex)
             {
-                Console.WriteLine("That didn't work");
-
+                Console.WriteLine(ex);
             }
         }
     }
