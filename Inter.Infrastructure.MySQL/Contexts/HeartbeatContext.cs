@@ -6,12 +6,12 @@ namespace Inter.Infrastructure.MySQL.Contexts
 {
     public class HeartbeatContext : DefaultContext
     {
-     
         public DbSet<HeartbeatModel> HeartBeat { get; set; }
         public HeartbeatContext(IMySQLConnectionStringProvider provider) : base(provider)
         {
 
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

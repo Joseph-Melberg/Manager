@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;

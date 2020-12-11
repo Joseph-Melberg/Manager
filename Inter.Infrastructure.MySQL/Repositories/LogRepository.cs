@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
@@ -12,10 +11,11 @@ namespace Inter.Infrastructure.MySQL.Repositories
         {
         }
 
-        public Task AddLog(LogModel logModel)
+        public async Task AddLog(LogModel log)
         {
-            Context.Log.AddAsync(logModel);
-            return Context.Save();
+
+            _ = await Context.log.AddAsync(log);
+            await Context.Save();
         }
     }
 }

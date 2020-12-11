@@ -5,6 +5,6 @@ namespace Inter.Infrastructure.Core
 {
     public interface ILogListenerInfrastructureService
     {
-        Task AddLog(LogModel logModel);
+        Task AddLog(LogModel  logModel);
     }
 }

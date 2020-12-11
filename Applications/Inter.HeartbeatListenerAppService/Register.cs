@@ -1,5 +1,4 @@
-﻿using System;
-using Inter.DomainServices;
+﻿using Inter.DomainServices;
 using Inter.DomainServices.Core;
 using Inter.HeartbeatListenerAppService.Application;
 using Inter.Infrastructure.Core;

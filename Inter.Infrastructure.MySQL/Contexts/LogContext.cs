@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Inter.Domain;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,8 +6,7 @@ namespace Inter.Infrastructure.MySQL.Contexts
 {
     public class LogContext : DefaultContext
     {
-        public DbSet<LogModel> Log { get; set; }
-        
+        public DbSet<LogModel> log { get; set; } 
         public LogContext(IMySQLConnectionStringProvider provider) : base(provider)
         {
 
@@ -17,9 +15,10 @@ namespace Inter.Infrastructure.MySQL.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            
             modelBuilder.Entity<LogModel>(entity =>
             {
+                entity.HasKey(_ => _.LogID);
                 entity.Property(_ => _.Severity);
                 entity.Property(_ => _.Title);
                 entity.Property(_ => _.Timestamp);
