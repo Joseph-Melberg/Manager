@@ -2,11 +2,13 @@
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
+using Inter.Infrastructure.MySQL;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Services;
 using Inter.LogRecieverAppService.Application;
 using Microsoft.Extensions.DependencyInjection;
+
 namespace Inter.LogRecieverAppService
 {
     public class Register
@@ -17,7 +19,7 @@ namespace Inter.LogRecieverAppService
             services.AddTransient<ILogListenerService, LogListenerService>();
             services.AddTransient<ILogListenerInfrastructureService,
                 LogListenerInfrastructureService>();
-            services.AddScoped<ILogRepository, LogRepository>();
+            MySQLModule.LoadSqlRepository<ILogRepository, LogRepository, LogContext>(services);
             return services;
         }
     }

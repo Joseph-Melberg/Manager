@@ -1,12 +1,16 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Inter.LogRecieverAppService.Application;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.LogRecieverAppService
 {
     class Program
     {
+
+        public static IConfigurationRoot configuration;
         private static IServiceProvider _serviceProvider;
         static async Task Main(string[] args)
         {
@@ -19,15 +23,13 @@ namespace Inter.LogRecieverAppService
         {
 
             var services = new ServiceCollection();
-            Register.RegisterServices(services);
-            // Build configuration
-            //configuration = new ConfigurationBuilder()
-            //    .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
-            //    .AddJsonFile("appsettings.json", false)
-            //    .Build();
+            configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
+                .AddJsonFile("appsettings.json", false)
+                .Build();
 
-            //services.AddSingleton<IConfigurationRoot>(configuration);
-            // Add access to generic IConfigurationRoot
+            services.AddSingleton<IConfiguration>(configuration);
+            Register.RegisterServices(services);
             _serviceProvider = services.BuildServiceProvider();
         }
 
