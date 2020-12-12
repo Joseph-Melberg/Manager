@@ -8,21 +8,17 @@ namespace Inter.LifeAlertAppService
     {
 
         private static IServiceProvider _serviceProvider;
-        static void Main(string[] args)
+        static async System.Threading.Tasks.Task Main(string[] args)
         {
             RegisterServices();
-            Console.WriteLine("Hello World!");
-            
 
-            _serviceProvider.GetRequiredService<ILifeAlertService>().Do();
-
+            await _serviceProvider.GetRequiredService<ILifeAlertService>().Do();
 
             DisposeServices();
         }
 
         private static void RegisterServices()
         {
-
             var services = new ServiceCollection();
             Register.RegisterServices(services);
             _serviceProvider = services.BuildServiceProvider();

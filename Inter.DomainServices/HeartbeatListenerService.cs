@@ -17,7 +17,7 @@ namespace Inter.DomainServices
         public async Task Process(HeartbeatMessage message)
         {
             //We only need to announce if it was off
-            var shouldAnnounce = ! _infraservice.GetHeartbeatState(message.Name);
+            var shouldAnnounce = !await _infraservice.GetHeartbeatStateAsync(message.Name);
             var model = new HeartbeatModel()
             {
                 name = message.Name,

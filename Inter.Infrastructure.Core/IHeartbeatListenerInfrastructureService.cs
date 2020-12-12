@@ -5,7 +5,7 @@ namespace Inter.Infrastructure.Core
 {
     public interface IHeartbeatListenerInfrastructureService
     {
-        bool GetHeartbeatState(string name);
+        Task<bool> GetHeartbeatStateAsync(string name);
         Task UpdateAsync(HeartbeatModel heartBeat);
     }
 }

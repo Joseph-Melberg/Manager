@@ -1,8 +1,9 @@
-﻿using System;
+﻿using System.Threading.Tasks;
+
 namespace Inter.DomainServices.Core
 {
     public interface ILifeAlertService
     {
-        public void Do();
+        Task Do();
     }
 }
