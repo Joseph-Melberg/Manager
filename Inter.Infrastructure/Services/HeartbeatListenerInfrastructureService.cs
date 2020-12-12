@@ -13,9 +13,9 @@ namespace Inter.Infrastructure.Services
             _heartbeatRepository = heartBeatRepository;
         }
 
-        public bool GetHeartbeatState(string name)
+        public async Task<bool> GetHeartbeatStateAsync(string name)
         {
-            var result = _heartbeatRepository.GetStatus(name);
+            var result = await _heartbeatRepository.GetStatusAsync(name);
             if(result == null)
             {
                 return false;

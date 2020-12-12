@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
-using Microsoft.Extensions.Configuration;
 
 namespace Inter.DomainServices
 {
@@ -13,11 +13,11 @@ namespace Inter.DomainServices
             _infra = infrastructureService;
         }
 
-        public async void Do()
+        public async Task Do()
         {
 
             //Gather the entries that need to be announced
-            var stati = _infra.GetStatuses();
+            var stati = await _infra.GetStatusesAsync();
             foreach( var nodeState in stati)
             {
                 try

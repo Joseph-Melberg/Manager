@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inter.Infrastructure.MySQL.Repositories
 {
@@ -15,17 +17,17 @@ namespace Inter.Infrastructure.MySQL.Repositories
             
         }
 
-        public HeartbeatModel[] GetStatuses()
+        public async Task<List<HeartbeatModel>> GetStatuses()
         {
-            return Context.HeartBeat.ToArray();
+            return await Context.HeartBeat.ToListAsync();
         }
 
-        public HeartbeatModel GetStatus(string name)
+        public async Task<HeartbeatModel> GetStatusAsync(string name)
         {
-             return Context.HeartBeat.FirstOrDefault(_ => _.name == name);
+             return await Context.HeartBeat.FirstOrDefaultAsync(_ => _.name == name);
         }
 
-        public Task UpdateAsync(HeartbeatModel heartBeat)
+        public async Task UpdateAsync(HeartbeatModel heartBeat)
         {
 
             if (Context.HeartBeat.Any(_ => _.name == heartBeat.name))
@@ -44,7 +46,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
                 Console.WriteLine($"Node {heartBeat.name} was added");
                 try
                 {
-                    Context.HeartBeat.Add(heartBeat);
+                    await Context.HeartBeat.AddAsync(heartBeat);
 
                 }
                 catch ( Exception ex)
@@ -52,8 +54,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
                     Console.WriteLine(ex);
                 }
             }
-
-            return Context.Save();
+            await Context.SaveAsync();
         }
     }
 }

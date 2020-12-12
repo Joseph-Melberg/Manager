@@ -74,12 +74,6 @@
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.dll
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.pdb
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.genruntimeconfig.cache
-/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.csprojAssemblyReference.cache
-/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.csproj.CoreCompileInputs.cache
-/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.AssemblyInfoInputs.cache
-/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.AssemblyInfo.cs
-/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.dll
-/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.pdb
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/bin/Debug/netcoreapp3.1/appsettings.json
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/bin/Debug/netcoreapp3.1/Inter.LogRecieverAppService.deps.json
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/bin/Debug/netcoreapp3.1/Inter.LogRecieverAppService.runtimeconfig.json
@@ -147,5 +141,11 @@
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/bin/Debug/netcoreapp3.1/Inter.Infrastructure.Core.pdb
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/bin/Debug/netcoreapp3.1/Inter.Infrastructure.MySQL.pdb
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/bin/Debug/netcoreapp3.1/Inter.Domain.pdb
+/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.csprojAssemblyReference.cache
+/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.csproj.CoreCompileInputs.cache
+/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.AssemblyInfoInputs.cache
+/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.AssemblyInfo.cs
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.csproj.CopyComplete
+/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.dll
+/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.pdb
 /Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/Debug/netcoreapp3.1/Inter.LogRecieverAppService.genruntimeconfig.cache
