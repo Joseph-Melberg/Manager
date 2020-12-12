@@ -39,7 +39,7 @@ namespace Inter.HeartbeatListenerAppService.Application
 
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                Handle(message);
+                await HandleAsync(message);
 
                 channel.BasicAck(ea.DeliveryTag, false);
                 await Task.Yield();
@@ -52,7 +52,7 @@ namespace Inter.HeartbeatListenerAppService.Application
                 System.Threading.Thread.Sleep(1000);
             }
         }
-        public void Handle(string mess)
+        public async Task HandleAsync(string mess)
         {
 
 
@@ -61,7 +61,7 @@ namespace Inter.HeartbeatListenerAppService.Application
             try
             {
                 var result = JsonSerializer.Deserialize<HeartbeatMessage>(mess);
-                _service.Process(result);
+                await _service.Process(result);
             }
             catch (Exception ex)
             {
