@@ -7,7 +7,7 @@ namespace Inter.Infrastructure.MySQL
 {
     public class MySQLModule
     {
-        public static void LoadSqlRepository<TFrom, TTo, TContext>(ServiceCollection catalog)
+        public static void LoadSqlRepository<TFrom, TTo, TContext>(IServiceCollection catalog)
             where TTo : BaseRepository<TContext>,TFrom
             where TFrom : class
             where TContext : DefaultContext

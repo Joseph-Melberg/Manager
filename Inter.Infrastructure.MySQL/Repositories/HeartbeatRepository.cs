@@ -17,7 +17,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
             
         }
 
-        public async Task<List<HeartbeatModel>> GetStatuses()
+        public async Task<List<HeartbeatModel>> GetStatusesAsync()
         {
             return await Context.HeartBeat.ToListAsync();
         }
