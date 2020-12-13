@@ -21,7 +21,7 @@ namespace Inter.Infrastructure.Services
 
         public async Task<List<HeartbeatModel>> GetStatusesAsync()
         {
-            return await _heartbeatRepository.GetStatuses();
+            return await _heartbeatRepository.GetStatusesAsync();
         }
 
         public Task UpdateNode(HeartbeatModel model)

@@ -9,4 +9,24 @@
     <PackageReference Include="StackExchange.Redis" Version="2.1.58" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Inter.DomainServices.Core\Inter.DomainServices.Core.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Inter.DomainServices\Inter.DomainServices.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Inter.Infrastructure\Inter.Infrastructure.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Inter.Infrastructure.Core\Inter.Infrastructure.Core.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Inter.Infrastructure.MySQL\Inter.Infrastructure.MySQL.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Registry\" />
+  </ItemGroup>
 </Project>
