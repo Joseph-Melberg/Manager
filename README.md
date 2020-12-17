@@ -1,0 +1,37 @@
+# Welcome
+
+This repository contains the systems that I use to maintain my long term project: Inter.
+
+# Purpose
+
+I have always enjoyed constructing services and connecting them, so I figured that I would try to put together something that will keep me busy and entertained.
+
+The second reason that I am doing this is to practice what I do in my day job.  The Onion Architecture, while simply the best long term architecture in terms of organization and maintainability, is not super straight forward, so this helps me understand the decisions behind where certain things go and what can veiw what.
+
+# Components
+
+## API's
+
+### InterApi
+
+Provides info for my website ( centurions.net ) and for anyone else who wants it.
+
+## Applications
+
+### Heartbeat Listener
+
+Receives messages from the nodes, giving me some insight into the current state of my work.
+
+### LifeAlert
+
+Runs every minute, checking the age of the heartbeats recorded.  If it finds a heartbeat that is both stale and unnanounced, it sends me an email.
+
+### Log Listener
+
+Listens on a rabbit queue to the logs that are sent to it.
+
+
+# Notes
+
+It looks like there are two people working on this product, but they are both me.
+
