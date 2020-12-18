@@ -14,7 +14,7 @@ The second reason that I am doing this is to practice what I do in my day job.  
 
 ### InterApi
 
-Provides info for my website ( centurions.net ) and for anyone else who wants it.
+Provides info for my website ( centurionx.net ) and for anyone else who wants it.
 
 ## Applications
 
