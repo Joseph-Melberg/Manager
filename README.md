@@ -30,6 +30,17 @@ Runs every minute, checking the age of the heartbeats recorded.  If it finds a h
 
 Listens on a rabbit queue to the logs that are sent to it.
 
+### Plane Listener WIP
+
+Will take the place of dump1090 as main data ingress point.  Will take in data on a port and process into plane data.  It will store that info in Redis in the following fashion.
+
+Plane changes come in the form of updates to a single aspect of a given plane, so redis will host a collection of objects named $id_$key, with two values, $objectValue and $entry time.
+
+A message will pull all of the aspects of the relevant plane, update the value and timestamp, then, if all of the ages are proper, push that plane record into the MySQL db.
+
+
+
+
 
 # Notes
 
