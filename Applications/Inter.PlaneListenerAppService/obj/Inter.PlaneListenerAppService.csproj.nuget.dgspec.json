@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj": {}
+    "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.PlaneListenerAppService/Inter.PlaneListenerAppService.csproj": {}
   },
   "projects": {
-    "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj": {
+    "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.PlaneListenerAppService/Inter.PlaneListenerAppService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj",
-        "projectName": "Inter.LogRecieverAppService",
-        "projectPath": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj",
+        "projectUniqueName": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.PlaneListenerAppService/Inter.PlaneListenerAppService.csproj",
+        "projectName": "Inter.PlaneListenerAppService",
+        "projectPath": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.PlaneListenerAppService/Inter.PlaneListenerAppService.csproj",
         "packagesPath": "/home/jbmelberg/.nuget/packages/",
-        "outputPath": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/obj/",
+        "outputPath": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.PlaneListenerAppService/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/jbmelberg/.nuget/NuGet/NuGet.Config"
@@ -33,9 +33,6 @@
               },
               "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj": {
                 "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj"
-              },
-              "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj": {
-                "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj"
               },
               "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj": {
                 "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj"
@@ -63,10 +60,6 @@
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[3.1.9, )"
-            },
-            "RabbitMQ.Client": {
-              "target": "Package",
-              "version": "[6.2.1, )"
             }
           },
           "imports": [
@@ -293,73 +286,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
-          ],
-          "assetTargetFallback": true,
-          "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj",
-        "projectName": "Inter.Infrastructure.MySQL",
-        "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj",
-        "packagesPath": "/home/jbmelberg/.nuget/packages/",
-        "outputPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.MySQL/obj/",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "/home/jbmelberg/.nuget/NuGet/NuGet.Config"
-        ],
-        "originalTargetFrameworks": [
-          "netcoreapp3.1"
-        ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
-        "frameworks": {
-          "netcoreapp3.1": {
-            "projectReferences": {
-              "/home/jbmelberg/Documents/Git/Manager/Inter.Domain/Inter.Domain.csproj": {
-                "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Domain/Inter.Domain.csproj"
-              },
-              "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj": {
-                "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj"
-              }
-            }
-          }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        }
-      },
-      "frameworks": {
-        "netcoreapp3.1": {
-          "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[3.1.8, )"
-            },
-            "MySql.Data.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[8.0.21, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

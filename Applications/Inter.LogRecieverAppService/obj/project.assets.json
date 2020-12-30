@@ -6994,19 +6994,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/jbmelberg/.nuget/packages/": {}
+    "/home/jbmelberg/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj",
+      "projectUniqueName": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj",
       "projectName": "Inter.LogRecieverAppService",
-      "projectPath": "/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj",
-      "packagesPath": "/Users/jbmelberg/.nuget/packages/",
-      "outputPath": "/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/",
+      "projectPath": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj",
+      "packagesPath": "/home/jbmelberg/.nuget/packages/",
+      "outputPath": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jbmelberg/.nuget/NuGet/NuGet.Config"
+        "/home/jbmelberg/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -7017,20 +7017,20 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj": {
-              "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj"
+            "/home/jbmelberg/Documents/Git/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj"
             },
-            "/Users/jbmelberg/Projects/Manager/Inter.DomainServices/Inter.DomainServices.csproj": {
-              "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices/Inter.DomainServices.csproj"
+            "/home/jbmelberg/Documents/Git/Manager/Inter.DomainServices/Inter.DomainServices.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.DomainServices/Inter.DomainServices.csproj"
             },
-            "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj": {
-              "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj"
+            "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj"
             },
-            "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj": {
-              "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj"
+            "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj"
             },
-            "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj": {
-              "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj"
+            "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj"
             }
           }
         }
@@ -7076,7 +7076,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
       }
     }
   }
