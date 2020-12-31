@@ -21,7 +21,7 @@ namespace InterApi
         {
             services.AddControllers().AddNewtonsoftJson();
             services.RegisterNodeApi();
-
+            services.RegisterPlaneApi();
 
         }
 
