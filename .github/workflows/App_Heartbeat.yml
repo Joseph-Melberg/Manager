@@ -21,6 +21,9 @@ jobs:
       run: dotnet build --no-restore ./Applications/Inter.HeartbeatListenerAppService/Inter.HeartbeatListenerAppService.csproj
     - name: Publish
       run: dotnet publish ./Applications/Inter.HeartbeatListenerAppService/Inter.HeartbeatListenerAppService.csproj -c Release -o ./app
+    - name: debug
+      run: ls
+    
     - name: Docker Login
       uses: docker/login-action@v1.8.0
       with:
