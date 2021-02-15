@@ -18,7 +18,7 @@ Provides info for my website ( centurionx.net ) and for anyone else who wants it
 
 ## Applications
 
-### Heartbeat Listener
+### Heartbeat Listener ![.NET](https://github.com/Joseph-Melberg/Manager/workflows/.NET/badge.svg)
 
 Receives messages from the nodes, giving me some insight into the current state of my work.
 
