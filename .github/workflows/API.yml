@@ -3,7 +3,7 @@ name: API CI-CD
 on:
   push:
     branches: [ master ]
-    paths: Api/InterApi
+    paths: Api/InterApi/ .github/workflows/API.yml
     
 jobs:
   build:
