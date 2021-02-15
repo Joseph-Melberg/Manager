@@ -45,7 +45,7 @@ jobs:
       name: Run SSH command
       uses: garygrossgarten/github-action-ssh@v0.5.0
       with:
-        command: ${{secrets.INTER_INTERNAL_IP}} "docker pull docker.centurionx.net/interapi; docker stop interapi; docker rm interapi; docker run --name interapi -e ASPNETCORE_URLS="http://+:80" -p 5001:80 --restart=unless-stopped -d docker.centurionx.net/interapi; touch iwashere" 
+        command: ssh ${{secrets.INTER_INTERNAL_IP}} "docker pull docker.centurionx.net/interapi; docker stop interapi; docker rm interapi; docker run --name interapi -e ASPNETCORE_URLS="http://+:80" -p 5001:80 --restart=unless-stopped -d docker.centurionx.net/interapi; touch iwashere" 
         host: ${{ secrets.HOST }}
         username: ${{secrets.CENTURION_USERNAME}}
         password: ${{secrets.CENTURION_PASSWORD}}
