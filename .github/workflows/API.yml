@@ -21,10 +21,10 @@ jobs:
       run: dotnet restore ./Api/InterApi/Inter.HeartbeatListenerAppService.csproj
     - 
       name: Build
-      run: dotnet build --no-restore ./Applications/Inter.HeartbeatListenerAppService/InterApi.csproj
+      run: dotnet build --no-restore ./Api/InterApi/Inter.HeartbeatListenerAppService.csproj
     - 
       name: Publish
-      run: dotnet publish ./Applications/Inter.HeartbeatListenerAppService/InterApi.csproj -c Release -o ./app
+      run: dotnet publish ./Api/InterApi/Inter.HeartbeatListenerAppService.csproj -c Release -o ./app
     - 
       name: Docker Login
       uses: docker/login-action@v1.8.0
@@ -37,7 +37,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: ./
-        file: ./Applications/Inter.HeartbeatListenerAppService/Dockerfile
+        file: ./Api/InterApi/Dockerfile
         push: true
         tags: |
           docker.centurionx.net/interapi
