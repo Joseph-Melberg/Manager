@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
     paths: Applications/Inter.HeartbeatListenerAppService/
-
+  workflow_dispatch:
 jobs:
   build:
 
@@ -42,3 +42,11 @@ jobs:
         push: true
         tags: |
           docker.centurionx.net/interheartbeatlistener
+    - 
+      name: Run SSH command
+      uses: garygrossgarten/github-action-ssh@v0.5.0
+      with:
+        command: ssh ${{secrets.INTER_INTERNAL_IP}} "docker pull docker.centurionx.net/interheartbeatlistener; docker stop heartbeatlistener; docker rm heartbeatlistener; docker run --name=heartbeatlistener --restart=unless-stopped -d docker.centurionx.net/interheartbeatlistener" 
+        host: ${{ secrets.HOST }}
+        username: ${{secrets.CENTURION_USERNAME}}
+        password: ${{secrets.CENTURION_PASSWORD}}
