@@ -3,7 +3,8 @@ name: API CI-CD
 on:
   push:
     branches: [ master ]
-
+    paths: /Api/InterApi
+    
 jobs:
   build:
 
