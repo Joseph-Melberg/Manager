@@ -12,13 +12,13 @@ The second reason that I am doing this is to practice what I do in my day job.  
 
 ## API's
 
-### InterApi
+### InterApi ![API CI-CD](https://github.com/Joseph-Melberg/Manager/workflows/API%20CI-CD/badge.svg)
 
 Provides info for my website ( centurionx.net ) and for anyone else who wants it.
 
 ## Applications
 
-### Heartbeat Listener ![.NET](https://github.com/Joseph-Melberg/Manager/workflows/.NET/badge.svg)
+### Heartbeat Listener ![Heartbeat CI-CD](https://github.com/Joseph-Melberg/Manager/workflows/.NET/badge.svg)
 
 Receives messages from the nodes, giving me some insight into the current state of my work.
 
