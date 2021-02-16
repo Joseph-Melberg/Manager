@@ -32,9 +32,12 @@ namespace Inter.Infrastructure.MySQL.Repositories
 
             if (Context.HeartBeat.Any(_ => _.name == heartBeat.name))
             {
+                Console.WriteLine($"Node {heartBeat.name} was replaced");
                 try
                 {
-                    Context.HeartBeat.Update(heartBeat);
+                    Context.HeartBeat.Remove(heartBeat);
+                    await Context.SaveAsync();
+                    await Context.HeartBeat.AddAsync(heartBeat);
                 }
                 catch (Exception ex)
                 {
