@@ -34,6 +34,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
             {
                 try
                 {
+
                     Context.HeartBeat.Update(heartBeat);
                 }
                 catch (Exception ex)
