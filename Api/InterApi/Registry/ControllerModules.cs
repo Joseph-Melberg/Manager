@@ -19,5 +19,12 @@ namespace InterApi.Registry
             MySQLModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(services);
             return services;
         }
+        public static IServiceCollection RegisterPlaneApi(this IServiceCollection services)
+        {
+            services.AddTransient<IPlaneApiService,PlaneApiService>();
+            services.AddTransient<IPlaneApiInfrastructureService,PlaneApiInfrastructureService>();
+            MySQLModule.LoadSqlRepository<IPlaneRepository,PlaneRepository,PlaneContext>(services);
+            return services;
+        }
     }
 }

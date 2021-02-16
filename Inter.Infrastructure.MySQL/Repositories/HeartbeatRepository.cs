@@ -35,9 +35,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
                 Console.WriteLine($"Node {heartBeat.name} was replaced");
                 try
                 {
-                    Context.HeartBeat.Remove(heartBeat);
-                    await Context.SaveAsync();
-                    await Context.HeartBeat.AddAsync(heartBeat);
+                    Context.HeartBeat.Update(heartBeat);
                 }
                 catch (Exception ex)
                 {
