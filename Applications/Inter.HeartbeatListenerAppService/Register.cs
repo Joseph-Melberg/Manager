@@ -7,6 +7,7 @@ using Inter.Infrastructure.MySQL;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Services;
+using Melberg.Infrastructure.MySql;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.HeartbeatListenerAppService
@@ -19,7 +20,7 @@ namespace Inter.HeartbeatListenerAppService
             services.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
             services.AddTransient<IHeartbeatListenerInfrastructureService,
                 HeartbeatListenerInfrastructureService>();
-            MySQLModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(services);
+            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(services);
             return services;
         }
     }

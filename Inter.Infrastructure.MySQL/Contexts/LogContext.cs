@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Inter.Domain;
+using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inter.Infrastructure.MySQL.Contexts

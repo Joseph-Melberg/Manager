@@ -25,8 +25,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterApi", "Api\InterApi\In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.LogRecieverAppService", "Applications\Inter.LogRecieverAppService\Inter.LogRecieverAppService.csproj", "{79D4EE46-86E4-466C-B8BC-6B2C75B8A0A1}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Inter.Infrastructure.Redis", "Inter.Infrastructure.Redis\Inter.Infrastructure.Redis.csproj", "{3117FDAD-2C67-4718-95B6-375BAD696C1E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

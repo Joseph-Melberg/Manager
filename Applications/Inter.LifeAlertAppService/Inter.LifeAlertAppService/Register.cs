@@ -6,6 +6,7 @@ using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Services;
+using Melberg.Infrastructure.MySql;
 using Microsoft.Extensions.DependencyInjection;
 namespace Inter.LifeAlertAppService
 {
@@ -16,7 +17,8 @@ namespace Inter.LifeAlertAppService
             services.AddTransient<ILifeAlertService, LifeAlertService>();
             services.AddTransient<ILifeAlertInfrastructureService,
                 LifeAlertInfrastructureService>();
-            services.AddTransient<IHeartbeatRepository, HeartbeatRepository>();
+            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(services);
+
             return services;
         }
     }

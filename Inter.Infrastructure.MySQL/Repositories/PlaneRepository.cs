@@ -1,5 +1,6 @@
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
+using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 

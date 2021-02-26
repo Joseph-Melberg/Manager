@@ -6,6 +6,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Melberg.Infrastructure.MySql" Version="1.0.2" />
     <PackageReference Include="StackExchange.Redis" Version="2.1.58" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="5.0.0" />

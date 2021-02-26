@@ -2,6 +2,7 @@
 using Inter.Domain;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
+using Melberg.Infrastructure.MySql;
 
 namespace Inter.Infrastructure.MySQL.Repositories
 {

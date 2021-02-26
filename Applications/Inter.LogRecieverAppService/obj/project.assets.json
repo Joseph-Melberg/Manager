@@ -65,6 +65,19 @@
           "lib/netstandard2.0/K4os.Hash.xxHash.dll": {}
         }
       },
+      "Melberg.Infrastructure.MySql/1.0.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "3.1.8",
+          "MySql.Data.EntityFrameworkCore": "8.0.21"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Melberg.Infrastructure.MySql.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Melberg.Infrastructure.MySql.dll": {}
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -2085,6 +2098,7 @@
         "dependencies": {
           "Inter.Domain": "1.0.0",
           "Inter.Infrastructure": "1.0.0",
+          "Melberg.Infrastructure.MySql": "1.0.2",
           "Microsoft.EntityFrameworkCore": "3.1.8",
           "MySql.Data.EntityFrameworkCore": "8.0.21"
         },
@@ -2195,6 +2209,18 @@
         "lib/netstandard1.6/K4os.Hash.xxHash.xml",
         "lib/netstandard2.0/K4os.Hash.xxHash.dll",
         "lib/netstandard2.0/K4os.Hash.xxHash.xml"
+      ]
+    },
+    "Melberg.Infrastructure.MySql/1.0.2": {
+      "sha512": "ll0BSqXRoGwJFOqihJpIOKlPYvh7+CkUtfJxKIY1yOSK9toMQut/woNOB1Jq4tpRtBAkIoXrQSz2wBBRheEO+A==",
+      "type": "package",
+      "path": "melberg.infrastructure.mysql/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netcoreapp3.1/Melberg.Infrastructure.MySql.dll",
+        "melberg.infrastructure.mysql.1.0.2.nupkg.sha512",
+        "melberg.infrastructure.mysql.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -6987,6 +7013,7 @@
       "Inter.Infrastructure >= 1.0.0",
       "Inter.Infrastructure.Core >= 1.0.0",
       "Inter.Infrastructure.MySQL >= 1.0.0",
+      "Melberg.Infrastructure.MySql >= 1.0.2",
       "Microsoft.Extensions.Configuration.FileExtensions >= 5.0.0",
       "Microsoft.Extensions.Configuration.Json >= 5.0.0",
       "Microsoft.Extensions.DependencyInjection >= 3.1.9",
@@ -6994,19 +7021,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/jbmelberg/.nuget/packages/": {}
+    "/home/jbmelberg/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj",
+      "projectUniqueName": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj",
       "projectName": "Inter.LogRecieverAppService",
-      "projectPath": "/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj",
-      "packagesPath": "/Users/jbmelberg/.nuget/packages/",
-      "outputPath": "/Users/jbmelberg/Projects/Manager/Applications/Inter.LogRecieverAppService/obj/",
+      "projectPath": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/Inter.LogRecieverAppService.csproj",
+      "packagesPath": "/home/jbmelberg/.nuget/packages/",
+      "outputPath": "/home/jbmelberg/Documents/Git/Manager/Applications/Inter.LogRecieverAppService/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jbmelberg/.nuget/NuGet/NuGet.Config"
+        "/home/jbmelberg/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -7017,20 +7044,20 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj": {
-              "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj"
+            "/home/jbmelberg/Documents/Git/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.DomainServices.Core/Inter.DomainServices.Core.csproj"
             },
-            "/Users/jbmelberg/Projects/Manager/Inter.DomainServices/Inter.DomainServices.csproj": {
-              "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.DomainServices/Inter.DomainServices.csproj"
+            "/home/jbmelberg/Documents/Git/Manager/Inter.DomainServices/Inter.DomainServices.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.DomainServices/Inter.DomainServices.csproj"
             },
-            "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj": {
-              "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj"
+            "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.Core/Inter.Infrastructure.Core.csproj"
             },
-            "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj": {
-              "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj"
+            "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure.MySQL/Inter.Infrastructure.MySQL.csproj"
             },
-            "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj": {
-              "projectPath": "/Users/jbmelberg/Projects/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj"
+            "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj": {
+              "projectPath": "/home/jbmelberg/Documents/Git/Manager/Inter.Infrastructure/Inter.Infrastructure.csproj"
             }
           }
         }
@@ -7044,6 +7071,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "Melberg.Infrastructure.MySql": {
+            "target": "Package",
+            "version": "[1.0.2, )"
+          },
           "Microsoft.Extensions.Configuration.FileExtensions": {
             "target": "Package",
             "version": "[5.0.0, )"
@@ -7076,7 +7107,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
       }
     }
   }

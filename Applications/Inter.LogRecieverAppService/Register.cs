@@ -7,6 +7,7 @@ using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Services;
 using Inter.LogRecieverAppService.Application;
+using Melberg.Infrastructure.MySql;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.LogRecieverAppService
@@ -19,7 +20,7 @@ namespace Inter.LogRecieverAppService
             services.AddTransient<ILogListenerService, LogListenerService>();
             services.AddTransient<ILogListenerInfrastructureService,
                 LogListenerInfrastructureService>();
-            MySQLModule.LoadSqlRepository<ILogRepository, LogRepository, LogContext>(services);
+            MySqlModule.LoadSqlRepository<ILogRepository, LogRepository, LogContext>(services);
             return services;
         }
     }

@@ -1,4 +1,5 @@
 using Inter.Infrastructure.MySQL.Models;
+using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inter.Infrastructure.MySQL.Contexts

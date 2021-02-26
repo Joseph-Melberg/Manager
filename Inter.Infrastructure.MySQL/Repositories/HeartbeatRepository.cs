@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
+using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inter.Infrastructure.MySQL.Repositories
