@@ -1,7 +1,10 @@
+using Inter.Domain;
 using Inter.Infrastructure.Corral;
+using Inter.Infrastructure.Mappers;
 using Inter.Infrastructure.MySQL.Contexts;
 using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 
 using System.Threading.Tasks;
@@ -12,6 +15,15 @@ namespace Inter.Infrastructure.MySQL.Repositories
     {
         public PlaneRepository(PlaneContext context) : base(context)
         {
+        }
+        public async Task AddPlaneAsync(Plane plane,int now, DateTime time)
+        {
+            await Context.records.AddAsync(plane.ToModel(now, time));
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await Context.SaveChangesAsync();
         }
         public async Task<int> PlaneCount()
         {
