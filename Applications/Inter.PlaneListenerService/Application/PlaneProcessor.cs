@@ -16,7 +16,7 @@ namespace Inter.PlaneListenerService.Application
 
         private readonly IPlaneListenerService _service;
         public PlaneProcessor(IPlaneListenerService service) => _service = service;
-        private readonly string QueueName = "Planes";
+        private readonly string QueueName = "plane";
     
         public async Task Run()
         {
@@ -31,7 +31,7 @@ namespace Inter.PlaneListenerService.Application
 
             var channel = connection.CreateModel();
             channel.ExchangeDeclare("Inter", ExchangeType.Direct, true);
-            channel.QueueDeclare(QueueName, true, false, false, null);
+            channel.QueueDeclare(QueueName, false, false, false, null);
             channel.QueueBind(QueueName, "Inter", "/plane", null);
             var consumer = new AsyncEventingBasicConsumer(channel);
 
