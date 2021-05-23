@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Inter.Domain;
 using Inter.DomainServices.Core;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,11 +17,17 @@ namespace InterApi.Controllers
         }
 
         [HttpGet]
-        [Route("count")]
-        public async Task<int> GetDetailCount()
+        [Route("frame")]
+        public async Task<PlaneFrame> GetFrameAsync()
         {
-            var result = await _service.CountDetailed();
-            return result;
+            return await _service.GetFrameAsync(DateTime.UtcNow.ToFileTimeUtc() -1);
+        }
+        
+        [HttpGet]
+        [Route("frame/{time}")]
+        public async Task<PlaneFrame> GetFrameAsync(long time)
+        {
+            return await _service.GetFrameAsync(time);
         }
     }
 }

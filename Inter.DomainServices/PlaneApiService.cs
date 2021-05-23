@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
+using System;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
+using Inter.Domain;
 
 namespace Inter.DomainServices
 {
@@ -12,10 +14,10 @@ namespace Inter.DomainServices
         {
             _infra = infrastructureService;
         }
-        public async Task<int> CountDetailed()
+
+        public async Task<PlaneFrame> GetFrameAsync(long timestamp)
         {
-            var result = await _infra.GetPlaneCount();
-            return result;
+            return await _infra.GetFrameAsync(timestamp);
         }
     }
 }

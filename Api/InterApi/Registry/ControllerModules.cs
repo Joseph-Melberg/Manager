@@ -7,6 +7,8 @@ using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.MySQL;
+using Inter.Infrastructure.Couchbase;
+using Melberg.Infrastructure.Couchbase;
 using Melberg.Infrastructure.MySql;
 
 namespace InterApi.Registry
@@ -24,7 +26,7 @@ namespace InterApi.Registry
         {
             services.AddTransient<IPlaneApiService,PlaneApiService>();
             services.AddTransient<IPlaneApiInfrastructureService,PlaneApiInfrastructureService>();
-            MySqlModule.LoadSqlRepository<IPlaneRepository,PlaneRepository,PlaneContext>(services);
+            CouchbaseModule.RegisterCouchbaseClient<IPlaneFrameRepository,PlaneFrameRepository>(services);
             return services;
         }
     }

@@ -1,9 +1,11 @@
+using System;
 using System.Threading.Tasks;
+using Inter.Domain;
 
 namespace Inter.DomainServices.Core
 {
     public interface IPlaneApiService
     {
-        Task<int> CountDetailed();
+        Task<PlaneFrame> GetFrameAsync(long timestamp);
     }
 }

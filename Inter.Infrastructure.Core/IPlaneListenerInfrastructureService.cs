@@ -4,8 +4,8 @@ using Inter.Domain;
 
 namespace Inter.Infrastructure.Core
 {
-    public interface IPlaneApiInfrastructureService
+    public interface IPlaneListenerInfrastructureService
     {
-        Task<PlaneFrame> GetFrameAsync(long time);
+       Task AddPlaneFrameAsync(PlaneFrame frame);
     }
 }
