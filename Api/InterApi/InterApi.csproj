@@ -6,6 +6,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Melberg.Infrastructure.Couchbase" Version="1.0.15" />
     <PackageReference Include="Melberg.Infrastructure.MySql" Version="1.0.2" />
     <PackageReference Include="StackExchange.Redis" Version="2.1.58" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
@@ -27,6 +28,7 @@
     <ProjectReference Include="..\..\Inter.Infrastructure.MySQL\Inter.Infrastructure.MySQL.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\..\Inter.Infrastructure.Couchbase\Inter.Infrastructure.Couchbase.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Registry\" />

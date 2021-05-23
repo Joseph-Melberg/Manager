@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Inter.Domain;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
 
@@ -6,16 +8,15 @@ namespace Inter.Infrastructure.Services
 {
     public class PlaneApiInfrastructureService : IPlaneApiInfrastructureService
     {
-        private readonly IPlaneRepository _planeRepo;
-        public PlaneApiInfrastructureService(IPlaneRepository planeRepository)
+        private readonly IPlaneFrameRepository _planeFrameRepo;
+        public PlaneApiInfrastructureService(IPlaneFrameRepository planeFrameRepository)
         {
-            _planeRepo = planeRepository;
+            _planeFrameRepo = planeFrameRepository;
         }
 
-        public async Task<int> GetPlaneCount()
+        public async Task<PlaneFrame> GetFrameAsync(long time)
         {
-            var result = await _planeRepo.PlaneCount();
-            return result;
+            return await _planeFrameRepo.GetFrameAsync(time);
         }
     }
 }

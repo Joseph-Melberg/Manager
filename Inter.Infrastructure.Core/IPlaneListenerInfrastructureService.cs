@@ -6,8 +6,6 @@ namespace Inter.Infrastructure.Core
 {
     public interface IPlaneListenerInfrastructureService
     {
-       Task AddPlaneAsync(Plane plane, int now, DateTime time);
-
-       Task SaveChangesAsyc();
+       Task AddPlaneFrameAsync(PlaneFrame frame);
     }
 }

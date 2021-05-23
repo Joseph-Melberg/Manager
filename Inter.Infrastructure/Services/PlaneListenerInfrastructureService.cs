@@ -1,27 +1,23 @@
 using System;
 using System.Threading.Tasks;
 using Inter.Domain;
+using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
 
 namespace Inter.Infrastructure.Services
 {
-    public class PlaneListenerInfrastructureService
+    public class PlaneListenerInfrastructureService : IPlaneListenerInfrastructureService
     {
-        private readonly IPlaneRepository _planeRepository;
+        private readonly IPlaneFrameRepository _planeFrameRepository;
         
-        public PlaneListenerInfrastructureService(IPlaneRepository planeRepository)
+        public PlaneListenerInfrastructureService(IPlaneFrameRepository planeFrameRepository)
         {
-            _planeRepository = planeRepository;
+            _planeFrameRepository = planeFrameRepository;
         }
 
-        public async Task AddPlaneAsync(Plane plane, int now, DateTime time)
+        public async Task AddPlaneFrameAsync(PlaneFrame frame)
         {
-            await _planeRepository.AddPlaneAsync(plane,now, time);
-        }
-
-        public async Task SaveChangesAsync()
-        {
-            await _planeRepository.SaveChangesAsync();
+            await _planeFrameRepository.InsertFrameAsync(frame);
         }
     }
 }

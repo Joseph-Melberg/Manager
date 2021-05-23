@@ -3,7 +3,6 @@ using Inter.DomainServices.Core;
 using Inter.HeartbeatListenerAppService.Application;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
-using Inter.Infrastructure.MySQL;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Services;
