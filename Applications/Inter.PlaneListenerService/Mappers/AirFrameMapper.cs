@@ -31,7 +31,7 @@ namespace Inter.PlaneListenerService.Mappers
         }
 
         private static bool IsValid(this AirplaneData data) =>
-            data.id.HasValue && data.lat.HasValue &&
+            data.lat.HasValue &&
             data.lon.HasValue &&
             data.altitude.HasValue &&
             data.vert_rate.HasValue &&
