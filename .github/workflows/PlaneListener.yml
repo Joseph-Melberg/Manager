@@ -1,4 +1,4 @@
-name: Heartbeat
+name: Plane Listener
 
 on:
   push:
