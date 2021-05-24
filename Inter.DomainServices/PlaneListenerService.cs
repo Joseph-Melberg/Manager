@@ -17,7 +17,10 @@ namespace Inter.DomainServices
 
         public async Task HandleMessageAsync(PlaneFrame frame)
         {
-            await _infraservice.AddPlaneFrameAsync(frame);
+            if(frame.Planes.Length != 0)
+            {
+                await _infraservice.AddPlaneFrameAsync(frame);
+            }
         }
     }
 }
