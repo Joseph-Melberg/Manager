@@ -20,7 +20,7 @@ namespace InterApi.Controllers
         [Route("frame")]
         public async Task<PlaneFrame> GetFrameAsync()
         {
-            return await _service.GetFrameAsync(DateTime.UtcNow.ToFileTimeUtc() -1);
+            return await _service.GetFrameAsync((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - 1);
         }
         
         [HttpGet]
