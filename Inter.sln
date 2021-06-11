@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.Infrastructure.Core",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.HeartbeatListenerAppService", "Applications\Inter.HeartbeatListenerAppService\Inter.HeartbeatListenerAppService.csproj", "{FE016E01-FDBE-4DEA-A298-C81488FC4B42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.LifeAlertAppService", "Applications\Inter.LifeAlertAppService\Inter.LifeAlertAppService\Inter.LifeAlertAppService.csproj", "{7D90462C-46DB-4B6D-B659-C96A6A8AC02C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{DBAA07C4-D46D-4394-98AC-7D23FACE35B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterApi", "Api\InterApi\InterApi.csproj", "{4D76BED7-279B-4E0A-8C8D-6193CAAF2B05}"
@@ -28,6 +26,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.PlaneListenerService", "Applications\Inter.PlaneListenerService\Inter.PlaneListenerService.csproj", "{7FE7886C-F9DF-45FA-B7EE-1C091A0D91A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.Infrastructure.Couchbase", "Inter.Infrastructure.Couchbase\Inter.Infrastructure.Couchbase.csproj", "{D28540EC-70B1-4BC5-BF29-2B6589B4A71A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.LifeAlertAppService", "Applications\Inter.LifeAlertAppService\Inter.LifeAlertAppService.csproj", "{CEF1E587-45AF-4B54-8947-71BA6FF07884}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,10 +63,6 @@ Global
 		{FE016E01-FDBE-4DEA-A298-C81488FC4B42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE016E01-FDBE-4DEA-A298-C81488FC4B42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE016E01-FDBE-4DEA-A298-C81488FC4B42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D90462C-46DB-4B6D-B659-C96A6A8AC02C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D90462C-46DB-4B6D-B659-C96A6A8AC02C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D90462C-46DB-4B6D-B659-C96A6A8AC02C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D90462C-46DB-4B6D-B659-C96A6A8AC02C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D76BED7-279B-4E0A-8C8D-6193CAAF2B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D76BED7-279B-4E0A-8C8D-6193CAAF2B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D76BED7-279B-4E0A-8C8D-6193CAAF2B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,12 +83,16 @@ Global
 		{D28540EC-70B1-4BC5-BF29-2B6589B4A71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D28540EC-70B1-4BC5-BF29-2B6589B4A71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D28540EC-70B1-4BC5-BF29-2B6589B4A71A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEF1E587-45AF-4B54-8947-71BA6FF07884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF1E587-45AF-4B54-8947-71BA6FF07884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF1E587-45AF-4B54-8947-71BA6FF07884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF1E587-45AF-4B54-8947-71BA6FF07884}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FE016E01-FDBE-4DEA-A298-C81488FC4B42} = {394F3572-2702-4FF4-857E-BC3810B65F13}
-		{7D90462C-46DB-4B6D-B659-C96A6A8AC02C} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 		{4D76BED7-279B-4E0A-8C8D-6193CAAF2B05} = {DBAA07C4-D46D-4394-98AC-7D23FACE35B8}
 		{79D4EE46-86E4-466C-B8BC-6B2C75B8A0A1} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 		{7FE7886C-F9DF-45FA-B7EE-1C091A0D91A2} = {394F3572-2702-4FF4-857E-BC3810B65F13}
+		{CEF1E587-45AF-4B54-8947-71BA6FF07884} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 	EndGlobalSection
 EndGlobal
