@@ -17,8 +17,7 @@ namespace Inter.HeartbeatListenerAppService
         {
             services.AddSingleton<HeartbeatProccessor>();
             services.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
-            services.AddTransient<IHeartbeatListenerInfrastructureService,
-                HeartbeatListenerInfrastructureService>();
+            services.AddTransient<IHeartbeatListenerInfrastructureService,HeartbeatListenerInfrastructureService>();
             MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(services);
             return services;
         }

@@ -28,10 +28,10 @@ jobs:
       run: dotnet restore 
     - 
       name: Build
-      run: dotnet build --no-restore ./Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService/Inter.LifeAlertAppService.csproj
+      run: dotnet build --no-restore ./Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService.csproj
     - 
       name: Publish
-      run: dotnet publish ./Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService/Inter.LifeAlertAppService.csproj -c Release -o ./app
+      run: dotnet publish ./Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService.csproj -c Release -o ./app
     - 
       name: Docker Login
       uses: docker/login-action@v1.8.0
@@ -44,7 +44,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: ./
-        file: ./Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService/Dockerfile
+        file: ./Applications/Inter.LifeAlertAppService/Dockerfile
         platforms: linux/amd64,linux/arm64
         push: true
         tags: |
