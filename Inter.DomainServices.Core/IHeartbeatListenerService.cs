@@ -5,6 +5,6 @@ namespace Inter.DomainServices.Core
 {
     public interface IHeartbeatListenerService
     {
-        Task Process(HeartbeatMessage message);
+        Task Process(Heartbeat message);
     }
 }

@@ -14,20 +14,16 @@ namespace Inter.DomainServices
             _infraservice = infrastructureService;
         }
 
-        public async Task Process(HeartbeatMessage message)
+        public async Task Process(Heartbeat message)
         {
             //We only need to announce if it was off
-            var shouldAnnounce = !await _infraservice.GetHeartbeatStateAsync(message.Name);
-            var model = new HeartbeatModel()
-            {
-                name = message.Name,
-                mac = message.Mac,
-                timestamp = DateTime.Now,
-                announced = shouldAnnounce,
-                online = true
-            };
-            await _infraservice.UpdateAsync(model);
-            Console.WriteLine($"{message.Name} was proccessed");
+            var shouldAnnounce = !await _infraservice.GetHeartbeatStateAsync(message.name);
+            message.timestamp = DateTime.Now;
+            message.announced = shouldAnnounce;
+            message.online = true;
+            
+            await _infraservice.UpdateAsync(message);
+            Console.WriteLine($"{message.name} was proccessed");
         }
     }
 }

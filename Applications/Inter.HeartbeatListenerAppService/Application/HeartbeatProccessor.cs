@@ -5,6 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.DomainServices.Core;
+using Inter.HeartbeatListenerAppService.Mappers;
+using Inter.HeartbeatListenerAppService.Messages;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 namespace Inter.HeartbeatListenerAppService.Application
@@ -62,7 +64,7 @@ namespace Inter.HeartbeatListenerAppService.Application
             try
             {
                 var result = JsonSerializer.Deserialize<HeartbeatMessage>(mess);
-                await _service.Process(result);
+                await _service.Process(result.ToDomain());
             }
             catch (Exception ex)
             {
