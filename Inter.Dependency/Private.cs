@@ -14,7 +14,7 @@ namespace Inter.Dependency
         {
             Collection.AddTransient<INodeApiInfrastructureService, NodeApiInfrastructureService>();
             
-            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(Collection);
+            //MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(Collection);
 
             return Collection;
         }

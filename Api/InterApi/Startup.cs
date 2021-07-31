@@ -1,4 +1,8 @@
 using Inter.Dependency;
+using Inter.Infrastructure.Corral;
+using Inter.Infrastructure.MySQL.Contexts;
+using Inter.Infrastructure.MySQL.Repositories;
+using Melberg.Infrastructure.MySql;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +25,9 @@ namespace InterApi
         {
             services.AddControllers().AddNewtonsoftJson();
             services.RegisterNodeApiService();
+            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(services);
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
