@@ -15,9 +15,7 @@ namespace Inter.DomainServices
 
         public async Task<int> GetUpCount()
         {
-            return (await _infrastructure.GetStatiAsync()).Where(_ => _.online).Count();
+            return (await _infrastructure.GetStati()).Where(_ => _.online).Count();
         }
-
-
     }
 }

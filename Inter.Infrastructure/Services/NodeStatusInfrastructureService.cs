@@ -16,10 +16,10 @@ namespace Inter.Infrastructure.Services
         }
 
 
-        public async Task<List<Heartbeat>> GetStatiAsync()
+        public async Task<List<HeartbeatModel>> GetStati()
         {
-            return await _heartbeatRepository.GetStatiAsync();
+            return await _heartbeatRepository.GetStatusesAsync();
+            
         }
-
     }
 }

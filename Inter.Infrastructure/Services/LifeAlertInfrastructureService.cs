@@ -19,12 +19,12 @@ namespace Inter.Infrastructure.Services
             _heartbeatRepository = heartbeatRepository;
         }
 
-        public async Task<List<Heartbeat>> GetStatusesAsync()
+        public async Task<List<HeartbeatModel>> GetStatusesAsync()
         {
-            return await _heartbeatRepository.GetStatiAsync();
+            return await _heartbeatRepository.GetStatusesAsync();
         }
 
-        public Task UpdateNode(Heartbeat model)
+        public Task UpdateNode(HeartbeatModel model)
         {
             return _heartbeatRepository.UpdateAsync(model);
         }

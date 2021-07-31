@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Inter.Domain;
+﻿using System.Threading.Tasks;
 using Inter.DomainServices.Core;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,8 +9,8 @@ namespace InterApi.Controllers
     [Route("[controller]")]
     public class NodeController : ControllerBase
     {
-        private INodeApiService _service;
-        public NodeController( INodeApiService service)
+        private INodeStatusService _service;
+        public NodeController( INodeStatusService service)
         {
             _service = service;
         }
@@ -21,11 +19,7 @@ namespace InterApi.Controllers
         [Route("count")]
         public async Task<int> GetCountAsync()
         {
-            return await _service.GetUpCountAsync();
+            return await _service.GetUpCount();
         }
-
-        [HttpGet]
-        [Route("detail")]
-        public async Task<IList<Heartbeat>> GetDetailsAsync() => await _service.GetStatiAsync();
     }
 }

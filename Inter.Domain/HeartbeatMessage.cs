@@ -1,4 +1,5 @@
-namespace Inter.HeartbeatListenerAppService.Messages
+﻿using System;
+namespace Inter.Domain
 {
     public class HeartbeatMessage
     {

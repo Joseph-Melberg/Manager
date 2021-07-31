@@ -22,7 +22,7 @@ namespace Inter.Infrastructure.Services
             }
             return result.online;
         }
-        public Task UpdateAsync(Heartbeat heartBeat)
+        public Task UpdateAsync(HeartbeatModel heartBeat)
         {
             return _heartbeatRepository.UpdateAsync(heartBeat);
         }

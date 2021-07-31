@@ -1,8 +1,7 @@
-using System;
-
+﻿using System;
 namespace Inter.Domain
 {
-    public class Heartbeat
+    public class HeartbeatModel
     {
         public string name { get; set; }
         public string mac { get; set; }
