@@ -1,9 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Inter.Domain;
 
 namespace Inter.DomainServices.Core
 {
-    public interface INodeStatusService
+    public interface INodeApiService
     {
-        Task<int> GetUpCount();
+        Task<int> GetUpCountAsync();
+
+        Task<IList<Heartbeat>> GetStatiAsync();
     }
 }

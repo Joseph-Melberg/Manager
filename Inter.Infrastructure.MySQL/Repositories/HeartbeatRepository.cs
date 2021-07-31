@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Corral;
+using Inter.Infrastructure.Mappers;
 using Inter.Infrastructure.MySQL.Contexts;
 using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
@@ -18,25 +19,25 @@ namespace Inter.Infrastructure.MySQL.Repositories
             
         }
 
-        public async Task<List<HeartbeatModel>> GetStatusesAsync()
+        public async Task<List<Heartbeat>> GetStatiAsync()
         {
-            return await Context.HeartBeat.ToListAsync();
+            return await Context.HeartBeat.Select(_ => _.ToDomain()).ToListAsync();
         }
 
-        public async Task<HeartbeatModel> GetStatusAsync(string name)
+        public async Task<Heartbeat> GetStatusAsync(string name)
         {
-             return await Context.HeartBeat.FirstOrDefaultAsync(_ => _.name == name);
+            return (await Context.HeartBeat.FirstOrDefaultAsync(_ => _.name == name)).ToDomain();
         }
 
-        public async Task UpdateAsync(HeartbeatModel heartBeat)
+
+        public async Task UpdateAsync(Heartbeat heartBeat)
         {
 
             if (Context.HeartBeat.Any(_ => _.name == heartBeat.name))
             {
-                Console.WriteLine($"Node {heartBeat.name} was replaced");
                 try
                 {
-                    Context.HeartBeat.Update(heartBeat);
+                    Context.HeartBeat.Update(heartBeat.ToModel());
                 }
                 catch (Exception ex)
                 {
@@ -45,11 +46,9 @@ namespace Inter.Infrastructure.MySQL.Repositories
             }
             else
             {
-                Console.WriteLine($"Node {heartBeat.name} was added");
                 try
                 {
-                    await Context.HeartBeat.AddAsync(heartBeat);
-
+                    await Context.HeartBeat.AddAsync(heartBeat.ToModel());
                 }
                 catch ( Exception ex)
                 {

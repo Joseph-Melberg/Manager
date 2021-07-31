@@ -20,6 +20,7 @@
     <ProjectReference Include="..\..\Inter.Infrastructure\Inter.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Inter.Infrastructure.Core\Inter.Infrastructure.Core.csproj" />
     <ProjectReference Include="..\..\Inter.Infrastructure.MySQL\Inter.Infrastructure.MySQL.csproj" />
+    <ProjectReference Include="..\..\Inter.Dependency\Inter.Dependency.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">
