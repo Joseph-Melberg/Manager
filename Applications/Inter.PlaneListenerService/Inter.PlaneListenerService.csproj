@@ -11,7 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Melberg.Infrastructure.Couchbase" Version="1.0.15" />
-    <PackageReference Include="Melberg.Infrastructure.MySql" Version="1.0.12" />
+    <PackageReference Include="Melberg.Infrastructure.MySql" Version="1.0.15" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />

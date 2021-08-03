@@ -18,7 +18,7 @@ namespace Inter.DomainServices
         {
             //We only need to announce if it was off
             var shouldAnnounce = !await _infraservice.GetHeartbeatStateAsync(message.Name);
-            var model = new HeartbeatModel()
+            var model = new Heartbeat()
             {
                 name = message.Name,
                 mac = message.Mac,

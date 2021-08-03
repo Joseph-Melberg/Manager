@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.Infrastructure.Couchb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.LifeAlertAppService", "Applications\Inter.LifeAlertAppService\Inter.LifeAlertAppService.csproj", "{CEF1E587-45AF-4B54-8947-71BA6FF07884}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.Dependency", "Inter.Dependency\Inter.Dependency.csproj", "{636E9C2E-46A2-4E7D-AD88-4AD5A96293F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{CEF1E587-45AF-4B54-8947-71BA6FF07884}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEF1E587-45AF-4B54-8947-71BA6FF07884}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEF1E587-45AF-4B54-8947-71BA6FF07884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{636E9C2E-46A2-4E7D-AD88-4AD5A96293F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{636E9C2E-46A2-4E7D-AD88-4AD5A96293F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{636E9C2E-46A2-4E7D-AD88-4AD5A96293F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{636E9C2E-46A2-4E7D-AD88-4AD5A96293F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FE016E01-FDBE-4DEA-A298-C81488FC4B42} = {394F3572-2702-4FF4-857E-BC3810B65F13}

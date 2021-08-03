@@ -1,5 +1,4 @@
-using System;
-using InterApi.Registry;
+using Inter.Dependency;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,12 +20,7 @@ namespace InterApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddNewtonsoftJson();
-            services.RegisterNodeApi();
-            services.RegisterPlaneApi();
-            var configRoot = (IConfigurationRoot)Configuration;
-            var debugView = configRoot.GetDebugView();
-
-            Console.WriteLine(debugView);
+            services.RegisterNodeControllerService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

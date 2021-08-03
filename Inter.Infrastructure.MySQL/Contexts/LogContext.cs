@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Inter.Domain;
+using Melberg.Core.MySql;
 using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +9,7 @@ namespace Inter.Infrastructure.MySQL.Contexts
     public class LogContext : DefaultContext
     {
         public DbSet<LogModel> log { get; set; } 
-        public LogContext(IMySQLConnectionStringProvider provider) : base(provider)
+        public LogContext(IMySqlConnectionStringProvider provider) : base(provider)
         {
 
         }

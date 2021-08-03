@@ -1,8 +1,6 @@
 ﻿using Inter.Infrastructure.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Net.Mail;
 using System.Net;
 using Inter.Infrastructure.Corral;
@@ -19,12 +17,12 @@ namespace Inter.Infrastructure.Services
             _heartbeatRepository = heartbeatRepository;
         }
 
-        public async Task<List<HeartbeatModel>> GetStatusesAsync()
+        public async Task<IList<Heartbeat>> GetStatusesAsync()
         {
             return await _heartbeatRepository.GetStatusesAsync();
         }
 
-        public Task UpdateNode(HeartbeatModel model)
+        public Task UpdateNode(Heartbeat model)
         {
             return _heartbeatRepository.UpdateAsync(model);
         }

@@ -7,8 +7,8 @@ namespace Inter.Infrastructure.Corral
 {
     public interface IHeartbeatRepository
     {
-        Task<HeartbeatModel> GetStatusAsync(string name);
-        Task<List<HeartbeatModel>> GetStatusesAsync();
-        Task UpdateAsync(HeartbeatModel heartBeat);
+        Task<Heartbeat> GetStatusAsync(string name);
+        Task<IList<Heartbeat>> GetStatusesAsync();
+        Task UpdateAsync(Heartbeat heartBeat);
     }
 }

@@ -16,7 +16,7 @@
     <ProjectReference Include="..\..\Inter.Infrastructure.MySQL\Inter.Infrastructure.MySQL.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Melberg.Infrastructure.MySql" Version="1.0.2" />
+    <PackageReference Include="Melberg.Infrastructure.MySql" Version="1.0.15" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.9" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="5.0.0" />
