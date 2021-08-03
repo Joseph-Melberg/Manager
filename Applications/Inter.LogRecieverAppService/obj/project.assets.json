@@ -65,9 +65,19 @@
           "lib/netstandard2.0/K4os.Hash.xxHash.dll": {}
         }
       },
-      "Melberg.Infrastructure.MySql/1.0.2": {
+      "Melberg.Core/1.0.15": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/Melberg.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Melberg.Core.dll": {}
+        }
+      },
+      "Melberg.Infrastructure.MySql/1.0.15": {
         "type": "package",
         "dependencies": {
+          "Melberg.Core": "1.0.15",
           "Microsoft.EntityFrameworkCore": "3.1.8",
           "MySql.Data.EntityFrameworkCore": "8.0.21"
         },
@@ -2098,7 +2108,7 @@
         "dependencies": {
           "Inter.Domain": "1.0.0",
           "Inter.Infrastructure": "1.0.0",
-          "Melberg.Infrastructure.MySql": "1.0.2",
+          "Melberg.Infrastructure.MySql": "1.0.15",
           "Microsoft.EntityFrameworkCore": "3.1.8",
           "MySql.Data.EntityFrameworkCore": "8.0.21"
         },
@@ -2211,15 +2221,27 @@
         "lib/netstandard2.0/K4os.Hash.xxHash.xml"
       ]
     },
-    "Melberg.Infrastructure.MySql/1.0.2": {
-      "sha512": "ll0BSqXRoGwJFOqihJpIOKlPYvh7+CkUtfJxKIY1yOSK9toMQut/woNOB1Jq4tpRtBAkIoXrQSz2wBBRheEO+A==",
+    "Melberg.Core/1.0.15": {
+      "sha512": "iXUavphTRBULS4LD/MhPExsvYfeIERQ8gwLPlj+ywIy2Tj91TofkWhDx3632ltos7LAdvx0VlpxQvBTRepkCZQ==",
       "type": "package",
-      "path": "melberg.infrastructure.mysql/1.0.2",
+      "path": "melberg.core/1.0.15",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netcoreapp3.1/Melberg.Core.dll",
+        "melberg.core.1.0.15.nupkg.sha512",
+        "melberg.core.nuspec"
+      ]
+    },
+    "Melberg.Infrastructure.MySql/1.0.15": {
+      "sha512": "ju4COrEeuh9kTLOdYkxVA/MYKZp+jfYS6vC97n5JL7CbfC0zfp/R5T6eWMRVc207fezzC8jFbOSnR4WHerGDxQ==",
+      "type": "package",
+      "path": "melberg.infrastructure.mysql/1.0.15",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netcoreapp3.1/Melberg.Infrastructure.MySql.dll",
-        "melberg.infrastructure.mysql.1.0.2.nupkg.sha512",
+        "melberg.infrastructure.mysql.1.0.15.nupkg.sha512",
         "melberg.infrastructure.mysql.nuspec"
       ]
     },
@@ -7013,7 +7035,7 @@
       "Inter.Infrastructure >= 1.0.0",
       "Inter.Infrastructure.Core >= 1.0.0",
       "Inter.Infrastructure.MySQL >= 1.0.0",
-      "Melberg.Infrastructure.MySql >= 1.0.2",
+      "Melberg.Infrastructure.MySql >= 1.0.15",
       "Microsoft.Extensions.Configuration.FileExtensions >= 5.0.0",
       "Microsoft.Extensions.Configuration.Json >= 5.0.0",
       "Microsoft.Extensions.DependencyInjection >= 3.1.9",
@@ -7073,7 +7095,7 @@
         "dependencies": {
           "Melberg.Infrastructure.MySql": {
             "target": "Package",
-            "version": "[1.0.2, )"
+            "version": "[1.0.15, )"
           },
           "Microsoft.Extensions.Configuration.FileExtensions": {
             "target": "Package",
@@ -7107,7 +7129,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.410/RuntimeIdentifierGraph.json"
       }
     }
   }

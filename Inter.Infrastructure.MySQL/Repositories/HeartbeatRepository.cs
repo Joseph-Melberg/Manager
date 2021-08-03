@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
+using Inter.Infrastructure.MySQL.Mappers;
 using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,25 +19,20 @@ namespace Inter.Infrastructure.MySQL.Repositories
             
         }
 
-        public async Task<List<HeartbeatModel>> GetStatusesAsync()
-        {
-            return await Context.HeartBeat.ToListAsync();
-        }
+        public async Task<IList<Heartbeat>> GetStatusesAsync() => await Context.HeartBeat.Select(_ => _.ToDomain()).ToListAsync();
 
-        public async Task<HeartbeatModel> GetStatusAsync(string name)
-        {
-             return await Context.HeartBeat.FirstOrDefaultAsync(_ => _.name == name);
-        }
+        public async Task<Heartbeat> GetStatusAsync(string name) => (await Context.HeartBeat.FirstOrDefaultAsync(_ => _.name == name)).ToDomain();
 
-        public async Task UpdateAsync(HeartbeatModel heartBeat)
-        {
 
-            if (Context.HeartBeat.Any(_ => _.name == heartBeat.name))
+        public async Task UpdateAsync(Heartbeat heartbeat)
+        {
+            var heartbeatModel = heartbeat.ToModel();
+            if (Context.HeartBeat.Any(_ => _.name == heartbeatModel.name))
             {
-                Console.WriteLine($"Node {heartBeat.name} was replaced");
+                Console.WriteLine($"Node {heartbeatModel.name} was replaced");
                 try
                 {
-                    Context.HeartBeat.Update(heartBeat);
+                    Context.HeartBeat.Update(heartbeatModel);
                 }
                 catch (Exception ex)
                 {
@@ -45,10 +41,10 @@ namespace Inter.Infrastructure.MySQL.Repositories
             }
             else
             {
-                Console.WriteLine($"Node {heartBeat.name} was added");
+                Console.WriteLine($"Node {heartbeatModel.name} was added");
                 try
                 {
-                    await Context.HeartBeat.AddAsync(heartBeat);
+                    await Context.HeartBeat.AddAsync(heartbeatModel);
 
                 }
                 catch ( Exception ex)

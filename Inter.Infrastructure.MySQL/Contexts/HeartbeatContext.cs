@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Inter.Domain;
+using Melberg.Core.MySql;
 using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +9,7 @@ namespace Inter.Infrastructure.MySQL.Contexts
     public class HeartbeatContext : DefaultContext
     {
         public DbSet<HeartbeatModel> HeartBeat { get; set; }
-        public HeartbeatContext(IMySQLConnectionStringProvider provider) : base(provider)
+        public HeartbeatContext(IMySqlConnectionStringProvider provider) : base(provider)
         {
 
         }

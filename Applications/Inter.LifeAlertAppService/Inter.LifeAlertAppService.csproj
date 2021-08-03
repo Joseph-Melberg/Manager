@@ -8,7 +8,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
-    <PackageReference Include="Melberg.Infrastructure.MySql" Version="1.0.12" />
+    <PackageReference Include="Melberg.Infrastructure.MySql" Version="1.0.15" />
 
   </ItemGroup>
 

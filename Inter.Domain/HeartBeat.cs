@@ -1,7 +1,7 @@
 ﻿using System;
 namespace Inter.Domain
 {
-    public class HeartbeatModel
+    public class Heartbeat
     {
         public string name { get; set; }
         public string mac { get; set; }

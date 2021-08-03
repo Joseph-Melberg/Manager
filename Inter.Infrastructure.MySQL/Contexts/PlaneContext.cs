@@ -1,4 +1,5 @@
 using Inter.Infrastructure.MySQL.Models;
+using Melberg.Core.MySql;
 using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,7 +9,7 @@ namespace Inter.Infrastructure.MySQL.Contexts
     {
         public DbSet<PlaneModel> records { get; set; }
 
-        public PlaneContext(IMySQLConnectionStringProvider provider) : base(provider)
+        public PlaneContext(IMySqlConnectionStringProvider provider) : base(provider)
         {
 
         }
