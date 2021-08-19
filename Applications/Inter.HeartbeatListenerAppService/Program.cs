@@ -1,7 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using Inter.HeartbeatListenerAppService.Application;
+using Melberg.Infrastructure.Rabbit.Consumers;
+using Melberg.Infrastructure.Rabbit.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,7 +16,7 @@ namespace Inter.HeartbeatListenerAppService
         static async Task Main(string[] args)
         {
             RegisterServices();
-            await _serviceProvider.GetRequiredService<HeartbeatProccessor>().Run();
+            await _serviceProvider.GetRequiredService<IStandardRabbitService>().Run();
             DisposeServices();
         }
 
