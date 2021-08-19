@@ -18,5 +18,14 @@ namespace Inter.Dependency
 
             return collection;
         }
+
+        private static IServiceCollection RegisterHeartbeatListenerSInfrastructureervice(this IServiceCollection collection)
+        {
+            collection.AddTransient<IHeartbeatListenerInfrastructureService,HeartbeatListenerInfrastructureService>();
+            
+            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
+
+            return collection;
+        }
     }
 }

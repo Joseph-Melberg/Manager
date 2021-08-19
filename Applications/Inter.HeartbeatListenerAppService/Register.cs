@@ -1,12 +1,6 @@
-﻿using Inter.DomainServices;
-using Inter.DomainServices.Core;
+﻿using Inter.Dependency;
 using Inter.HeartbeatListenerAppService.Application;
-using Inter.Infrastructure.Core;
-using Inter.Infrastructure.Corral;
-using Inter.Infrastructure.MySQL.Contexts;
-using Inter.Infrastructure.MySQL.Repositories;
-using Inter.Infrastructure.Services;
-using Melberg.Infrastructure.MySql;
+using Melberg.Infrastructure.Rabbit;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.HeartbeatListenerAppService
@@ -15,10 +9,8 @@ namespace Inter.HeartbeatListenerAppService
     {
         public static ServiceCollection RegisterServices(ServiceCollection services)
         {
-            services.AddSingleton<HeartbeatProccessor>();
-            services.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
-            services.AddTransient<IHeartbeatListenerInfrastructureService,HeartbeatListenerInfrastructureService>();
-            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(services);
+            RabbitModule.RegisterConsumer<HeartbeatProcessor>(services);
+            services.RegisterHeartbeatListenerService();
             return services;
         }
     }

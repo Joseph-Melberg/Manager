@@ -9,7 +9,7 @@
     <Folder Include="Application\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
+    <PackageReference Include="Melberg.Infrastructure.Rabbit" Version="1.0.16" />
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
   </ItemGroup>
@@ -20,6 +20,7 @@
     <ProjectReference Include="..\..\Inter.Infrastructure\Inter.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Inter.Infrastructure.Core\Inter.Infrastructure.Core.csproj" />
     <ProjectReference Include="..\..\Inter.Infrastructure.MySQL\Inter.Infrastructure.MySQL.csproj" />
+    <ProjectReference Include="..\..\Inter.Dependency\Inter.Dependency.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">

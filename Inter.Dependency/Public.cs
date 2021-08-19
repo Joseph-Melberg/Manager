@@ -13,5 +13,15 @@ namespace Inter.Dependency
             collection.RegisterNodeApiInfrastructureService(); 
             return collection;
         }
+
+        public static IServiceCollection RegisterHeartbeatListenerService(this IServiceCollection collection)
+        {
+
+            collection.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
+
+            collection.RegisterHeartbeatListenerSInfrastructureervice();
+
+            return collection;
+        }
     }
 }
