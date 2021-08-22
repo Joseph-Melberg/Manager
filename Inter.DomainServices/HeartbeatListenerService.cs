@@ -27,7 +27,7 @@ namespace Inter.DomainServices
                 online = true
             };
             await _infraservice.UpdateAsync(model);
-            Console.WriteLine($"{message.Name} was proccessed");
+            Console.WriteLine($"Heartbeat from {message.Name} was proccessed");
         }
     }
 }

@@ -28,10 +28,8 @@ namespace Inter.DomainServices
                     var isStale = nodeState.timestamp.AddMinutes(5) < DateTime.Now;
                     var isAlive = nodeState.online;
                     var email = "vtechdelete+life@gmail.com";
-                    Console.WriteLine($"{nodeState.name} is \n announce alive:{announcedState} \n stale:{isStale} \n alive {isAlive}");
                     if (isAlive & isStale)
                     {
-                        Console.WriteLine($"{nodeState.name} is dead");
                         _infra.SendMessage(email, "Report", $"{nodeState.name} is offline");
                         nodeState.announced = false;
                         nodeState.online = false;
@@ -39,7 +37,6 @@ namespace Inter.DomainServices
                     }
                     else if (!announcedState & !isStale)
                     {
-                        Console.WriteLine($"{nodeState.name} is alive");
                         _infra.SendMessage(email, "Report", $"{nodeState.name} is online");
                         nodeState.announced = true;
                         nodeState.online = true;
