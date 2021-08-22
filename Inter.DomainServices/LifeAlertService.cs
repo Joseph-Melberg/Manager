@@ -15,7 +15,7 @@ namespace Inter.DomainServices
 
         public async Task Do()
         {
-
+            var updated = false;
             //Gather the entries that need to be announced
             var stati = await _infra.GetStatusesAsync();
             foreach( var nodeState in stati)
@@ -34,6 +34,7 @@ namespace Inter.DomainServices
                         nodeState.announced = false;
                         nodeState.online = false;
                         await _infra.UpdateNode(nodeState);
+                        updated = true;
                     }
                     else if (!announcedState & !isStale)
                     {
@@ -41,15 +42,19 @@ namespace Inter.DomainServices
                         nodeState.announced = true;
                         nodeState.online = true;
                         await _infra.UpdateNode(nodeState);
+                        updated = true;
                     }
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                 }
+                
             }
-            
-            Console.Write("done");
+            if(updated)
+            {
+                Console.WriteLine("Updates sent");
+            }
         }
     }
 }
