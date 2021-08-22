@@ -29,7 +29,6 @@ namespace Inter.Infrastructure.MySQL.Repositories
             var heartbeatModel = heartbeat.ToModel();
             if (Context.HeartBeat.Any(_ => _.name == heartbeatModel.name))
             {
-                Console.WriteLine($"Node {heartbeatModel.name} was replaced");
                 try
                 {
                     Context.HeartBeat.Update(heartbeatModel);
