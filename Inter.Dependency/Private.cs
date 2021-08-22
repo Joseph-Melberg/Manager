@@ -19,11 +19,19 @@ namespace Inter.Dependency
             return collection;
         }
 
-        private static IServiceCollection RegisterHeartbeatListenerSInfrastructureervice(this IServiceCollection collection)
+        private static IServiceCollection RegisterHeartbeatListenerInfrastructureService(this IServiceCollection collection)
         {
             collection.AddTransient<IHeartbeatListenerInfrastructureService,HeartbeatListenerInfrastructureService>();
             
             MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
+
+            return collection;
+        }
+
+        private static IServiceCollection RegisterLogListenerInfrastructureService(this IServiceCollection collection)
+        {
+            collection.AddTransient<ILogListenerInfrastructureService,LogListenerInfrastructureService>();
+            MySqlModule.LoadSqlRepository<ILogRepository, LogRepository, LogContext>(collection);
 
             return collection;
         }

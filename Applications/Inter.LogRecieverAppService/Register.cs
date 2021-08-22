@@ -1,4 +1,5 @@
-﻿using Inter.DomainServices;
+﻿using Inter.Dependency;
+using Inter.DomainServices;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
@@ -8,6 +9,7 @@ using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Services;
 using Inter.LogRecieverAppService.Application;
 using Melberg.Infrastructure.MySql;
+using Melberg.Infrastructure.Rabbit;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.LogRecieverAppService
@@ -16,11 +18,8 @@ namespace Inter.LogRecieverAppService
     {
         public static ServiceCollection RegisterServices(ServiceCollection services)
         {
-            services.AddSingleton<LogProcessor>();
-            services.AddTransient<ILogListenerService, LogListenerService>();
-            services.AddTransient<ILogListenerInfrastructureService,
-                LogListenerInfrastructureService>();
-            MySqlModule.LoadSqlRepository<ILogRepository, LogRepository, LogContext>(services);
+            RabbitModule.RegisterConsumer<LogProcessor>(services);
+            services.RegisterLogListenerService();
             return services;
         }
     }
