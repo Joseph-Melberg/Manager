@@ -8,7 +8,7 @@ namespace Inter.Infrastructure.MySQL.Contexts
 {
     public class HeartbeatContext : DefaultContext
     {
-        public DbSet<HeartbeatModel> HeartBeat { get; set; }
+        public DbSet<HeartbeatModel> Heartbeat { get; set; }
         public HeartbeatContext(IMySqlConnectionStringProvider provider) : base(provider)
         {
 

@@ -19,19 +19,19 @@ namespace Inter.Infrastructure.MySQL.Repositories
             
         }
 
-        public async Task<IList<Heartbeat>> GetStatusesAsync() => await Context.HeartBeat.Select(_ => _.ToDomain()).ToListAsync();
+        public async Task<IList<Heartbeat>> GetStatusesAsync() => await Context.Heartbeat.Select(_ => _.ToDomain()).ToListAsync();
 
-        public async Task<Heartbeat> GetStatusAsync(string name) => (await Context.HeartBeat.FirstOrDefaultAsync(_ => _.name == name)).ToDomain();
+        public async Task<Heartbeat> GetStatusAsync(string name) => (await Context.Heartbeat.FirstOrDefaultAsync(_ => _.name == name)).ToDomain();
 
 
         public async Task UpdateAsync(Heartbeat heartbeat)
         {
             var heartbeatModel = heartbeat.ToModel();
-            if (Context.HeartBeat.Any(_ => _.name == heartbeatModel.name))
+            if (Context.Heartbeat.Any(_ => _.name == heartbeatModel.name))
             {
                 try
                 {
-                    Context.HeartBeat.Update(heartbeatModel);
+                    Context.Heartbeat.Update(heartbeatModel);
                 }
                 catch (Exception ex)
                 {
@@ -43,7 +43,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
                 Console.WriteLine($"Node {heartbeatModel.name} was added");
                 try
                 {
-                    await Context.HeartBeat.AddAsync(heartbeatModel);
+                    await Context.Heartbeat.AddAsync(heartbeatModel);
 
                 }
                 catch ( Exception ex)
