@@ -53,7 +53,7 @@ jobs:
       name: Run SSH command
       uses: garygrossgarten/github-action-ssh@v0.5.0
       with:
-        command: ssh ${{secrets.INTER_INTERNAL_IP}} "docker pull docker.centurionx.net/lifealert"
+        command: docker pull docker.centurionx.net/lifealert
         host: ${{ secrets.HOST }}
         username: ${{secrets.CENTURION_USERNAME}}
         password: ${{secrets.CENTURION_PASSWORD}}
