@@ -15,6 +15,7 @@ namespace Inter.DomainServices
 
         public async Task Do()
         {
+            Console.WriteLine("LifeAlert triggered");
             var updated = false;
             //Gather the entries that need to be announced
             var stati = await _infra.GetStatusesAsync();
@@ -35,6 +36,7 @@ namespace Inter.DomainServices
                         nodeState.online = false;
                         await _infra.UpdateNode(nodeState);
                         updated = true;
+                        Console.WriteLine($"{nodeState.name} is offline");
                     }
                     else if (!announcedState & !isStale)
                     {
@@ -43,6 +45,7 @@ namespace Inter.DomainServices
                         nodeState.online = true;
                         await _infra.UpdateNode(nodeState);
                         updated = true;
+                        Console.WriteLine($"{nodeState.name} is online");
                     }
                 }
                 catch (Exception ex)
