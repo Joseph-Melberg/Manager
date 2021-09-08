@@ -1,0 +1,59 @@
+name: Temp
+
+on:
+  push:
+    branches: [ master ]
+    paths: Applications/Inter.TempListenerAppService/
+  workflow_dispatch:
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+    -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+    - 
+      name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - 
+      name: Restore dependencies
+      run: dotnet restore ./Applications/Inter.TempListenerAppService/Inter.TempListenerAppService.csproj
+    - 
+      name: Build
+      run: dotnet build --no-restore ./Applications/Inter.TempListenerAppService/Inter.TempListenerAppService.csproj
+    - 
+      name: Publish
+      run: dotnet publish ./Applications/Inter.TempListenerAppService/Inter.TempListenerAppService.csproj -c Release -o ./app
+    - 
+      name: Docker Login
+      uses: docker/login-action@v1.8.0
+      with:
+        registry: docker.centurionx.net
+        username: ${{secrets.DOCKER_USERNAME}}
+        password: ${{secrets.DOCKER_PASSWORD}}
+    - 
+      name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: ./
+        file: ./Applications/Inter.TempListenerAppService/Dockerfile
+        platforms: linux/amd64,linux/arm64
+        push: true
+        tags: |
+          docker.centurionx.net/interheartbeatlistener
+    - 
+      name: Run SSH command
+      uses: garygrossgarten/github-action-ssh@v0.5.0
+      with:
+        command: "docker pull docker.centurionx.net/interheartbeatlistener; docker stop heartbeatlistener; docker rm heartbeatlistener; docker run --name=heartbeatlistener --log-opt tag=heartbeatlistener --restart=unless-stopped -d docker.centurionx.net/interheartbeatlistener" 
+        host: ${{ secrets.HOST }}
+        username: ${{secrets.CENTURION_USERNAME}}
+        password: ${{secrets.CENTURION_PASSWORD}}
