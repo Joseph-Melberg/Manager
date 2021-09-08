@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Inter.Domain;
 using Melberg.Core.MySql;
 using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
