@@ -19,8 +19,17 @@ namespace Inter.Dependency
 
             collection.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
 
-            collection.RegisterHeartbeatListenerSInfrastructureervice();
+            collection.RegisterHeartbeatListenerInfrastructureService();
 
+            return collection;
+        }
+
+        public static IServiceCollection RegisterTemperatureListenerService(this IServiceCollection collection)
+        {
+            collection.AddTransient<ITemperatureListenerService,TemperatureListenerService>();
+
+            collection.RegisterTemperatureListenerInfrastructureService(); 
+            
             return collection;
         }
     }
