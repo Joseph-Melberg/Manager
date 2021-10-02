@@ -8,16 +8,16 @@ namespace Inter.Infrastructure.Services
 {
     public class PlaneListenerInfrastructureService : IPlaneListenerInfrastructureService
     {
-        private readonly IPlaneFrameRepository _planeFrameRepository;
+        private readonly IPlaneCacheRepository _planeCacheRepository;
         
-        public PlaneListenerInfrastructureService(IPlaneFrameRepository planeFrameRepository)
+        public PlaneListenerInfrastructureService(IPlaneCacheRepository planeCacheRepository)
         {
-            _planeFrameRepository = planeFrameRepository;
+            _planeCacheRepository = planeCacheRepository;
         }
 
         public async Task AddPlaneFrameAsync(PlaneFrame frame)
         {
-            await _planeFrameRepository.InsertFrameAsync(frame);
+            await _planeCacheRepository.InsertPlaneFrameAsync(frame);
         }
     }
 }
