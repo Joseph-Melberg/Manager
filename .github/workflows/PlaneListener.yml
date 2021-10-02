@@ -46,7 +46,7 @@ jobs:
       name: Run SSH command
       uses: garygrossgarten/github-action-ssh@v0.5.0
       with:
-        command: ssh ${{secrets.INTER_INTERNAL_IP}} "docker pull docker.centurionx.net/interplanelistener; docker stop interplanelistener; docker rm interplanelistener; docker run --name=interplanelistener --restart=unless-stopped -d docker.centurionx.net/interplanelistener" 
+        command: docker pull docker.centurionx.net/interplanelistener; docker stop interplanelistener; docker rm interplanelistener; docker run --name=interplanelistener --restart=unless-stopped -d docker.centurionx.net/interplanelistener 
         host: ${{ secrets.HOST }}
         username: ${{secrets.CENTURION_USERNAME}}
         password: ${{secrets.CENTURION_PASSWORD}}
