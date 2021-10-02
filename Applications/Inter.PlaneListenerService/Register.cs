@@ -1,15 +1,7 @@
-using Inter.DomainServices.Core;
-using Inter.Infrastructure.Core;
-using Inter.DomainServices;
 using Microsoft.Extensions.DependencyInjection;
-using Inter.Infrastructure.Services;
-using Inter.Infrastructure.Corral;
-using Inter.Infrastructure.MySQL.Repositories;
-using Inter.Infrastructure.MySQL.Contexts;
-using Melberg.Infrastructure.MySql;
-using Melberg.Infrastructure.Couchbase;
 using Inter.PlaneListenerService.Application;
-using Inter.Infrastructure.Couchbase;
+using Melberg.Infrastructure.Rabbit;
+using Inter.Dependency;
 
 namespace Inter.PlaneListenerService
 {
@@ -17,11 +9,11 @@ namespace Inter.PlaneListenerService
     {
         public static ServiceCollection RegisterServices(ServiceCollection services)
         {
-            services.AddSingleton<PlaneProcessor>();
-            services.AddTransient<IPlaneListenerService, DomainServices.PlaneListenerService>();
-            services.AddTransient<IPlaneListenerInfrastructureService,
-                PlaneListenerInfrastructureService>();
-            CouchbaseModule.RegisterCouchbaseClient<IPlaneFrameRepository,PlaneFrameRepository>(services);
+            
+            RabbitModule.RegisterConsumer<PlaneProcessor>(services);
+            
+            services.RegisterPlaneListenerService();
+
             return services;
         }
     }

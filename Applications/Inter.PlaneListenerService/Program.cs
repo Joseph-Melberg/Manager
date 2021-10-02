@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Inter.PlaneListenerService.Application;
+using Melberg.Infrastructure.Rabbit.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 namespace Inter.PlaneListenerService
@@ -14,7 +15,7 @@ namespace Inter.PlaneListenerService
         static async Task Main(string[] args)
         {
             RegisterServices();
-            await _serviceProvider.GetRequiredService<PlaneProcessor>().Run();
+            await _serviceProvider.GetRequiredService<IStandardRabbitService>().Run();
             DisposeServices();
         }
 

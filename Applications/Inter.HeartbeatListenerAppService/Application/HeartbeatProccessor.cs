@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Text;
 using System.Text.Json;
-using System.Threading;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.DomainServices.Core;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
 using Melberg.Infrastructure.Rabbit.Consumers;
 
 namespace Inter.HeartbeatListenerAppService.Application
