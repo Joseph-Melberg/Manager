@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using System;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 using Inter.Domain;
@@ -15,9 +14,6 @@ namespace Inter.DomainServices
             _infra = infrastructureService;
         }
 
-        public async Task<PlaneFrame> GetFrameAsync(long timestamp)
-        {
-            return await _infra.GetFrameAsync(timestamp);
-        }
+        public Task<PlaneFrame> GetFrameAsync(long timestamp) => _infra.GetFrameAsync(timestamp);
     }
 }

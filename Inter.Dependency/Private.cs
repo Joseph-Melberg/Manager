@@ -21,7 +21,17 @@ namespace Inter.Dependency
 
             return collection;
         }
-       private static IServiceCollection RegisterNodeApiInfrastructureService(this IServiceCollection collection)
+
+        private static IServiceCollection RegisterPlaneApiInfrastructureService(this IServiceCollection collection)        
+        {
+            collection.AddTransient<IPlaneApiInfrastructureService,PlaneApiInfrastructureService>();
+
+            RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
+
+            return collection;
+        }
+
+        private static IServiceCollection RegisterNodeApiInfrastructureService(this IServiceCollection collection)
         {
             collection.AddTransient<INodeApiInfrastructureService, NodeApiInfrastructureService>();
 

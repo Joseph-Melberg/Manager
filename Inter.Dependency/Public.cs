@@ -21,6 +21,15 @@ namespace Inter.Dependency
             collection.RegisterNodeApiInfrastructureService(); 
             return collection;
         }
+        
+        public static IServiceCollection RegisterPlaneControllerService(this IServiceCollection collection)
+        {
+            collection.AddTransient<IPlaneApiService,PlaneApiService>();
+
+            collection.RegisterPlaneApiInfrastructureService();
+
+            return collection;
+        }
 
         public static IServiceCollection RegisterHeartbeatListenerService(this IServiceCollection collection)
         {

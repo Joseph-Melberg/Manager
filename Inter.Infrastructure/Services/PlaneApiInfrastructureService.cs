@@ -8,15 +8,13 @@ namespace Inter.Infrastructure.Services
 {
     public class PlaneApiInfrastructureService : IPlaneApiInfrastructureService
     {
-        private readonly IPlaneFrameRepository _planeFrameRepo;
-        public PlaneApiInfrastructureService(IPlaneFrameRepository planeFrameRepository)
+        private readonly IPlaneCacheRepository _planeCacheRepository;
+        public PlaneApiInfrastructureService(IPlaneCacheRepository planeCacheRepository)
         {
-            _planeFrameRepo = planeFrameRepository;
+            _planeCacheRepository = planeCacheRepository;
         }
 
-        public async Task<PlaneFrame> GetFrameAsync(long time)
-        {
-            return await _planeFrameRepo.GetFrameAsync(time);
-        }
+
+        public Task<PlaneFrame> GetFrameAsync(long time) => _planeCacheRepository.GetPlaneFrameAsync(time);
     }
 }

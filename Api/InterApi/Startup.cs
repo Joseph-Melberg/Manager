@@ -21,6 +21,7 @@ namespace InterApi
         {
             services.AddControllers().AddNewtonsoftJson();
             services.RegisterNodeControllerService();
+            services.RegisterPlaneControllerService();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,6 +30,7 @@ namespace InterApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
             }
 
             app.UseHttpsRedirection();
