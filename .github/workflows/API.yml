@@ -17,6 +17,15 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+    - uses: cschleiden/replace-tokens@v1
+      with:
+        tokenPrefix: '#{'
+        tokenSuffix: '}#'
+        files: '["Api/InterApi/Deployment/appsettings.deploy.json"]'
+      env:
+          MYSQL_CONNECTION_STRING : secrets.MYSQL_CONNECTION_STRING
+    - name: Bash - Show XML Contents
+      run: cat Api/InterApi/Deployment/appsettings.deploy.json
     - 
       name: Restore dependencies
       run: dotnet restore ./Api/InterApi/InterApi.csproj
@@ -46,7 +55,7 @@ jobs:
       name: Run SSH command
       uses: garygrossgarten/github-action-ssh@v0.5.0
       with:
-        command:  docker pull docker.centurionx.net/interapi; docker stop interapi; docker rm interapi; docker run --name interapi -e ASPNETCORE_URLS="http://+:80" -p 5001:80 --log-opt tag=api --restart=unless-stopped -d docker.centurionx.net/interapi; 
+        command:  echo hi; #docker pull docker.centurionx.net/interapi; docker stop interapi; docker rm interapi; docker run --name interapi -e ASPNETCORE_URLS="http://+:80" -p 5001:80 --log-opt tag=api --restart=unless-stopped -d docker.centurionx.net/interapi; 
         host: ${{ secrets.HOST }}
         username: ${{secrets.CENTURION_USERNAME}}
         password: ${{secrets.CENTURION_PASSWORD}}
