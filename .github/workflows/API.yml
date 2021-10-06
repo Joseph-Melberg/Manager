@@ -20,10 +20,10 @@ jobs:
     - uses: cschleiden/replace-tokens@v1
       with:
         tokenPrefix: '#{'
-        tokenSuffix: '}#'
+        tokenSuffix: '}'
         files: '["Api/InterApi/Deployment/appsettings.deploy.json"]'
       env:
-          MYSQL_CONNECTION_STRING : secrets.MYSQL_CONNECTION_STRING
+        MYSQL_CONNECTION_STRING : secrets.MYSQL_CONNECTION_STRING
     - name: Bash - Show XML Contents
       run: cat Api/InterApi/Deployment/appsettings.deploy.json
     - 
