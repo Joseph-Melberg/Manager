@@ -18,6 +18,23 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - 
+      uses: cschleiden/replace-tokens@v1
+      with:
+        tokenPrefix: '#{'
+        tokenSuffix: '}'
+        files: '["Api/InterApi/Deployment/appsettings.deploy.json"]'
+      env:
+        MYSQL_CONNECTION_STRING : ${{secrets.MYSQL_CONNECTION_STRING}}
+    -
+      name: Bash - Show XML Contents
+      run: cat Api/InterApi/Deployment/appsettings.deploy.json
+    - 
+      name: Replace Appsettings
+      run: cp Api/InterApi/Deployment/appsettings.deploy.json Api/InterApi/appsettings.json
+    -
+      name: Bash - Show XML Contents
+      run: cat Api/InterApi/appsettings.json
+    - 
       name: Restore dependencies
       run: dotnet restore ./Api/InterApi/InterApi.csproj
     - 
