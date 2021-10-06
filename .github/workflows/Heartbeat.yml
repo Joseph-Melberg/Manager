@@ -18,6 +18,24 @@ jobs:
     -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
+
+    -
+      name: Set deploy.json Target
+      run: echo "deploytarget=./Applications/Inter.HeartbeatListenerAppService/Deployment/deploy.json" >> $GITHUB_ENV
+    -
+      name: Set appsettings.json Target
+      run: echo "settingstarget=./Applications/Inter.HeartbeatListenerAppService/appsettings.json" >> $GITHUB_ENV
+    - 
+      uses: cschleiden/replace-tokens@v1
+      with:
+        tokenPrefix: '#{'
+        tokenSuffix: '}'
+        files: '["${{env.deploytarget}}"]'
+      env:
+        MYSQL_CONNECTION_STRING : ${{secrets.MYSQL_CONNECTION_STRING}}
+    -
+      name: Check work
+      run: cat ${{env.deploytarget}}
     - 
       name: Setup .NET
       uses: actions/setup-dotnet@v1
