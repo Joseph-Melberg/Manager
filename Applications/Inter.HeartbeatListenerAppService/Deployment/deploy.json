@@ -1,0 +1,61 @@
+﻿{
+  "ConnectionStrings" : {
+     "HeartbeatContext" : "#{MYSQL_CONNECTION_STRING}"
+  },
+  "Rabbit" :
+  {
+    "ClientDeclarations": 
+    {
+      "Connections":
+      [
+        {
+          "Name":"HeartbeatConnection",
+          "ClientName": "HeartbeatListener",
+          "ServerName": "rabbit.centurionx.net",
+          "UserName": "life",
+          "Password": "conway"
+        }
+      ],
+      "AsyncRecievers":
+      [
+        {
+          "Name": "IncomingMessages",
+          "Connection": "HeartbeatConnection",
+          "Queue": "Reader"
+        }
+      ]
+    },
+    "ServerDeclarations":
+    {
+      "Exchanges":
+      [
+        {
+          "Name": "Inter",
+          "Type": "Direct",
+          "AutoDelete": "False",
+          "Durable": "True",
+          "Connection": "HeartbeatConnection"
+        }
+      ],
+      "Bindings":
+      [
+        {
+          "Queue": "Reader",
+          "Connection": "HeartbeatConnection",
+          "Exchange": "Inter",
+          "SubscriptionKey": "/life"
+        }
+      ],
+      "Queues":
+      [
+        {
+          "Name": "Reader",
+          "Connection": "HeartbeatConnection",
+          "AutoDelete": "False",
+          "Durable": "False",
+          "Exclusive": "False"
+        }
+      ]
+    } 
+  }
+}
