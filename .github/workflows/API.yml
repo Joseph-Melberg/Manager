@@ -30,7 +30,7 @@ jobs:
       run: cat Api/InterApi/Deployment/appsettings.deploy.json
     - 
       name: Replace Appsettings
-      run: cp Api/InterApi/Deployment/appsettings.deploy.json Api/InterApi/appsettings.json.1
+      run: cp Api/InterApi/Deployment/appsettings.deploy.json Api/InterApi/appsettings.json
     -
       name: Bash - Show XML Contents
       run: cat Api/InterApi/appsettings.json
