@@ -6,10 +6,12 @@ on:
     paths: Api/InterApi/
   workflow_dispatch:
 jobs:
-  secret_replace:
-  
+
+  build:
     runs-on: ubuntu-latest
+
     steps:
+    - uses: actions/checkout@v2
     - 
       uses: cschleiden/replace-tokens@v1
       with:
@@ -28,11 +30,6 @@ jobs:
       name: Bash - Show XML Contents
       run: cat Api/InterApi/appsettings.json
 
-  build:
-    needs: secret_replace
-    runs-on: ubuntu-latest
-
-    steps:
     - uses: actions/checkout@v2
     - 
       name: Setup .NET
