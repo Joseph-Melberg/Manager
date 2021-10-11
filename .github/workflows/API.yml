@@ -20,6 +20,7 @@ jobs:
         files: '["Api/InterApi/Deployment/appsettings.deploy.json"]'
       env:
         MYSQL_CONNECTION_STRING : ${{secrets.MYSQL_CONNECTION_STRING}}
+        OFFSITE_REDIS : ${{secrets.OFFSITE_REDIS}}
     -
       name: Bash - Show XML Contents
       run: cat Api/InterApi/Deployment/appsettings.deploy.json
