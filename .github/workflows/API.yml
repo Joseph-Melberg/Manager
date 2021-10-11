@@ -6,17 +6,10 @@ on:
     paths: Api/InterApi/
   workflow_dispatch:
 jobs:
-  build:
-
+  secret_replace:
+  
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - 
-      name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.x
     - 
       uses: cschleiden/replace-tokens@v1
       with:
@@ -34,6 +27,18 @@ jobs:
     -
       name: Bash - Show XML Contents
       run: cat Api/InterApi/appsettings.json
+
+  build:
+    needs: secret_replace
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - 
+      name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
     - 
       name: Restore dependencies
       run: dotnet restore ./Api/InterApi/InterApi.csproj
@@ -43,6 +48,10 @@ jobs:
     - 
       name: Publish
       run: dotnet publish ./Api/InterApi/InterApi.csproj -c Release -o ./app
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
     - 
       name: Docker Login
       uses: docker/login-action@v1.8.0
@@ -67,3 +76,10 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{secrets.CENTURION_USERNAME}}
         password: ${{secrets.CENTURION_PASSWORD}}
+  smoke:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+    -
+      name: Future Smoke Test
+      run: echo ":)"
