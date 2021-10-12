@@ -9,7 +9,12 @@ jobs:
 
   build-publish:
     runs-on: ubuntu-latest
-
+    env:
+      DOCKERFILE: 
+      PROJECT: ./Api/InterApi/InterApi.csproj
+      APPSETTINGS: Api/InterApi/appsettings.json
+      REPLACESETTINGS: Api/InterApi/Deployment/appsettings.deploy.json 
+      TAG: interapi
     steps:
     - uses: actions/checkout@v2
     - 
@@ -17,19 +22,16 @@ jobs:
       with:
         tokenPrefix: '#{'
         tokenSuffix: '}'
-        files: '["Api/InterApi/Deployment/appsettings.deploy.json"]'
+        files: '["${{env.REPLACESETTINGS}}"]'
       env:
         MYSQL_CONNECTION_STRING : ${{secrets.MYSQL_CONNECTION_STRING}}
         OFFSITE_REDIS : ${{secrets.OFFSITE_REDIS}}
-    -
-      name: Bash - Show XML Contents
-      run: cat Api/InterApi/Deployment/appsettings.deploy.json
     - 
       name: Replace Appsettings
-      run: cp Api/InterApi/Deployment/appsettings.deploy.json Api/InterApi/appsettings.json
+      run: cp ${{REPLACESETTINGS}} ${{APPSETTINGS}}
     -
-      name: Bash - Show XML Contents
-      run: cat Api/InterApi/appsettings.json
+      name: Check work
+      run: cat ${{env.APPSETTINGS}} 
 
     - uses: actions/checkout@v2
     - 
@@ -39,18 +41,18 @@ jobs:
         dotnet-version: 5.0.x
     - 
       name: Restore dependencies
-      run: dotnet restore ./Api/InterApi/InterApi.csproj
+      run: dotnet restore ${{env.PROJECT}}
     - 
       name: Build
-      run: dotnet build --no-restore ./Api/InterApi/InterApi.csproj
+      run: dotnet build --no-restore ${{env.PROJECT}}
     - 
       name: Publish
-      run: dotnet publish ./Api/InterApi/InterApi.csproj -c Release -o ./app
+      run: dotnet publish ${{env.PROJECT}} -c Release -o ./app
     - 
       name: Docker Login
       uses: docker/login-action@v1.8.0
       with:
-        registry: docker.centurionx.net
+        registry: ${{secrets.DOCKER_HOST}}
         username: ${{secrets.DOCKER_USERNAME}}
         password: ${{secrets.DOCKER_PASSWORD}}
     - 
@@ -61,7 +63,7 @@ jobs:
         file: ./Api/InterApi/Dockerfile
         push: true
         tags: |
-          docker.centurionx.net/interapi
+          ${{secrets.DOCKERHOST}}/${{env.TAG}}
   deploy:
     needs: build-publish
     runs-on: ubuntu-latest
@@ -70,8 +72,8 @@ jobs:
       name: Run SSH command
       uses: garygrossgarten/github-action-ssh@v0.5.0
       with:
-        command:  docker pull docker.centurionx.net/interapi; docker stop interapi; docker rm interapi; docker run --name interapi -e ASPNETCORE_URLS="http://+:80" -p 5001:80 --log-opt tag=api --restart=unless-stopped -d docker.centurionx.net/interapi; 
-        host: ${{ secrets.HOST }}
+        command:  docker pull ${{secrets.DOCKERHOST}}/${{env.TAG}}; docker stop ${{env.TAG}}; docker rm ${{env.TAG}}; docker run --name ${{env.TAG}} -e ASPNETCORE_URLS="http://+:80" -p 5001:80 --log-opt tag=api --restart=unless-stopped -d ${{secrets.DOCKERHOST}}/${{env.TAG}}; 
+        host: ${{secrets.HOST}}
         username: ${{secrets.CENTURION_USERNAME}}
         password: ${{secrets.CENTURION_PASSWORD}}
   smoke:
