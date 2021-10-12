@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: echo "j=b" >> $GITHUB_ENV
-    - run: echo ${{j}}
+    - run: echo $j
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
