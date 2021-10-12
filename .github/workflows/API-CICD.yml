@@ -10,7 +10,7 @@ jobs:
   build-publish:
     runs-on: ubuntu-latest
     env:
-      DOCKERFILE: 
+      DOCKERFILE: ./Api/InterApi/Dockerfile
       PROJECT: ./Api/InterApi/InterApi.csproj
       APPSETTINGS: Api/InterApi/appsettings.json
       REPLACESETTINGS: Api/InterApi/Deployment/appsettings.deploy.json 
@@ -28,7 +28,7 @@ jobs:
         OFFSITE_REDIS : ${{secrets.OFFSITE_REDIS}}
     - 
       name: Replace Appsettings
-      run: cp ${{REPLACESETTINGS}} ${{APPSETTINGS}}
+      run: cp ${{env.REPLACESETTINGS}} ${{env.APPSETTINGS}}
     -
       name: Check work
       run: cat ${{env.APPSETTINGS}} 
