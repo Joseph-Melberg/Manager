@@ -60,10 +60,10 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: ./
-        file: ./Api/InterApi/Dockerfile
+        file: ${{secrets.DOCKERFILE}}
         push: true
         tags: |
-          ${{secrets.DOCKERHOST}}/${{env.TAG}}
+          ${{secrets.DOCKER_HOST}}/${{env.TAG}}
   deploy:
     needs: build-publish
     runs-on: ubuntu-latest
