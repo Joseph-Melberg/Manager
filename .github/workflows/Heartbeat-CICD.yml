@@ -74,7 +74,7 @@ jobs:
       name: Run SSH command
       uses: garygrossgarten/github-action-ssh@v0.5.0
       with:
-        command:  docker pull ${{secrets.DOCKERHOST}}/${{env.TAG}}; docker stop ${{env.TAG}}; docker rm ${{env.TAG}}; docker run --name ${{env.TAG}} -e ASPNETCORE_URLS="http://+:80" -p 5001:80 --log-opt tag=api --restart=unless-stopped -d ${{secrets.DOCKERHOST}}/${{env.TAG}}; 
+        command:  docker pull ${{secrets.DOCKER_HOST}}/${{env.TAG}}; docker stop ${{env.TAG}}; docker rm ${{env.TAG}}; docker run --name ${{env.TAG}} -e ASPNETCORE_URLS="http://+:80" -p 5001:80 --log-opt tag=api --restart=unless-stopped -d ${{secrets.DOCKER_HOST}}/${{env.TAG}}; 
         host: ${{secrets.HOST}}
         username: ${{secrets.CENTURION_USERNAME}}
         password: ${{secrets.CENTURION_PASSWORD}}
