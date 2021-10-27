@@ -1,4 +1,5 @@
 ﻿using System;
+using Inter.Dependency;
 using Inter.DomainServices;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
@@ -14,10 +15,7 @@ namespace Inter.LifeAlertAppService
     {
         public static ServiceCollection RegisterServices(ServiceCollection services)
         {
-            services.AddTransient<ILifeAlertService, LifeAlertService>();
-            services.AddTransient<ILifeAlertInfrastructureService,
-                LifeAlertInfrastructureService>();
-            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(services);
+            services.RegisterLifeAlertService();
 
             return services;
         }

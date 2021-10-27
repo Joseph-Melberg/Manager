@@ -1,9 +1,6 @@
 name: LifeAlert
 
 on:
-  push:
-    branches: [ master ]
-    paths: Applications/Inter.LifeAlertAppService/
   workflow_dispatch:
 jobs:
   build:

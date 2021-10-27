@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.TempLoggerAppService"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.Infrastructure.Redis", "Inter.Infrastructure.Redis\Inter.Infrastructure.Redis.csproj", "{82D08DAD-206A-4630-90DD-5F86B09F5A4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.Common", "Inter.Common\Inter.Common.csproj", "{1A421698-FAE4-4A4C-8EDC-F7CD463343B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{82D08DAD-206A-4630-90DD-5F86B09F5A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82D08DAD-206A-4630-90DD-5F86B09F5A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82D08DAD-206A-4630-90DD-5F86B09F5A4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A421698-FAE4-4A4C-8EDC-F7CD463343B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A421698-FAE4-4A4C-8EDC-F7CD463343B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A421698-FAE4-4A4C-8EDC-F7CD463343B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A421698-FAE4-4A4C-8EDC-F7CD463343B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FE016E01-FDBE-4DEA-A298-C81488FC4B42} = {394F3572-2702-4FF4-857E-BC3810B65F13}

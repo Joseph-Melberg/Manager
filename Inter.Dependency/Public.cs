@@ -1,3 +1,5 @@
+using Inter.Common.Configuration;
+using Inter.Common.Configuration.Providers;
 using Inter.DomainServices;
 using Inter.DomainServices.Core;
 using Microsoft.Extensions.DependencyInjection;
@@ -6,6 +8,12 @@ namespace Inter.Dependency
 {
     public static partial class Dependency
     {
+        public static IServiceCollection RegisterLifeAlertService(this IServiceCollection collection)
+        {
+            collection.AddTransient<ILifeAlertService,LifeAlertService>();
+
+            return collection.RegisterLifeAlertInfrastructureService();
+        }
         public static IServiceCollection RegisterPlaneListenerService(this IServiceCollection collection)
         {
             collection.AddTransient<IPlaneListenerService,PlaneListenerService>();
@@ -35,6 +43,7 @@ namespace Inter.Dependency
         {
 
             collection.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
+
 
             collection.RegisterHeartbeatListenerInfrastructureService();
 

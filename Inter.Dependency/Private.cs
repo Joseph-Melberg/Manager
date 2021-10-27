@@ -1,3 +1,5 @@
+using Inter.Common.Configuration;
+using Inter.Common.Configuration.Providers;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
@@ -13,6 +15,16 @@ namespace Inter.Dependency
 {
     public static partial class Dependency
     {
+        private static IServiceCollection RegisterLifeAlertInfrastructureService(this IServiceCollection collection)
+        {
+            collection.AddTransient<ILifeAlertInfrastructureService,LifeAlertInfrastructureService>();
+
+            collection.AddSingleton<IEmailConfiguration,EmailConfigurationProvider>();
+
+            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
+
+            return collection;
+        }
         private static IServiceCollection RegisterPlaneListenerInfrastructureService(this IServiceCollection collection)
         {
             collection.AddTransient<IPlaneListenerInfrastructureService,PlaneListenerInfrastructureService>();

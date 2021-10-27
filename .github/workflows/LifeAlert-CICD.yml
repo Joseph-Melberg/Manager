@@ -1,4 +1,4 @@
-name: API CI-CD
+name: LifeAlert CI-CD
 
 on:
   push:
@@ -25,7 +25,8 @@ jobs:
         files: '["${{env.REPLACESETTINGS}}"]'
       env:
         MYSQL_CONNECTION_STRING : ${{secrets.MYSQL_CONNECTION_STRING}}
-        OFFSITE_REDIS : ${{secrets.OFFSITE_REDIS}}
+        NOTIFICATION_PASSWORD : ${{secrets.NOTIFICATION_PASSWORD}}
+        NOTIFICATION_EMAIL : ${{secrets.NOTIFICATION_EMAIL}}
     - 
       name: Replace Appsettings
       run: cp ${{env.REPLACESETTINGS}} ${{env.APPSETTINGS}}

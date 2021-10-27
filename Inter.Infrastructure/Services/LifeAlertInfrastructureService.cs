@@ -6,15 +6,20 @@ using System.Net;
 using Inter.Infrastructure.Corral;
 using Inter.Domain;
 using System.Threading.Tasks;
+using Inter.Common.Configuration;
 
 namespace Inter.Infrastructure.Services
 {
     public class LifeAlertInfrastructureService : ILifeAlertInfrastructureService
     {
+        private readonly IEmailConfiguration _emailConfig;
         private readonly IHeartbeatRepository _heartbeatRepository;
-        public LifeAlertInfrastructureService(IHeartbeatRepository heartbeatRepository)
+        public LifeAlertInfrastructureService(
+            IHeartbeatRepository heartbeatRepository,
+             IEmailConfiguration emailConfiguration)
         {
             _heartbeatRepository = heartbeatRepository;
+            _emailConfig = emailConfiguration;
         }
 
         public async Task<IList<Heartbeat>> GetStatusesAsync()
@@ -39,7 +44,7 @@ namespace Inter.Infrastructure.Services
 
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential("InterEmailService@gmail.com", "*Quba572nWSt");
+                    smtp.Credentials = new NetworkCredential(_emailConfig.Email, "*Quba572nWSt");
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }
