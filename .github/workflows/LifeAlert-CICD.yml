@@ -13,7 +13,7 @@ jobs:
       DOCKERFILE: ./Applications/Inter.LifeAlertAppService/Dockerfile
       PROJECT: ./Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService.csproj
       APPSETTINGS: ./Applications/Inter.LifeAlertAppService/appsettings.json
-      REPLACESETTINGS: ./Api/InterApiDeployment/appsettings.deploy.json 
+      REPLACESETTINGS: ./Applications/Inter.LifeAlertAppService/Deployment/appsettings.deploy.json 
       TAG: lifealert
     steps:
     - uses: actions/checkout@v2
