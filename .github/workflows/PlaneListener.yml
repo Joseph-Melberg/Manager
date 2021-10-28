@@ -1,9 +1,6 @@
 name: Plane Listener
 
 on:
-  push:
-    branches: [ master ]
-    paths: Applications/Inter.PlaneListener/
   workflow_dispatch:
 jobs:
   build:
