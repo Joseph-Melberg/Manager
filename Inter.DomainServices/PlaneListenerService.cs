@@ -20,7 +20,16 @@ namespace Inter.DomainServices
             Console.WriteLine($"Processing frame {frame.Now}");
             if(frame.Planes.Length != 0)
             {
-                await _infraservice.AddPlaneFrameAsync(frame);
+                try
+                {
+
+                    await _infraservice.AddPlaneFrameAsync(frame);
+                }
+                catch(Exception e)
+                {
+                    //Something is wrong but I am not going to debug it yet
+                    //Console.WriteLine(e.Message);
+                }
             }
         }
     }

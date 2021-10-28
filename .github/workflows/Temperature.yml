@@ -1,9 +1,6 @@
 name: Temp
 
 on:
-  push:
-    branches: [ master ]
-    paths: Applications/Inter.TempListenerAppService/
   workflow_dispatch:
 jobs:
   build:
