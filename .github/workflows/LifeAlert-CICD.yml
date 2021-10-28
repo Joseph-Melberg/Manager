@@ -31,7 +31,6 @@ jobs:
       name: Check work
       run: cat ${{env.APPSETTINGS}} 
 
-    - uses: actions/checkout@v2
     - 
       name: Setup .NET
       uses: actions/setup-dotnet@v1
