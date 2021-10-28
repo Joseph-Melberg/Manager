@@ -25,7 +25,7 @@ jobs:
         files: '["${{env.REPLACESETTINGS}}"]'
       env:
         MYSQL_CONNECTION_STRING : ${{secrets.MYSQL_CONNECTION_STRING}}
-        TEMPYSECURE_PASSWORD: ${{secrets.TEMPYECURE_PASSWORD}}
+        TEMPYSECURE_PASSWORD: ${{secrets.TEMPYSECURE_PASSWORD}}
     - 
       name: Replace Appsettings
       run: cp ${{env.REPLACESETTINGS}} ${{env.APPSETTINGS}}
