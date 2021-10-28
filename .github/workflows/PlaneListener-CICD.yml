@@ -1,4 +1,4 @@
-name: LifeAlert CI-CD
+name: Plane Listener CI-CD
 
 on:
   workflow_dispatch:
