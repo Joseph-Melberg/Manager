@@ -6,7 +6,7 @@ namespace Inter.Common.Configuration.Providers
     {
         public EmailConfigurationProvider(IConfiguration configuration)
         {
-            Email = configuration.GetSection("Email:Username").Value;
+            Email = configuration.GetSection("Email:Email").Value;
             Password = configuration.GetSection("Email:Password").Value; 
         }
 
