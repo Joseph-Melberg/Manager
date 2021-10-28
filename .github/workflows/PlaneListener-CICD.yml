@@ -1,20 +1,17 @@
 name: LifeAlert CI-CD
 
 on:
-  push:
-    branches: [ master ]
-    paths: Applications/Inter.LifeAlertAppService
   workflow_dispatch:
 jobs:
 
   build-publish:
     runs-on: ubuntu-latest
     env:
-      DOCKERFILE: ./Applications/Inter.LifeAlertAppService/Dockerfile
-      PROJECT: ./Applications/Inter.LifeAlertAppService/Inter.LifeAlertAppService.csproj
-      APPSETTINGS: ./Applications/Inter.LifeAlertAppService/appsettings.json
-      REPLACESETTINGS: ./Applications/Inter.LifeAlertAppService/Deployment/appsettings.deploy.json 
-      TAG: lifealert
+      DOCKERFILE: ./Applications/Inter.PlaneListenerService/Dockerfile
+      PROJECT: ./Applications/Inter.PlaneListenerService/Inter.PlaneListenerService.csproj
+      APPSETTINGS: ./Applications/Inter.PlaneListenerService/appsettings.json
+      REPLACESETTINGS: ./Applications/Inter.PlaneListenerService/Deployment/appsettings.deploy.json 
+      TAG: interplanelistener 
     steps:
     - uses: actions/checkout@v2
     - 
@@ -24,9 +21,8 @@ jobs:
         tokenSuffix: '}'
         files: '["${{env.REPLACESETTINGS}}"]'
       env:
-        MYSQL_CONNECTION_STRING : ${{secrets.MYSQL_CONNECTION_STRING}}
-        NOTIFICATION_PASSWORD : ${{secrets.NOTIFICATION_PASSWORD}}
-        NOTIFICATION_EMAIL : ${{secrets.NOTIFICATION_EMAIL}}
+        PLANEYSECURE_PASSWORD : ${{secrets.PLANEYSECURE_PASSWORD}}
+        OFFSITE_REDIS : ${{secrets.OFFSITE_REDIS}}
     - 
       name: Replace Appsettings
       run: cp ${{env.REPLACESETTINGS}} ${{env.APPSETTINGS}}
@@ -69,7 +65,7 @@ jobs:
     needs: build-publish
     runs-on: ubuntu-latest
     env:
-      TAG: lifealert
+      TAG: interplanelistener
     steps:
     - 
       name: Run SSH command

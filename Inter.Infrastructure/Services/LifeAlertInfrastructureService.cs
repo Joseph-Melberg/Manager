@@ -36,7 +36,7 @@ namespace Inter.Infrastructure.Services
         {
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress("InterEmailService@gmail.com");
+                mail.From = new MailAddress(_emailConfig.Email);
                 mail.To.Add(recipient);
                 mail.Subject = subject;
                 mail.Body = message;
@@ -44,7 +44,7 @@ namespace Inter.Infrastructure.Services
 
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                 {
-                    smtp.Credentials = new NetworkCredential(_emailConfig.Email, "*Quba572nWSt");
+                    smtp.Credentials = new NetworkCredential(_emailConfig.Email, _emailConfig.Password);
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }

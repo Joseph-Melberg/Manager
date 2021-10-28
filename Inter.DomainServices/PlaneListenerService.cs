@@ -17,6 +17,7 @@ namespace Inter.DomainServices
 
         public async Task HandleMessageAsync(PlaneFrame frame)
         {
+            Console.WriteLine($"Processing frame {frame.Now}");
             if(frame.Planes.Length != 0)
             {
                 await _infraservice.AddPlaneFrameAsync(frame);
