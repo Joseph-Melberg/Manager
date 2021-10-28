@@ -28,7 +28,7 @@ namespace Inter.DomainServices
                 catch(Exception e)
                 {
                     //Something is wrong but I am not going to debug it yet
-                    //Console.WriteLine(e.Message);
+                    Console.WriteLine(e.Message);
                 }
             }
         }

@@ -18,12 +18,14 @@ namespace Inter.PlaneListenerService.Application
         {
             try
             {
-                await _service.HandleMessageAsync(JsonConvert.DeserializeObject<AirplaneRecord>(message).ToDomain());
+                var package = JsonConvert.DeserializeObject<AirplaneRecord>(message).ToDomain();
+                await _service.HandleMessageAsync(package);
 
             }
-            catch(Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(ex.Message);
+
             }
         }
     }
