@@ -4,6 +4,7 @@ using Inter.PlaneListenerService.Models;
 using Inter.PlaneListenerService.Mappers;
 using Newtonsoft.Json;
 using Melberg.Infrastructure.Rabbit.Consumers;
+using System;
 
 namespace Inter.PlaneListenerService.Application
 {
@@ -13,7 +14,17 @@ namespace Inter.PlaneListenerService.Application
         private readonly IPlaneListenerService _service;
         public PlaneProcessor(IPlaneListenerService service) => _service = service;
     
-        public Task ConsumeMessageAsync(string message) => _service.HandleMessageAsync(JsonConvert.DeserializeObject<AirplaneRecord>(message).ToDomain());
+        public async Task ConsumeMessageAsync(string message) 
+        {
+            try
+            {
+                await _service.HandleMessageAsync(JsonConvert.DeserializeObject<AirplaneRecord>(message).ToDomain());
 
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
     }
 }
