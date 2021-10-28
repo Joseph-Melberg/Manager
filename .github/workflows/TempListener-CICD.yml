@@ -1,4 +1,4 @@
-name: Plane Listener CI-CD
+name: Temperature Listener CI-CD
 
 on:
   push:
