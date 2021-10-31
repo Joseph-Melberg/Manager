@@ -24,6 +24,6 @@ namespace Inter.Infrastructure.Redis.Repositories
             return planes; 
         }
 
-        public Task InsertPlaneFrameAsync(PlaneFrame frame) => DB.StringSetAsync(frame.ToKey(),frame.ToPayload());
+        public Task InsertPlaneFrameAsync(PlaneFrame frame) => DB.StringSetAsync(frame.ToKey(),frame.ToPayload(),new TimeSpan(0,0,45));
     }
 }
