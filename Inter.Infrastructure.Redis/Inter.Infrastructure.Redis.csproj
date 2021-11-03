@@ -1,18 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="Melberg.Infrastructure.Redis" Version="1.0.18" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
-    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.21" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\Inter.Infrastructure\Inter.Infrastructure.csproj" />
-    <ProjectReference Include="..\Inter.Domain\Inter.Domain.csproj" />
-  </ItemGroup>
-
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Melberg.Infrastructure.Redis" Version="1.0.19"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8"/>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Inter.Infrastructure\Inter.Infrastructure.csproj"/>
+		<ProjectReference Include="..\Inter.Domain\Inter.Domain.csproj"/>
+	</ItemGroup>
 </Project>

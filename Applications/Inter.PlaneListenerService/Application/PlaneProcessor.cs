@@ -16,6 +16,9 @@ namespace Inter.PlaneListenerService.Application
     
         public async Task ConsumeMessageAsync(string message) 
         {
+
+
+            Console.WriteLine(" [x] Received {0} at {1}", message, DateTime.Now);
             try
             {
                 var package = JsonConvert.DeserializeObject<AirplaneRecord>(message).ToDomain();
