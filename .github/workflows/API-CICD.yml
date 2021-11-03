@@ -31,9 +31,7 @@ jobs:
       run: cp ${{env.REPLACESETTINGS}} ${{env.APPSETTINGS}}
     -
       name: Check work
-      run: cat ${{env.APPSETTINGS}} 
-
-    - uses: actions/checkout@v2
+      run: cat ${{env.APPSETTINGS}}
     - 
       name: Setup .NET
       uses: actions/setup-dotnet@v1
