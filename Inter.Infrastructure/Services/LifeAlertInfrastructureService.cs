@@ -22,7 +22,7 @@ namespace Inter.Infrastructure.Services
             _emailConfig = emailConfiguration;
         }
 
-        public async Task<IList<Heartbeat>> GetStatusesAsync()
+        public async Task<List<Heartbeat>> GetStatusesAsync()
         {
             return await _heartbeatRepository.GetStatusesAsync();
         }

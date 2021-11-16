@@ -23,8 +23,6 @@ namespace Inter.DomainServices
             {
                 try
                 {
-
-
                     var announcedState = nodeState.announced;
                     var isStale = nodeState.timestamp.AddMinutes(5) < DateTime.Now;
                     var isAlive = nodeState.online;

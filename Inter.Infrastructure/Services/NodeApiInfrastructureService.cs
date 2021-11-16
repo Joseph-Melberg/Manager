@@ -15,6 +15,6 @@ namespace Inter.Infrastructure.Services
             _heartbeatRepository = heartbeatRepository;
         }
 
-        public Task<IList<Heartbeat>> GetStatiAsync() => _heartbeatRepository.GetStatusesAsync();
+        public Task<List<Heartbeat>> GetStatiAsync() => _heartbeatRepository.GetStatusesAsync();
     }
 }
