@@ -11,6 +11,8 @@ namespace Inter.Dependency
         public static IServiceCollection RegisterLifeAlertService(this IServiceCollection collection)
         {
             collection.AddTransient<ILifeAlertService,LifeAlertService>();
+            collection.AddSingleton<ILifeAlertRateConfiguration,LifeAlertRateConfigurationProvider>();
+            collection.AddSingleton<IEmailRecipientConfiguration,EmailRecipientConfigurationProvider>();
 
             return collection.RegisterLifeAlertInfrastructureService();
         }

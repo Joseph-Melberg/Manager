@@ -6,6 +6,6 @@ namespace Inter.Infrastructure.Core
 {
     public interface INodeApiInfrastructureService
     {
-        Task<IList<Heartbeat>> GetStatiAsync();
+        Task<List<Heartbeat>> GetStatiAsync();
     }
 }
