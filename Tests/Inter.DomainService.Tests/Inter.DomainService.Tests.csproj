@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\Inter.Domain\Inter.Domain.csproj" />
     <ProjectReference Include="..\..\Inter.DomainServices\Inter.DomainServices.csproj" />
     <ProjectReference Include="..\..\Inter.Infrastructure.Core\Inter.Infrastructure.Core.csproj" />
+    <ProjectReference Include="..\..\Inter.Common\Inter.Common.csproj" />
   </ItemGroup>
 
 </Project>

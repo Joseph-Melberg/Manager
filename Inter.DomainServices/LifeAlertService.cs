@@ -1,16 +1,25 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Inter.Common.Configuration;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
+using Inter.Domain;
 
 namespace Inter.DomainServices
 {
     public class LifeAlertService : ILifeAlertService
     {
         private readonly ILifeAlertInfrastructureService _infra;
-        public LifeAlertService(ILifeAlertInfrastructureService infrastructureService)
+        private readonly ILifeAlertRateConfiguration _rateConfig;
+        private readonly IEmailRecipientConfiguration _emailConfig;
+        public LifeAlertService(
+            ILifeAlertInfrastructureService infrastructureService,
+            ILifeAlertRateConfiguration rateConfiguration,
+            IEmailRecipientConfiguration emailRecipientConfiguration)
         {
             _infra = infrastructureService;
+            _rateConfig = rateConfiguration;
+            _emailConfig = emailRecipientConfiguration;
         }
 
         public async Task Do()
@@ -24,26 +33,17 @@ namespace Inter.DomainServices
                 try
                 {
                     var announcedState = nodeState.announced;
-                    var isStale = nodeState.timestamp.AddMinutes(5) < DateTime.Now;
+                    var isStale = IsStale(nodeState);
                     var isAlive = nodeState.online;
-                    var email = "vtechdelete+life@gmail.com";
-                    if (isAlive & isStale)
+                    if (isAlive && isStale)
                     {
-                        _infra.SendMessage(email, "Report", $"{nodeState.name} is offline");
-                        nodeState.announced = false;
-                        nodeState.online = false;
-                        await _infra.UpdateNode(nodeState);
+                        await UpdateAndAnnounceDeadNodeAsync(nodeState);
                         updated = true;
-                        Console.WriteLine($"{nodeState.name} is offline");
                     }
-                    else if (!announcedState & !isStale)
+                    else if (!announcedState && !isStale)
                     {
-                        _infra.SendMessage(email, "Report", $"{nodeState.name} is online");
-                        nodeState.announced = true;
-                        nodeState.online = true;
-                        await _infra.UpdateNode(nodeState);
+                        await UpdateAndAnnounceLiveNodeAsync(nodeState);
                         updated = true;
-                        Console.WriteLine($"{nodeState.name} is online");
                     }
                 }
                 catch (Exception ex)
@@ -57,5 +57,22 @@ namespace Inter.DomainServices
                 Console.WriteLine("Updates sent");
             }
         }
+        private async Task UpdateAndAnnounceDeadNodeAsync(Heartbeat nodeState)
+        {
+            _infra.SendMessage(_emailConfig.Recipient, "Report", $"{nodeState.name} is offline");
+            nodeState.announced = false;
+            nodeState.online = false;
+            await _infra.UpdateNodeAsync(nodeState);
+            Console.WriteLine($"{nodeState.name} is offline");
+        }
+        private async Task UpdateAndAnnounceLiveNodeAsync(Heartbeat nodeState)
+        {
+            _infra.SendMessage(_emailConfig.Recipient, "Report", $"{nodeState.name} is online");
+            nodeState.announced = true;
+            nodeState.online = true;
+            await _infra.UpdateNodeAsync(nodeState);
+            Console.WriteLine($"{nodeState.name} is online");
+        }
+        private bool IsStale(Heartbeat nodeState) => nodeState.timestamp.AddMinutes(_rateConfig.Rate) < DateTime.Now;
     }
 }

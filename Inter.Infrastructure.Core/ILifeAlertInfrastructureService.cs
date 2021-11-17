@@ -7,7 +7,7 @@ namespace Inter.Infrastructure.Core
     public interface ILifeAlertInfrastructureService
     {
         Task<List<Heartbeat>> GetStatusesAsync();
-        Task UpdateNode(Heartbeat model);
+        Task UpdateNodeAsync(Heartbeat model);
         void SendMessage(string recipient, string subject, string message);
     }
 }

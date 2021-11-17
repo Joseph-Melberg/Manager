@@ -19,7 +19,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
             
         }
 
-        public async Task<IList<Heartbeat>> GetStatusesAsync() => await Context.Heartbeat.Select(_ => _.ToDomain()).ToListAsync();
+        public async Task<List<Heartbeat>> GetStatusesAsync() => await Context.Heartbeat.Select(_ => _.ToDomain()).ToListAsync();
 
         public async Task<Heartbeat> GetStatusAsync(string name) => (await Context.Heartbeat.FirstOrDefaultAsync(_ => _.name == name)).ToDomain();
 

@@ -10,6 +10,7 @@
     <ProjectReference Include="..\Inter.Infrastructure.Core\Inter.Infrastructure.Core.csproj">
       <ReferenceSourceTarget>ProjectReference</ReferenceSourceTarget>
     </ProjectReference>
+    <ProjectReference Include="..\Inter.Common\Inter.Common.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.8" />
