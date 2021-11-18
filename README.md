@@ -1,6 +1,7 @@
-# Welcome
+# Welcome [![codecov](https://codecov.io/gh/Joseph-Melberg/Manager/branch/master/graph/badge.svg?token=Y27UDP57EP)](https://codecov.io/gh/Joseph-Melberg/Manager)
 
 This repository contains the systems that I use to maintain my long term project: Inter.
+
 
 # Purpose
 
