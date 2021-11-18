@@ -29,4 +29,6 @@ jobs:
           dotnet test /p:CollectCoverage=true /p:CoverletOutput=../../CoverageResults/  /p:ThresholdType=line /p:CoverletOutputFormat=cobertura /p:ExcludeByFile=\"**/Inter.Common/**/*.cs\"
       - name: Upload
         run: |
+          curl -s https://codecov.io/bash > codecov
+          chmod +x codecov
           ./codecov -f "CoverageResults/coverage.cobertura.xml" -t {{secrets.CODECOV_TOKEN}}
