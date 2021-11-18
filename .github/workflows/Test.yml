@@ -37,3 +37,5 @@ jobs:
         run: apt install choco
       - name: Hmm
         run: apt install opencover
+        dotnet test /p:CollectCoverage=true /p:CoverletOutput=../../CoverageResults/  /p:ThresholdType=line /p:CoverletOutputFormat=cobertura
+
