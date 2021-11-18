@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Test-CI
+name: Test CI-CD
 
 # Controls when the workflow will run
 on:
@@ -34,4 +34,4 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
       - name: Test Choco
-        run: apt-install choco
+        run: apt install choco
