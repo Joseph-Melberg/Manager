@@ -23,19 +23,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Test
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-      - name: Test Choco
-        run: apt install choco
-      - name: Hmm
-        run: apt install opencover
-        dotnet test /p:CollectCoverage=true /p:CoverletOutput=../../CoverageResults/  /p:ThresholdType=line /p:CoverletOutputFormat=cobertura
-
+          dotnet test /p:CollectCoverage=true /p:CoverletOutput=../../CoverageResults/  /p:ThresholdType=line /p:CoverletOutputFormat=cobertura /p:ExcludeByFile=\"**/Inter.Common/**/*.cs\"
+      - name: Upload
+        run: |
+          ./codecov -f "CoverageResults/coverage.cobertura.xml" -t {{secrets.CODECOV_TOKEN}}
