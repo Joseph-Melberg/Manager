@@ -35,3 +35,5 @@ jobs:
           echo test, and deploy your project.
       - name: Test Choco
         run: apt install choco
+      - name: Hmm
+        run: apt install opencover
