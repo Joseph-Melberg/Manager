@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Inter.Common.Configuration;
 using Inter.Domain;
-using Inter.DomainServices;
 using Inter.Infrastructure.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Inter.DomainService.Tests
+namespace Inter.DomainServices.Tests
 {
     [TestClass]
     public class LifeAlertServiceTests 

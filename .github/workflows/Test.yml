@@ -26,7 +26,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Test
         run: |
-          dotnet test /p:CollectCoverage=true /p:CoverletOutput=../../CoverageResults/  /p:ThresholdType=line /p:CoverletOutputFormat=cobertura /p:ExcludeByFile=\"**/Inter.Common/**/*.cs\"
+          dotnet test /p:CollectCoverage=true /p:CoverletOutput=../../CoverageResults/  /p:ThresholdType=line /p:CoverletOutputFormat=cobertura /p:ExcludeByFile=\"**/Inter.Common/**/*.cs, **/Inter.Domain/**/*.cs\"
       - name: Upload
         run: |
           curl -s https://codecov.io/bash > codecov

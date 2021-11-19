@@ -15,6 +15,7 @@ namespace Inter.DomainServices
         {
             _infra = infra;
         }
+
         public async Task<int> GetUpCountAsync() => (await _infra.GetStatiAsync()).Where(_ => _.online).Count();
 
         public async Task<IList<Heartbeat>> GetListAsync() => await _infra.GetStatiAsync();

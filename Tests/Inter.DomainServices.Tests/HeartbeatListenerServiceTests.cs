@@ -8,7 +8,7 @@ using Moq;
 namespace Inter.DomainService.Tests
 {
     [TestClass]
-    public class HeartbeastListenerServiceTests 
+    public class HeartbeatListenerServiceTests 
     {
         private Mock<IHeartbeatListenerInfrastructureService> _infra;
         private HeartbeatListenerService _service;
@@ -18,17 +18,17 @@ namespace Inter.DomainService.Tests
         private string _livingNodeName = "parrot kepper";
 
         [TestInitialize]
-        public async Task Initialize()
+        public void Initialize()
         {
             _infra = new Mock<IHeartbeatListenerInfrastructureService>();
 
-            _infra.Setup( _ => _.GetHeartbeatStateAsync(It.Is<string>(_ => _ ==_livingNodeName))).Returns(Task.FromResult(true));
-            _infra.Setup( _ => _.GetHeartbeatStateAsync(It.Is<string>(_ => _ ==_deadNodeName))).Returns(Task.FromResult(false));
+            _infra.Setup( _ => _.GetHeartbeatStateAsync(It.Is<string>(_ => _ == _livingNodeName))).Returns(Task.FromResult(true));
+            _infra.Setup( _ => _.GetHeartbeatStateAsync(It.Is<string>(_ => _ == _deadNodeName))).Returns(Task.FromResult(false));
 
             _service = new HeartbeatListenerService(_infra.Object);
         }
         [TestMethod]
-        public async Task HeartbeatFromDeadNode_ShouldAnnounce()
+        public async Task HeartbeatListenerService_Process_HeartbeatFromDeadNodeShouldAnnounce()
         {
             var standardMessage = new HeartbeatMessage()
             {
@@ -50,7 +50,7 @@ namespace Inter.DomainService.Tests
 
         }
         [TestMethod]
-        public async Task HeartbeatFromLivingNode_ShouldNotAnnounce()
+        public async Task HeartbeatListenerService_Process_HeartbeatFromLivingNodeShouldNotAnnounce()
         {
             var standardMessage = new HeartbeatMessage()
             {
@@ -81,6 +81,5 @@ namespace Inter.DomainService.Tests
 
             return true;
         }
-
     }
 }
