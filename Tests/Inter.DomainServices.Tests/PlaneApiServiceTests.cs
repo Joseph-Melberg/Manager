@@ -34,7 +34,7 @@ namespace Inter.DomainServices.Tests
         }
 
         [TestMethod]
-        public async Task PlaneApiService_GetFrameAsync()
+        public async Task PlaneApiService_GetFrameAsync_Standard()
         {
             var result = await _service.GetFrameAsync(1);
 
