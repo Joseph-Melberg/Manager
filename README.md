@@ -27,10 +27,6 @@ Receives messages from the nodes, giving me some insight into the current state 
 
 Runs every minute, checking the age of the heartbeats recorded.  If it finds a heartbeat that is both stale and unnanounced, it sends me an email.
 
-### Log Listener
-
-Listens on a rabbit queue to the logs that are sent to it.
-
 ### Plane Listener WIP
 
 Will take the place of dump1090 as main data ingress point.  Will take in data on a port and process into plane data.  It will store that info in Redis in the following fashion.
