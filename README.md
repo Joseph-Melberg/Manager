@@ -29,7 +29,11 @@ Runs every minute, checking the age of the heartbeats recorded.  If it finds a h
 
 ### Plane Listener
 
-Listens for rabbitmq messages detailing the planes in the sky, uploads that info to redis for it to be accessed by the InterApi
+Listens for rabbitmq messages detailing the planes in the sky, uploads that info to redis for it to be accessed by the InterApi.
+
+### Temperature Listener
+
+Listens for rabbitmq messages detailing the temperature of some of components in my tech stack, including the Pi's and the servers I run my services on.
 
 # Notes
 
