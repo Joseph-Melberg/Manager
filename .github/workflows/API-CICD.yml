@@ -25,7 +25,7 @@ jobs:
         files: '["${{env.REPLACESETTINGS}}"]'
       env:
         MYSQL_CONNECTION_STRING : ${{secrets.MYSQL_CONNECTION_STRING}}
-        OFFSITE_REDIS : ${{secrets.OFFSITE_REDIS}}
+        ONPREM_REDIS : ${{secrets.ONPREM_REDIS}}
     - 
       name: Replace Appsettings
       run: cp ${{env.REPLACESETTINGS}} ${{env.APPSETTINGS}}

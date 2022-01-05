@@ -27,17 +27,13 @@ Receives messages from the nodes, giving me some insight into the current state 
 
 Runs every minute, checking the age of the heartbeats recorded.  If it finds a heartbeat that is both stale and unnanounced, it sends me an email.
 
-### Plane Listener WIP
+### Plane Listener
 
-Will take the place of dump1090 as main data ingress point.  Will take in data on a port and process into plane data.  It will store that info in Redis in the following fashion.
+Listens for rabbitmq messages detailing the planes in the sky, uploads that info to redis for it to be accessed by the InterApi.
 
-Plane changes come in the form of updates to a single aspect of a given plane, so redis will host a collection of objects named $id_$key, with two values, $objectValue and $entry time.
+### Temperature Listener
 
-A message will pull all of the aspects of the relevant plane, update the value and timestamp, then, if all of the ages are proper, push that plane record into the MySQL db.
-
-
-
-
+Listens for rabbitmq messages detailing the temperature of some of components in my tech stack, including the Pi's and the servers I run my services on.
 
 # Notes
 
