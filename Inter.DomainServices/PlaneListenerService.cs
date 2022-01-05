@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.DomainServices.Core;
@@ -24,6 +25,18 @@ namespace Inter.DomainServices
                 {
 
                     await _infraservice.AddPlaneFrameAsync(frame);
+
+                    var metadata = new PlaneFrameMetadata
+                    {
+                        
+                        Antenna = "aggregate",
+                        Detailed = frame.Planes.Count(),
+                        Total = frame.Planes.Count(),
+                        Hostname = "center3",
+                        Timestamp = DateTime.Now
+                    };
+
+                    await _infraservice.UploadPlaneFrameMetadataAsync(metadata);
                 }
                 catch(Exception e)
                 {

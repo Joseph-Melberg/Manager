@@ -31,6 +31,8 @@ namespace Inter.Dependency
 
             RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
 
+            MySqlModule.LoadSqlRepository<IPlaneFrameMetadataRepository,PlaneFrameMetadataRepository,ReadWriteContext>(collection);
+
             return collection;
         }
 
