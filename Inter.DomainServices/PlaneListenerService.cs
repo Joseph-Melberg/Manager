@@ -27,12 +27,14 @@ namespace Inter.DomainServices
                     await _infraservice.AddPlaneFrameAsync(frame);
 
                     var now = DateTime.Now;
+                    var detailed = frame.Planes.Count();
+                    var total = detailed;
                     var metadata = new PlaneFrameMetadata
                     {
                         
                         Antenna = "aggregate",
-                        Detailed = frame.Planes.Count(),
-                        Total = frame.Planes.Count(),
+                        Detailed = detailed,
+                        Total = total, 
                         Hostname = "center3",
                         Timestamp = now   
                     };
