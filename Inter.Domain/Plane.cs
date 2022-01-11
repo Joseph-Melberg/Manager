@@ -3,7 +3,7 @@ namespace Inter.Domain
     public class Plane
     {
         public string hexValue {get; set;}
-        public string squawk {get; set;}
+        public string? squawk {get; set;}
         public string flight {get; set;}
         public float lat {get; set;}
         public float lon {get; set;}

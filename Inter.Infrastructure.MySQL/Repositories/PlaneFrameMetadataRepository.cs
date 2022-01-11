@@ -16,8 +16,6 @@ namespace Inter.Infrastructure.MySQL.Repositories
 
         public async Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata model)
         {
-            var j = Context.Heartbeats.Select(_ => _).ToList();
-            var k = Context.PlaneFrameMetadata.Select(_ => _).ToList();
             var result = model.ToModel();
             if(result != null)
             {
