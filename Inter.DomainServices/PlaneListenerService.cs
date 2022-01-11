@@ -26,6 +26,8 @@ namespace Inter.DomainServices
 
                     await _infraservice.AddPlaneFrameAsync(frame);
 
+                    var now = DateTime.Now;
+                    now.AddMilliseconds(0-now.Millisecond);
                     var metadata = new PlaneFrameMetadata
                     {
                         
@@ -33,7 +35,7 @@ namespace Inter.DomainServices
                         Detailed = frame.Planes.Count(),
                         Total = frame.Planes.Count(),
                         Hostname = "center3",
-                        Timestamp = DateTime.Now
+                        Timestamp = now   
                     };
 
                     await _infraservice.UploadPlaneFrameMetadataAsync(metadata);
