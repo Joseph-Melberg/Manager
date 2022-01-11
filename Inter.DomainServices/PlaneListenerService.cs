@@ -25,8 +25,8 @@ namespace Inter.DomainServices
                 {
 
                     await _infraservice.AddPlaneFrameAsync(frame);
-
-                    var now = DateTime.Now;
+                    DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0); //from start epoch time
+                    var now = epoch.AddSeconds(frame.Now);
                     var detailed = frame.Planes.Count();
                     var total = detailed;
                     var metadata = new PlaneFrameMetadata
