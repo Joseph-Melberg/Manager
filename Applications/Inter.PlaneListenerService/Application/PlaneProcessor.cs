@@ -5,6 +5,7 @@ using Inter.PlaneListenerService.Mappers;
 using Newtonsoft.Json;
 using Melberg.Infrastructure.Rabbit.Consumers;
 using System;
+using System.Diagnostics;
 
 namespace Inter.PlaneListenerService.Application
 {
@@ -18,7 +19,7 @@ namespace Inter.PlaneListenerService.Application
         {
 
 
-            Console.WriteLine(" [x] Received {0} at {1}", message, DateTime.Now);
+            Console.WriteLine(" [x] Received frame at {0}", DateTime.Now);
             try
             {
                 var package = JsonConvert.DeserializeObject<AirplaneRecord>(message).ToDomain();
