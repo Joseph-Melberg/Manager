@@ -18,8 +18,10 @@ namespace Inter.PlaneListenerService.Application
         public async Task ConsumeMessageAsync(string message) 
         {
 
-
+            Stopwatch timer = new Stopwatch();
+            timer.Start();
             Console.WriteLine(" [x] Received frame at {0}", DateTime.Now);
+            var commentTime = timer.ElapsedMilliseconds;
             try
             {
                 var package = JsonConvert.DeserializeObject<AirplaneRecord>(message).ToDomain();
@@ -29,8 +31,10 @@ namespace Inter.PlaneListenerService.Application
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-
             }
+            timer.Stop();
+            var totalTime = timer.ElapsedMilliseconds;
+            Console.WriteLine($"{commentTime}:{totalTime-commentTime}");
         }
     }
 }
