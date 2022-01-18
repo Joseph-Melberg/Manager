@@ -25,7 +25,7 @@ namespace Inter.Infrastructure.MySQL.Repositories
                 timer.Start();
                 await Context.PlaneFrameMetadata.AddAsync(result );
                 var timeToAdd = timer.ElapsedMilliseconds;
-                await Context.SaveChangesAsync();
+                Context.SaveChanges();
                 var timeToSave = timer.ElapsedMilliseconds - timeToAdd;
                 timer.Stop();
                 Console.WriteLine($"Add:{timeToAdd},Save:{timeToSave}");
