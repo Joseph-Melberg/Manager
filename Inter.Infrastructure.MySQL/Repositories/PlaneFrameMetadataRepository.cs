@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Inter.Domain;
@@ -19,8 +21,14 @@ namespace Inter.Infrastructure.MySQL.Repositories
             var result = model.ToModel();
             if(result != null)
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 await Context.PlaneFrameMetadata.AddAsync(result );
+                var timeToAdd = timer.ElapsedMilliseconds;
                 await Context.SaveChangesAsync();
+                var timeToSave = timer.ElapsedMilliseconds - timeToAdd;
+                timer.Stop();
+                Console.WriteLine($"Add:{timeToAdd},Save:{timeToSave}");
             }
         }
     }
