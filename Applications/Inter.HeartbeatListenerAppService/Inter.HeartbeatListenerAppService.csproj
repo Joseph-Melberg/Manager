@@ -8,8 +8,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="1.0.19"/>
-		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.8"/>
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Inter.Domain\Inter.Domain.csproj"/>
