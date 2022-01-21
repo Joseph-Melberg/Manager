@@ -33,6 +33,6 @@ public class PlaneProcessor : IStandardConsumer
         }
         timer.Stop();
         var totalTime = timer.ElapsedMilliseconds;
-        Console.WriteLine($"{commentTime}:{totalTime-commentTime}");
+        Console.WriteLine($"Process took {totalTime-commentTime}");
     }
 }
