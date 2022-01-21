@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.Redis" Version="1.0.19"/>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8"/>
+		<PackageReference Include="Melberg.Infrastructure.Redis" Version="1.0.21" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\Inter.Infrastructure\Inter.Infrastructure.csproj"/>
-		<ProjectReference Include="..\Inter.Domain\Inter.Domain.csproj"/>
+		<ProjectReference Include="..\Inter.Infrastructure\Inter.Infrastructure.csproj" />
+		<ProjectReference Include="..\Inter.Domain\Inter.Domain.csproj" />
 	</ItemGroup>
 </Project>

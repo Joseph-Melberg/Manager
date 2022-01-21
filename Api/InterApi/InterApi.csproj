@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>netcoreapp6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.Couchbase" Version="1.0.19"/>
-		<PackageReference Include="Melberg.Infrastructure.MySql" Version="1.0.19"/>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9"/>
-		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="5.0.0"/>
+		<PackageReference Include="Melberg.Infrastructure.Couchbase" Version="1.0.21"/>
+		<PackageReference Include="Melberg.Infrastructure.MySql" Version="1.0.21"/>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.1"/>
+		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0"/>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Inter.DomainServices.Core\Inter.DomainServices.Core.csproj">
