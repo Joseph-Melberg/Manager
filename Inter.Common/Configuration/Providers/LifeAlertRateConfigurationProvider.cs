@@ -1,22 +1,20 @@
 using Inter.Common.Exceptions;
 using Microsoft.Extensions.Configuration;
 
-namespace Inter.Common.Configuration.Providers
+namespace Inter.Common.Configuration.Providers;
+public class LifeAlertRateConfigurationProvider : ILifeAlertRateConfiguration
 {
-    public class LifeAlertRateConfigurationProvider : ILifeAlertRateConfiguration
+    public int Rate {get; set;}
+
+    public LifeAlertRateConfigurationProvider(IConfiguration configuration)
     {
-        public int Rate {get; set;}
+        var rateConfig = configuration.GetSection("Rate").Value;
 
-        public LifeAlertRateConfigurationProvider(IConfiguration configuration)
+        if(string.IsNullOrEmpty(rateConfig))
         {
-            var rateConfig = configuration.GetSection("Rate").Value;
-
-            if(string.IsNullOrEmpty(rateConfig))
-            {
-                throw new ConfigurationException();
-            }
-
-            Rate = int.Parse(rateConfig);
+            throw new ConfigurationException();
         }
+
+        Rate = int.Parse(rateConfig);
     }
 }

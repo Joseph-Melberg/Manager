@@ -2,12 +2,10 @@
 using System.Threading.Tasks;
 using Inter.Domain;
 
-namespace Inter.DomainServices.Core
+namespace Inter.DomainServices.Core;
+public interface INodeApiService
 {
-    public interface INodeApiService
-    {
-        Task<int> GetUpCountAsync();
+    Task<int> GetUpCountAsync();
 
-        Task<IList<Heartbeat>> GetListAsync();
-    }
+    Task<IList<Heartbeat>> GetListAsync();
 }

@@ -1,11 +1,8 @@
-using System;
 using System.Threading.Tasks;
 using Inter.Domain;
 
-namespace Inter.DomainServices.Core
+namespace Inter.DomainServices.Core;
+public interface IPlaneApiService
 {
-    public interface IPlaneApiService
-    {
-        Task<PlaneFrame> GetFrameAsync(long timestamp);
-    }
+    Task<PlaneFrame> GetFrameAsync(long timestamp);
 }

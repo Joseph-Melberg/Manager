@@ -5,30 +5,29 @@ using Inter.Domain;
 using Inter.DomainServices.Core;
 using Melberg.Infrastructure.Rabbit.Consumers;
 
-namespace Inter.HeartbeatListenerAppService.Application
+namespace Inter.HeartbeatListenerAppService.Application;
+
+public class HeartbeatProcessor : IStandardConsumer
 {
-    public class HeartbeatProcessor : IStandardConsumer
+
+    private readonly IHeartbeatListenerService _service;
+    public HeartbeatProcessor(IHeartbeatListenerService service)
     {
-
-        private readonly IHeartbeatListenerService _service;
-        public HeartbeatProcessor(IHeartbeatListenerService service)
+        _service = service;
+    }
+    public async Task ConsumeMessageAsync(string message)
+    {
+        Console.WriteLine(" [x] Received {0} at {1}", message, DateTime.Now);
+        message = message.Replace("'", "\"");
+        try
         {
-            _service = service;
+            var result = JsonSerializer.Deserialize<HeartbeatMessage>(message);
+            await _service.Process(result);
         }
-        public async Task ConsumeMessageAsync(string message)
+        catch (Exception ex)
         {
-            Console.WriteLine(" [x] Received {0} at {1}", message, DateTime.Now);
-            message = message.Replace("'", "\"");
-            try
-            {
-                var result = JsonSerializer.Deserialize<HeartbeatMessage>(message);
-                await _service.Process(result);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("That didn't work");
+            Console.WriteLine("That didn't work");
 
-            }
         }
     }
 }

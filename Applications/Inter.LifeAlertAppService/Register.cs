@@ -9,15 +9,13 @@ using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Services;
 using Melberg.Infrastructure.MySql;
 using Microsoft.Extensions.DependencyInjection;
-namespace Inter.LifeAlertAppService
+namespace Inter.LifeAlertAppService;
+public class Register
 {
-    public class Register
+    public static ServiceCollection RegisterServices(ServiceCollection services)
     {
-        public static ServiceCollection RegisterServices(ServiceCollection services)
-        {
-            services.RegisterLifeAlertService();
+        services.RegisterLifeAlertService();
 
-            return services;
-        }
+        return services;
     }
 }

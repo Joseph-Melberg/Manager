@@ -1,8 +1,6 @@
-namespace Inter.Common.Configuration
+namespace Inter.Common.Configuration;
+public interface IEmailConfiguration
 {
-    public interface IEmailConfiguration
-    {
-        string Email {get; set;}
-        string Password {get; set;}
-    }
+    string Email {get; set;}
+    string Password {get; set;}
 }

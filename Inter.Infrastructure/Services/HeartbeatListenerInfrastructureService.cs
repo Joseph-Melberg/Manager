@@ -3,28 +3,26 @@ using Inter.Domain;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
 
-namespace Inter.Infrastructure.Services
+namespace Inter.Infrastructure.Services;
+public class HeartbeatListenerInfrastructureService : IHeartbeatListenerInfrastructureService
 {
-    public class HeartbeatListenerInfrastructureService : IHeartbeatListenerInfrastructureService
+    private readonly IHeartbeatRepository _heartbeatRepository;
+    public HeartbeatListenerInfrastructureService(IHeartbeatRepository heartBeatRepository)
     {
-        private readonly IHeartbeatRepository _heartbeatRepository;
-        public HeartbeatListenerInfrastructureService(IHeartbeatRepository heartBeatRepository)
-        {
-            _heartbeatRepository = heartBeatRepository;
-        }
+        _heartbeatRepository = heartBeatRepository;
+    }
 
-        public async Task<bool> GetHeartbeatStateAsync(string name)
+    public async Task<bool> GetHeartbeatStateAsync(string name)
+    {
+        var result = await _heartbeatRepository.GetStatusAsync(name);
+        if(result == null)
         {
-            var result = await _heartbeatRepository.GetStatusAsync(name);
-            if(result == null)
-            {
-                return false;
-            }
-            return result.online;
+            return false;
         }
-        public Task UpdateAsync(Heartbeat heartBeat)
-        {
-            return _heartbeatRepository.UpdateAsync(heartBeat);
-        }
+        return result.online;
+    }
+    public Task UpdateAsync(Heartbeat heartBeat)
+    {
+        return _heartbeatRepository.UpdateAsync(heartBeat);
     }
 }

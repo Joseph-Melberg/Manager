@@ -1,7 +1,5 @@
-namespace Inter.Common.Configuration
+namespace Inter.Common.Configuration;
+public interface ILifeAlertRateConfiguration
 {
-    public interface ILifeAlertRateConfiguration
-    {
-        int Rate {get;}
-    }
+    int Rate {get;}
 }

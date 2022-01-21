@@ -1,10 +1,8 @@
 using System.Threading.Tasks;
 using Inter.Domain;
 
-namespace Inter.DomainServices.Core
+namespace Inter.DomainServices.Core;
+public interface ITemperatureListenerService
 {
-    public interface ITemperatureListenerService
-    {
-        Task RecordTempAsync(TemperatureMark[] marks);
-    }
+    Task RecordTempAsync(TemperatureMark[] marks);
 }

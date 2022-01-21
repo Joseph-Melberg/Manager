@@ -3,20 +3,16 @@ using Inter.PlaneListenerService.Application;
 using Melberg.Infrastructure.Rabbit;
 using Inter.Dependency;
 
-namespace Inter.PlaneListenerService
+namespace Inter.PlaneListenerService;
+public class Register
 {
-    public class Register
+    public static ServiceCollection RegisterServices(ServiceCollection services)
     {
-        public static ServiceCollection RegisterServices(ServiceCollection services)
-        {
-            
-            RabbitModule.RegisterConsumer<PlaneProcessor>(services);
-            
-            services.RegisterPlaneListenerService();
+        
+        RabbitModule.RegisterConsumer<PlaneProcessor>(services);
+        
+        services.RegisterPlaneListenerService();
 
-            return services;
-        }
+        return services;
     }
 }
-
-    

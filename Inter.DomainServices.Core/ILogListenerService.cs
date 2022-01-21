@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Inter.Domain;
 
-namespace Inter.DomainServices.Core
+namespace Inter.DomainServices.Core;
+public interface ILogListenerService
 {
-    public interface ILogListenerService
-    {
-        Task Process(LogMessage message);
-    }
+    Task Process(LogMessage message);
 }

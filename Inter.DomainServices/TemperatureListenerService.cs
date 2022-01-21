@@ -3,24 +3,22 @@ using Inter.Domain;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 
-namespace Inter.DomainServices
+namespace Inter.DomainServices;
+public class TemperatureListenerService : ITemperatureListenerService
 {
-    public class TemperatureListenerService : ITemperatureListenerService
+    private readonly ITemperatureListenerInfrastructureService _infraservice;
+    public TemperatureListenerService(ITemperatureListenerInfrastructureService infrastructureService)
     {
-        private readonly ITemperatureListenerInfrastructureService _infraservice;
-        public TemperatureListenerService(ITemperatureListenerInfrastructureService infrastructureService)
+        _infraservice = infrastructureService;
+    }
+
+    public async Task RecordTempAsync(TemperatureMark[] marks)
+    {
+        foreach(var mark in marks)
         {
-            _infraservice = infrastructureService;
+            await _infraservice.InsertTemperatureAsync(mark);
         }
 
-        public async Task RecordTempAsync(TemperatureMark[] marks)
-        {
-            foreach(var mark in marks)
-            {
-                await _infraservice.InsertTemperatureAsync(mark);
-            }
-
-            await _infraservice.SaveRecordsAsync();
-        }
+        await _infraservice.SaveRecordsAsync();
     }
 }

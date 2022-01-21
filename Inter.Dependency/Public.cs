@@ -4,61 +4,59 @@ using Inter.DomainServices;
 using Inter.DomainServices.Core;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Inter.Dependency
+namespace Inter.Dependency;
+public static partial class Dependency
 {
-    public static partial class Dependency
+    public static IServiceCollection RegisterLifeAlertService(this IServiceCollection collection)
     {
-        public static IServiceCollection RegisterLifeAlertService(this IServiceCollection collection)
-        {
-            collection.AddTransient<ILifeAlertService,LifeAlertService>();
-            collection.AddSingleton<ILifeAlertRateConfiguration,LifeAlertRateConfigurationProvider>();
-            collection.AddSingleton<IEmailRecipientConfiguration,EmailRecipientConfigurationProvider>();
+        collection.AddTransient<ILifeAlertService,LifeAlertService>();
+        collection.AddSingleton<ILifeAlertRateConfiguration,LifeAlertRateConfigurationProvider>();
+        collection.AddSingleton<IEmailRecipientConfiguration,EmailRecipientConfigurationProvider>();
 
-            return collection.RegisterLifeAlertInfrastructureService();
-        }
-        public static IServiceCollection RegisterPlaneListenerService(this IServiceCollection collection)
-        {
-            collection.AddTransient<IPlaneListenerService,PlaneListenerService>();
+        return collection.RegisterLifeAlertInfrastructureService();
+    }
+    public static IServiceCollection RegisterPlaneListenerService(this IServiceCollection collection)
+    {
+        collection.AddTransient<IPlaneListenerService,PlaneListenerService>();
 
-            
-            return collection.RegisterPlaneListenerInfrastructureService();
-        }
-
-        public static IServiceCollection RegisterNodeControllerService(this IServiceCollection collection)
-        {
-            collection.AddTransient<INodeApiService, NodeApiService>();
-
-            collection.RegisterNodeApiInfrastructureService(); 
-            return collection;
-        }
         
-        public static IServiceCollection RegisterPlaneControllerService(this IServiceCollection collection)
-        {
-            collection.AddTransient<IPlaneApiService,PlaneApiService>();
+        return collection.RegisterPlaneListenerInfrastructureService();
+    }
 
-            collection.RegisterPlaneApiInfrastructureService();
+    public static IServiceCollection RegisterNodeControllerService(this IServiceCollection collection)
+    {
+        collection.AddTransient<INodeApiService, NodeApiService>();
 
-            return collection;
-        }
+        collection.RegisterNodeApiInfrastructureService(); 
+        return collection;
+    }
+    
+    public static IServiceCollection RegisterPlaneControllerService(this IServiceCollection collection)
+    {
+        collection.AddTransient<IPlaneApiService,PlaneApiService>();
 
-        public static IServiceCollection RegisterHeartbeatListenerService(this IServiceCollection collection)
-        {
+        collection.RegisterPlaneApiInfrastructureService();
 
-            collection.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
+        return collection;
+    }
+
+    public static IServiceCollection RegisterHeartbeatListenerService(this IServiceCollection collection)
+    {
+
+        collection.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
 
 
-            collection.RegisterHeartbeatListenerInfrastructureService();
+        collection.RegisterHeartbeatListenerInfrastructureService();
 
-            return collection;
-        }
+        return collection;
+    }
 
-        public static IServiceCollection RegisterTemperatureListenerService(this IServiceCollection collection)
-        {
-            collection.AddTransient<ITemperatureListenerService,TemperatureListenerService>();
+    public static IServiceCollection RegisterTemperatureListenerService(this IServiceCollection collection)
+    {
+        collection.AddTransient<ITemperatureListenerService,TemperatureListenerService>();
 
-            collection.RegisterTemperatureListenerInfrastructureService(); 
-            
-            return collection;
-        }
+        collection.RegisterTemperatureListenerInfrastructureService(); 
+        
+        return collection;
     }
 }

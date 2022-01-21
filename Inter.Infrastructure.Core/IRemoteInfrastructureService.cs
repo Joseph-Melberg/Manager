@@ -1,10 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace Inter.Infrastructure.Core
+namespace Inter.Infrastructure.Core;
+public interface IRemoteInfrastructureService
 {
-    public interface IRemoteInfrastructureService
-    {
-        Task<bool> Register(string name);
-    }
+    Task<bool> Register(string name);
 }

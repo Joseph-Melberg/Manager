@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Inter.Domain;
 
-namespace Inter.Infrastructure.Corral
+namespace Inter.Infrastructure.Corral;
+public interface ILogRepository
 {
-    public interface ILogRepository
-    {
-        Task AddLog(LogModel logModel);
-    }
+    Task AddLog(LogModel logModel);
 }

@@ -1,10 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Inter.Domain;
 
-namespace Inter.Infrastructure.Core
+namespace Inter.Infrastructure.Core;
+public interface ILogListenerInfrastructureService
 {
-    public interface ILogListenerInfrastructureService
-    {
-        Task AddLog(LogModel  logModel);
-    }
+    Task AddLog(LogModel  logModel);
 }

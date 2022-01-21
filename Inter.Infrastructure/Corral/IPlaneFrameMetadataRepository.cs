@@ -1,10 +1,8 @@
 using System.Threading.Tasks;
 using Inter.Domain;
 
-namespace Inter.Infrastructure.Corral
+namespace Inter.Infrastructure.Corral;
+public interface IPlaneFrameMetadataRepository
 {
-    public interface IPlaneFrameMetadataRepository
-    {
-        Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata model);
-    }
+    Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata model);
 }
