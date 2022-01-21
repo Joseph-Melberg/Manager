@@ -1,12 +1,10 @@
 using System.Threading.Tasks;
 using Inter.Domain;
 
-namespace Inter.Infrastructure.Corral
+namespace Inter.Infrastructure.Corral;
+public interface IPlaneCacheRepository
 {
-    public interface IPlaneCacheRepository
-    {
-        Task InsertPlaneFrameAsync(PlaneFrame frame);
+    Task InsertPlaneFrameAsync(PlaneFrame frame);
 
-        Task<PlaneFrame> GetPlaneFrameAsync(long timestamp);
-    }
+    Task<PlaneFrame> GetPlaneFrameAsync(long timestamp);
 }

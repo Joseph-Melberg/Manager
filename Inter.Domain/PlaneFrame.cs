@@ -1,8 +1,6 @@
-namespace Inter.Domain
+namespace Inter.Domain;
+public class PlaneFrame
 {
-    public class PlaneFrame
-    {
-        public int Now {get; set;}
-        public Plane[] Planes {get; set;}
-    }
+    public int Now {get; set;}
+    public Plane[] Planes {get; set;}
 }

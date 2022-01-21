@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using Inter.Domain;
 
-namespace Inter.Infrastructure.Core
+namespace Inter.Infrastructure.Core;
+public interface INodeApiInfrastructureService
 {
-    public interface INodeApiInfrastructureService
-    {
-        Task<List<Heartbeat>> GetStatiAsync();
-    }
+    Task<List<Heartbeat>> GetStatiAsync();
 }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace Inter.DomainServices.Core
+namespace Inter.DomainServices.Core;
+public interface IRemoteService
 {
-    public interface IRemoteService
-    {
-        Task<bool> Handle(string name, int port);
-    }
+    Task<bool> Handle(string name, int port);
 }

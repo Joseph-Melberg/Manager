@@ -1,9 +1,7 @@
-namespace Inter.TempLoggerAppService.Messages
+namespace Inter.TempLoggerAppService.Messages;
+public class TemperatureDetail
 {
-    public class TemperatureDetail
-    {
-        public string PartName {get; set;}
+    public string PartName {get; set;}
 
-        public double Temperature {get; set;}
-    }
+    public double Temperature {get; set;}
 }

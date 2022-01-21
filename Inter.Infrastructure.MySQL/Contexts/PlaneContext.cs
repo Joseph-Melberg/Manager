@@ -3,25 +3,23 @@ using Melberg.Core.MySql;
 using Melberg.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 
-namespace Inter.Infrastructure.MySQL.Contexts
+namespace Inter.Infrastructure.MySQL.Contexts;
+public class PlaneContext : DefaultContext
 {
-    public class PlaneContext : DefaultContext
+    public DbSet<PlaneModel> records { get; set; }
+
+    public PlaneContext(IMySqlConnectionStringProvider provider) : base(provider)
     {
-        public DbSet<PlaneModel> records { get; set; }
 
-        public PlaneContext(IMySqlConnectionStringProvider provider) : base(provider)
-        {
+    }
 
-        }
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            builder.Entity<PlaneModel>(entity =>
-                           {
-                               entity.HasKey(_ => _.id);
-                           });
-        }
+        builder.Entity<PlaneModel>(entity =>
+                       {
+                           entity.HasKey(_ => _.id);
+                       });
     }
 }

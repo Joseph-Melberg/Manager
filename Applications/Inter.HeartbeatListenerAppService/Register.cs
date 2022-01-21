@@ -3,15 +3,13 @@ using Inter.HeartbeatListenerAppService.Application;
 using Melberg.Infrastructure.Rabbit;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Inter.HeartbeatListenerAppService
+namespace Inter.HeartbeatListenerAppService;
+public class Register
 {
-    public class Register
+    public static ServiceCollection RegisterServices(ServiceCollection services)
     {
-        public static ServiceCollection RegisterServices(ServiceCollection services)
-        {
-            RabbitModule.RegisterConsumer<HeartbeatProcessor>(services);
-            services.RegisterHeartbeatListenerService();
-            return services;
-        }
+        RabbitModule.RegisterConsumer<HeartbeatProcessor>(services);
+        services.RegisterHeartbeatListenerService();
+        return services;
     }
 }

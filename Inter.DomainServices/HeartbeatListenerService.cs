@@ -4,30 +4,28 @@ using Inter.Domain;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 
-namespace Inter.DomainServices
+namespace Inter.DomainServices;
+public class HeartbeatListenerService : IHeartbeatListenerService
 {
-    public class HeartbeatListenerService : IHeartbeatListenerService
+    private readonly IHeartbeatListenerInfrastructureService _infraservice;
+    public HeartbeatListenerService(IHeartbeatListenerInfrastructureService infrastructureService)
     {
-        private readonly IHeartbeatListenerInfrastructureService _infraservice;
-        public HeartbeatListenerService(IHeartbeatListenerInfrastructureService infrastructureService)
-        {
-            _infraservice = infrastructureService;
-        }
+        _infraservice = infrastructureService;
+    }
 
-        public async Task Process(HeartbeatMessage message)
+    public async Task Process(HeartbeatMessage message)
+    {
+        //We only need to announce if it was off
+        var shouldAnnounce = !await _infraservice.GetHeartbeatStateAsync(message.Name);
+        var model = new Heartbeat()
         {
-            //We only need to announce if it was off
-            var shouldAnnounce = !await _infraservice.GetHeartbeatStateAsync(message.Name);
-            var model = new Heartbeat()
-            {
-                name = message.Name,
-                mac = message.Mac,
-                timestamp = DateTime.Now,
-                announced = shouldAnnounce,
-                online = true
-            };
-            await _infraservice.UpdateAsync(model);
-            Console.WriteLine($"Heartbeat from {message.Name} was proccessed");
-        }
+            name = message.Name,
+            mac = message.Mac,
+            timestamp = DateTime.Now,
+            announced = shouldAnnounce,
+            online = true
+        };
+        await _infraservice.UpdateAsync(model);
+        Console.WriteLine($"Heartbeat from {message.Name} was proccessed");
     }
 }

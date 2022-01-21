@@ -11,65 +11,63 @@ using Melberg.Infrastructure.MySql;
 using Melberg.Infrastructure.Redis;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Inter.Dependency
+namespace Inter.Dependency;
+public static partial class Dependency
 {
-    public static partial class Dependency
+    private static IServiceCollection RegisterLifeAlertInfrastructureService(this IServiceCollection collection)
     {
-        private static IServiceCollection RegisterLifeAlertInfrastructureService(this IServiceCollection collection)
-        {
-            collection.AddTransient<ILifeAlertInfrastructureService,LifeAlertInfrastructureService>();
+        collection.AddTransient<ILifeAlertInfrastructureService,LifeAlertInfrastructureService>();
 
-            collection.AddSingleton<IEmailConfiguration,EmailConfigurationProvider>();
+        collection.AddSingleton<IEmailConfiguration,EmailConfigurationProvider>();
 
-            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
+        MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
 
-            return collection;
-        }
-        private static IServiceCollection RegisterPlaneListenerInfrastructureService(this IServiceCollection collection)
-        {
-            collection.AddTransient<IPlaneListenerInfrastructureService,PlaneListenerInfrastructureService>();
+        return collection;
+    }
+    private static IServiceCollection RegisterPlaneListenerInfrastructureService(this IServiceCollection collection)
+    {
+        collection.AddTransient<IPlaneListenerInfrastructureService,PlaneListenerInfrastructureService>();
 
-            RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
+        RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
 
-            MySqlModule.LoadSqlRepository<IPlaneFrameMetadataRepository,PlaneFrameMetadataRepository,ReadWriteContext>(collection);
+        MySqlModule.LoadSqlRepository<IPlaneFrameMetadataRepository,PlaneFrameMetadataRepository,ReadWriteContext>(collection);
 
-            return collection;
-        }
+        return collection;
+    }
 
-        private static IServiceCollection RegisterPlaneApiInfrastructureService(this IServiceCollection collection)        
-        {
-            collection.AddTransient<IPlaneApiInfrastructureService,PlaneApiInfrastructureService>();
+    private static IServiceCollection RegisterPlaneApiInfrastructureService(this IServiceCollection collection)        
+    {
+        collection.AddTransient<IPlaneApiInfrastructureService,PlaneApiInfrastructureService>();
 
-            RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
+        RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
 
-            return collection;
-        }
+        return collection;
+    }
 
-        private static IServiceCollection RegisterNodeApiInfrastructureService(this IServiceCollection collection)
-        {
-            collection.AddTransient<INodeApiInfrastructureService, NodeApiInfrastructureService>();
+    private static IServiceCollection RegisterNodeApiInfrastructureService(this IServiceCollection collection)
+    {
+        collection.AddTransient<INodeApiInfrastructureService, NodeApiInfrastructureService>();
 
-            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
+        MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
 
-            return collection;
-        }
+        return collection;
+    }
 
-        private static IServiceCollection RegisterHeartbeatListenerInfrastructureService(this IServiceCollection collection)
-        {
-            collection.AddTransient<IHeartbeatListenerInfrastructureService,HeartbeatListenerInfrastructureService>();
-            
-            MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
+    private static IServiceCollection RegisterHeartbeatListenerInfrastructureService(this IServiceCollection collection)
+    {
+        collection.AddTransient<IHeartbeatListenerInfrastructureService,HeartbeatListenerInfrastructureService>();
+        
+        MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
 
-            return collection;
-        }
+        return collection;
+    }
 
-        private static IServiceCollection RegisterTemperatureListenerInfrastructureService(this IServiceCollection collection)
-        {
-            collection.AddTransient<ITemperatureListenerInfrastructureService,TemperatureListenerInfrastructureService>();
+    private static IServiceCollection RegisterTemperatureListenerInfrastructureService(this IServiceCollection collection)
+    {
+        collection.AddTransient<ITemperatureListenerInfrastructureService,TemperatureListenerInfrastructureService>();
 
-            MySqlModule.LoadSqlRepository<ITemperatureRepository,TemperatureRepository,TemperatureContext>(collection);
+        MySqlModule.LoadSqlRepository<ITemperatureRepository,TemperatureRepository,TemperatureContext>(collection);
 
-            return collection;
-        }
+        return collection;
     }
 }

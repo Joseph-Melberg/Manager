@@ -1,10 +1,8 @@
 using System.Threading.Tasks;
 using Inter.Domain;
 
-namespace Inter.DomainServices.Core
+namespace Inter.DomainServices.Core;
+public interface IPlaneListenerService
 {
-    public interface IPlaneListenerService
-    {
-        Task HandleMessageAsync(PlaneFrame Frame);
-    }
+    Task HandleMessageAsync(PlaneFrame Frame);
 }

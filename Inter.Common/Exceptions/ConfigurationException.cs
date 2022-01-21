@@ -1,9 +1,7 @@
 using System;
 
-namespace Inter.Common.Exceptions
+namespace Inter.Common.Exceptions;
+public class ConfigurationException : Exception
 {
-    public class ConfigurationException : Exception
-    {
 
-    }
 }

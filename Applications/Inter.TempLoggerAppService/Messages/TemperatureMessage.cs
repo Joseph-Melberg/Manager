@@ -1,13 +1,11 @@
 using System;
 
-namespace Inter.TempLoggerAppService.Messages
+namespace Inter.TempLoggerAppService.Messages;
+public class TemperatureMessage
 {
-    public class TemperatureMessage
-    {
-        public string HostName {get;set;}
+    public string HostName {get;set;}
 
-        public DateTime Timestamp {get; set;}
-        
-        public TemperatureDetail[] Temperatures {get; set;}
-    }
+    public DateTime Timestamp {get; set;}
+    
+    public TemperatureDetail[] Temperatures {get; set;}
 }

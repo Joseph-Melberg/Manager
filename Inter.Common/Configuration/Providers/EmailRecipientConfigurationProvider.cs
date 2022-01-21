@@ -1,20 +1,18 @@
 using Inter.Common.Exceptions;
 using Microsoft.Extensions.Configuration;
 
-namespace Inter.Common.Configuration.Providers
+namespace Inter.Common.Configuration.Providers;
+public class EmailRecipientConfigurationProvider : IEmailRecipientConfiguration
 {
-    public class EmailRecipientConfigurationProvider : IEmailRecipientConfiguration
+    public string Recipient {get; set;} 
+
+    public EmailRecipientConfigurationProvider(IConfiguration configuration)
     {
-        public string Recipient {get; set;} 
+        Recipient = configuration.GetSection("Email:Recipient").Value;
 
-        public EmailRecipientConfigurationProvider(IConfiguration configuration)
+        if(string.IsNullOrEmpty(Recipient))
         {
-            Recipient = configuration.GetSection("Email:Recipient").Value;
-
-            if(string.IsNullOrEmpty(Recipient))
-            {
-                throw new ConfigurationException();
-            }
+            throw new ConfigurationException();
         }
     }
 }

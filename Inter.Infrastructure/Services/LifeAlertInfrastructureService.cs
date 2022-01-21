@@ -8,48 +8,46 @@ using Inter.Domain;
 using System.Threading.Tasks;
 using Inter.Common.Configuration;
 
-namespace Inter.Infrastructure.Services
+namespace Inter.Infrastructure.Services;
+public class LifeAlertInfrastructureService : ILifeAlertInfrastructureService
 {
-    public class LifeAlertInfrastructureService : ILifeAlertInfrastructureService
+    private readonly IEmailConfiguration _emailConfig;
+    private readonly IHeartbeatRepository _heartbeatRepository;
+    public LifeAlertInfrastructureService(
+        IHeartbeatRepository heartbeatRepository,
+         IEmailConfiguration emailConfiguration)
     {
-        private readonly IEmailConfiguration _emailConfig;
-        private readonly IHeartbeatRepository _heartbeatRepository;
-        public LifeAlertInfrastructureService(
-            IHeartbeatRepository heartbeatRepository,
-             IEmailConfiguration emailConfiguration)
-        {
-            _heartbeatRepository = heartbeatRepository;
-            _emailConfig = emailConfiguration;
-        }
+        _heartbeatRepository = heartbeatRepository;
+        _emailConfig = emailConfiguration;
+    }
 
-        public async Task<List<Heartbeat>> GetStatusesAsync()
-        {
-            return await _heartbeatRepository.GetStatusesAsync();
-        }
+    public async Task<List<Heartbeat>> GetStatusesAsync()
+    {
+        return await _heartbeatRepository.GetStatusesAsync();
+    }
 
-        public Task UpdateNodeAsync(Heartbeat model)
-        {
-            return _heartbeatRepository.UpdateAsync(model);
-        }
+    public Task UpdateNodeAsync(Heartbeat model)
+    {
+        return _heartbeatRepository.UpdateAsync(model);
+    }
 
-        public void SendMessage(string recipient,string subject, string message)
+    public void SendMessage(string recipient,string subject, string message)
+    {
+        using (MailMessage mail = new MailMessage())
         {
-            using (MailMessage mail = new MailMessage())
+            mail.From = new MailAddress(_emailConfig.Email);
+            mail.To.Add(recipient);
+            mail.Subject = subject;
+            mail.Body = message;
+            mail.IsBodyHtml = true;
+
+            using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
             {
-                mail.From = new MailAddress(_emailConfig.Email);
-                mail.To.Add(recipient);
-                mail.Subject = subject;
-                mail.Body = message;
-                mail.IsBodyHtml = true;
-
-                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-                {
-                    smtp.Credentials = new NetworkCredential(_emailConfig.Email, _emailConfig.Password);
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
-                }
+                smtp.Credentials = new NetworkCredential(_emailConfig.Email, _emailConfig.Password);
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
             }
-            Console.WriteLine("Done");
         }
+        Console.WriteLine("Done");
     }
 }

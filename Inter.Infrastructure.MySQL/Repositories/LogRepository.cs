@@ -4,18 +4,16 @@ using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
 using Melberg.Infrastructure.MySql;
 
-namespace Inter.Infrastructure.MySQL.Repositories
+namespace Inter.Infrastructure.MySQL.Repositories;
+public class LogRepository : BaseRepository<LogContext>, ILogRepository
 {
-    public class LogRepository : BaseRepository<LogContext>, ILogRepository
+    public LogRepository(LogContext context) : base(context)
     {
-        public LogRepository(LogContext context) : base(context)
-        {
-        }
+    }
 
-        public async Task AddLog(LogModel log)
-        {
-            await Context.log.AddAsync(log);
-            await Context.Save();
-        }
+    public async Task AddLog(LogModel log)
+    {
+        await Context.log.AddAsync(log);
+        await Context.Save();
     }
 }

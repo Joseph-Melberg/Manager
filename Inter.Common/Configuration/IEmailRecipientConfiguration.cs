@@ -1,7 +1,5 @@
-namespace Inter.Common.Configuration
+namespace Inter.Common.Configuration;
+public interface IEmailRecipientConfiguration
 {
-    public interface IEmailRecipientConfiguration
-    {
-        string Recipient {get;}
-    }
+    string Recipient {get;}
 }
