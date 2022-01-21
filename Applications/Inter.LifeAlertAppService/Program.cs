@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using Inter.DomainServices.Core;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,7 @@ class Program
 
     private static void RegisterServices()
     {
+
         var services = new ServiceCollection();
         configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Inter.DomainServices.Core;
@@ -17,7 +18,8 @@ public class TemperatureProcessor : IStandardConsumer
     public async Task ConsumeMessageAsync(string message)
     {
         Console.WriteLine(" [x] Received {0} at {1}", message, DateTime.Now);
-        
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
         message = message.Replace("'", "\"");
         try
         {
@@ -28,5 +30,7 @@ public class TemperatureProcessor : IStandardConsumer
         {
             Console.WriteLine(ex);
         }
+        watch.Stop();
+        Console.WriteLine($"Process took {watch.ElapsedMilliseconds}");
     }
 }
