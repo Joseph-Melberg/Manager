@@ -29,7 +29,7 @@ public class HeartbeatProcessor : IStandardConsumer
         }
         catch (Exception ex)
         {
-            Console.WriteLine("That didn't work");
+            Console.WriteLine("That didn't work" + ex);
         }
         watch.Stop();
         Console.WriteLine($"Process took {watch.ElapsedMilliseconds}");

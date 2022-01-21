@@ -10,6 +10,7 @@
         "type": "coreclr",
         "request": "launch",
         "preLaunchTask": "build",
+        "requireExactSource": false,
         // If you have changed target frameworks, make sure to update the program path.
         "program": "${workspaceFolder}/Api/InterApi/bin/Debug/netcoreapp3.1/InterApi.dll",
         "args": [],
@@ -47,6 +48,7 @@
         "type": "coreclr",
         "request": "launch",
         "preLaunchTask": "build",
+        "requireExactSource": false,
         // If you have changed target frameworks, make sure to update the program path.
         "program": "${workspaceFolder}/Applications/Inter.TempLoggerAppService/bin/Debug/netcoreapp3.1/Inter.TempLoggerAppService.dll",
         "args": [],
@@ -62,6 +64,7 @@
         "name": ".NET Core Plane",
         "type": "coreclr",
         "request": "launch",
+        "requireExactSource": false,
         "preLaunchTask": "build",
         // If you have changed target frameworks, make sure to update the program path.
         "program": "${workspaceFolder}/Applications/Inter.PlaneListenerService/bin/Debug/netcoreapp3.1/Inter.PlaneListenerService.dll",
@@ -84,6 +87,7 @@
         "name": ".NET Core Life Alert",
         "type": "coreclr",
         "request": "launch",
+        "requireExactSource": false,
         "preLaunchTask": "build",
         // If you have changed target frameworks, make sure to update the program path.
         "program": "${workspaceFolder}/Applications/Inter.LifeAlertAppService/bin/Debug/netcoreapp3.1/Inter.LifeAlertAppService.dll",
@@ -100,6 +104,7 @@
         "name": ".NET Core Heartbeat Listener",
         "type": "coreclr",
         "request": "launch",
+        "requireExactSource": false,
         "preLaunchTask": "build",
         // If you have changed target frameworks, make sure to update the program path.
         "program": "${workspaceFolder}/Applications/Inter.HeartbeatListenerAppService/bin/Debug/netcoreapp3.1/Inter.HeartbeatListenerAppService.dll",
