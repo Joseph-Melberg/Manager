@@ -12,8 +12,10 @@ namespace Inter.Infrastructure.MySQL.Repositories
 {
     public class PlaneFrameMetadataRepository : BaseRepository<ReadWriteContext>, IPlaneFrameMetadataRepository
     {
-        public PlaneFrameMetadataRepository(ReadWriteContext context) : base(context)
+        private readonly ReadWriteContext _context;
+        public PlaneFrameMetadataRepository(ReadWriteContext context) : base(context) 
         {
+            _context = context;
         }
 
         public async Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata model)
@@ -25,8 +27,10 @@ namespace Inter.Infrastructure.MySQL.Repositories
                 timer.Start();
                 await Context.PlaneFrameMetadata.AddAsync(result );
                 var timeToAdd = timer.ElapsedMilliseconds;
-                Context.SaveChanges();
+                await Context.SaveChangesAsync();
                 var timeToSave = timer.ElapsedMilliseconds - timeToAdd;
+                Context.ChangeTracker.Clear();
+
                 timer.Stop();
                 Console.WriteLine($"Add:{timeToAdd},Save:{timeToSave}");
             }
