@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Corral;
@@ -21,16 +19,9 @@ public class PlaneFrameMetadataRepository : BaseRepository<ReadWriteContext>, IP
         var result = model.ToModel();
         if(result != null)
         {
-            Stopwatch timer = new Stopwatch();
-            timer.Start();
             await Context.PlaneFrameMetadata.AddAsync(result );
-            var timeToAdd = timer.ElapsedMilliseconds;
             await Context.SaveChangesAsync();
-            var timeToSave = timer.ElapsedMilliseconds - timeToAdd;
             Context.ChangeTracker.Clear();
-
-            timer.Stop();
-            Console.WriteLine($"Add:{timeToAdd},Save:{timeToSave}");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Inter.Domain;
@@ -18,6 +19,8 @@ public class HeartbeatProcessor : IStandardConsumer
     public async Task ConsumeMessageAsync(string message)
     {
         Console.WriteLine(" [x] Received {0} at {1}", message, DateTime.Now);
+        Stopwatch watch = new Stopwatch();
+        watch.Start();
         message = message.Replace("'", "\"");
         try
         {
@@ -27,7 +30,8 @@ public class HeartbeatProcessor : IStandardConsumer
         catch (Exception ex)
         {
             Console.WriteLine("That didn't work");
-
         }
+        watch.Stop();
+        Console.WriteLine($"Process took {watch.ElapsedMilliseconds}");
     }
 }
