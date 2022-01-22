@@ -58,7 +58,14 @@ public class LifeAlertService : ILifeAlertService
     }
     private async Task UpdateAndAnnounceDeadNodeAsync(Heartbeat nodeState)
     {
-        _infra.SendMessage(_emailConfig.Recipient, "Report", $"{nodeState.name} is offline");
+        try
+        {
+            _infra.SendMessage(_emailConfig.Recipient, "Report", $"{nodeState.name} is offline");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
         nodeState.announced = false;
         nodeState.online = false;
         await _infra.UpdateNodeAsync(nodeState);
@@ -66,7 +73,15 @@ public class LifeAlertService : ILifeAlertService
     }
     private async Task UpdateAndAnnounceLiveNodeAsync(Heartbeat nodeState)
     {
-        _infra.SendMessage(_emailConfig.Recipient, "Report", $"{nodeState.name} is online");
+        try
+        {
+            _infra.SendMessage(_emailConfig.Recipient, "Report", $"{nodeState.name} is online");
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
+
         nodeState.announced = true;
         nodeState.online = true;
         await _infra.UpdateNodeAsync(nodeState);
