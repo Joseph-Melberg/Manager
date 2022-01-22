@@ -18,7 +18,7 @@ public class HeartbeatRepository : BaseRepository<HeartbeatContext>, IHeartbeatR
         
     }
 
-    public async Task<List<Heartbeat>> GetStatusesAsync() => await Context.Heartbeat.Select(_ => _.ToDomain()).ToListAsync();
+    public async Task<List<Heartbeat>> GetStatusesAsync() => await Context.Heartbeat.AsNoTracking().Select(_ => _.ToDomain()).ToListAsync();
 
     public async Task<Heartbeat> GetStatusAsync(string name) => (await Context.Heartbeat.FirstOrDefaultAsync(_ => _.name == name)).ToDomain();
 
@@ -26,11 +26,12 @@ public class HeartbeatRepository : BaseRepository<HeartbeatContext>, IHeartbeatR
     public async Task UpdateAsync(Heartbeat heartbeat)
     {
         var heartbeatModel = heartbeat.ToModel();
-        if (Context.Heartbeat.Any(_ => _.name == heartbeatModel.name))
+        if (Context.Heartbeat.AsNoTracking().Any(_ => _.name == heartbeatModel.name))
         {
             try
             {
-                Context.Heartbeat.Update(heartbeatModel);
+                Context.ChangeTracker.Clear();
+                Context.Update(heartbeatModel);
             }
             catch (Exception ex)
             {

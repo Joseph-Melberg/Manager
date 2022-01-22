@@ -1,11 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using Inter.Infrastructure.MySQL.Contexts;
 using Inter.TempLoggerAppService;
 using Melberg.Infrastructure.Rabbit.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.Extensions.Logging;
+using Pomelo.EntityFrameworkCore.MySql;
 namespace Inter.TempLogger;
 
 class Program
@@ -28,6 +31,7 @@ class Program
             .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
             .AddJsonFile("appsettings.json", false)
             .Build();
+        
 
         services.AddSingleton<IConfiguration>(configuration);
         Register.RegisterServices(services);

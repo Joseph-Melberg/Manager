@@ -12,7 +12,7 @@
         "preLaunchTask": "build",
         "requireExactSource": false,
         // If you have changed target frameworks, make sure to update the program path.
-        "program": "${workspaceFolder}/Api/InterApi/bin/Debug/netcoreapp3.1/InterApi.dll",
+        "program": "${workspaceFolder}/Api/InterApi/bin/Debug/netcoreapp6.0/InterApi.dll",
         "args": [],
         "cwd": "${workspaceFolder}/Api/InterApi",
         "stopAtEntry": false,
@@ -50,7 +50,7 @@
         "preLaunchTask": "build",
         "requireExactSource": false,
         // If you have changed target frameworks, make sure to update the program path.
-        "program": "${workspaceFolder}/Applications/Inter.TempLoggerAppService/bin/Debug/netcoreapp3.1/Inter.TempLoggerAppService.dll",
+        "program": "${workspaceFolder}/Applications/Inter.TempLoggerAppService/bin/Debug/netcoreapp6.0/Inter.TempLoggerAppService.dll",
         "args": [],
         "cwd": "${workspaceFolder}/Applications/Inter.PlaneListenerService",
         // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
@@ -67,7 +67,7 @@
         "requireExactSource": false,
         "preLaunchTask": "build",
         // If you have changed target frameworks, make sure to update the program path.
-        "program": "${workspaceFolder}/Applications/Inter.PlaneListenerService/bin/Debug/netcoreapp3.1/Inter.PlaneListenerService.dll",
+        "program": "${workspaceFolder}/Applications/Inter.PlaneListenerService/bin/Debug/netcoreapp6.0/Inter.PlaneListenerService.dll",
         "args": [],
         "cwd": "${workspaceFolder}/Applications/Inter.PlaneListenerService",
         // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
@@ -90,7 +90,7 @@
         "requireExactSource": false,
         "preLaunchTask": "build",
         // If you have changed target frameworks, make sure to update the program path.
-        "program": "${workspaceFolder}/Applications/Inter.LifeAlertAppService/bin/Debug/netcoreapp3.1/Inter.LifeAlertAppService.dll",
+        "program": "${workspaceFolder}/Applications/Inter.LifeAlertAppService/bin/Debug/netcoreapp6.0/Inter.LifeAlertAppService.dll",
         "args": [],
         "cwd": "${workspaceFolder}/Applications/Inter.LifeAlertAppService",
         // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
@@ -107,7 +107,7 @@
         "requireExactSource": false,
         "preLaunchTask": "build",
         // If you have changed target frameworks, make sure to update the program path.
-        "program": "${workspaceFolder}/Applications/Inter.HeartbeatListenerAppService/bin/Debug/netcoreapp3.1/Inter.HeartbeatListenerAppService.dll",
+        "program": "${workspaceFolder}/Applications/Inter.HeartbeatListenerAppService/bin/Debug/netcoreapp6.0/Inter.HeartbeatListenerAppService.dll",
         "args": [],
         "cwd": "${workspaceFolder}/Applications/Inter.HeartbeatListenerAppService",
         // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console

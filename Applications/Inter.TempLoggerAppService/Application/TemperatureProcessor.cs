@@ -17,7 +17,6 @@ public class TemperatureProcessor : IStandardConsumer
     }
     public async Task ConsumeMessageAsync(string message)
     {
-        Console.WriteLine(" [x] Received {0} at {1}", message, DateTime.Now);
         Stopwatch watch = new Stopwatch();
         watch.Start();
         message = message.Replace("'", "\"");
