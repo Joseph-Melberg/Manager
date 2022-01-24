@@ -7,6 +7,12 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Inter.Dependency;
 public static partial class Dependency
 {
+    public static IServiceCollection RegisterPlaneIngestorService(this IServiceCollection collection)
+    {
+
+        return collection;
+    }
+
     public static IServiceCollection RegisterLifeAlertService(this IServiceCollection collection)
     {
         collection.AddTransient<ILifeAlertService,LifeAlertService>();

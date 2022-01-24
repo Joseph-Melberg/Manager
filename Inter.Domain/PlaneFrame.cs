@@ -1,6 +1,8 @@
 namespace Inter.Domain;
 public class PlaneFrame
 {
-    public int Now {get; set;}
+    public long Now {get; set;}
     public Plane[] Planes {get; set;}
+    public string Antenna {get; set;}
+    public string Source {get; set;}
 }
