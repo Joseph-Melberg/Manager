@@ -1,6 +1,9 @@
 name: Plane Ingestor CI-CD
 
 on:
+  push:
+    branches: [ master ]
+    paths: Applications/Inter.PlaneIngestorService/
   workflow_dispatch:
 jobs:
 
