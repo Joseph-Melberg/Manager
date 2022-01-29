@@ -20,7 +20,10 @@ public static class AirFrameMapper
         
         foreach(var plane in record.Planes)
         {
-            resultingPlanes.Add(plane.ToDomain());
+            if(plane.IsValid())
+            {
+                resultingPlanes.Add(plane.ToDomain());
+            }
         }
 
         result.Planes = resultingPlanes.ToArray();

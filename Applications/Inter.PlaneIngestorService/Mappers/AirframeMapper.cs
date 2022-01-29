@@ -21,10 +21,7 @@ public static class AirFrameMapper
         
         foreach(var plane in record.Planes)
         {
-            if(plane.IsValid())
-            {
-                resultingPlanes.Add(plane.ToDomain());
-            }
+            resultingPlanes.Add(plane.ToDomain());
         }
 
         result.Planes = resultingPlanes.ToArray();
@@ -32,13 +29,4 @@ public static class AirFrameMapper
         return result;
     }
 
-    private static bool IsValid(this AirplaneData data) =>
-        data.lat.HasValue &&
-        data.lon.HasValue &&
-        data.altitude.HasValue &&
-        data.vert_rate.HasValue &&
-        data.track.HasValue &&
-        data.speed.HasValue &&
-        data.rssi.HasValue
-    ;
 }
