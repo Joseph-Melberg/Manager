@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-namespace Inter.PlaneListenerService.Models;
+namespace Inter.PlaneIngestorService.Models;
 public class AirplaneRecord
 {
     [JsonProperty("now")]

@@ -14,6 +14,14 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Inter.Dependency;
 public static partial class Dependency
 {
+    private static IServiceCollection RegisterPlaneIngestorInfrastructureService(this IServiceCollection collection)
+    {
+        collection.AddTransient<IPlaneIngestorInfrastructureService,PlaneIngestorInfrastructureService>();
+        
+        RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
+
+        return collection;
+    }
     private static IServiceCollection RegisterLifeAlertInfrastructureService(this IServiceCollection collection)
     {
         collection.AddTransient<ILifeAlertInfrastructureService,LifeAlertInfrastructureService>();

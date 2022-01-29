@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7BDC95B5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.DomainServices.Tests", "Tests\Inter.DomainServices.Tests\Inter.DomainServices.Tests.csproj", "{2E1EFAEB-9C54-41C1-9C68-09CB44535B9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.PlaneIngestorService", "Applications\Inter.PlaneIngestorService\Inter.PlaneIngestorService.csproj", "{CE65161E-B55B-4903-B52C-CDC99997CA01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,10 @@ Global
 		{2E1EFAEB-9C54-41C1-9C68-09CB44535B9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E1EFAEB-9C54-41C1-9C68-09CB44535B9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E1EFAEB-9C54-41C1-9C68-09CB44535B9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE65161E-B55B-4903-B52C-CDC99997CA01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE65161E-B55B-4903-B52C-CDC99997CA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE65161E-B55B-4903-B52C-CDC99997CA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE65161E-B55B-4903-B52C-CDC99997CA01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FE016E01-FDBE-4DEA-A298-C81488FC4B42} = {394F3572-2702-4FF4-857E-BC3810B65F13}
@@ -121,5 +127,6 @@ Global
 		{CEF1E587-45AF-4B54-8947-71BA6FF07884} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 		{A0501640-CBF6-4ABB-B06F-153E277801DF} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 		{2E1EFAEB-9C54-41C1-9C68-09CB44535B9D} = {7BDC95B5-14A1-4193-806E-9B25851316FD}
+		{CE65161E-B55B-4903-B52C-CDC99997CA01} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 	EndGlobalSection
 EndGlobal
