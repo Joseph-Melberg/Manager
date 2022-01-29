@@ -81,4 +81,4 @@ jobs:
     steps:
     -
       name: Future Smoke Test
-      run: echo ":)"
+      run: echo ":) "
