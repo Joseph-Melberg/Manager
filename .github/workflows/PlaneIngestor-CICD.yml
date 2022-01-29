@@ -1,8 +1,6 @@
 name: Plane Ingestor CI-CD
 
 on:
-  push:
-    branches: [ master ]
   workflow_dispatch:
 jobs:
 
@@ -19,7 +17,7 @@ jobs:
       with:
         tokenPrefix: '#{'
         tokenSuffix: '}'
-        files: '["${{env.REPLACESETTINGS}}"]'
+        files: '["${{env.WORKDIR}}/Deployment/appsettings.deploy.json"]'
       env:
         PLANEYSECURE_PASSWORD : ${{secrets.PLANEYSECURE_PASSWORD}}
         ONPREM_REDIS : ${{secrets.ONPREM_REDIS}}
