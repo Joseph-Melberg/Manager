@@ -57,7 +57,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: ./
-        file: ${{env.WORKDIR}}/${{env.DOCKERFILE}}
+        file: ${{env.WORKDIR}}/Dockerfile
         push: true
         tags: |
           ${{secrets.DOCKER_HOST}}/${{env.TAG}}
@@ -81,4 +81,4 @@ jobs:
     steps:
     -
       name: Future Smoke Test
-      run: echo ":)"
+      run: echo ":) "
