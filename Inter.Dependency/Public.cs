@@ -9,8 +9,9 @@ public static partial class Dependency
 {
     public static IServiceCollection RegisterPlaneIngestorService(this IServiceCollection collection)
     {
+        collection.AddTransient<IPlaneIngestorService,PlaneIngestorService>();
 
-        return collection;
+        return collection.RegisterPlaneIngestorInfrastructureService();
     }
 
     public static IServiceCollection RegisterLifeAlertService(this IServiceCollection collection)
@@ -34,6 +35,7 @@ public static partial class Dependency
         collection.AddTransient<INodeApiService, NodeApiService>();
 
         collection.RegisterNodeApiInfrastructureService(); 
+
         return collection;
     }
     
@@ -48,9 +50,7 @@ public static partial class Dependency
 
     public static IServiceCollection RegisterHeartbeatListenerService(this IServiceCollection collection)
     {
-
         collection.AddTransient<IHeartbeatListenerService, HeartbeatListenerService>();
-
 
         collection.RegisterHeartbeatListenerInfrastructureService();
 

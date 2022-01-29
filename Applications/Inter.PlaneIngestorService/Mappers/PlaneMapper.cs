@@ -1,7 +1,7 @@
 using Inter.Domain;
-using Inter.PlaneListenerService.Models;
+using Inter.PlaneIngestorService.Models;
 
-namespace Inter.PlaneListenerService.Mappers;
+namespace Inter.PlaneIngestorService.Mappers;
 public static class PlaneMapper
 {
     public static Plane ToDomain(this AirplaneData data)
@@ -9,19 +9,19 @@ public static class PlaneMapper
        if(data == null) return null;
        return new Plane
        {
-            altitude = data.altitude,
+            altitude = data.altitude ?? null,
             category = data.category,
             flight = data.flight,
             hexValue = data.hex,
-            lat = data.lat,
-            lon = data.lon,
+            lat = data.lat ?? null,
+            lon = data.lon ?? null,
             messages = data.messages,
             nucp = data.nucp,
-            rssi = data.rssi,
-            speed = data.speed,
+            rssi = data.rssi ?? null,
+            speed = data.speed ?? null,
             squawk = data.squawk,
-            track = data.track,
-            vert_rate = data.vert_rate
+            track = data.track ?? null,
+            vert_rate = data.vert_rate ?? null
        };
     }
 }

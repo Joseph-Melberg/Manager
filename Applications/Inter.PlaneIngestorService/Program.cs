@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Melberg.Infrastructure.Rabbit.Services;
+using Microsoft.Extensions.DependencyInjection;
 namespace Inter.PlaneIngestorService;
 
 class Program

@@ -1,5 +1,6 @@
-namespace Inter.Domain;
-public class Plane
+namespace Inter.Infrastructure.Redis.Models;
+
+public class PlaneModel
 {
     public string hexValue {get; set;}
     public string squawk {get; set;}

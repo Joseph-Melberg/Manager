@@ -1,9 +1,10 @@
+
 using System;
 using System.Collections.Generic;
 using Inter.Domain;
-using Inter.PlaneListenerService.Models;
+using Inter.PlaneIngestorService.Models;
 
-namespace Inter.PlaneListenerService.Mappers;
+namespace Inter.PlaneIngestorService.Mappers;
 public static class AirFrameMapper
 {
     public static PlaneFrame ToDomain(this AirplaneRecord record)
@@ -20,7 +21,10 @@ public static class AirFrameMapper
         
         foreach(var plane in record.Planes)
         {
-            resultingPlanes.Add(plane.ToDomain());
+            if(plane.IsValid())
+            {
+                resultingPlanes.Add(plane.ToDomain());
+            }
         }
 
         result.Planes = resultingPlanes.ToArray();

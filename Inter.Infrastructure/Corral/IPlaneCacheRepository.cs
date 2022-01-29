@@ -7,4 +7,6 @@ public interface IPlaneCacheRepository
     Task InsertPlaneFrameAsync(PlaneFrame frame);
 
     Task<PlaneFrame> GetPlaneFrameAsync(long timestamp);
+    Task InsertPreHydratedPlaneFrameAsync(PlaneFrame planeFrame);
+
 }
