@@ -5,81 +5,80 @@ using Inter.Infrastructure.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Inter.DomainService.Tests
+namespace Inter.DomainService.Tests;
+
+[TestClass]
+public class HeartbeatListenerServiceTests 
 {
-    [TestClass]
-    public class HeartbeatListenerServiceTests 
+    private Mock<IHeartbeatListenerInfrastructureService> _infra;
+    private HeartbeatListenerService _service;
+
+    private string _deadNodeName = "parrot";
+
+    private string _livingNodeName = "parrot kepper";
+
+    [TestInitialize]
+    public void Initialize()
     {
-        private Mock<IHeartbeatListenerInfrastructureService> _infra;
-        private HeartbeatListenerService _service;
+        _infra = new Mock<IHeartbeatListenerInfrastructureService>();
 
-        private string _deadNodeName = "parrot";
+        _infra.Setup( _ => _.GetHeartbeatStateAsync(It.Is<string>(_ => _ == _livingNodeName))).Returns(Task.FromResult(true));
+        _infra.Setup( _ => _.GetHeartbeatStateAsync(It.Is<string>(_ => _ == _deadNodeName))).Returns(Task.FromResult(false));
 
-        private string _livingNodeName = "parrot kepper";
-
-        [TestInitialize]
-        public void Initialize()
+        _service = new HeartbeatListenerService(_infra.Object);
+    }
+    [TestMethod]
+    public async Task HeartbeatListenerService_Process_HeartbeatFromDeadNodeShouldAnnounce()
+    {
+        var standardMessage = new HeartbeatMessage()
         {
-            _infra = new Mock<IHeartbeatListenerInfrastructureService>();
+            Mac = "Mac adress",
+            Name = _deadNodeName,
+        };
 
-            _infra.Setup( _ => _.GetHeartbeatStateAsync(It.Is<string>(_ => _ == _livingNodeName))).Returns(Task.FromResult(true));
-            _infra.Setup( _ => _.GetHeartbeatStateAsync(It.Is<string>(_ => _ == _deadNodeName))).Returns(Task.FromResult(false));
+        await _service.Process(standardMessage);
 
-            _service = new HeartbeatListenerService(_infra.Object);
-        }
-        [TestMethod]
-        public async Task HeartbeatListenerService_Process_HeartbeatFromDeadNodeShouldAnnounce()
+        var expected = new Heartbeat
         {
-            var standardMessage = new HeartbeatMessage()
-            {
-                Mac = "Mac adress",
-                Name = _deadNodeName,
-            };
+            announced = true,
+            mac = standardMessage.Mac,
+            name = standardMessage.Name,
+            online = true,
+        };
 
-            await _service.Process(standardMessage);
+        _infra.Verify(_ => _.UpdateAsync(It.Is<Heartbeat>(_ => CompareHeartbeat(expected,_))));
 
-            var expected = new Heartbeat
-            {
-                announced = true,
-                mac = standardMessage.Mac,
-                name = standardMessage.Name,
-                online = true,
-            };
-
-            _infra.Verify(_ => _.UpdateAsync(It.Is<Heartbeat>(_ => CompareHeartbeat(expected,_))));
-
-        }
-        [TestMethod]
-        public async Task HeartbeatListenerService_Process_HeartbeatFromLivingNodeShouldNotAnnounce()
+    }
+    [TestMethod]
+    public async Task HeartbeatListenerService_Process_HeartbeatFromLivingNodeShouldNotAnnounce()
+    {
+        var standardMessage = new HeartbeatMessage()
         {
-            var standardMessage = new HeartbeatMessage()
-            {
-                Mac = "Mac adress",
-                Name = _livingNodeName,
-            };
+            Mac = "Mac adress",
+            Name = _livingNodeName,
+        };
 
-            await _service.Process(standardMessage);
+        await _service.Process(standardMessage);
 
-            var expected = new Heartbeat
-            {
-                announced = false,
-                mac = standardMessage.Mac,
-                name = standardMessage.Name,
-                online = true,
-            };
-
-            _infra.Verify(_ => _.UpdateAsync(It.Is<Heartbeat>(_ => CompareHeartbeat(expected,_))));
-
-        }
-
-        private static bool CompareHeartbeat(Heartbeat expected, Heartbeat actual)
+        var expected = new Heartbeat
         {
-            Assert.AreEqual(expected.mac,actual.mac,"Mac");
-            Assert.AreEqual(expected.name,actual.name,"Name");
-            Assert.AreEqual(expected.announced,actual.announced,"Announced");
-            Assert.AreEqual(expected.online,actual.online,"Online");
+            announced = false,
+            mac = standardMessage.Mac,
+            name = standardMessage.Name,
+            online = true,
+        };
 
-            return true;
-        }
+        _infra.Verify(_ => _.UpdateAsync(It.Is<Heartbeat>(_ => CompareHeartbeat(expected,_))));
+
+    }
+
+    private static bool CompareHeartbeat(Heartbeat expected, Heartbeat actual)
+    {
+        Assert.AreEqual(expected.mac,actual.mac,"Mac");
+        Assert.AreEqual(expected.name,actual.name,"Name");
+        Assert.AreEqual(expected.announced,actual.announced,"Announced");
+        Assert.AreEqual(expected.online,actual.online,"Online");
+
+        return true;
     }
 }
