@@ -5,19 +5,17 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace Inter.DomainServices.Tests;
+
 [TestClass]
-public class PlaneListenerServiceTests
+public class PlaneIngestorServiceTests
 {
-    private Mock<IPlaneListenerInfrastructureService> _infra;
-
-    private PlaneListenerService _service;
-
+    private Mock<IPlaneIngestorInfrastructureService> _infraMock;
+    private PlaneIngestorService _service;
     private PlaneFrame _frame;
-
     private Plane _plane;
 
     [TestInitialize]
-    public void TestInitialize()
+    public void Initialize()
     {
         _plane = new Plane()
         {
@@ -32,16 +30,15 @@ public class PlaneListenerServiceTests
             }
         };
 
-        _infra = new Mock<IPlaneListenerInfrastructureService>();
-
-        _service = new PlaneListenerService(_infra.Object);
+        _infraMock = new Mock<IPlaneIngestorInfrastructureService>();
+        _service = new PlaneIngestorService(_infraMock.Object);
     }
 
     [TestMethod]
-    public async Task PlaneListenerService_Process_Standard()
+    public async Task PlaneIngestorService_StandardInput_Pass()
     {
         await _service.HandleMessageAsync(_frame);
 
-        _infra.Verify(_ => _.AddPlaneFrameAsync(_frame),Times.Once);
-    }
+        _infraMock.Verify(_ => _.IngestPlaneFrameAsync(It.IsAny<PlaneFrame>()),Times.Once());
+    } 
 }
