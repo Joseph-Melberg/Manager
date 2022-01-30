@@ -24,6 +24,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       # Runs a set of commands using the runners shell
+      - 
+        name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
       - name: Test
         run: |
           dotnet test /p:CollectCoverage=true /p:CoverletOutput=../../CoverageResults/  /p:ThresholdType=line /p:CoverletOutputFormat=cobertura /p:ExcludeByFile=\"**/Inter.Common/**/*.cs,**/Inter.Domain/**/*.cs\"
