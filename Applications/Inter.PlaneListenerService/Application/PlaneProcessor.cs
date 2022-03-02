@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Melberg.Infrastructure.Rabbit.Consumers;
 using System;
 using System.Diagnostics;
+using Melberg.Infrastructure.Rabbit.Messages;
 
 namespace Inter.PlaneListenerService.Application;
 public class PlaneProcessor : IStandardConsumer
@@ -14,25 +15,20 @@ public class PlaneProcessor : IStandardConsumer
     private readonly IPlaneListenerService _service;
     public PlaneProcessor(IPlaneListenerService service) => _service = service;
 
-    public async Task ConsumeMessageAsync(string message) 
+    public async Task ConsumeMessageAsync(Message message) 
     {
 
-        Stopwatch timer = new Stopwatch();
-        timer.Start();
-        Console.WriteLine(" [x] Received frame at {0}", DateTime.Now);
-        var commentTime = timer.ElapsedMilliseconds;
         try
         {
+            /*
             var package = JsonConvert.DeserializeObject<AirplaneRecord>(message).ToDomain();
             await _service.HandleMessageAsync(package);
+            */
 
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
         }
-        timer.Stop();
-        var totalTime = timer.ElapsedMilliseconds;
-        Console.WriteLine($"Process took {totalTime-commentTime}");
     }
 }

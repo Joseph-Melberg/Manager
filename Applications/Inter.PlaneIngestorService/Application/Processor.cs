@@ -1,8 +1,11 @@
 using System.Diagnostics;
 using Inter.DomainServices.Core;
 using Inter.PlaneIngestorService.Mappers;
+using Inter.PlaneIngestorService.Messages;
 using Inter.PlaneIngestorService.Models;
 using Melberg.Infrastructure.Rabbit.Consumers;
+using Melberg.Infrastructure.Rabbit.Messages;
+using Melberg.Infrastructure.Rabbit.Translator;
 using Newtonsoft.Json;
 
 namespace Inter.PlaneIngestorService.Application;
@@ -10,29 +13,29 @@ namespace Inter.PlaneIngestorService.Application;
 public class Processor : IStandardConsumer
 {
     private readonly IPlaneIngestorService _service;
-    public Processor(IPlaneIngestorService service) => _service = service;
-    public async Task ConsumeMessageAsync(string message)
+    private readonly IJsonToObjectTranslator<PlaneIngestionMessage> _translator;
+    public Processor(
+        IPlaneIngestorService service,
+        IJsonToObjectTranslator<PlaneIngestionMessage> translator
+    ) 
     {
-        Stopwatch timer = new Stopwatch();
-        timer.Start();
-        Console.WriteLine(" [x] Received frame at {0}", DateTime.Now);
-        var commentTime = timer.ElapsedMilliseconds;
+        _service = service;
+        _translator = translator;
+    } 
+    public async Task ConsumeMessageAsync(Message message)
+    {
         try
         {
-            var package = JsonConvert.DeserializeObject<AirplaneRecord>(message)?.ToDomain();
+            var package = _translator.Translate(message);
             if(package == null)
             {
                 throw new Exception($"Could not process {message}");
             }
-            await _service.HandleMessageAsync(package);
-
+            await _service.HandleMessageAsync(package.ToDomain());
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
         }
-        timer.Stop();
-        var totalTime = timer.ElapsedMilliseconds;
-        Console.WriteLine($"Process took {totalTime-commentTime}");
     }
 }

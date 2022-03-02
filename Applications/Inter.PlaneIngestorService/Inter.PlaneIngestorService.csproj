@@ -1,30 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.22" />
-		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.22" />
-		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
-		<PackageReference Include="Newtonsoft.json" Version="13.0.1" />
-		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.22" />
+		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.24"/>
+		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.24"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
+		<PackageReference Include="Newtonsoft.json" Version="13.0.1"/>
+		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.22"/>
 	</ItemGroup>
-
 	<ItemGroup>
 		<None Update="appsettings.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
-
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Inter.Dependency\Inter.Dependency.csproj" />
+		<ProjectReference Include="..\..\Inter.Dependency\Inter.Dependency.csproj"/>
 	</ItemGroup>
 </Project>

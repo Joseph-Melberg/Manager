@@ -3,16 +3,16 @@ name: Plane Ingestor CI-CD
 on:
   push:
     branches: [ master ]
-    paths: Applications/Inter.PlaneIngestorService/
+    paths: Applications/Inter.MetronomeService/
   workflow_dispatch:
 jobs:
 
   build-publish:
     runs-on: ubuntu-latest
     env:
-      WORKDIR: ./Applications/Inter.PlaneIngestorService
-      PROJECT: Inter.PlaneIngestorService.csproj
-      TAG: interplaneingestor 
+      WORKDIR: ./Applications/Inter.MetronomeService
+      PROJECT: Inter.MetronomeService.csproj
+      TAG: metronome 
     steps:
     - uses: actions/checkout@v2
     - 
@@ -22,16 +22,13 @@ jobs:
         tokenSuffix: '}'
         files: '["${{env.WORKDIR}}/Deployment/appsettings.deploy.json"]'
       env:
-        PLANEYSECURE_PASSWORD : ${{secrets.PLANEYSECURE_PASSWORD}}
-        ONPREM_REDIS : ${{secrets.ONPREM_REDIS}}
-        READWRITE_MYSQL : ${{secrets.READWRITE_MYSQL}}
+        CLOCKSECURE_PASSWORD : ${{secrets.CLOCKSECURE_PASSWORD}}
     - 
       name: Replace Appsettings
       run: cp ${{env.WORKDIR}}/Deployment/appsettings.deploy.json ${{env.WORKDIR}}/appsettings.json
     -
       name: Check work
       run: cat ${{env.WORKDIR}}/appsettings.json
-
     - 
       name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -66,7 +63,7 @@ jobs:
     needs: build-publish
     runs-on: ubuntu-latest
     env:
-      TAG: interplaneingestor
+      TAG: metronome
     steps:
     - 
       name: Run SSH command

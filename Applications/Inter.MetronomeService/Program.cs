@@ -1,21 +1,24 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using Inter.TempLoggerAppService;
-using Melberg.Infrastructure.Rabbit.Services;
+using Inter.DomainServices.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-namespace Inter.TempLogger;
 
+namespace Inter.MetronomeService;
 class Program
 {
-
     public static IConfigurationRoot configuration;
+
     private static IServiceProvider _serviceProvider;
     static async Task Main(string[] args)
     {
         RegisterServices();
-        await _serviceProvider.GetRequiredService<IStandardRabbitService>().Run();
+
+        var service = _serviceProvider.GetRequiredService<IMetronomeService>();
+
+        await service.Start();
+
         DisposeServices();
     }
 
@@ -27,9 +30,9 @@ class Program
             .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
             .AddJsonFile("appsettings.json", false)
             .Build();
-        
 
         services.AddSingleton<IConfiguration>(configuration);
+        
         Register.RegisterServices(services);
         _serviceProvider = services.BuildServiceProvider();
     }

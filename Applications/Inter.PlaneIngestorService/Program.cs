@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Melberg.Infrastructure.Rabbit.Services;
 using Microsoft.Extensions.DependencyInjection;
+
 namespace Inter.PlaneIngestorService;
 
 class Program
@@ -11,7 +12,16 @@ class Program
     static async Task Main(string[] args)
     {
         RegisterServices();
-        await _serviceProvider.GetRequiredService<IStandardRabbitService>().Run();
+        try
+        {
+            await _serviceProvider.GetRequiredService<IStandardRabbitService>().Run();
+            
+        }
+        catch (System.Exception ex)
+        {
+            
+            throw;
+        }
         DisposeServices();
     }
 

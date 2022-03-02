@@ -27,6 +27,19 @@ Receives messages from the nodes, giving me some insight into the current state 
 
 Runs every minute, checking the age of the heartbeats recorded.  If it finds a heartbeat that is both stale and unnanounced, it sends me an email.
 
+### Metronome 
+
+This message creates a rabbit message every second at the soonest moment possible.
+
+### Plane Ingestor
+
+Listens for rabbitmq messages containing plane info comming from nodes or 
+plane-reciever.  This info will be stored on a per-antenna basis in redis.
+
+### Plane Congregator
+
+TODO: Every second, scans redis for ingested plane info.  Takes that info, deduplicates it, and puts it into red
+
 ### Plane Listener
 
 Listens for rabbitmq messages detailing the planes in the sky, uploads that info to redis for it to be accessed by the InterApi.

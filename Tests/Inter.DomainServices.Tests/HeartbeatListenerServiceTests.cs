@@ -30,7 +30,7 @@ public class HeartbeatListenerServiceTests
     [TestMethod]
     public async Task HeartbeatListenerService_Process_HeartbeatFromDeadNodeShouldAnnounce()
     {
-        var standardMessage = new HeartbeatMessage()
+        var standardMessage = new HeartbeatPayload()
         {
             Mac = "Mac adress",
             Name = _deadNodeName,
@@ -52,7 +52,7 @@ public class HeartbeatListenerServiceTests
     [TestMethod]
     public async Task HeartbeatListenerService_Process_HeartbeatFromLivingNodeShouldNotAnnounce()
     {
-        var standardMessage = new HeartbeatMessage()
+        var standardMessage = new HeartbeatPayload()
         {
             Mac = "Mac adress",
             Name = _livingNodeName,

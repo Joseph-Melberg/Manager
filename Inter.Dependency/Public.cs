@@ -2,6 +2,7 @@ using Inter.Common.Configuration;
 using Inter.Common.Configuration.Providers;
 using Inter.DomainServices;
 using Inter.DomainServices.Core;
+using Melberg.Infrastructure.Rabbit.Translator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.Dependency;
@@ -12,6 +13,14 @@ public static partial class Dependency
         collection.AddTransient<IPlaneIngestorService,PlaneIngestorService>();
 
         return collection.RegisterPlaneIngestorInfrastructureService();
+    }
+
+    public static IServiceCollection RegisterMetronomeService(this IServiceCollection collection)
+    {
+       collection.AddTransient<IMetronomeService,MetronomeService>();
+
+       return collection
+           .RegisterMetronomeInfrastructureService(); 
     }
 
     public static IServiceCollection RegisterLifeAlertService(this IServiceCollection collection)

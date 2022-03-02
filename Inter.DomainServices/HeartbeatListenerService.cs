@@ -13,7 +13,7 @@ public class HeartbeatListenerService : IHeartbeatListenerService
         _infraservice = infrastructureService;
     }
 
-    public async Task Process(HeartbeatMessage message)
+    public async Task Process(HeartbeatPayload message)
     {
         //We only need to announce if it was off
         var shouldAnnounce = !await _infraservice.GetHeartbeatStateAsync(message.Name);

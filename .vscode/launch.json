@@ -43,6 +43,23 @@
         // Use IntelliSense to find out which attributes exist for C# debugging
         // Use hover for the description of the existing attributes
         // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+        "name": "Metronome",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "build",
+        "requireExactSource": false,
+        // If you have changed target frameworks, make sure to update the program path.
+        "program": "${workspaceFolder}/Applications/Inter.MetronomeService/bin/Debug/net6.0/Inter.MetronomeService.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/Applications/Inter.MetronomeService",
+        // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+        "console": "internalConsole",
+        "stopAtEntry": false
+    },
+       {
+        // Use IntelliSense to find out which attributes exist for C# debugging
+        // Use hover for the description of the existing attributes
+        // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
         "name": "Plane Ingestor",
         "type": "coreclr",
         "request": "launch",
@@ -60,7 +77,7 @@
         // Use IntelliSense to find out which attributes exist for C# debugging
         // Use hover for the description of the existing attributes
         // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-        "name": ".NET Core Temp",
+        "name": "Temperature Listener",
         "type": "coreclr",
         "request": "launch",
         "preLaunchTask": "build",
@@ -77,7 +94,7 @@
         // Use IntelliSense to find out which attributes exist for C# debugging
         // Use hover for the description of the existing attributes
         // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-        "name": ".NET Core Plane",
+        "name": "Plane Listener",
         "type": "coreclr",
         "request": "launch",
         "requireExactSource": false,
@@ -100,7 +117,7 @@
         // Use IntelliSense to find out which attributes exist for C# debugging
         // Use hover for the description of the existing attributes
         // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-        "name": ".NET Core Life Alert",
+        "name": "Life Alert",
         "type": "coreclr",
         "request": "launch",
         "requireExactSource": false,
@@ -117,7 +134,7 @@
         // Use IntelliSense to find out which attributes exist for C# debugging
         // Use hover for the description of the existing attributes
         // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-        "name": ".NET Core Heartbeat Listener",
+        "name": "Heartbeat Listener",
         "type": "coreclr",
         "request": "launch",
         "requireExactSource": false,

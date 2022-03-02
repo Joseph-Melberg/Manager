@@ -6,29 +6,27 @@ using Inter.DomainServices.Core;
 using Inter.TempLoggerAppService.Mappers;
 using Inter.TempLoggerAppService.Messages;
 using Melberg.Infrastructure.Rabbit.Consumers;
+using Melberg.Infrastructure.Rabbit.Messages;
+using Melberg.Infrastructure.Rabbit.Translator;
 
 namespace Inter.TempLoggerAppService.Application;
 public class TemperatureProcessor : IStandardConsumer
 {
     private readonly ITemperatureListenerService _service;
-    public TemperatureProcessor(ITemperatureListenerService service)
+    private readonly IJsonToObjectTranslator<TemperatureMessage> _translator;
+    public TemperatureProcessor(
+        ITemperatureListenerService service,
+        IJsonToObjectTranslator<TemperatureMessage> translator)
     {
+        _translator = translator;
         _service = service;
     }
-    public async Task ConsumeMessageAsync(string message)
+    public async Task ConsumeMessageAsync(Message message)
     {
         Stopwatch watch = new Stopwatch();
         watch.Start();
-        message = message.Replace("'", "\"");
-        try
-        {
-            var result = JsonSerializer.Deserialize<TemperatureMessage>(message);
-            await _service.RecordTempAsync(result.ToDomain());
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex);
-        }
+        var payload = _translator.Translate(message);
+        await _service.RecordTempAsync(payload.ToDomain());
         watch.Stop();
         Console.WriteLine($"Process took {watch.ElapsedMilliseconds}");
     }

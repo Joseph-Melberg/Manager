@@ -7,7 +7,7 @@
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0"/>
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
 		<PackageReference Include="RabbitMQ.Client" Version="6.2.2"/>
-		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.22"/>
+		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.24"/>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Inter.Domain\Inter.Domain.csproj"/>

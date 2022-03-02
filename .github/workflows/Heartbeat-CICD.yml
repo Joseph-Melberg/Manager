@@ -72,7 +72,7 @@ jobs:
       name: Run SSH command
       uses: garygrossgarten/github-action-ssh@v0.5.0
       with:
-        command:  docker pull ${{secrets.DOCKER_HOST}}/${{env.TAG}}; docker stop ${{env.TAG}}; docker rm ${{env.TAG}}; docker run --name ${{env.TAG}} --log-opt tag=${{env.TAG}} --restart=unless-stopped -d ${{secrets.DOCKER_HOST}}/${{env.TAG}}; 
+        command:  docker pull ${{secrets.DOCKER_HOST}}/${{env.TAG}}; docker stop ${{env.TAG}}; docker rm ${{env.TAG}}; docker run --name ${{env.TAG}} --restart=unless-stopped -d ${{secrets.DOCKER_HOST}}/${{env.TAG}}; 
         host: ${{secrets.HOST}}
         username: ${{secrets.CENTURION_USERNAME}}
         password: ${{secrets.CENTURION_PASSWORD}}
