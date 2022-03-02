@@ -1,4 +1,4 @@
-name: Plane Ingestor CI-CD
+name: Metronome CI-CD
 
 on:
   push:
