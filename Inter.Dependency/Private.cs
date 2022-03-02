@@ -4,10 +4,13 @@ using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
+using Inter.Infrastructure.Rabbit.Messages;
+using Inter.Infrastructure.Rabbit.Publishers;
 using Inter.Infrastructure.Redis.Contexts;
 using Inter.Infrastructure.Redis.Repositories;
 using Inter.Infrastructure.Services;
 using Melberg.Infrastructure.MySql;
+using Melberg.Infrastructure.Rabbit;
 using Melberg.Infrastructure.Redis;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,6 +25,15 @@ public static partial class Dependency
 
         return collection;
     }
+
+    private static IServiceCollection RegisterMetronomeInfrastructureService(this IServiceCollection collection)
+    {
+        collection.AddTransient<IMetronomeInfrastructureService,MetronomeInfrastructureService>();
+
+        return collection
+            .RegisterTickPublisher();
+    }
+
     private static IServiceCollection RegisterLifeAlertInfrastructureService(this IServiceCollection collection)
     {
         collection.AddTransient<ILifeAlertInfrastructureService,LifeAlertInfrastructureService>();
@@ -78,4 +90,14 @@ public static partial class Dependency
 
         return collection;
     }
+
+    #region Rabbit
+    private static IServiceCollection RegisterTickPublisher(this IServiceCollection collection)
+    {
+        collection.AddTransient<ITickPublisher,TickPublisher>();
+        RabbitModule.RegisterPublisher<TickMessage>(collection);
+
+        return collection;
+    }
+    #endregion Rabbit
 }

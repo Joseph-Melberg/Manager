@@ -4,7 +4,11 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.DomainServices.Core;
+using Inter.HeartbeatListenerAppService.Mappers;
+using Inter.HeartbeatListenerAppService.Messages;
 using Melberg.Infrastructure.Rabbit.Consumers;
+using Melberg.Infrastructure.Rabbit.Messages;
+using Melberg.Infrastructure.Rabbit.Translator;
 
 namespace Inter.HeartbeatListenerAppService.Application;
 
@@ -12,20 +16,24 @@ public class HeartbeatProcessor : IStandardConsumer
 {
 
     private readonly IHeartbeatListenerService _service;
-    public HeartbeatProcessor(IHeartbeatListenerService service)
+    private readonly IJsonToObjectTranslator<HeartbeatMessage> _translator;
+    public HeartbeatProcessor(
+        IHeartbeatListenerService service,
+        IJsonToObjectTranslator<HeartbeatMessage> translator
+        )
     {
+        _translator = translator;
         _service = service;
     }
-    public async Task ConsumeMessageAsync(string message)
+    public async Task ConsumeMessageAsync(Message message)
     {
         Console.WriteLine(" [x] Received {0} at {1}", message, DateTime.Now);
         Stopwatch watch = new Stopwatch();
         watch.Start();
-        message = message.Replace("'", "\"");
         try
         {
-            var result = JsonSerializer.Deserialize<HeartbeatMessage>(message);
-            await _service.Process(result);
+            var payload = _translator.Translate(message);
+            await _service.Process(payload.ToDomain());
         }
         catch (Exception ex)
         {

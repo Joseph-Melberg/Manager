@@ -41,6 +41,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.DomainServices.Tests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.PlaneIngestorService", "Applications\Inter.PlaneIngestorService\Inter.PlaneIngestorService.csproj", "{CE65161E-B55B-4903-B52C-CDC99997CA01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.MetronomeService", "Applications\Inter.MetronomeService\Inter.MetronomeService.csproj", "{68DE2400-5F13-4CD6-8371-D36155D5CAD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.Infrastructure.Rabbit", "Inter.Infrastructure.Rabbit\Inter.Infrastructure.Rabbit.csproj", "{29F91701-DCC2-484C-8F0E-B15C70C5E0EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -119,6 +123,14 @@ Global
 		{CE65161E-B55B-4903-B52C-CDC99997CA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE65161E-B55B-4903-B52C-CDC99997CA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE65161E-B55B-4903-B52C-CDC99997CA01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DE2400-5F13-4CD6-8371-D36155D5CAD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DE2400-5F13-4CD6-8371-D36155D5CAD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DE2400-5F13-4CD6-8371-D36155D5CAD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DE2400-5F13-4CD6-8371-D36155D5CAD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29F91701-DCC2-484C-8F0E-B15C70C5E0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F91701-DCC2-484C-8F0E-B15C70C5E0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F91701-DCC2-484C-8F0E-B15C70C5E0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F91701-DCC2-484C-8F0E-B15C70C5E0EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FE016E01-FDBE-4DEA-A298-C81488FC4B42} = {394F3572-2702-4FF4-857E-BC3810B65F13}
@@ -128,5 +140,6 @@ Global
 		{A0501640-CBF6-4ABB-B06F-153E277801DF} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 		{2E1EFAEB-9C54-41C1-9C68-09CB44535B9D} = {7BDC95B5-14A1-4193-806E-9B25851316FD}
 		{CE65161E-B55B-4903-B52C-CDC99997CA01} = {394F3572-2702-4FF4-857E-BC3810B65F13}
+		{68DE2400-5F13-4CD6-8371-D36155D5CAD5} = {394F3572-2702-4FF4-857E-BC3810B65F13}
 	EndGlobalSection
 EndGlobal
