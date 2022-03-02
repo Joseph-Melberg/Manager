@@ -7,23 +7,30 @@ using Melberg.Infrastructure.Rabbit.Consumers;
 using System;
 using System.Diagnostics;
 using Melberg.Infrastructure.Rabbit.Messages;
+using Melberg.Infrastructure.Rabbit.Translator;
+using Inter.PlaneListenerService.Messages;
 
 namespace Inter.PlaneListenerService.Application;
 public class PlaneProcessor : IStandardConsumer
 {
 
     private readonly IPlaneListenerService _service;
-    public PlaneProcessor(IPlaneListenerService service) => _service = service;
+    private readonly IJsonToObjectTranslator<PlaneMessage> _translator;
+    public PlaneProcessor(
+        IPlaneListenerService service,
+        IJsonToObjectTranslator<PlaneMessage> translator)
+        {
+            _service = service;
+            _translator = translator;
+        } 
 
     public async Task ConsumeMessageAsync(Message message) 
     {
 
         try
         {
-            /*
-            var package = JsonConvert.DeserializeObject<AirplaneRecord>(message).ToDomain();
-            await _service.HandleMessageAsync(package);
-            */
+            var package = _translator.Translate(message);
+            await _service.HandleMessageAsync(package.ToDomain());
 
         }
         catch (Exception ex)
