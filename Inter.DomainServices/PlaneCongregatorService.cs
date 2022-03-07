@@ -38,12 +38,6 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         congregatedFrame.Antenna = "congregator";
 
         await _infrastructure.UploadCongregatedPlanesAsync(congregatedFrame);
-        //WHAT NEEDS TO BE DONE:
-        //#2 decide delay
-        //#3 implement influxdb
-        //Analytics should be done on the incoming data after it is stored in redis, not here.
-
-        //get planes, remember where they were from
 
     }
 

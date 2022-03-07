@@ -15,13 +15,11 @@ class Program
         RegisterServices();
         try
         {
-            //await _serviceProvider.GetService<IPlaneCongregatorService>().CongregatePlaneInfo(DateTimeOffset.Now.ToUnixTimeSeconds());
             await _serviceProvider.GetRequiredService<IStandardRabbitService>().Run();
-            
         }
         catch (System.Exception ex)
         {
-            
+            Console.WriteLine(ex);    
         }
         DisposeServices();
     }
