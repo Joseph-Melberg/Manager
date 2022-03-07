@@ -1,6 +1,7 @@
 using System;
 
 namespace Inter.Domain;
+
 public class PlaneFrameMetadata
 {
     public int Id {get; set;}

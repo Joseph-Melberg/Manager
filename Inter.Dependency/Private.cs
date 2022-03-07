@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Inter.Dependency;
 public static partial class Dependency
 {
+    #region Infrastructure Services
     private static IServiceCollection RegisterPlaneIngestorInfrastructureService(this IServiceCollection collection)
     {
         collection.AddTransient<IPlaneIngestorInfrastructureService,PlaneIngestorInfrastructureService>();
@@ -24,6 +25,14 @@ public static partial class Dependency
         RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
 
         return collection;
+    }
+
+    private static IServiceCollection RegisterPlaneCongregatorInfrastructureService(this IServiceCollection collection)
+    {
+        collection.AddTransient<IPlaneCongregatorInfrastructureService,PlaneCongregatorInfrastructureService>();
+
+        return collection
+                .RegisterPlaneCacheRepository();
     }
 
     private static IServiceCollection RegisterMetronomeInfrastructureService(this IServiceCollection collection)
@@ -90,6 +99,18 @@ public static partial class Dependency
 
         return collection;
     }
+    #endregion Infrastructure Services
+
+    #region Redis
+
+    private static IServiceCollection RegisterPlaneCacheRepository(this IServiceCollection collection)
+    {
+        RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
+
+        return collection;
+    }
+
+    #endregion
 
     #region Rabbit
     private static IServiceCollection RegisterTickPublisher(this IServiceCollection collection)
