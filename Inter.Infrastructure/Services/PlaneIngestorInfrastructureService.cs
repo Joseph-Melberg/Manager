@@ -13,6 +13,6 @@ namespace Inter.Infrastructure.Services
             _planeCacheRepository = planeCacheRepository;
         }
 
-        public async Task IngestPlaneFrameAsync(PlaneFrame planeFrame) => await _planeCacheRepository.InsertPreHydratedPlaneFrameAsync(planeFrame);
+        public async Task IngestPlaneFrameAsync(PlaneFrame planeFrame) => await _planeCacheRepository.InsertPreCongregatedPlaneFrameAsync(planeFrame);
     }
 }

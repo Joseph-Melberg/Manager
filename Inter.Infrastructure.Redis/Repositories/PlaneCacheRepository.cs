@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.Redis.Contexts;
 using Inter.Infrastructure.Redis.Mappers;
 using Melberg.Infrastructure.Redis.Repository;
+using Newtonsoft.Json;
 
 namespace Inter.Infrastructure.Redis.Repositories;
 public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCacheRepository
@@ -22,13 +24,25 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
         return planes; 
     }
 
-    public Task InsertPlaneFrameAsync(PlaneFrame frame) => DB.StringSetAsync(ToKey(frame),frame.ToModel().ToPayload(),new TimeSpan(0,0,45));
+    public async Task InsertCongregatedPlaneFrameAsync(PlaneFrame frame) => await DB.StringSetAsync(ToCongregatedKey(frame),frame.ToModel().ToPayload(),new TimeSpan(0,0,45));
+    public async Task InsertPlaneFrameAsync(PlaneFrame frame) => await DB.StringSetAsync(ToKey(frame),frame.ToModel().ToPayload(),new TimeSpan(0,0,45));
 
-    public async Task InsertPreHydratedPlaneFrameAsync(PlaneFrame planeFrame)
+    public async Task InsertPreCongregatedPlaneFrameAsync(PlaneFrame planeFrame)
     {
         await DB.StringSetAsync(ToPreAggregateKey(planeFrame),planeFrame.ToModel().ToPayload(),TimeSpan.FromSeconds(50));
     }
 
+
+    public async IAsyncEnumerable<PlaneFrame> GetPreCongregatedPlaneFramesAsync(long timestamp)
+    {
+        await foreach(var key in Server.KeysAsync(pattern:$"plane_preaggregate_*_*_{timestamp}"))
+        {
+            var keySections = key.ToString().Split("_");
+            yield return (await DB.StringGetAsync(key)).ToDomain(keySections[2],keySections[3]);
+        }
+        yield break;
+    }
     public string ToKey( PlaneFrame frame) => $"plane_{frame.Now}";
+    public string ToCongregatedKey( PlaneFrame frame) => $"plane_congregated_{frame.Now}";
     public string ToPreAggregateKey( PlaneFrame frame ) => $"plane_preaggregate_{frame.Source}_{frame.Antenna}_{frame.Now}";
 }

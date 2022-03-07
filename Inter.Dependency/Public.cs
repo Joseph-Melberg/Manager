@@ -2,12 +2,19 @@ using Inter.Common.Configuration;
 using Inter.Common.Configuration.Providers;
 using Inter.DomainServices;
 using Inter.DomainServices.Core;
-using Melberg.Infrastructure.Rabbit.Translator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.Dependency;
 public static partial class Dependency
 {
+    public static IServiceCollection RegisterPlaneCongregatorService(this IServiceCollection collection)
+    {
+        collection.AddTransient<IPlaneCongregatorService,PlaneCongregatorService>();
+
+        return collection
+                .RegisterPlaneCongregatorInfrastructureService();
+    }
+
     public static IServiceCollection RegisterPlaneIngestorService(this IServiceCollection collection)
     {
         collection.AddTransient<IPlaneIngestorService,PlaneIngestorService>();
