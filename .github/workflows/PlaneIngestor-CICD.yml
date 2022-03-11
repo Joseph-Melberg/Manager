@@ -25,6 +25,7 @@ jobs:
         PLANEYSECURE_PASSWORD : ${{secrets.PLANEYSECURE_PASSWORD}}
         ONPREM_REDIS : ${{secrets.ONPREM_REDIS}}
         READWRITE_MYSQL : ${{secrets.READWRITE_MYSQL}}
+        INFLUXDB_TOKEN : ${{secrets.INFLUXDB_TOKEN}}
     - 
       name: Replace Appsettings
       run: cp ${{env.WORKDIR}}/Deployment/appsettings.deploy.json ${{env.WORKDIR}}/appsettings.json
