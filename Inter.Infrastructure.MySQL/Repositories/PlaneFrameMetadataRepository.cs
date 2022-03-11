@@ -6,7 +6,7 @@ using Inter.Infrastructure.MySQL.Mappers;
 using Melberg.Infrastructure.MySql;
 
 namespace Inter.Infrastructure.MySQL.Repositories;
-public class PlaneFrameMetadataRepository : BaseRepository<ReadWriteContext>, IPlaneFrameMetadataRepository
+public class PlaneFrameMetadataRepository : BaseRepository<ReadWriteContext>, ILegacyPlaneFrameMetadataRepository
 {
     private readonly ReadWriteContext _context;
     public PlaneFrameMetadataRepository(ReadWriteContext context) : base(context) 
