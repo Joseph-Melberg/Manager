@@ -3,7 +3,7 @@
 		<ProjectReference Include="..\Inter.Infrastructure\Inter.Infrastructure.csproj"/>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.Couchbase" Version="6.0.26"/>
+		<PackageReference Include="Melberg.Infrastructure.Couchbase" Version="6.0.29"/>
 	</ItemGroup>
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>

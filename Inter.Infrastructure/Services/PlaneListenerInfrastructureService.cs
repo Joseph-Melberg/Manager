@@ -7,11 +7,11 @@ namespace Inter.Infrastructure.Services;
 public class PlaneListenerInfrastructureService : IPlaneListenerInfrastructureService
 {
     private readonly IPlaneCacheRepository _planeCacheRepository;
-    private readonly IPlaneFrameMetadataRepository _planeFrameMetadataRepository;
+    private readonly ILegacyPlaneFrameMetadataRepository _planeFrameMetadataRepository;
     
     public PlaneListenerInfrastructureService(
         IPlaneCacheRepository planeCacheRepository,
-        IPlaneFrameMetadataRepository planeFrameMetadataRepository)
+        ILegacyPlaneFrameMetadataRepository planeFrameMetadataRepository)
     {
         _planeCacheRepository = planeCacheRepository;
         _planeFrameMetadataRepository = planeFrameMetadataRepository;

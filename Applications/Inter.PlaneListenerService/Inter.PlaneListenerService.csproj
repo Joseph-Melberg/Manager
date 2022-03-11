@@ -9,9 +9,9 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.26"/>
-		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.26"/>
-		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0"/>
+		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.29"/>
+		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.29"/>
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1"/>
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
 		<PackageReference Include="Newtonsoft.json" Version="13.0.1"/>

@@ -12,16 +12,7 @@ class Program
     static async Task Main(string[] args)
     {
         RegisterServices();
-        try
-        {
-            await _serviceProvider.GetRequiredService<IStandardRabbitService>().Run();
-            
-        }
-        catch (System.Exception ex)
-        {
-            
-            throw;
-        }
+        await _serviceProvider.GetRequiredService<IStandardRabbitService>().Run();
         DisposeServices();
     }
 

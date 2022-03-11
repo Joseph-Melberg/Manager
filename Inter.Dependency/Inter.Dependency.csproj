@@ -3,9 +3,10 @@
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.26"/>
-		<PackageReference Include="Melberg.Infrastructure.Redis" Version="6.0.26"/>
-		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.26"/>
+		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.29"/>
+		<PackageReference Include="Melberg.Infrastructure.Redis" Version="6.0.29"/>
+		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.29"/>
+    	<PackageReference Include="Melberg.Infrastructure.InfluxDB" Version="6.0.29" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
 	</ItemGroup>
 	<ItemGroup>
@@ -17,5 +18,6 @@
 		<ProjectReference Include="..\Inter.Common\Inter.Common.csproj"/>
 		<ProjectReference Include="..\Inter.Infrastructure.MySQL\Inter.Infrastructure.MySQL.csproj"/>
 		<ProjectReference Include="..\Inter.Infrastructure.Rabbit\Inter.Infrastructure.Rabbit.csproj"/>
+		<ProjectReference Include="..\Inter.Infrastructure.InfluxDB\Inter.Infrastructure.InfluxDB.csproj"/>
 	</ItemGroup>
 </Project>

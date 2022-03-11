@@ -2,6 +2,7 @@ using Inter.Common.Configuration;
 using Inter.Common.Configuration.Providers;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
+using Inter.Infrastructure.InfluxDB.Contexts;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Rabbit.Messages;
@@ -9,6 +10,7 @@ using Inter.Infrastructure.Rabbit.Publishers;
 using Inter.Infrastructure.Redis.Contexts;
 using Inter.Infrastructure.Redis.Repositories;
 using Inter.Infrastructure.Services;
+using Melberg.Infrastructure.InfluxDB;
 using Melberg.Infrastructure.MySql;
 using Melberg.Infrastructure.Rabbit;
 using Melberg.Infrastructure.Redis;
@@ -22,8 +24,8 @@ public static partial class Dependency
     {
         collection.AddTransient<IPlaneIngestorInfrastructureService,PlaneIngestorInfrastructureService>();
         
+        InfluxDBModule.LoadInfluxDBRepository<IPlaneFrameMetadataRepository,Inter.Infrastructure.InfluxDB.Repositories.PlaneFrameMetadataRepository,InfluxDBContext>(collection);
         RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
-
         return collection;
     }
 
@@ -59,7 +61,7 @@ public static partial class Dependency
 
         RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
 
-        MySqlModule.LoadSqlRepository<IPlaneFrameMetadataRepository,PlaneFrameMetadataRepository,ReadWriteContext>(collection);
+        MySqlModule.LoadSqlRepository<ILegacyPlaneFrameMetadataRepository,PlaneFrameMetadataRepository,ReadWriteContext>(collection);
 
         return collection;
     }

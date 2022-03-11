@@ -47,6 +47,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.Infrastructure.Rabbit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.PlaneCongregatorService", "Applications\Inter.PlaneCongregatorService\Inter.PlaneCongregatorService.csproj", "{B5491BF2-D94F-40F5-A2C6-B32BE5E964F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inter.Infrastructure.InfluxDB", "Inter.Infrastructure.InfluxDB\Inter.Infrastructure.InfluxDB.csproj", "{F70BEA07-7E21-4703-B3C5-80F492058557}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -137,6 +139,10 @@ Global
 		{B5491BF2-D94F-40F5-A2C6-B32BE5E964F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5491BF2-D94F-40F5-A2C6-B32BE5E964F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5491BF2-D94F-40F5-A2C6-B32BE5E964F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F70BEA07-7E21-4703-B3C5-80F492058557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F70BEA07-7E21-4703-B3C5-80F492058557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F70BEA07-7E21-4703-B3C5-80F492058557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F70BEA07-7E21-4703-B3C5-80F492058557}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FE016E01-FDBE-4DEA-A298-C81488FC4B42} = {394F3572-2702-4FF4-857E-BC3810B65F13}
