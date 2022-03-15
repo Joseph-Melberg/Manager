@@ -8,6 +8,6 @@ public class TickMessage : StandardMessage
 
     public override string GetRoutingKey()
     {
-        return null;
+        return "";
     }
 }

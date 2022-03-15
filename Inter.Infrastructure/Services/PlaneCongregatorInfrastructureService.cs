@@ -9,9 +9,13 @@ namespace Inter.Infrastructure.Services;
 public class PlaneCongregatorInfrastructureService : IPlaneCongregatorInfrastructureService
 {
     private readonly IPlaneCacheRepository _planeCacheRepository;
-    public PlaneCongregatorInfrastructureService(IPlaneCacheRepository planeCacheRepository)
+    private readonly IPlaneFrameMetadataRepository _influxPlaneMetadataRepository;
+    public PlaneCongregatorInfrastructureService(
+        IPlaneCacheRepository planeCacheRepository,
+        IPlaneFrameMetadataRepository planeFrameMetadataRepository)
     {
         _planeCacheRepository = planeCacheRepository;
+        _influxPlaneMetadataRepository = planeFrameMetadataRepository;
     }
 
     public async IAsyncEnumerable<PlaneFrame> CollectFramesAsync(long timestamp)
@@ -26,8 +30,5 @@ public class PlaneCongregatorInfrastructureService : IPlaneCongregatorInfrastruc
 
     public async Task UploadCongregatedPlanesAsync(PlaneFrame frame) => await _planeCacheRepository.InsertCongregatedPlaneFrameAsync(frame);
 
-    public Task TrackMetadata(long timestamp, string antenna, int total, int detailed)
-    {
-        throw new System.NotImplementedException();
-    }
+    public async Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata metadata) => await _influxPlaneMetadataRepository.LogPlaneMetadata(metadata);
 }

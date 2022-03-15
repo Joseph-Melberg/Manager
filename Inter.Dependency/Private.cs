@@ -32,6 +32,7 @@ public static partial class Dependency
     private static IServiceCollection RegisterPlaneCongregatorInfrastructureService(this IServiceCollection collection)
     {
         collection.AddTransient<IPlaneCongregatorInfrastructureService,PlaneCongregatorInfrastructureService>();
+        InfluxDBModule.LoadInfluxDBRepository<IPlaneFrameMetadataRepository,Inter.Infrastructure.InfluxDB.Repositories.PlaneFrameMetadataRepository,InfluxDBContext>(collection);
 
         return collection
                 .RegisterPlaneCacheRepository();
