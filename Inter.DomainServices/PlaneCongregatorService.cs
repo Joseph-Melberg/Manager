@@ -4,6 +4,7 @@ using Inter.Infrastructure.Core;
 using System.Collections.Generic;
 using System.Linq;
 using Inter.Domain;
+using System;
 
 namespace Inter.DomainServices;
 
@@ -39,6 +40,16 @@ public class PlaneCongregatorService : IPlaneCongregatorService
 
         await _infrastructure.UploadCongregatedPlanesAsync(congregatedFrame);
 
+        var metadata = new PlaneFrameMetadata();
+        metadata.Total = congregatedFrame.Planes.Count();
+        metadata.Detailed = congregatedFrame.Planes.Where(_ => _.lat.HasValue && _.lon.HasValue).Count();
+        
+
+        metadata.Antenna = congregatedFrame.Antenna;
+        metadata.Hostname = congregatedFrame.Source;
+        metadata.Timestamp = DateTime.UnixEpoch.AddSeconds(congregatedFrame.Now);
+
+        await _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
     }
 
 

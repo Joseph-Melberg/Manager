@@ -24,13 +24,13 @@ jobs:
       env:
         RABBIT_PASSWORD : ${{secrets.RABBIT_PASSWORD}}
         ONPREM_REDIS : ${{secrets.ONPREM_REDIS}}
+        INFLUXDB_TOKEN : ${{secrets.INFLUXDB_TOKEN}}
     - 
       name: Replace Appsettings
       run: cp ${{env.WORKDIR}}/Deployment/appsettings.deploy.json ${{env.WORKDIR}}/appsettings.json
     -
       name: Check work
       run: cat ${{env.WORKDIR}}/appsettings.json
-
     - 
       name: Setup .NET
       uses: actions/setup-dotnet@v1
