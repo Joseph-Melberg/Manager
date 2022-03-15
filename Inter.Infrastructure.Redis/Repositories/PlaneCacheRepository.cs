@@ -18,11 +18,12 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
 
     public async Task<PlaneFrame> GetPlaneFrameAsync(long timestamp)
     {
-        var key = $"plane_{timestamp}";
+        var key = $"plane_congregated_{timestamp}";
         var payload = await DB.StringGetAsync(key);
         var planes = payload.ToDomain("aggregate","aggregate");
         return planes; 
     }
+
 
     public async Task InsertCongregatedPlaneFrameAsync(PlaneFrame frame) => await DB.StringSetAsync(ToCongregatedKey(frame),frame.ToModel().ToPayload(),new TimeSpan(0,0,45));
     public async Task InsertPlaneFrameAsync(PlaneFrame frame) => await DB.StringSetAsync(ToKey(frame),frame.ToModel().ToPayload(),new TimeSpan(0,0,45));
