@@ -9,6 +9,16 @@ public static class PlaneFrameMapper
 {
     public static PlaneFrame ToDomain(this RedisValue value,string source, string antenna)
     {
+        if(string.IsNullOrEmpty((string)value))
+        {
+            return new PlaneFrame
+            {
+                Antenna = antenna,
+                Source = source,
+                Planes = new Plane[0],
+                Now = 0
+            };
+        }
         var dto = JsonConvert.DeserializeObject<PlaneFrameModel>((string)value);
         var frame = new PlaneFrame
         {
