@@ -41,8 +41,8 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         await _infrastructure.UploadCongregatedPlanesAsync(congregatedFrame);
 
         var metadata = new PlaneFrameMetadata();
-        metadata.Total = congregatedFrame.Planes.Count();
-        metadata.Detailed = congregatedFrame.Planes.Where(_ => _.lat.HasValue && _.lon.HasValue).Count();
+        metadata.Total = planeDictionary.Count();
+        metadata.Detailed = congregatedFrame.Planes.Count();
         
 
         metadata.Antenna = congregatedFrame.Antenna;
