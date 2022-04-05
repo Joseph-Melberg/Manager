@@ -18,7 +18,7 @@ namespace InterApi.Controllers
 
         [HttpGet]
         [Route("frame")]
-        public Task<PlaneFrame> GetFrameAsync() => _service.GetFrameAsync((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - 1);
+        public Task<PlaneFrame> GetFrameAsync() => _service.GetFrameAsync((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - 3);
         
         [HttpGet]
         [Route("frame/{time}")]
