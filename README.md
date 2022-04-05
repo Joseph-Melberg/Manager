@@ -38,11 +38,7 @@ plane-reciever.  This info will be stored on a per-antenna basis in redis.
 
 ### Plane Congregator
 
-TODO: Every second, scans redis for ingested plane info.  Takes that info, deduplicates it, and puts it into red
-
-### Plane Listener
-
-Listens for rabbitmq messages detailing the planes in the sky, uploads that info to redis for it to be accessed by the InterApi.
+Every second, scans redis for ingested plane info.  Takes that info, deduplicates it, and puts it into redis for the api to serve.
 
 ### Temperature Listener
 
