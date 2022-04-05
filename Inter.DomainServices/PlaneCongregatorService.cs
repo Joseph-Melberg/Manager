@@ -19,7 +19,7 @@ public class PlaneCongregatorService : IPlaneCongregatorService
     public async Task CongregatePlaneInfoAsync(long timestamp)
     {
 
-        var offsetTimestamp = timestamp - 2; // look at the previous previous second
+        var offsetTimestamp = timestamp - 1; // look at the previous previous second
         var planeDictionary = new Dictionary<string,Plane>();
         await foreach(var frame in _infrastructure.CollectFramesAsync(offsetTimestamp))
         {
