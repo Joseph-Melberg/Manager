@@ -38,6 +38,13 @@ namespace InterApi
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseCors(_ => _
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials()
+                );
 
             app.UseEndpoints(endpoints =>
             {
