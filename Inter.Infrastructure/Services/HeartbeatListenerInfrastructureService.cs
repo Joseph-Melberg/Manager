@@ -6,9 +6,13 @@ using Inter.Infrastructure.Corral;
 namespace Inter.Infrastructure.Services;
 public class HeartbeatListenerInfrastructureService : IHeartbeatListenerInfrastructureService
 {
+    private readonly INodeLifeRepository _nodeLifeRepository;
     private readonly IHeartbeatRepository _heartbeatRepository;
-    public HeartbeatListenerInfrastructureService(IHeartbeatRepository heartBeatRepository)
+    public HeartbeatListenerInfrastructureService(
+        IHeartbeatRepository heartBeatRepository,
+        INodeLifeRepository nodeLifeRepository)
     {
+        _nodeLifeRepository = nodeLifeRepository;
         _heartbeatRepository = heartBeatRepository;
     }
 
@@ -21,8 +25,12 @@ public class HeartbeatListenerInfrastructureService : IHeartbeatListenerInfrastr
         }
         return result.online;
     }
-    public Task UpdateAsync(Heartbeat heartBeat)
+    public async Task UpdateAsync(Heartbeat heartBeat)
     {
-        return _heartbeatRepository.UpdateAsync(heartBeat);
+        //First, mark how it was.
+        await _nodeLifeRepository.MarkStatusAsync(heartBeat.name,!heartBeat.online);
+        //Then, mark how it is. (this makes the graphs prettier)
+        await _nodeLifeRepository.MarkStatusAsync(heartBeat.name,heartBeat.online);
+        await _heartbeatRepository.UpdateAsync(heartBeat);
     }
 }

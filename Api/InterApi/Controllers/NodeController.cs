@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.DomainServices.Core;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace InterApi.Controllers
 {
+    [DisableCors]
     [ApiController]
     [Route("[controller]")]
     public class NodeController : ControllerBase
