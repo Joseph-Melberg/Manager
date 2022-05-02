@@ -14,4 +14,7 @@ public class PlaneApiInfrastructureService : IPlaneApiInfrastructureService
 
 
     public Task<PlaneFrame> GetFrameAsync(long time) => _planeCacheRepository.GetPlaneFrameAsync(time);
+
+    public async Task<PlaneFrame> GetPreaggregateFrameAsync(string source, string antenna, long time)
+        => await _planeCacheRepository.GetPreCongregatedPlaneFrameAsync(source, antenna,time);
 }
