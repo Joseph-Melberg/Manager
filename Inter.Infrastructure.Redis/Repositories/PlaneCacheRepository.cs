@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Inter.Domain;
-using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.Redis.Contexts;
 using Inter.Infrastructure.Redis.Mappers;
 using Melberg.Infrastructure.Redis.Repository;
@@ -12,9 +11,7 @@ namespace Inter.Infrastructure.Redis.Repositories;
 public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCacheRepository
 {
     private TimeSpan FrameLifespan => new System.TimeSpan(0,0,45);
-    public PlaneCacheRepository(PlaneCacheContext context) : base(context)
-    {
-    }
+    public PlaneCacheRepository(PlaneCacheContext context) : base(context) { }
 
     public async Task<PlaneFrame> GetPlaneFrameAsync(long timestamp)
     {
@@ -30,7 +27,7 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
 
     public async Task InsertPreCongregatedPlaneFrameAsync(PlaneFrame planeFrame)
     {
-        await DB.StringSetAsync(ToPreAggregateKey(planeFrame),planeFrame.ToModel().ToPayload(),TimeSpan.FromSeconds(50));
+        await DB.StringSetAsync(ToPreAggregateKey(planeFrame.Source,planeFrame.Antenna,planeFrame.Now),planeFrame.ToModel().ToPayload(),TimeSpan.FromSeconds(50));
     }
 
 
@@ -45,5 +42,10 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
     }
     public string ToKey( PlaneFrame frame) => $"plane_{frame.Now}";
     public string ToCongregatedKey( PlaneFrame frame) => $"plane_congregated_{frame.Now}";
-    public string ToPreAggregateKey( PlaneFrame frame ) => $"plane_preaggregate_{frame.Source}_{frame.Antenna}_{frame.Now}";
+
+    public string ToPreAggregateKey(string source, string antenna, long timestamp) => $"plane_preaggregate_{source}_{antenna}_{timestamp}";
+
+
+    public async Task<PlaneFrame> GetPreCongregatedPlaneFrameAsync(string source, string antenna, long timestamp) =>
+        (await DB.StringGetAsync(ToPreAggregateKey(source,antenna,timestamp))).ToDomain(source,antenna);
 }

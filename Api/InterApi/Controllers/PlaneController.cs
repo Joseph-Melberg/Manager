@@ -17,14 +17,30 @@ namespace InterApi.Controllers
         }
 
         [HttpGet]
-        [Route("frame")]
-        public Task<PlaneFrame> GetFrameAsync() => _service.GetFrameAsync((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - 3);
-        
-        [HttpGet]
-        [Route("frame/{time}")]
-        public async Task<PlaneFrame> GetFrameAsync(long time)
-        {
-            return await _service.GetFrameAsync(time);
+        [Route("{source}/frame")]
+        public async Task<PlaneFrame> GetFrameByDeviceAsync(string source, [FromQuery] string antenna,[FromQuery] long? time)
+        { 
+            if (time == null)
+            {
+                time = OffsetUtcNow;
+            }
+
+            return await _service.GetFrameByDeviceAsync(source,antenna,time.Value);
         }
+
+        [HttpGet]
+        [Route("frame")]
+        public async Task<PlaneFrame> GetFrameAsync([FromQuery] long? time)
+        {
+            if (time == null)
+            {
+                time = OffsetUtcNow;
+            }
+            return await _service.GetFrameAsync(time.Value);
+        }
+
+        private Int32 OffsetUtcNow =>(Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds - 3;
+
+
     }
 }
