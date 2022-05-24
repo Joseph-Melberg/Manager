@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Inter.Domain;
 using System;
+using System.Diagnostics;
 
 namespace Inter.DomainServices;
 
@@ -18,7 +19,8 @@ public class PlaneCongregatorService : IPlaneCongregatorService
 
     public async Task CongregatePlaneInfoAsync(long timestamp)
     {
-
+        var timer = new Stopwatch();
+        timer.Start();
         var offsetTimestamp = timestamp - 1; // look at the previous previous second
         // compile from redis
         var planeDictionary = (await _infrastructure.CollectPlaneStatesAsync())
@@ -34,13 +36,15 @@ public class PlaneCongregatorService : IPlaneCongregatorService
                 (sum, frame) => CompilePlaneDeltas(sum, frame));
 
         //replace planes
-
-        await _infrastructure.UploadPlaneStates();
+        await _infrastructure.UploadPlaneStates(planeDictionary.Select(_ => _.Value));
         //Compile into plane frame
         var congregatedFrame = new PlaneFrame();
 
         congregatedFrame.Now = offsetTimestamp;
-        congregatedFrame.Planes = planeDictionary.Where(_ => _.Value.lat != null && _.Value.lon != null).Select(_ => _.Value).ToArray();
+        congregatedFrame.Planes = planeDictionary
+            .Where(_ => _.Value.lat != null && _.Value.lon != null)
+            .Select(_ => _.Value)
+            .ToArray();
         congregatedFrame.Source = "congregation";
         congregatedFrame.Antenna = "congregator";
 
@@ -56,7 +60,8 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         metadata.Timestamp = DateTime.UnixEpoch.AddSeconds(congregatedFrame.Now);
 
         await _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
-
+        timer.Stop();
+        Console.WriteLine($"This process took {timer.ElapsedMilliseconds} milliseconds");
     }
     private Dictionary<string, Plane> CompilePlaneDeltas(Dictionary<string, Plane> running, PlaneFrame applying)
     {
@@ -95,5 +100,5 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         }
     }
 
-    private T OverwriteIfNotNull<T>(T current, T proposed) => (current == null ? proposed : current);
+    private T OverwriteIfNotNull<T>(T current, T proposed) => (current != null ? proposed : current);
 }

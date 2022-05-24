@@ -13,6 +13,6 @@ public interface IPlaneCacheRepository
     Task<PlaneFrame> GetPlaneFrameAsync(long timestamp);
     Task<PlaneFrame> GetPreCongregatedPlaneFrameAsync(PlaneSourceDefintion source, long timestamp);
     Task<PlaneFrame> GetPlaneSourceState(PlaneSourceDefintion source);
-    IAsyncEnumerable<PlaneFrame> GetPlaneSourceDeltasAsync(long timestamp);
+    IAsyncEnumerable<PlaneFrameDelta> GetPlaneSourceDeltasAsync(long timestamp);
     IAsyncEnumerable<PlaneFrame> GetPreCongregatedPlaneFramesAsync(long timestamp);
 }

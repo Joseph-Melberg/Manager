@@ -8,7 +8,7 @@ public interface IPlaneCongregatorInfrastructureService
 { 
     Task<IEnumerable<PlaneFrameDelta>> CollectDeltaFramesAsync(long timestamp);
     Task<IEnumerable<Plane>> CollectPlaneStatesAsync();
-    Task UploadPlaneStates();
+    Task UploadPlaneStates(IEnumerable<Plane> planes);
     Task UploadCongregatedPlanesAsync(PlaneFrame frame);
 
     Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata metadata);

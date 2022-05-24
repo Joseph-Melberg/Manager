@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Core;
@@ -18,22 +19,27 @@ public class PlaneCongregatorInfrastructureService : IPlaneCongregatorInfrastruc
         _influxPlaneMetadataRepository = planeFrameMetadataRepository;
     }
 
-    public async IAsyncEnumerable<PlaneFrame> CollectDeltaFramesAsync(long timestamp)
+    public async Task<IEnumerable<PlaneFrameDelta>> CollectDeltaFramesAsync(long timestamp)
     {
-        await foreach(var plane in _planeCacheRepository.GetPreCongregatedPlaneFramesAsync(timestamp))
+        var result = new List<PlaneFrameDelta>();
+        await foreach(var planeFrameDelta in _planeCacheRepository.GetPlaneSourceDeltasAsync(timestamp))
         {
-           yield return plane;
+            result.Add(planeFrameDelta);
         }
-
-        yield break;
+        return result;
     }
 
-    public Task<PlaneFrame> CompilePlaneStateAsync()
+    public Task<IEnumerable<Plane>> CollectPlaneStatesAsync()
     {
-        var planes = 
+        throw new System.NotImplementedException();
     }
 
     public async Task UploadCongregatedPlanesAsync(PlaneFrame frame) => await _planeCacheRepository.InsertCongregatedPlaneFrameAsync(frame);
 
     public async Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata metadata) => await _influxPlaneMetadataRepository.LogPlaneMetadata(metadata);
+
+    public async Task UploadPlaneStates(IEnumerable<Plane> planes)
+    {
+        await Task.WhenAll(planes.Select(_ => _planeCacheRepository.UpdatePlaneRecordAsync(_)));
+    }
 }
