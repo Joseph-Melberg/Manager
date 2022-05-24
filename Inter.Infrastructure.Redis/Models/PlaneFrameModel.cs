@@ -1,5 +1,3 @@
-using Inter.Domain;
-
 namespace Inter.Infrastructure.Redis.Models;
 
 public class PlaneFrameModel

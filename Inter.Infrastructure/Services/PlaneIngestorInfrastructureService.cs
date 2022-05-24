@@ -17,8 +17,20 @@ namespace Inter.Infrastructure.Services
             _influxPlaneMetadataRepository = planeFrameMetadataRepository;
         }
 
-        public async Task IngestPlaneFrameAsync(PlaneFrame planeFrame) => await _planeCacheRepository.InsertPreCongregatedPlaneFrameAsync(planeFrame);
+        public async Task IngestPlaneFrameAsync(PlaneFrame planeFrame) =>
+            await _planeCacheRepository.InsertPreCongregatedPlaneFrameAsync(planeFrame);
 
-        public async Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata metadata) => await _influxPlaneMetadataRepository.LogPlaneMetadata(metadata);
+        public async Task<PlaneFrame> GetPlaneSourceStateAsync(PlaneSourceDefintion source) => 
+            await _planeCacheRepository.GetPlaneSourceState(source);
+
+        public async Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata metadata) => 
+            await _influxPlaneMetadataRepository.LogPlaneMetadata(metadata);
+
+        public async Task SetPlaneSourceStateAsync(PlaneSourceDefintion source, PlaneFrame data) =>
+            await _planeCacheRepository.SetPlaneSourceState(source,data);
+
+        public async Task SetPlaneSourceDeltaAsync(PlaneSourceDefintion source, PlaneFrameDelta data) =>
+            await _planeCacheRepository.SetPlaneSourceDelta(source,data);
+
     }
 }

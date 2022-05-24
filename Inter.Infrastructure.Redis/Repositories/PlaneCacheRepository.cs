@@ -5,19 +5,24 @@ using Inter.Domain;
 using Inter.Infrastructure.Redis.Contexts;
 using Inter.Infrastructure.Redis.Mappers;
 using Melberg.Infrastructure.Redis.Repository;
-using Newtonsoft.Json;
 
 namespace Inter.Infrastructure.Redis.Repositories;
 public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCacheRepository
 {
     private TimeSpan FrameLifespan => new System.TimeSpan(0,0,45);
+    private TimeSpan FinalPlaneRecordLifespan => TimeSpan.FromSeconds(60);
     public PlaneCacheRepository(PlaneCacheContext context) : base(context) { }
 
     public async Task<PlaneFrame> GetPlaneFrameAsync(long timestamp)
     {
         var key = $"plane_congregated_{timestamp}";
         var payload = await DB.StringGetAsync(key);
-        var planes = payload.ToDomain("aggregate","aggregate");
+        var sourceDefinition = new PlaneSourceDefintion()
+        {
+            Node = "aggregate",
+            Antenna = "aggregate"
+        };
+        var planes = payload.ToDomain(sourceDefinition);
         return planes; 
     }
 
@@ -27,7 +32,12 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
 
     public async Task InsertPreCongregatedPlaneFrameAsync(PlaneFrame planeFrame)
     {
-        await DB.StringSetAsync(ToPreAggregateKey(planeFrame.Source,planeFrame.Antenna,planeFrame.Now),planeFrame.ToModel().ToPayload(),TimeSpan.FromSeconds(50));
+        var sourceDefinition = new PlaneSourceDefintion()
+        {
+            Node = planeFrame.Source,
+            Antenna = planeFrame.Antenna
+        };
+        await DB.StringSetAsync(ToPreAggregateKey(sourceDefinition,planeFrame.Now),planeFrame.ToModel().ToPayload(),TimeSpan.FromSeconds(50));
     }
 
 
@@ -36,16 +46,73 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
         await foreach(var key in Server.KeysAsync(pattern:$"plane_preaggregate_*_*_{timestamp}"))
         {
             var keySections = key.ToString().Split("_");
-            yield return (await DB.StringGetAsync(key)).ToDomain(keySections[2],keySections[3]);
+            var sourceDefinition = new PlaneSourceDefintion()
+            {
+                Node = keySections[2],
+                Antenna = keySections[3]
+            };
+            yield return (await DB.StringGetAsync(key)).ToDomain(sourceDefinition);
         }
         yield break;
+    }
+
+
+    public async Task<PlaneFrame> GetPreCongregatedPlaneFrameAsync(PlaneSourceDefintion source, long timestamp) =>
+        (await DB.StringGetAsync(ToPreAggregateKey(source,timestamp))).ToDomain(source);
+
+    public async Task<PlaneFrame> GetPlaneSourceState(PlaneSourceDefintion source) => 
+        (await DB.StringGetAsync(ToStateKey(source))).ToDomain(source);
+    public async Task SetPlaneSourceState(PlaneSourceDefintion source, PlaneFrame frame) =>
+        await DB.StringSetAsync(ToStateKey(source), frame.ToModel().ToPayload(),TimeSpan.FromSeconds(60));
+
+    // Delta section 
+    public async Task SetPlaneSourceDelta(PlaneSourceDefintion source, PlaneFrameDelta frame)
+    {
+        await DB.StringSetAsync(ToDeltaKey(source,frame.Now),frame.ToModel().ToPayload(),TimeSpan.FromSeconds(30));
+    }
+    public async Task<PlaneFrame> GetPlaneSourceDelta(PlaneSourceDefintion source, long timestamp)
+    {
+        return (await DB.StringGetAsync(ToDeltaKey(source,timestamp))).ToDomainWithDelta(source);
+    }
+    public async IAsyncEnumerable<PlaneFrameDelta> GetPlaneSourceDeltasAsync(long timestamp)
+    {
+        var filter = ToDeltaKey(new PlaneSourceDefintion() {Antenna = "*", Node = "*"},timestamp);
+        await foreach(var key in Server.KeysAsync(pattern:(filter)))
+        {
+            var keySections = key.ToString().Split("_");
+            var sourceDefinition = new PlaneSourceDefintion()
+            {
+                Node = keySections[2],
+                Antenna = keySections[3]
+            };
+            yield return (await DB.StringGetAsync(key)).ToDomainWithDelta(sourceDefinition);
+        }
+        yield break;
+    }
+
+    public async Task UpdatePlaneRecordAsync(Plane plane)
+    {
+        var model = plane.ToModel();
+        await DB.StringSetAsync(ToPlaneRecordKey(model.hexValue),plane.ToModel().ToPayload(), FinalPlaneRecordLifespan);
+    }
+
+    public async IAsyncEnumerable<Plane> GetPlaneRecordAsync(long timestampe)
+    {
+        var filter = ToPlaneRecordKey("*");
+        await foreach(var key in Server.KeysAsync(pattern:filter))
+        {
+            var keysections = key.ToString().Split("_");
+            yield return (await DB.StringGetAsync(ToPlaneRecordKey(keysections[3]))).ToModel().ToDomain();
+        }
     }
     public string ToKey( PlaneFrame frame) => $"plane_{frame.Now}";
     public string ToCongregatedKey( PlaneFrame frame) => $"plane_congregated_{frame.Now}";
 
-    public string ToPreAggregateKey(string source, string antenna, long timestamp) => $"plane_preaggregate_{source}_{antenna}_{timestamp}";
+    public string ToStateKey(PlaneSourceDefintion source) => $"plane_{source.Node}_{source.Antenna}_state";
 
+    public string ToDeltaKey(PlaneSourceDefintion source, long timestamp) => $"plane_{source.Node}_{source.Antenna}_{timestamp}_delta";
 
-    public async Task<PlaneFrame> GetPreCongregatedPlaneFrameAsync(string source, string antenna, long timestamp) =>
-        (await DB.StringGetAsync(ToPreAggregateKey(source,antenna,timestamp))).ToDomain(source,antenna);
+    public string ToPreAggregateKey(PlaneSourceDefintion source, long timestamp) => $"plane_preaggregate_{source.Node}_{source.Antenna}_{timestamp}";
+
+    public string ToPlaneRecordKey(string hex) => $"plane_memo_{hex}";
 }

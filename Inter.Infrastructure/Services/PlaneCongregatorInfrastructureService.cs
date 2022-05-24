@@ -18,7 +18,7 @@ public class PlaneCongregatorInfrastructureService : IPlaneCongregatorInfrastruc
         _influxPlaneMetadataRepository = planeFrameMetadataRepository;
     }
 
-    public async IAsyncEnumerable<PlaneFrame> CollectFramesAsync(long timestamp)
+    public async IAsyncEnumerable<PlaneFrame> CollectDeltaFramesAsync(long timestamp)
     {
         await foreach(var plane in _planeCacheRepository.GetPreCongregatedPlaneFramesAsync(timestamp))
         {
@@ -26,6 +26,11 @@ public class PlaneCongregatorInfrastructureService : IPlaneCongregatorInfrastruc
         }
 
         yield break;
+    }
+
+    public Task<PlaneFrame> CompilePlaneStateAsync()
+    {
+        var planes = 
     }
 
     public async Task UploadCongregatedPlanesAsync(PlaneFrame frame) => await _planeCacheRepository.InsertCongregatedPlaneFrameAsync(frame);
