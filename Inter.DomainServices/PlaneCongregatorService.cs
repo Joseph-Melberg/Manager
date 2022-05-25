@@ -41,7 +41,7 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         //replace planes
         var deltasApplied = CompilePlaneDeltas(planeDictionary,new PlaneFrame() {Planes = combinedDeltas.Select(_ => _.Value).ToArray()});
 
-        await _infrastructure.UploadPlaneStates(planeDictionary.Where(_ => combinedDeltas.ContainsKey(_.Key)).Select(_ => _.Value));
+        var updateStateTask = _infrastructure.UploadPlaneStates(planeDictionary.Where(_ => combinedDeltas.ContainsKey(_.Key)).Select(_ => _.Value));
         //Compile into plane frame
         var congregatedFrame = new PlaneFrame();
 
@@ -53,7 +53,7 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         congregatedFrame.Source = "congregation";
         congregatedFrame.Antenna = "congregator";
 
-        await _infrastructure.UploadCongregatedPlanesAsync(congregatedFrame);
+        var uploadCongregationTask = _infrastructure.UploadCongregatedPlanesAsync(congregatedFrame);
 
         var metadata = new PlaneFrameMetadata();
         metadata.Total = deltasApplied.Count();
@@ -64,7 +64,8 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         metadata.Hostname = congregatedFrame.Source;
         metadata.Timestamp = DateTime.UnixEpoch.AddSeconds(congregatedFrame.Now);
 
-        await _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
+        var uploadMetadataTask = _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
+        await Task.WhenAll(updateStateTask,uploadCongregationTask,uploadMetadataTask);
         timer.Stop();
         Console.WriteLine($"This process took {timer.ElapsedMilliseconds} milliseconds");
         }
