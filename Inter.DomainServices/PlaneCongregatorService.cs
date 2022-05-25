@@ -107,5 +107,5 @@ public class PlaneCongregatorService : IPlaneCongregatorService
             planeDictionary[plane.hexValue] = currentRecord;
         }
     }
-    private T OverwriteIfNotNull<T>(T current, T proposed) => (current != null ? proposed : current);
+    private T OverwriteIfNotNull<T>(T current, T proposed) => (current != null ? current : proposed);
 }
