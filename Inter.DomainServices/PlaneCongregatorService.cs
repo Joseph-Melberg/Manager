@@ -35,16 +35,18 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         var combinedDeltas = deltas
             .OrderByDescending(_ => _.Interval)
         //compress into dictionary
-            .Aggregate(planeDictionary, 
+            .Aggregate(new Dictionary<string,Plane>(), 
                 (sum, frame) => CompilePlaneDeltas(sum, frame));
 
         //replace planes
-        await _infrastructure.UploadPlaneStates(planeDictionary.Select(_ => _.Value));
+        var deltasApplied = CompilePlaneDeltas(planeDictionary,new PlaneFrame() {Planes = combinedDeltas.Select(_ => _.Value).ToArray()});
+
+        await _infrastructure.UploadPlaneStates(planeDictionary.Where(_ => combinedDeltas.ContainsKey(_.Key)).Select(_ => _.Value));
         //Compile into plane frame
         var congregatedFrame = new PlaneFrame();
 
         congregatedFrame.Now = offsetTimestamp;
-        congregatedFrame.Planes = planeDictionary
+        congregatedFrame.Planes = deltasApplied
             .Where(_ => _.Value.lat != null && _.Value.lon != null)
             .Select(_ => _.Value)
             .ToArray();
@@ -54,7 +56,7 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         await _infrastructure.UploadCongregatedPlanesAsync(congregatedFrame);
 
         var metadata = new PlaneFrameMetadata();
-        metadata.Total = planeDictionary.Count();
+        metadata.Total = deltasApplied.Count();
         metadata.Detailed = congregatedFrame.Planes.Count();
         
 
