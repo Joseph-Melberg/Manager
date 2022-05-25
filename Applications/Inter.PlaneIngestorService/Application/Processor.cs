@@ -31,6 +31,7 @@ public class Processor : IStandardConsumer
             {
                 throw new Exception($"Could not process {message}");
             }
+            Console.WriteLine("I am running");
             await _service.HandleMessageAsync(package.ToDomain());
         }
         catch (Exception ex)
