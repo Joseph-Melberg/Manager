@@ -66,10 +66,9 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         timer.Stop();
         Console.WriteLine($"This process took {timer.ElapsedMilliseconds} milliseconds");
         }
-        catch (System.Exception)
+        catch (System.Exception ex)
         {
-            
-            throw;
+            Console.WriteLine(ex) ;
         }
     }
     private Dictionary<string, Plane> CompilePlaneDeltas(Dictionary<string, Plane> running, PlaneFrame applying)
