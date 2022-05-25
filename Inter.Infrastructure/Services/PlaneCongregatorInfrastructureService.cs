@@ -29,9 +29,14 @@ public class PlaneCongregatorInfrastructureService : IPlaneCongregatorInfrastruc
         return result;
     }
 
-    public Task<IEnumerable<Plane>> CollectPlaneStatesAsync()
+    public async Task<IEnumerable<Plane>> CollectPlaneStatesAsync()
     {
-        throw new System.NotImplementedException();
+        var result = new List<Plane>();
+        await foreach(var plane in _planeCacheRepository.GetPlaneRecordAsync())
+        {
+            result.Add(plane);
+        }
+        return result;
     }
 
     public async Task UploadCongregatedPlanesAsync(PlaneFrame frame) => await _planeCacheRepository.InsertCongregatedPlaneFrameAsync(frame);

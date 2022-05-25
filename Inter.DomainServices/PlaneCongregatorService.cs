@@ -20,6 +20,9 @@ public class PlaneCongregatorService : IPlaneCongregatorService
     public async Task CongregatePlaneInfoAsync(long timestamp)
     {
         var timer = new Stopwatch();
+        try
+        {
+            
         timer.Start();
         var offsetTimestamp = timestamp - 1; // look at the previous previous second
         // compile from redis
@@ -62,6 +65,12 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         await _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
         timer.Stop();
         Console.WriteLine($"This process took {timer.ElapsedMilliseconds} milliseconds");
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }
     }
     private Dictionary<string, Plane> CompilePlaneDeltas(Dictionary<string, Plane> running, PlaneFrame applying)
     {
@@ -99,6 +108,5 @@ public class PlaneCongregatorService : IPlaneCongregatorService
             planeDictionary[plane.hexValue] = currentRecord;
         }
     }
-
     private T OverwriteIfNotNull<T>(T current, T proposed) => (current != null ? proposed : current);
 }

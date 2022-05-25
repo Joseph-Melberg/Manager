@@ -96,13 +96,13 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
         await DB.StringSetAsync(ToPlaneRecordKey(model.hexValue),plane.ToModel().ToPayload(), FinalPlaneRecordLifespan);
     }
 
-    public async IAsyncEnumerable<Plane> GetPlaneRecordAsync(long timestampe)
+    public async IAsyncEnumerable<Plane> GetPlaneRecordAsync()
     {
         var filter = ToPlaneRecordKey("*");
         await foreach(var key in Server.KeysAsync(pattern:filter))
         {
             var keysections = key.ToString().Split("_");
-            yield return (await DB.StringGetAsync(ToPlaneRecordKey(keysections[3]))).ToModel().ToDomain();
+            yield return (await DB.StringGetAsync(ToPlaneRecordKey(keysections[2]))).ToModel().ToDomain();
         }
     }
     public string ToKey( PlaneFrame frame) => $"plane_{frame.Now}";
