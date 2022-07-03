@@ -7,7 +7,7 @@ namespace Inter.Infrastructure.Redis.Mappers;
 
 public static class PlaneMapper
 {
-    public static PlaneModel ToModel(this Plane model)
+    public static PlaneModel ToModel(this TimeAnotatedPlane model)
     {
         if(model == null)
         {
@@ -17,18 +17,26 @@ public static class PlaneMapper
         return new PlaneModel()
         {
             altitude = model.Altitude,
+            altitude_update = model.AltitudeUpdated,
             category = model.Category,
+            category_update = model.CategoryUpdated,
             flight = model.Flight,
+            flight_update = model.FlightUpdated,
             hexValue = model.HexValue,
             lat = model.Latitude,
             lon = model.Longitude,
             messages = model.Messages,
             nucp = model.Nucp,
+            position_update = model.PositionUpdated,
             rssi = model.Rssi,
             speed = model.Speed,
+            speed_update = model.SpeedUpdated,
             squawk = model.Squawk,
+            squawk_update = model.SquawkUpdated,
             track = model.Track,
-            vert_rate = model.VerticleRate
+            track_update = model.TrackUpdated,
+            vert_rate = model.VerticleRate,
+            vert_update = model.VerticleRateUpdated
         };
     }
 
