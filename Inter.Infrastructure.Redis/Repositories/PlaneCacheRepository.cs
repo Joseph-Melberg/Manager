@@ -92,8 +92,8 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
 
     public async Task UpdatePlaneRecordAsync(Plane plane)
     {
-        var model = plane.ToModel();
-        await DB.StringSetAsync(ToPlaneRecordKey(model.hexValue),plane.ToModel().ToPayload(), FinalPlaneRecordLifespan);
+        var model = ((TimeAnotatedPlane)plane).ToModel();
+        await DB.StringSetAsync(ToPlaneRecordKey(model.hexValue),model.ToPayload(), FinalPlaneRecordLifespan);
     }
 
     public async IAsyncEnumerable<TimeAnotatedPlane> GetPlaneRecordAsync()
