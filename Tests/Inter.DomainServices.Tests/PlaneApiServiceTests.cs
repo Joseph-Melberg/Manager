@@ -20,7 +20,7 @@ public class PlaneApiServiceTests
         _frame = new PlaneFrame()
         {
             Now = 1,
-            Planes = new Plane[]
+            Planes = new TimeAnotatedPlane[]
             {
 
             }

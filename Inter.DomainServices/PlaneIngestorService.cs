@@ -18,21 +18,18 @@ public class PlaneIngestorService : IPlaneIngestorService
 
     public async Task HandleMessageAsync(PlaneFrame frame)
     {
-        //upload newest frame
         var insertTask = _infrastructure.IngestPlaneFrameAsync(frame);
 
         var metadataTask = HandleMetadata(frame);
 
-        var deltaTask = CalculateDelta(frame);
-        
-        await Task.WhenAll(insertTask,metadataTask, deltaTask);
+        await Task.WhenAll(insertTask,metadataTask);
     }
 
     private async Task HandleMetadata(PlaneFrame frame)
     {
         var metadata = new PlaneFrameMetadata();
         metadata.Total = frame.Planes.Count();
-        metadata.Detailed = frame.Planes.Where(_ => _.lat.HasValue && _.lon.HasValue).Count();
+        metadata.Detailed = frame.Planes.Where(_ => _.Latitude.HasValue && _.Longitude.HasValue).Count();
 
         metadata.Antenna = frame.Antenna;
         metadata.Hostname = frame.Source;
@@ -41,82 +38,36 @@ public class PlaneIngestorService : IPlaneIngestorService
         await _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
     }
 
-    private async Task CalculateDelta(PlaneFrame frame)
+
+    private TimeAnotatedPlane CalculateDifference(TimeAnotatedPlane selected, Dictionary<string, TimeAnotatedPlane> current)
     {
-        var planeSource = new PlaneSourceDefintion { Antenna = frame.Antenna, Node = frame.Source};
-
-        var currentState = await _infrastructure.GetPlaneSourceStateAsync(planeSource);
-        var updateStateTask = _infrastructure.SetPlaneSourceStateAsync(planeSource,frame);
-
-        var delta = new PlaneFrameDelta()
-        {
-            Antenna = frame.Antenna,
-            Now = frame.Now,
-            Source = frame.Source,
-            Interval = frame.Now - currentState.Now,
-            Planes = CreateDelta(frame, currentState).ToArray()
-        };
-
-        var uploadDeltaTask = _infrastructure.SetPlaneSourceDeltaAsync(planeSource,delta);
-
-        await Task.WhenAll(updateStateTask, uploadDeltaTask);
-
-    }
-    private IEnumerable<Plane> CreateDelta(PlaneFrame entering, PlaneFrame current)
-    {
-        var record = current.Planes.ToDictionary(_ => _.hexValue);
-
-        foreach(var newPlane in entering.Planes.Where(_ => !String.IsNullOrEmpty(_.hexValue)))
-        {
-            if(!record.ContainsKey(newPlane.hexValue))
-            {
-                yield return newPlane;
-            }
-            else
-            {
-                yield return CalculateDifference(newPlane,record);
-            }
-        }
-    }
-
-    private Plane CalculateDifference(Plane selected, Dictionary<string, Plane> current)
-    {
-        if(!current.ContainsKey(selected.hexValue))
+        if(!current.ContainsKey(selected.HexValue))
         {
             return selected;
         }
 
-        var currentRecord = current[selected.hexValue];
+        var currentRecord = current[selected.HexValue];
 
-        return new Plane() 
+        var updatePosition = CompareUpdated(true, false, currentRecord.PositionUpdated, selected.PositionUpdated);
+
+        return new TimeAnotatedPlane() 
         {
-            hexValue = selected.hexValue,
-            altitude = CompareOrNull(currentRecord.altitude, selected.altitude),
-            category = CompareOrNull(currentRecord.category, selected.category),
-            flight = CompareOrNull(currentRecord.flight, selected.flight),
-            lat = CompareOrNull(currentRecord.lat, selected.lat),
-            lon = CompareOrNull(currentRecord.lon, selected.lon),
-            messages = CompareOrNull(currentRecord.messages, selected.messages),
-            nucp = CompareOrNull(currentRecord.nucp, selected.nucp),
-            rssi = CompareOrNull(currentRecord.rssi, selected.rssi),
-            speed = CompareOrNull(currentRecord.speed, selected.speed),
-            squawk = CompareOrNull(currentRecord.squawk, selected.squawk),
-            track = CompareOrNull(currentRecord.track, selected.track), 
-            vert_rate = CompareOrNull(currentRecord.vert_rate, selected.vert_rate)
+            HexValue = selected.HexValue,
+            Altitude = CompareUpdated(currentRecord.Altitude, selected.Altitude, currentRecord.AltitudeUpdated, selected.AltitudeUpdated),
+            Category = CompareUpdated(currentRecord.Category, selected.Category, currentRecord.CategoryUpdated, selected.CategoryUpdated),
+            Flight = CompareUpdated(currentRecord.Flight, selected.Flight, currentRecord.FlightUpdated, selected.FlightUpdated),
+            Latitude = (updatePosition ? currentRecord.Latitude: selected.Latitude),
+            Longitude = (updatePosition ? currentRecord.Longitude: selected.Longitude),
+            Nucp = (updatePosition ? currentRecord.Nucp: selected.Nucp),
+            Rssi = 0,
+            Speed = CompareUpdated(currentRecord.Speed, selected.Speed, currentRecord.SpeedUpdated, selected.SpeedUpdated),
+            Squawk = CompareUpdated(currentRecord.Squawk, selected.Squawk, currentRecord.SquawkUpdated, selected.SquawkUpdated),
+            Track = CompareUpdated(currentRecord.Track, selected.Track, currentRecord.TrackUpdated, selected.TrackUpdated), 
+            Messages = "0",
+            VerticleRate = CompareUpdated(currentRecord.VerticleRate, selected.VerticleRate, currentRecord.VerticleRateUpdated, selected.VerticleRateUpdated)
         };
     }
 
-    private string CompareOrNull(string currentValue, string selectedValue) =>
-        (!string.IsNullOrEmpty(selectedValue) &&
-            (string.IsNullOrEmpty(currentValue) ? string.Compare(currentValue,selectedValue) != 0 : true))
-            ? selectedValue : (string) null;
-    private float? CompareOrNull(float? currentValue, float? selectedValue) =>
-        (selectedValue.HasValue &&  
-            (currentValue.HasValue ? currentValue.Value != selectedValue : true))
-         ? selectedValue : (float?)null;    
-    private int? CompareOrNull(int? currentValue, int? selectedValue) =>
-        (selectedValue.HasValue &&  
-            (currentValue.HasValue ? currentValue.Value != selectedValue : true))
-         ? selectedValue : null;    
-
+    private T CompareUpdated<T>(T currentValue, T selectedValue, ulong? currentUpdated, ulong? selectedUpdated) =>
+        (currentUpdated ?? 0) > (selectedUpdated ?? 0) ? currentValue : selectedValue;
 }

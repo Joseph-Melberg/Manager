@@ -29,9 +29,9 @@ public class PlaneCongregatorInfrastructureService : IPlaneCongregatorInfrastruc
         return result;
     }
 
-    public async Task<IEnumerable<Plane>> CollectPlaneStatesAsync()
+    public async Task<IEnumerable<TimeAnotatedPlane>> CollectPlaneStatesAsync()
     {
-        var result = new List<Plane>();
+        var result = new List<TimeAnotatedPlane>();
         await foreach(var plane in _planeCacheRepository.GetPlaneRecordAsync())
         {
             result.Add(plane);

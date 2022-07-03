@@ -9,19 +9,19 @@ public static class PlaneMapper
        if(data == null) return null;
        return new Plane
        {
-            altitude = data.altitude,
-            category = data.category,
-            flight = data.flight,
-            hexValue = data.hex,
-            lat = data.lat,
-            lon = data.lon,
-            messages = data.messages,
-            nucp = data.nucp,
-            rssi = data.rssi,
-            speed = data.speed,
-            squawk = data.squawk,
-            track = data.track,
-            vert_rate = data.vert_rate
+            Altitude = data.altitude,
+            Category = data.category,
+            Flight = data.flight,
+            HexValue = data.hex,
+            Latitude = data.lat,
+            Longitude = data.lon,
+            Messages = data.messages,
+            Nucp = data.nucp,
+            Rssi = data.rssi,
+            Speed = data.speed,
+            Squawk = data.squawk,
+            Track = data.track,
+            VerticleRate = data.vert_rate
        };
     }
 }

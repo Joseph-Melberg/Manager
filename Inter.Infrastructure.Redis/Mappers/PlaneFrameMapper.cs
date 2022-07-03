@@ -15,7 +15,7 @@ public static class PlaneFrameMapper
             {
                 Antenna = source.Antenna,
                 Source = source.Node,
-                Planes = new Plane[0],
+                Planes = new TimeAnotatedPlane[0],
                 Now = 0
             };
         }

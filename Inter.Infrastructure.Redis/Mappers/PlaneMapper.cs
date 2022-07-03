@@ -16,19 +16,19 @@ public static class PlaneMapper
 
         return new PlaneModel()
         {
-            altitude = model.altitude,
-            category = model.category,
-            flight = model.flight,
-            hexValue = model.hexValue,
-            lat = model.lat,
-            lon = model.lon,
-            messages = model.messages,
-            nucp = model.nucp,
-            rssi = model.rssi,
-            speed = model.speed,
-            squawk = model.squawk,
-            track = model.track,
-            vert_rate = model.vert_rate
+            altitude = model.Altitude,
+            category = model.Category,
+            flight = model.Flight,
+            hexValue = model.HexValue,
+            lat = model.Latitude,
+            lon = model.Longitude,
+            messages = model.Messages,
+            nucp = model.Nucp,
+            rssi = model.Rssi,
+            speed = model.Speed,
+            squawk = model.Squawk,
+            track = model.Track,
+            vert_rate = model.VerticleRate
         };
     }
 
@@ -56,28 +56,28 @@ public static class PlaneMapper
         };
         return plane;
     }
-    public static Plane ToDomain(this PlaneModel model)
+    public static TimeAnotatedPlane ToDomain(this PlaneModel model)
     {
         if(model == null)
         {
             return null;
         }
 
-        return new Plane()
+        return new TimeAnotatedPlane()
         {
-            altitude = model.altitude,
-            category = model.category,
-            flight = model.flight,
-            hexValue = model.hexValue,
-            lat = model.lat,
-            lon = model.lon,
-            messages = model.messages,
-            nucp = model.nucp,
-            rssi = model.rssi,
-            speed = model.speed,
-            squawk = model.squawk,
-            track = model.track,
-            vert_rate = model.vert_rate
+            Altitude = model.altitude,
+            Category = model.category,
+            Flight = model.flight,
+            HexValue = model.hexValue,
+            Latitude = model.lat,
+            Longitude = model.lon,
+            Messages = model.messages,
+            Nucp = model.nucp,
+            Rssi = model.rssi,
+            Speed = model.speed,
+            Squawk = model.squawk,
+            Track = model.track,
+            VerticleRate = model.vert_rate
         };
     }
     public static string ToPayload(this PlaneModel plane) => JsonConvert.SerializeObject(plane);

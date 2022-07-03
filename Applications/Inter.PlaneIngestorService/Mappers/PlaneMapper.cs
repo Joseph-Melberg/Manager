@@ -4,24 +4,32 @@ using Inter.PlaneIngestorService.Models;
 namespace Inter.PlaneIngestorService.Mappers;
 public static class PlaneMapper
 {
-    public static Plane ToDomain(this AirplaneData data)
+    public static TimeAnotatedPlane ToDomain(this AirplaneData data)
     {
        if(data == null) return null;
-       return new Plane
+       return new TimeAnotatedPlane
        {
-            altitude = data.altitude ?? null,
-            category = data.category,
-            flight = data.flight,
-            hexValue = data.hex,
-            lat = data.lat ?? null,
-            lon = data.lon ?? null,
-            messages = data.messages,
-            nucp = data.nucp,
-            rssi = data.rssi ?? null,
-            speed = data.speed ?? null,
-            squawk = data.squawk,
-            track = data.track ?? null,
-            vert_rate = data.vert_rate ?? null
+            Altitude = data.altitude ?? null,
+            AltitudeUpdated = data.altitude_update,
+            Category = data.category,
+            CategoryUpdated = data.category_update,
+            Flight = data.flight,
+            FlightUpdated = data.flight_update,
+            HexValue = data.hex,
+            Latitude = data.lat ?? null,
+            Longitude = data.lon ?? null,
+            PositionUpdated = data.position_update,
+            Messages = data.messages,
+            Nucp = data.nucp,
+            Rssi = data.rssi ?? null,
+            Speed = data.speed ?? null,
+            SpeedUpdated = data.speed_update,
+            Squawk = data.squawk,
+            SquawkUpdated = data.squawk_update,
+            Track = data.track ?? null,
+            TrackUpdated = data.track_update,
+            VerticleRate = data.vert_rate ?? null,
+            VerticleRateUpdated = data.vert_update
        };
     }
 }

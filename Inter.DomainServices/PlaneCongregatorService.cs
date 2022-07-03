@@ -20,6 +20,25 @@ public class PlaneCongregatorService : IPlaneCongregatorService
     public async Task CongregatePlaneInfoAsync(long timestamp)
     {
         var timer = new Stopwatch();
+
+        try
+        {
+            timer.Start();
+
+            var nodeStates = await _infrastructure.CollectPlaneStatesAsync();
+
+        }
+        catch (System.Exception)
+        {
+            
+            throw;
+        }        
+
+
+
+
+
+
         try
         {
             
@@ -27,15 +46,13 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         var offsetTimestamp = timestamp - 1; // look at the previous previous second
         // compile from redis
         var planeDictionary = (await _infrastructure.CollectPlaneStatesAsync())
-            .ToDictionary(_ => _.hexValue);
+            .ToDictionary(_ => _.HexValue);
 
         //get deltas
         var deltas = await _infrastructure.CollectDeltaFramesAsync(offsetTimestamp);
-        //sort by interval
         var combinedDeltas = deltas
-            .OrderByDescending(_ => _.Interval)
         //compress into dictionary
-            .Aggregate(new Dictionary<string,Plane>(), 
+            .Aggregate(new Dictionary<string,TimeAnotatedPlane>(), 
                 (sum, frame) => CompilePlaneDeltas(sum, frame));
 
         //replace planes
@@ -47,7 +64,7 @@ public class PlaneCongregatorService : IPlaneCongregatorService
 
         congregatedFrame.Now = offsetTimestamp;
         congregatedFrame.Planes = deltasApplied
-            .Where(_ => _.Value.lat != null && _.Value.lon != null)
+            .Where(_ => _.Value.Latitude != null && _.Value.Longitude != null)
             .Select(_ => _.Value)
             .ToArray();
         congregatedFrame.Source = "congregation";
@@ -74,7 +91,7 @@ public class PlaneCongregatorService : IPlaneCongregatorService
             Console.WriteLine(ex) ;
         }
     }
-    private Dictionary<string, Plane> CompilePlaneDeltas(Dictionary<string, Plane> running, PlaneFrame applying)
+    private Dictionary<string, TimeAnotatedPlane> CompilePlaneDeltas(Dictionary<string, TimeAnotatedPlane> running, PlaneFrame applying)
     {
         foreach(var plane in applying.Planes)
         {
@@ -84,31 +101,32 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         return running;
 
     }
-    private void SafeAdd(Dictionary<string,Plane> planeDictionary, Plane plane)
+    private void SafeAdd(Dictionary<string,TimeAnotatedPlane> planeDictionary, TimeAnotatedPlane plane)
     {
-        if(!planeDictionary.ContainsKey(plane.hexValue))
+        if(!planeDictionary.ContainsKey(plane.HexValue))
         {
-            planeDictionary.Add(plane.hexValue,plane);
+            planeDictionary.Add(plane.HexValue,plane);
         }
         else
         {
-            var currentRecord = planeDictionary.GetValueOrDefault(plane.hexValue);
+            var currentRecord = planeDictionary.GetValueOrDefault(plane.HexValue);
 
-            currentRecord.altitude = OverwriteIfNotNull(currentRecord.altitude,plane.altitude);
-            currentRecord.category = OverwriteIfNotNull(currentRecord.category,plane.category);
-            currentRecord.flight = OverwriteIfNotNull(currentRecord.flight,plane.flight);
-            currentRecord.lat = OverwriteIfNotNull(currentRecord.lat,plane.lat);
-            currentRecord.lon = OverwriteIfNotNull(currentRecord.lon,plane.lon);
-            currentRecord.messages = OverwriteIfNotNull(currentRecord.messages,plane.messages);
-            currentRecord.nucp = OverwriteIfNotNull(currentRecord.nucp,plane.nucp);
-            currentRecord.rssi = OverwriteIfNotNull(currentRecord.rssi,plane.rssi);
-            currentRecord.speed = OverwriteIfNotNull(currentRecord.speed,plane.speed);
-            currentRecord.squawk = OverwriteIfNotNull(currentRecord.squawk,plane.squawk);
-            currentRecord.track = OverwriteIfNotNull(currentRecord.track,plane.track);
-            currentRecord.vert_rate = OverwriteIfNotNull(currentRecord.vert_rate,plane.vert_rate);
+            currentRecord.Altitude = OverwriteIfNotNull(currentRecord.Altitude,plane.Altitude);
+            currentRecord.Category = OverwriteIfNotNull(currentRecord.Category,plane.Category);
+            currentRecord.Flight = OverwriteIfNotNull(currentRecord.Flight,plane.Flight);
+            currentRecord.Latitude = OverwriteIfNotNull(currentRecord.Latitude,plane.Latitude);
+            currentRecord.Longitude = OverwriteIfNotNull(currentRecord.Longitude,plane.Longitude);
+            currentRecord.Messages = "0";
+            currentRecord.Nucp = OverwriteIfNotNull(currentRecord.Nucp,plane.Nucp);
+            currentRecord.Rssi = 0; 
+            currentRecord.Speed = OverwriteIfNotNull(currentRecord.Speed,plane.Speed);
+            currentRecord.Squawk = OverwriteIfNotNull(currentRecord.Squawk,plane.Squawk);
+            currentRecord.Track = OverwriteIfNotNull(currentRecord.Track,plane.Track);
+            currentRecord.VerticleRate = OverwriteIfNotNull(currentRecord.VerticleRate,plane.VerticleRate);
 
-            planeDictionary[plane.hexValue] = currentRecord;
+            planeDictionary[plane.HexValue] = currentRecord;
         }
     }
+
     private T OverwriteIfNotNull<T>(T current, T proposed) => (proposed != null ? proposed : current); 
 }
