@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Inter.Domain;
 using System;
+using System.Diagnostics;
 
 namespace Inter.DomainServices;
 
@@ -18,67 +19,132 @@ public class PlaneCongregatorService : IPlaneCongregatorService
 
     public async Task CongregatePlaneInfoAsync(long timestamp)
     {
+        var timer = new Stopwatch();
 
         var offsetTimestamp = timestamp - 1; // look at the previous previous second
-        var planeDictionary = new Dictionary<string,Plane>();
-        await foreach(var frame in _infrastructure.CollectFramesAsync(offsetTimestamp))
+        timer.Start();
+
+        var totalState = new Dictionary<string,TimeAnotatedPlane>();
+
+        await foreach(var planeFrame in _infrastructure.CollectPlaneStatesAsync(offsetTimestamp))
         {
-            //record info
-            //combine
-            foreach(var plane in frame.Planes)
+            foreach(var plane in planeFrame.Planes)
             {
-                SafeAdd(planeDictionary,plane);
+                SafeAdd(totalState,plane);
             }
         }
 
         var congregatedFrame = new PlaneFrame();
 
         congregatedFrame.Now = offsetTimestamp;
-        congregatedFrame.Planes = planeDictionary.Where(_ => _.Value.lat != null && _.Value.lon != null).Select(_ => _.Value).ToArray();
+        congregatedFrame.Planes = totalState
+            .Where(_ => 
+                _.Value.Latitude != null && 
+                _.Value.Longitude != null && 
+                (((long)(_.Value.PositionUpdated.Value)/1000 + 30 )> offsetTimestamp))
+            .Select(_ => _.Value)
+            .ToArray();
+            Console.WriteLine(congregatedFrame.Planes.Count());
         congregatedFrame.Source = "congregation";
         congregatedFrame.Antenna = "congregator";
-
-        await _infrastructure.UploadCongregatedPlanesAsync(congregatedFrame);
+        
+        var uploadCongregationTask = _infrastructure.UploadCongregatedPlanesAsync(congregatedFrame);
 
         var metadata = new PlaneFrameMetadata();
-        metadata.Total = planeDictionary.Count();
-        metadata.Detailed = congregatedFrame.Planes.Count();
         
-
+        metadata.Total = congregatedFrame.Planes.Count();
+        metadata.Detailed = congregatedFrame.Planes.Count();
         metadata.Antenna = congregatedFrame.Antenna;
         metadata.Hostname = congregatedFrame.Source;
         metadata.Timestamp = DateTime.UnixEpoch.AddSeconds(congregatedFrame.Now);
 
-        await _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
+        var uploadMetadataTask = _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
+        await Task.WhenAll(uploadCongregationTask,uploadMetadataTask);
+    
+        try
+        {
+            
+        }
+        catch (System.Exception ex)
+        {
+            Console.WriteLine(ex);    
+            throw;
+        }
+        timer.Stop();
+        Console.WriteLine("total"  + timer.ElapsedMilliseconds);
+    }
+    private TimeAnotatedPlane CalculateDifference(TimeAnotatedPlane selected, Dictionary<string, TimeAnotatedPlane> current)
+    {
+        if(!current.ContainsKey(selected.HexValue))
+        {
+            return selected;
+        }
+
+        var currentRecord = current[selected.HexValue];
+
+        var updatePosition = CompareUpdated(true, false, currentRecord.PositionUpdated, selected.PositionUpdated);
+
+        return new TimeAnotatedPlane() 
+        {
+            HexValue = selected.HexValue,
+            Altitude = CompareUpdated(currentRecord.Altitude, selected.Altitude, currentRecord.AltitudeUpdated, selected.AltitudeUpdated),
+            Category = CompareUpdated(currentRecord.Category, selected.Category, currentRecord.CategoryUpdated, selected.CategoryUpdated),
+            Flight = CompareUpdated(currentRecord.Flight, selected.Flight, currentRecord.FlightUpdated, selected.FlightUpdated),
+            Latitude = (updatePosition ? currentRecord.Latitude: selected.Latitude),
+            Longitude = (updatePosition ? currentRecord.Longitude: selected.Longitude),
+            Nucp = (updatePosition ? currentRecord.Nucp: selected.Nucp),
+            Rssi = 0,
+            Speed = CompareUpdated(currentRecord.Speed, selected.Speed, currentRecord.SpeedUpdated, selected.SpeedUpdated),
+            Squawk = CompareUpdated(currentRecord.Squawk, selected.Squawk, currentRecord.SquawkUpdated, selected.SquawkUpdated),
+            Track = CompareUpdated(currentRecord.Track, selected.Track, currentRecord.TrackUpdated, selected.TrackUpdated), 
+            Messages = "0",
+            VerticleRate = CompareUpdated(currentRecord.VerticleRate, selected.VerticleRate, currentRecord.VerticleRateUpdated, selected.VerticleRateUpdated)
+        };
     }
 
-
-    private void SafeAdd(Dictionary<string,Plane> planeDictionary, Plane plane)
+    private T CompareUpdated<T>(T currentValue, T selectedValue, ulong? currentUpdated, ulong? selectedUpdated) =>
+        (currentUpdated ?? 0) > (selectedUpdated ?? 0) ? currentValue : selectedValue;
+    private void SafeAdd(Dictionary<string,TimeAnotatedPlane> planeDictionary, TimeAnotatedPlane plane)
     {
-        if(!planeDictionary.ContainsKey(plane.hexValue))
+        if(!planeDictionary.ContainsKey(plane.HexValue))
         {
-            planeDictionary.Add(plane.hexValue,plane);
+            planeDictionary.Add(plane.HexValue,plane);
         }
         else
         {
-            var currentRecord = planeDictionary.GetValueOrDefault(plane.hexValue);
+            var timer = new Stopwatch();
+            timer.Start();
+            var currentRecord = planeDictionary.GetValueOrDefault(plane.HexValue);
+            var updatePosition = CompareUpdated(true, false, currentRecord.PositionUpdated, plane.PositionUpdated);
 
-            currentRecord.altitude = OverwriteIfNull(currentRecord.altitude,plane.altitude);
-            currentRecord.category = OverwriteIfNull(currentRecord.category,plane.category);
-            currentRecord.flight = OverwriteIfNull(currentRecord.flight,plane.flight);
-            currentRecord.lat = OverwriteIfNull(currentRecord.lat,plane.lat);
-            currentRecord.lon = OverwriteIfNull(currentRecord.lon,plane.lon);
-            currentRecord.messages = OverwriteIfNull(currentRecord.messages,plane.messages);
-            currentRecord.nucp = OverwriteIfNull(currentRecord.nucp,plane.nucp);
-            currentRecord.rssi = OverwriteIfNull(currentRecord.rssi,plane.rssi);
-            currentRecord.speed = OverwriteIfNull(currentRecord.speed,plane.speed);
-            currentRecord.squawk = OverwriteIfNull(currentRecord.squawk,plane.squawk);
-            currentRecord.track = OverwriteIfNull(currentRecord.track,plane.track);
-            currentRecord.vert_rate = OverwriteIfNull(currentRecord.vert_rate,plane.vert_rate);
+            currentRecord.Altitude = CompareUpdated(currentRecord.Altitude, plane.Altitude, currentRecord.AltitudeUpdated, plane.AltitudeUpdated);
+            currentRecord.AltitudeUpdated = BestUpdated(currentRecord.AltitudeUpdated,plane.AltitudeUpdated);
+            currentRecord.Category = CompareUpdated(currentRecord.Category,plane.Category, currentRecord.CategoryUpdated, plane.CategoryUpdated);
+            currentRecord.CategoryUpdated = BestUpdated(currentRecord.CategoryUpdated, plane.CategoryUpdated);
+            currentRecord.Flight = CompareUpdated(currentRecord.Flight, plane.Flight, currentRecord.FlightUpdated, plane.FlightUpdated);
+            currentRecord.FlightUpdated = BestUpdated(currentRecord.FlightUpdated, plane.FlightUpdated);
+            currentRecord.Latitude = (updatePosition ? currentRecord.Latitude : plane.Latitude);
+            currentRecord.Longitude = (updatePosition ? currentRecord.Longitude : plane.Longitude);
+            currentRecord.Messages = "0";
+            currentRecord.Nucp = (updatePosition ? currentRecord.Nucp : plane.Nucp);
+            currentRecord.PositionUpdated = BestUpdated(currentRecord.PositionUpdated, plane.PositionUpdated);
+            currentRecord.Rssi = 0; //not important
+            currentRecord.Speed = CompareUpdated(currentRecord.Speed, plane.Speed,currentRecord.SpeedUpdated, plane.SpeedUpdated);
+            currentRecord.SpeedUpdated = BestUpdated(currentRecord.SpeedUpdated,plane.SpeedUpdated);
+            currentRecord.Squawk = CompareUpdated(currentRecord.Squawk, plane.Squawk, currentRecord.SquawkUpdated, plane.SquawkUpdated);
+            currentRecord.SquawkUpdated = BestUpdated(currentRecord.SpeedUpdated, plane.SquawkUpdated);
+            currentRecord.Track = CompareUpdated(currentRecord.Track, plane.Track, currentRecord.TrackUpdated, plane.TrackUpdated);
+            currentRecord.TrackUpdated = BestUpdated(currentRecord.TrackUpdated, plane.TrackUpdated);
+            currentRecord.VerticleRate = CompareUpdated(currentRecord.VerticleRate, plane.VerticleRate, currentRecord.VerticleRateUpdated, plane.VerticleRateUpdated);
+            currentRecord.VerticleRateUpdated = BestUpdated(currentRecord.VerticleRateUpdated, plane.VerticleRateUpdated);
 
-            planeDictionary[plane.hexValue] = currentRecord;
+            planeDictionary[plane.HexValue] = currentRecord;
+
+            Console.WriteLine(timer.ElapsedMilliseconds);
         }
     }
 
-    private T OverwriteIfNull<T>(T current, T proposed) => (current == null ? proposed : current);
+    private ulong BestUpdated(ulong? currentUpdated, ulong? selectedUpdated) => 
+        (currentUpdated ?? 0) > (selectedUpdated ?? 0) ? 
+        currentUpdated ?? 0 : selectedUpdated ?? 0;
 }

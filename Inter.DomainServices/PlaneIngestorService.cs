@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Inter.Domain;
@@ -17,11 +18,18 @@ public class PlaneIngestorService : IPlaneIngestorService
 
     public async Task HandleMessageAsync(PlaneFrame frame)
     {
-        await _infrastructure.IngestPlaneFrameAsync(frame);
+        var insertTask = _infrastructure.IngestPlaneFrameAsync(frame);
+
+        var metadataTask = HandleMetadata(frame);
+
+        await Task.WhenAll(insertTask,metadataTask);
+    }
+
+    private async Task HandleMetadata(PlaneFrame frame)
+    {
         var metadata = new PlaneFrameMetadata();
         metadata.Total = frame.Planes.Count();
-        metadata.Detailed = frame.Planes.Where(_ => _.lat.HasValue && _.lon.HasValue).Count();
-        
+        metadata.Detailed = frame.Planes.Where(_ => _.Latitude.HasValue && _.Longitude.HasValue).Count();
 
         metadata.Antenna = frame.Antenna;
         metadata.Hostname = frame.Source;

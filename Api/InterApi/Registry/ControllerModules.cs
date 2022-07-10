@@ -6,8 +6,6 @@ using Inter.Infrastructure.Services;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Repositories;
-using Inter.Infrastructure.Couchbase;
-using Melberg.Infrastructure.Couchbase;
 using Melberg.Infrastructure.MySql;
 
 namespace InterApi.Registry

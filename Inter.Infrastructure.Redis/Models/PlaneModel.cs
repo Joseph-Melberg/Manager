@@ -3,6 +3,14 @@ namespace Inter.Infrastructure.Redis.Models;
 public class PlaneModel
 {
     public string hexValue {get; set;}
+    public ulong? squawk_update {get; set;}
+    public ulong? flight_update {get; set;}
+    public ulong? position_update {get; set;}
+    public ulong? altitude_update {get; set;}
+    public ulong? vert_update {get; set;}
+    public ulong? track_update {get; set;}
+    public ulong? speed_update {get; set;}
+    public ulong? category_update {get; set;}
     public string squawk {get; set;}
     public string flight {get; set;}
     public float? lat {get; set;}

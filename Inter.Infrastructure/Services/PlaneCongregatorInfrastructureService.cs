@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Core;
@@ -18,17 +19,15 @@ public class PlaneCongregatorInfrastructureService : IPlaneCongregatorInfrastruc
         _influxPlaneMetadataRepository = planeFrameMetadataRepository;
     }
 
-    public async IAsyncEnumerable<PlaneFrame> CollectFramesAsync(long timestamp)
-    {
-        await foreach(var plane in _planeCacheRepository.GetPreCongregatedPlaneFramesAsync(timestamp))
-        {
-           yield return plane;
-        }
-
-        yield break;
-    }
+    public IAsyncEnumerable<PlaneFrame> CollectPlaneStatesAsync(long timestamp) => 
+        _planeCacheRepository.GetPreCongregatedPlaneFramesAsync(timestamp);
 
     public async Task UploadCongregatedPlanesAsync(PlaneFrame frame) => await _planeCacheRepository.InsertCongregatedPlaneFrameAsync(frame);
 
     public async Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata metadata) => await _influxPlaneMetadataRepository.LogPlaneMetadata(metadata);
+
+    public async Task UploadPlaneStates(IEnumerable<Plane> planes)
+    {
+        await Task.WhenAll(planes.Select(_ => _planeCacheRepository.UpdatePlaneRecordAsync(_)));
+    }
 }

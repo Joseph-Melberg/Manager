@@ -12,14 +12,15 @@ public class PlaneIngestorServiceTests
     private Mock<IPlaneIngestorInfrastructureService> _infraMock;
     private PlaneIngestorService _service;
     private PlaneFrame _frame;
-    private Plane _plane;
+    private TimeAnotatedPlane _plane;
 
     [TestInitialize]
     public void Initialize()
     {
-        _plane = new Plane()
+        _plane = new TimeAnotatedPlane()
         {
-            altitude = 1
+            Altitude = 1,
+            HexValue = "a"
         };
         _frame = new PlaneFrame()
         {

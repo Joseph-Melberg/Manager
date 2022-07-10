@@ -6,7 +6,8 @@ namespace Inter.Infrastructure.Core;
 
 public interface IPlaneCongregatorInfrastructureService 
 { 
-    IAsyncEnumerable<PlaneFrame> CollectFramesAsync(long timestamp);
+    IAsyncEnumerable<PlaneFrame> CollectPlaneStatesAsync(long timestamp);
+
     Task UploadCongregatedPlanesAsync(PlaneFrame frame);
 
     Task UploadPlaneFrameMetadataAsync(PlaneFrameMetadata metadata);

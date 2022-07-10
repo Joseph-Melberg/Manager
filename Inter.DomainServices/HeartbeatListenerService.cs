@@ -19,7 +19,7 @@ public class HeartbeatListenerService : IHeartbeatListenerService
         var shouldAnnounce = !await _infraservice.GetHeartbeatStateAsync(message.Name);
         var model = new Heartbeat()
         {
-            name = message.Name,
+            name = message.Name.Substring(0,(15 > message.Name.Length) ? message.Name.Length : 15),
             mac = message.Mac,
             timestamp = DateTime.Now,
             announced = shouldAnnounce,
