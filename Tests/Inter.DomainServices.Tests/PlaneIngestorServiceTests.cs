@@ -20,7 +20,7 @@ public class PlaneIngestorServiceTests
         _plane = new TimeAnotatedPlane()
         {
             Altitude = 1,
-            HexValue = "a",
+            HexValue = "a"
         };
         _frame = new PlaneFrame()
         {

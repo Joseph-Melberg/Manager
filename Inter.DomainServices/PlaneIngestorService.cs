@@ -37,6 +37,4 @@ public class PlaneIngestorService : IPlaneIngestorService
 
         await _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
     }
-
-
 }
