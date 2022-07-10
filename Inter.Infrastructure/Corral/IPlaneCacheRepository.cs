@@ -9,11 +9,9 @@ public interface IPlaneCacheRepository
     Task InsertPreCongregatedPlaneFrameAsync(PlaneFrame planeFrame);
     Task UpdatePlaneRecordAsync(Plane plane);
     Task SetPlaneSourceState(PlaneSourceDefintion source, PlaneFrame frame);
-    Task SetPlaneSourceDelta(PlaneSourceDefintion source, PlaneFrameDelta frame);
     IAsyncEnumerable<TimeAnotatedPlane> GetPlaneRecordAsync();
     Task<PlaneFrame> GetPlaneFrameAsync(long timestamp);
     Task<PlaneFrame> GetPreCongregatedPlaneFrameAsync(PlaneSourceDefintion source, long timestamp);
     Task<PlaneFrame> GetPlaneSourceState(PlaneSourceDefintion source);
-    IAsyncEnumerable<PlaneFrameDelta> GetPlaneSourceDeltasAsync(long timestamp);
     IAsyncEnumerable<PlaneFrame> GetPreCongregatedPlaneFramesAsync(long timestamp);
 }

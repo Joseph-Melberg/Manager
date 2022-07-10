@@ -65,31 +65,6 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
     public async Task SetPlaneSourceState(PlaneSourceDefintion source, PlaneFrame frame) =>
         await DB.StringSetAsync(ToStateKey(source), frame.ToModel().ToPayload(),TimeSpan.FromSeconds(60));
 
-    // Delta section 
-    public async Task SetPlaneSourceDelta(PlaneSourceDefintion source, PlaneFrameDelta frame)
-    {
-        await DB.StringSetAsync(ToDeltaKey(source,frame.Now),frame.ToModel().ToPayload(),TimeSpan.FromSeconds(30));
-    }
-    public async Task<PlaneFrame> GetPlaneSourceDelta(PlaneSourceDefintion source, long timestamp)
-    {
-        return (await DB.StringGetAsync(ToDeltaKey(source,timestamp))).ToDomainWithDelta(source);
-    }
-    public async IAsyncEnumerable<PlaneFrameDelta> GetPlaneSourceDeltasAsync(long timestamp)
-    {
-        var filter = ToDeltaKey(new PlaneSourceDefintion() {Antenna = "*", Node = "*"},timestamp);
-        await foreach(var key in Server.KeysAsync(pattern:(filter)))
-        {
-            var keySections = key.ToString().Split("_");
-            var sourceDefinition = new PlaneSourceDefintion()
-            {
-                Node = keySections[2],
-                Antenna = keySections[3]
-            };
-            yield return (await DB.StringGetAsync(key)).ToDomainWithDelta(sourceDefinition);
-        }
-        yield break;
-    }
-
     public async Task UpdatePlaneRecordAsync(Plane plane)
     {
         var model = ((TimeAnotatedPlane)plane).ToModel();
@@ -109,8 +84,6 @@ public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCa
     public string ToCongregatedKey( PlaneFrame frame) => $"plane_congregated_{frame.Now}";
 
     public string ToStateKey(PlaneSourceDefintion source) => $"plane_{source.Node}_{source.Antenna}_state";
-
-    public string ToDeltaKey(PlaneSourceDefintion source, long timestamp) => $"plane_{source.Node}_{source.Antenna}_{timestamp}_delta";
 
     public string ToPreAggregateKey(PlaneSourceDefintion source, long timestamp) => $"plane_preaggregate_{source.Node}_{source.Antenna}_{timestamp}";
 

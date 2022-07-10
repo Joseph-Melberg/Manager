@@ -10,5 +10,4 @@ public interface IPlaneIngestorInfrastructureService
     Task<PlaneFrame> GetPlaneSourceStateAsync(PlaneSourceDefintion source);
 
     Task SetPlaneSourceStateAsync(PlaneSourceDefintion source, PlaneFrame data);
-    Task SetPlaneSourceDeltaAsync(PlaneSourceDefintion source, PlaneFrameDelta data);
 }

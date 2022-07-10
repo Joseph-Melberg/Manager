@@ -74,18 +74,26 @@ public static class PlaneMapper
         return new TimeAnotatedPlane()
         {
             Altitude = model.altitude,
+            AltitudeUpdated = model.altitude_update,
             Category = model.category,
+            CategoryUpdated = model.category_update,
             Flight = model.flight,
+            FlightUpdated = model.flight_update,
             HexValue = model.hexValue,
             Latitude = model.lat,
             Longitude = model.lon,
             Messages = model.messages,
             Nucp = model.nucp,
+            PositionUpdated = model.position_update,
             Rssi = model.rssi,
             Speed = model.speed,
+            SpeedUpdated = model.speed_update,
             Squawk = model.squawk,
+            SquawkUpdated = model.squawk_update,
             Track = model.track,
-            VerticleRate = model.vert_rate
+            TrackUpdated = model.track_update,
+            VerticleRate = model.vert_rate,
+            VerticleRateUpdated = model.vert_update
         };
     }
     public static string ToPayload(this PlaneModel plane) => JsonConvert.SerializeObject(plane);

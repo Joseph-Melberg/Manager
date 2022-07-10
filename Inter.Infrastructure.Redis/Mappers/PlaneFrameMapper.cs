@@ -73,5 +73,12 @@ public static class PlaneFrameMapper
         };
     }
     public static string ToPayload(this PlaneFrameDeltaModel frame) => JsonConvert.SerializeObject(frame);
-    public static string ToPayload(this PlaneFrameModel frame) => JsonConvert.SerializeObject(frame);
+    public static string ToPayload(this PlaneFrameModel frame) 
+    {
+        var result = JsonConvert.SerializeObject(frame);
+
+        
+        return result;
+
+    } 
 }
