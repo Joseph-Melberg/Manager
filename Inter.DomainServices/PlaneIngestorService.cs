@@ -39,35 +39,4 @@ public class PlaneIngestorService : IPlaneIngestorService
     }
 
 
-    private TimeAnotatedPlane CalculateDifference(TimeAnotatedPlane selected, Dictionary<string, TimeAnotatedPlane> current)
-    {
-        if(!current.ContainsKey(selected.HexValue))
-        {
-            return selected;
-        }
-
-        var currentRecord = current[selected.HexValue];
-
-        var updatePosition = CompareUpdated(true, false, currentRecord.PositionUpdated, selected.PositionUpdated);
-
-        return new TimeAnotatedPlane() 
-        {
-            HexValue = selected.HexValue,
-            Altitude = CompareUpdated(currentRecord.Altitude, selected.Altitude, currentRecord.AltitudeUpdated, selected.AltitudeUpdated),
-            Category = CompareUpdated(currentRecord.Category, selected.Category, currentRecord.CategoryUpdated, selected.CategoryUpdated),
-            Flight = CompareUpdated(currentRecord.Flight, selected.Flight, currentRecord.FlightUpdated, selected.FlightUpdated),
-            Latitude = (updatePosition ? currentRecord.Latitude: selected.Latitude),
-            Longitude = (updatePosition ? currentRecord.Longitude: selected.Longitude),
-            Nucp = (updatePosition ? currentRecord.Nucp: selected.Nucp),
-            Rssi = 0,
-            Speed = CompareUpdated(currentRecord.Speed, selected.Speed, currentRecord.SpeedUpdated, selected.SpeedUpdated),
-            Squawk = CompareUpdated(currentRecord.Squawk, selected.Squawk, currentRecord.SquawkUpdated, selected.SquawkUpdated),
-            Track = CompareUpdated(currentRecord.Track, selected.Track, currentRecord.TrackUpdated, selected.TrackUpdated), 
-            Messages = "0",
-            VerticleRate = CompareUpdated(currentRecord.VerticleRate, selected.VerticleRate, currentRecord.VerticleRateUpdated, selected.VerticleRateUpdated)
-        };
-    }
-
-    private T CompareUpdated<T>(T currentValue, T selectedValue, ulong? currentUpdated, ulong? selectedUpdated) =>
-        (currentUpdated ?? 0) > (selectedUpdated ?? 0) ? currentValue : selectedValue;
 }
