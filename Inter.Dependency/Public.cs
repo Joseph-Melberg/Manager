@@ -38,13 +38,6 @@ public static partial class Dependency
 
         return collection.RegisterLifeAlertInfrastructureService();
     }
-    public static IServiceCollection RegisterPlaneListenerService(this IServiceCollection collection)
-    {
-        collection.AddTransient<IPlaneListenerService,PlaneListenerService>();
-
-        
-        return collection.RegisterPlaneListenerInfrastructureService();
-    }
 
     public static IServiceCollection RegisterNodeControllerService(this IServiceCollection collection)
     {
