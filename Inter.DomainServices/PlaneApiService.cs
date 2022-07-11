@@ -14,7 +14,4 @@ public class PlaneApiService : IPlaneApiService
     }
 
     public async Task<PlaneFrame> GetFrameAsync(long timestamp) => await _infra.GetFrameAsync(timestamp);
-
-    public async Task<PlaneFrame> GetFrameByDeviceAsync(string source, string antenna, long timestamp) =>
-        await _infra.GetPreaggregateFrameAsync(source, antenna, timestamp);
 }

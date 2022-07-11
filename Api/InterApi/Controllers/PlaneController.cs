@@ -17,18 +17,6 @@ namespace InterApi.Controllers
         }
 
         [HttpGet]
-        [Route("{source}/frame")]
-        public async Task<PlaneFrame> GetFrameByDeviceAsync(string source, [FromQuery] string antenna,[FromQuery] long? time)
-        { 
-            if (time == null)
-            {
-                time = OffsetUtcNow;
-            }
-
-            return await _service.GetFrameByDeviceAsync(source,antenna,time.Value);
-        }
-
-        [HttpGet]
         [Route("frame")]
         public async Task<PlaneFrame> GetFrameAsync([FromQuery] long? time)
         {

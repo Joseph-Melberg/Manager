@@ -5,7 +5,7 @@ using Inter.Infrastructure.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Inter.DomainService.Tests;
+namespace Inter.DomainServices.Tests;
 
 [TestClass]
 public class HeartbeatListenerServiceTests 
