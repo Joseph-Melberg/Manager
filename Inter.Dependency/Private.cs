@@ -56,16 +56,6 @@ public static partial class Dependency
 
         return collection;
     }
-    private static IServiceCollection RegisterPlaneListenerInfrastructureService(this IServiceCollection collection)
-    {
-        collection.AddTransient<IPlaneListenerInfrastructureService,PlaneListenerInfrastructureService>();
-
-        RedisModule.LoadRedisRepository<IPlaneCacheRepository,PlaneCacheRepository, PlaneCacheContext>(collection);
-
-        MySqlModule.LoadSqlRepository<ILegacyPlaneFrameMetadataRepository,PlaneFrameMetadataRepository,ReadWriteContext>(collection);
-
-        return collection;
-    }
 
     private static IServiceCollection RegisterPlaneApiInfrastructureService(this IServiceCollection collection)        
     {
