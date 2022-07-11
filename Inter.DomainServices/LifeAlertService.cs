@@ -29,27 +29,19 @@ public class LifeAlertService : ILifeAlertService
         var stati = await _infra.GetStatusesAsync();
         foreach( var nodeState in stati)
         {
-            try
+            var announcedState = nodeState.announced;
+            var isStale = IsStale(nodeState);
+            var isAlive = nodeState.online;
+            if (isAlive && isStale)
             {
-                var announcedState = nodeState.announced;
-                var isStale = IsStale(nodeState);
-                var isAlive = nodeState.online;
-                if (isAlive && isStale)
-                {
-                    await UpdateAndAnnounceDeadNodeAsync(nodeState);
-                    updated = true;
-                }
-                else if (!announcedState && !isStale)
-                {
-                    await UpdateAndAnnounceLiveNodeAsync(nodeState);
-                    updated = true;
-                }
+                await UpdateAndAnnounceDeadNodeAsync(nodeState);
+                updated = true;
             }
-            catch (Exception ex)
+            else if (!announcedState && !isStale)
             {
-                Console.WriteLine(ex);
+                await UpdateAndAnnounceLiveNodeAsync(nodeState);
+                updated = true;
             }
-            
         }
         if(updated)
         {

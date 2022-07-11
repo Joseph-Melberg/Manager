@@ -19,10 +19,7 @@ public class PlaneCongregatorService : IPlaneCongregatorService
 
     public async Task CongregatePlaneInfoAsync(long timestamp)
     {
-        var timer = new Stopwatch();
-
         var offsetTimestamp = timestamp - 1; // look at the previous previous second
-        timer.Start();
 
         var totalState = new Dictionary<string,TimeAnotatedPlane>();
 
@@ -60,18 +57,6 @@ public class PlaneCongregatorService : IPlaneCongregatorService
 
         var uploadMetadataTask = _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
         await Task.WhenAll(uploadCongregationTask,uploadMetadataTask);
-    
-        try
-        {
-            
-        }
-        catch (System.Exception ex)
-        {
-            Console.WriteLine(ex);    
-            throw;
-        }
-        timer.Stop();
-        Console.WriteLine("total"  + timer.ElapsedMilliseconds);
     }
     private TimeAnotatedPlane CalculateDifference(TimeAnotatedPlane selected, Dictionary<string, TimeAnotatedPlane> current)
     {
@@ -112,8 +97,6 @@ public class PlaneCongregatorService : IPlaneCongregatorService
         }
         else
         {
-            var timer = new Stopwatch();
-            timer.Start();
             var currentRecord = planeDictionary.GetValueOrDefault(plane.HexValue);
             var updatePosition = CompareUpdated(true, false, currentRecord.PositionUpdated, plane.PositionUpdated);
 
@@ -139,8 +122,6 @@ public class PlaneCongregatorService : IPlaneCongregatorService
             currentRecord.VerticleRateUpdated = BestUpdated(currentRecord.VerticleRateUpdated, plane.VerticleRateUpdated);
 
             planeDictionary[plane.HexValue] = currentRecord;
-
-            Console.WriteLine(timer.ElapsedMilliseconds);
         }
     }
 

@@ -1,8 +1,9 @@
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Inter.DomainServices.Core;
 
 public interface IMetronomeService
 {
-    Task Start();
+    Task StartAsync(CancellationToken cancellationToken);
 }

@@ -13,9 +13,9 @@ public class MetronomeService : IMetronomeService
     {
        _infrastructureService = infrastructureService; 
     }
-    public async Task Start()
+    public async Task StartAsync(CancellationToken cancellationToken)
     {
-        while(true)
+        while(!cancellationToken.IsCancellationRequested)
         {
             await SleepTillNextSecond();
             _infrastructureService.SendTick();

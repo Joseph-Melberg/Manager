@@ -17,7 +17,7 @@ class Program
 
         var service = _serviceProvider.GetRequiredService<IMetronomeService>();
 
-        await service.Start();
+        await service.StartAsync(new System.Threading.CancellationToken());
 
         DisposeServices();
     }
