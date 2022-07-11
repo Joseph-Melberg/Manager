@@ -74,7 +74,7 @@ public class LifeAlertServiceTests
         _service = new LifeAlertService(_infra.Object,_rateConfig.Object,_emailConfig.Object);
     }
     [TestMethod]
-    public async Task LifeAlertService_ProcessNodeUp()
+    public async Task LifeAlertService_ProcessNodeUp_Standard()
     {
         _infra.Setup( _ => _.GetStatusesAsync()).Returns(Task.FromResult(new List<Heartbeat>(){_deadNodeBecameAlive}));
 
@@ -93,9 +93,49 @@ public class LifeAlertServiceTests
     }
 
     [TestMethod]
-    public async Task LifeAlertService_ProcessNodeDown()
+    public async Task LifeAlertService_ProcessNodeUp_StandardException()
+    {
+        _infra.Setup( _ => _.GetStatusesAsync()).Returns(Task.FromResult(new List<Heartbeat>(){_deadNodeBecameAlive}));
+        _infra.Setup( _ => _.SendMessage(It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>())).Throws(new Exception());
+
+
+        await _service.Do();
+
+        var expected = new Heartbeat()
+        {
+            announced = true,
+            mac = _mac,
+            name = _nodeName,
+            online = true
+        };
+
+        _infra.Verify(_ => _.UpdateNodeAsync(It.Is<Heartbeat>(r => CompareHeartbeat(expected,r))),Times.Once);
+        _infra.Verify(_ => _.SendMessage(It.Is<string>(s => String.Compare(s, _email)==0),It.IsAny<string>(),It.IsAny<string>()),Times.Once);
+    }
+
+    [TestMethod]
+    public async Task LifeAlertService_ProcessNodeDown_Standard()
     {
         _infra.Setup( _ => _.GetStatusesAsync()).Returns(Task.FromResult(new List<Heartbeat>(){_livingNodeDied}));
+
+        await _service.Do();
+
+        var expected = new Heartbeat()
+        {
+            announced = false,
+            mac = _mac,
+            name = _nodeName,
+            online = false
+        };
+
+        _infra.Verify(_ => _.UpdateNodeAsync(It.Is<Heartbeat>(r => CompareHeartbeat(expected,r))),Times.Once);
+    }
+
+    [TestMethod]
+    public async Task LifeAlertService_ProcessNodeDown_StandardException()
+    {
+        _infra.Setup( _ => _.GetStatusesAsync()).Returns(Task.FromResult(new List<Heartbeat>(){_livingNodeDied}));
+        _infra.Setup( _ => _.SendMessage(It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>())).Throws(new Exception());
 
         await _service.Do();
 

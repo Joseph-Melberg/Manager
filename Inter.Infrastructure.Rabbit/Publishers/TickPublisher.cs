@@ -1,6 +1,5 @@
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.Rabbit.Messages;
-using Melberg.Core.Rabbit.Configurations;
 using Melberg.Infrastructure.Rabbit.Publishers;
 
 namespace Inter.Infrastructure.Rabbit.Publishers;
