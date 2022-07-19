@@ -19,6 +19,7 @@ public class MetronomeService : IMetronomeService
         {
             await SleepTillNextSecond();
             _infrastructureService.SendTick();
+            Console.WriteLine("Tick sent");
         }
     }    
 
