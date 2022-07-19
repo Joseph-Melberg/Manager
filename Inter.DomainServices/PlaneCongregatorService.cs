@@ -21,7 +21,7 @@ public class PlaneCongregatorService : IPlaneCongregatorService
     {
         var offsetTimestamp = timestamp - 1; // look at the previous previous second
         
-        Console.WriteLine($"Congregating {offsetTimestamp}"):
+        Console.WriteLine($"Congregating {offsetTimestamp}");
 
         var totalState = new Dictionary<string,TimeAnotatedPlane>();
 
