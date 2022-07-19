@@ -20,6 +20,8 @@ public class PlaneCongregatorService : IPlaneCongregatorService
     public async Task CongregatePlaneInfoAsync(long timestamp)
     {
         var offsetTimestamp = timestamp - 1; // look at the previous previous second
+        
+        Console.WriteLine($"Congregating {offsetTimestamp}"):
 
         var totalState = new Dictionary<string,TimeAnotatedPlane>();
 
