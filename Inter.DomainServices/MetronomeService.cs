@@ -32,17 +32,12 @@ public class MetronomeService : IMetronomeService
             {
                 _infrastructureService.SendMinuteTick();
             }
-            //Future me, listen up
-            //Make an IClock to hide the Datetime for testing purposes.
-
-            //Also test it.
-
             Console.WriteLine("Tick sent");
         }
     }    
 
-    private async Task SleepTillNextSecond()
+    private Task SleepTillNextSecond()
     {
-        await Task.Delay(1000 - DateTime.UtcNow.Millisecond);
+        return Task.Delay(1000 - DateTime.UtcNow.Millisecond);
     }
 }

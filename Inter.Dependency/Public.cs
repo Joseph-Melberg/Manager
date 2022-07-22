@@ -1,3 +1,4 @@
+using Inter.Common.Clock;
 using Inter.Common.Configuration;
 using Inter.Common.Configuration.Providers;
 using Inter.DomainServices;
@@ -26,8 +27,10 @@ public static partial class Dependency
     {
        collection.AddTransient<IMetronomeService,MetronomeService>();
 
+
        return collection
-           .RegisterMetronomeInfrastructureService(); 
+            .RegisterClock()
+            .RegisterMetronomeInfrastructureService(); 
     }
 
     public static IServiceCollection RegisterLifeAlertService(this IServiceCollection collection)
@@ -74,4 +77,14 @@ public static partial class Dependency
         
         return collection;
     }
+    #region Misc
+
+    public static IServiceCollection RegisterClock(this IServiceCollection collection)
+    {
+        collection.AddTransient<IClock,Clock>();
+
+        return collection;
+    }
+
+    #endregion Misc
 }
