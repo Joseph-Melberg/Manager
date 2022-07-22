@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Inter.Common.Clock;
 using Inter.Common.Configuration;
 using Inter.Domain;
 using Inter.Infrastructure.Core;
@@ -14,26 +15,50 @@ namespace Inter.DomainServices.Tests;
 public class MetronomeServiceTests
 {
     private Mock<IMetronomeInfrastructureService> _infra;
+    private Mock<IClock> _clockMock;
+    private DateTime _time;
     private MetronomeService _service;
     [TestInitialize]
     public void Initialize()
     {
         _infra = new Mock<IMetronomeInfrastructureService>();
-        _service = new MetronomeService(_infra.Object);
+        _clockMock = new Mock<IClock>();
+        _service = new MetronomeService(_infra.Object,_clockMock.Object);
     }
 
     [TestMethod]
     public async Task Metronome_Standard_Success()
     {
         var tokenSource = new CancellationTokenSource();
+        var time = new DateTime(1,1,1,1,1,0);
+        _clockMock.Setup(_ => _.GetUtcNow()).Returns( new DateTime(1,1,1,1,1,0));
 
         var serviceTask = _service.StartAsync(tokenSource.Token);
 
-        await Task.Delay(5000);
+        await Task.Delay(400);
         tokenSource.Cancel();
 
         await serviceTask;
 
-        _infra.Verify(_ => _.SendTick(),Times.Exactly(6));
+        _infra.Verify(_ => _.SendTick(),Times.Exactly(1));
+        _infra.Verify(_ => _.SendMinuteTick(),Times.Exactly(1));
+    }
+
+    [TestMethod]
+    public async Task Metronome_Standard_Just_Second()
+    {
+        var tokenSource = new CancellationTokenSource();
+        var time = new DateTime(1,1,1,1,1,0);
+        _clockMock.Setup(_ => _.GetUtcNow()).Returns( new DateTime(1,1,1,1,1,1));
+
+        var serviceTask = _service.StartAsync(tokenSource.Token);
+
+        await Task.Delay(400);
+        tokenSource.Cancel();
+
+        await serviceTask;
+
+        _infra.Verify(_ => _.SendTick(),Times.Exactly(1));
+        _infra.Verify(_ => _.SendMinuteTick(),Times.Exactly(0));
     }
 }

@@ -43,6 +43,7 @@ public static partial class Dependency
         collection.AddTransient<IMetronomeInfrastructureService,MetronomeInfrastructureService>();
 
         return collection
+            .RegisterMinutePublisher()
             .RegisterTickPublisher();
     }
 
@@ -109,7 +110,17 @@ public static partial class Dependency
     private static IServiceCollection RegisterTickPublisher(this IServiceCollection collection)
     {
         collection.AddTransient<ITickPublisher,TickPublisher>();
+
         RabbitModule.RegisterPublisher<TickMessage>(collection);
+
+        return collection;
+    }
+    
+    private static IServiceCollection RegisterMinutePublisher(this IServiceCollection collection)
+    {
+        collection.AddTransient<IMinutePublisher,MinutePublisher>();
+
+        RabbitModule.RegisterPublisher<MinuteMessage>(collection);
 
         return collection;
     }

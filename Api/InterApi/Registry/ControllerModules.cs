@@ -1,6 +1,4 @@
-﻿using Inter.DomainServices.Core;
-using Inter.DomainServices;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Services;
 using Inter.Infrastructure.MySQL.Contexts;
