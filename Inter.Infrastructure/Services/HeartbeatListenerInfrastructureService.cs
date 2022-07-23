@@ -7,22 +7,15 @@ namespace Inter.Infrastructure.Services;
 public class HeartbeatListenerInfrastructureService : IHeartbeatListenerInfrastructureService
 {
     private readonly IHeartbeatRepository _heartbeatRepository;
-    public HeartbeatListenerInfrastructureService(IHeartbeatRepository heartBeatRepository)
+    public HeartbeatListenerInfrastructureService(
+        IHeartbeatRepository heartBeatRepository
+        )
     {
         _heartbeatRepository = heartBeatRepository;
     }
 
-    public async Task<bool> GetHeartbeatStateAsync(string name)
-    {
-        var result = await _heartbeatRepository.GetStatusAsync(name);
-        if(result == null)
-        {
-            return false;
-        }
-        return result.online;
-    }
-    public Task UpdateAsync(Heartbeat heartBeat)
-    {
-        return _heartbeatRepository.UpdateAsync(heartBeat);
-    }
+    public Task<Heartbeat> GetHeartbeatStateAsync(string name) =>
+        _heartbeatRepository.GetStatusAsync(name);
+
+    public Task UpdateAsync(Heartbeat heartBeat) => _heartbeatRepository.UpdateAsync(heartBeat);
 }

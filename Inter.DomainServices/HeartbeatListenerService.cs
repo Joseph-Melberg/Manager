@@ -15,17 +15,19 @@ public class HeartbeatListenerService : IHeartbeatListenerService
 
     public async Task Process(HeartbeatPayload message)
     {
-        //We only need to announce if it was off
-        var shouldAnnounce = !await _infraservice.GetHeartbeatStateAsync(message.Name);
+        Heartbeat currentState = await _infraservice.GetHeartbeatStateAsync(message.Name);
+        
         var model = new Heartbeat()
         {
-            name = message.Name.Substring(0,(15 > message.Name.Length) ? message.Name.Length : 15),
+            name = Truncate(message.Name),
             mac = message.Mac,
             timestamp = DateTime.Now,
-            announced = shouldAnnounce,
+            announced = currentState?.announced ?? false,
             online = true
         };
         await _infraservice.UpdateAsync(model);
         Console.WriteLine($"Heartbeat from {message.Name} was proccessed");
     }
+
+    private string Truncate(string value) => value.Substring(0, Math.Min(value.Length, 15));
 }

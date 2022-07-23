@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Inter.Domain;
-public class NodeStatusModel 
+public class NodeStatus 
 {
     public string Name;
     public DateTime Timestamp;

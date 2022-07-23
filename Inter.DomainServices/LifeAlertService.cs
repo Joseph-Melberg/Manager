@@ -4,80 +4,75 @@ using Inter.Common.Configuration;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 using Inter.Domain;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Inter.DomainServices;
 public class LifeAlertService : ILifeAlertService
 {
     private readonly ILifeAlertInfrastructureService _infra;
     private readonly ILifeAlertRateConfiguration _rateConfig;
-    private readonly IEmailRecipientConfiguration _emailConfig;
     public LifeAlertService(
         ILifeAlertInfrastructureService infrastructureService,
-        ILifeAlertRateConfiguration rateConfiguration,
-        IEmailRecipientConfiguration emailRecipientConfiguration)
+        ILifeAlertRateConfiguration rateConfiguration
+    )
     {
         _infra = infrastructureService;
         _rateConfig = rateConfiguration;
-        _emailConfig = emailRecipientConfiguration;
     }
 
     public async Task Do()
     {
         Console.WriteLine("LifeAlert triggered");
-        var updated = false;
-        //Gather the entries that need to be announced
-        var stati = await _infra.GetStatusesAsync();
-        foreach( var nodeState in stati)
+        await Task.WhenAll(await UpdateLifeStates(await _infra.GetStatusesAsync()).ToArrayAsync());
+    }
+    private async IAsyncEnumerable<Task> UpdateLifeStates(IEnumerable<Heartbeat> states)
+    {
+        foreach(var state in states)
         {
-            var announcedState = nodeState.announced;
-            var isStale = IsStale(nodeState);
-            var isAlive = nodeState.online;
-            if (isAlive && isStale)
-            {
-                await UpdateAndAnnounceDeadNodeAsync(nodeState);
-                updated = true;
-            }
-            else if (!announcedState && !isStale)
-            {
-                await UpdateAndAnnounceLiveNodeAsync(nodeState);
-                updated = true;
-            }
-        }
-        if(updated)
-        {
-            Console.WriteLine("Updates sent");
+            //This can't be parallelized because the MySQL connection doesn't allow it.
+            yield return await ProcessStatus(state);
         }
     }
-    private async Task UpdateAndAnnounceDeadNodeAsync(Heartbeat nodeState)
+    private Task<Task> ProcessStatus(Heartbeat nodeState)
     {
-        try
+        var announcedState = nodeState.announced;
+        var isStale = IsStale(nodeState);
+        var isAlive = nodeState.online;
+        if (isAlive && isStale)
         {
-            _infra.SendMessage(_emailConfig.Recipient, "Report", $"{nodeState.name} is offline");
+            return UpdateAndAnnounceDeadNodeAsync(nodeState);
         }
-        catch(Exception ex)
+        else if (!announcedState && !isStale)
         {
-            Console.WriteLine(ex);
+            return UpdateAndAnnounceLiveNodeAsync(nodeState);
         }
+        return Task.FromResult(Task.CompletedTask);
+    }
+    private async Task<Task> UpdateAndAnnounceDeadNodeAsync(Heartbeat nodeState)
+    {
         nodeState.announced = false;
         nodeState.online = false;
-        await _infra.UpdateNodeAsync(nodeState);
         Console.WriteLine($"{nodeState.name} is offline");
+        await _infra.UpdateNodeAsync(nodeState);
+        return MarkStateChange(nodeState.name, nodeState.online);
     }
-    private async Task UpdateAndAnnounceLiveNodeAsync(Heartbeat nodeState)
+    private async Task<Task> UpdateAndAnnounceLiveNodeAsync(Heartbeat nodeState)
     {
-        try
-        {
-            _infra.SendMessage(_emailConfig.Recipient, "Report", $"{nodeState.name} is online");
-        }
-        catch(Exception ex)
-        {
-            Console.WriteLine(ex);
-        }
-
         nodeState.announced = true;
         nodeState.online = true;
-        await _infra.UpdateNodeAsync(nodeState);
         Console.WriteLine($"{nodeState.name} is online");
+        await _infra.UpdateNodeAsync(nodeState);
+        return MarkStateChange(nodeState.name, nodeState.online);
     }
+
+    
+    private async Task MarkStateChange(string name, bool finalStatus) 
+    {
+       await _infra.MarkStateAsync(new NodeStatus() {Name = name, Online = !finalStatus}); 
+       await Task.Delay(100);
+       await _infra.MarkStateAsync(new NodeStatus() {Name = name, Online = finalStatus}); 
+    } 
+
     private bool IsStale(Heartbeat nodeState) => nodeState.timestamp.AddMinutes(_rateConfig.Rate) < DateTime.Now;
 }

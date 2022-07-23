@@ -11,9 +11,5 @@ public class PlaneFrameMetadataRepository : BaseInfluxDBRepository<InfluxDBConte
 {
     public PlaneFrameMetadataRepository(InfluxDBContext context) : base(context) { }
 
-    public async Task LogPlaneMetadata(PlaneFrameMetadata metadata)
-    {
-        var data = metadata.ToDataModel();
-        await Context.WritePointAsync(data,"plane_data", "Inter");
-    }
+    public Task LogPlaneMetadata(PlaneFrameMetadata metadata) => Context.WritePointAsync(metadata.ToDataModel(),"plane_data", "Inter");
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Text.Json;
 using System.Threading.Tasks;
-using Inter.Domain;
 using Inter.DomainServices.Core;
 using Inter.HeartbeatListenerAppService.Mappers;
 using Inter.HeartbeatListenerAppService.Messages;

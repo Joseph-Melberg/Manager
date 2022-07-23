@@ -5,14 +5,14 @@ namespace InterApi.Mappers
 {
     public static class NodeStatusMapper
     {
-        public static NodeStatus ToServiceModelLowDetail(this Heartbeat heartbeat)
+        public static NodeStatusResponse ToServiceModelLowDetail(this Heartbeat heartbeat)
         {
             if(heartbeat == null)
             {
                 return null;
             }
 
-            return new NodeStatus
+            return new NodeStatusResponse
             {
                 LastHeartbeat = heartbeat.timestamp,
                 Name = heartbeat.name,

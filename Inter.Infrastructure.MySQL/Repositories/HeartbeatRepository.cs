@@ -25,32 +25,40 @@ public class HeartbeatRepository : BaseRepository<HeartbeatContext>, IHeartbeatR
 
     public async Task UpdateAsync(Heartbeat heartbeat)
     {
-        var heartbeatModel = heartbeat.ToModel();
-        if (Context.Heartbeat.AsNoTracking().Any(_ => _.name == heartbeatModel.name))
+        try
         {
-            try
+            var heartbeatModel = heartbeat.ToModel();
+            if (Context.Heartbeat.AsNoTracking().Any(_ => _.name == heartbeatModel.name))
             {
-                Context.ChangeTracker.Clear();
-                Context.Update(heartbeatModel);
+                try
+                {
+                    Context.Heartbeat.Update(heartbeatModel);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine(ex);
-            }
-        }
-        else
-        {
-            Console.WriteLine($"Node {heartbeatModel.name} was added");
-            try
-            {
-                await Context.Heartbeat.AddAsync(heartbeatModel);
+                Console.WriteLine($"Node {heartbeatModel.name} was added");
+                try
+                {
+                    await Context.Heartbeat.AddAsync(heartbeatModel);
 
+                }
+                catch ( Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
-            catch ( Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
+            await Context.SaveAsync();
+            Context.ChangeTracker.Clear();
         }
-        await Context.SaveAsync();
+        catch (System.Exception ex)
+        {
+            
+            throw;
+        }
     }
 }
