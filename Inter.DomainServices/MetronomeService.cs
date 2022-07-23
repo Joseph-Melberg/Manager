@@ -31,8 +31,9 @@ public class MetronomeService : IMetronomeService
             if(time == 0)
             {
                 _infrastructureService.SendMinuteTick();
+                Console.WriteLine("Minute sent.");
             }
-            Console.WriteLine("Tick sent");
+            Console.WriteLine("Tick sent.");
         }
     }    
 

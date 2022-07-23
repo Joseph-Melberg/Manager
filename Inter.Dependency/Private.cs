@@ -3,6 +3,7 @@ using Inter.Common.Configuration.Providers;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.InfluxDB.Contexts;
+using Inter.Infrastructure.InfluxDB.Repositories;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Rabbit.Messages;
@@ -32,7 +33,7 @@ public static partial class Dependency
     private static IServiceCollection RegisterPlaneCongregatorInfrastructureService(this IServiceCollection collection)
     {
         collection.AddTransient<IPlaneCongregatorInfrastructureService,PlaneCongregatorInfrastructureService>();
-        InfluxDBModule.LoadInfluxDBRepository<IPlaneFrameMetadataRepository,Inter.Infrastructure.InfluxDB.Repositories.PlaneFrameMetadataRepository,InfluxDBContext>(collection);
+        InfluxDBModule.LoadInfluxDBRepository<IPlaneFrameMetadataRepository, Infrastructure.InfluxDB.Repositories.PlaneFrameMetadataRepository, InfluxDBContext>(collection);
 
         return collection
                 .RegisterPlaneCacheRepository();
@@ -54,6 +55,7 @@ public static partial class Dependency
         collection.AddSingleton<IEmailConfiguration,EmailConfigurationProvider>();
 
         MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
+        InfluxDBModule.LoadInfluxDBRepository<INodeStateMarkRepository,NodeStateMarkRepository,InfluxDBContext>(collection);
 
         return collection;
     }
@@ -81,6 +83,7 @@ public static partial class Dependency
         collection.AddTransient<IHeartbeatListenerInfrastructureService,HeartbeatListenerInfrastructureService>();
         
         MySqlModule.LoadSqlRepository<IHeartbeatRepository, HeartbeatRepository, HeartbeatContext>(collection);
+
 
         return collection;
     }

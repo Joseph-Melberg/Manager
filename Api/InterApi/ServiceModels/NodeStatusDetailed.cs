@@ -1,6 +1,6 @@
 namespace InterApi.ServiceModels
 {
-    public class NodeStatusDetailed : NodeStatus
+    public class NodeStatusDetailed : NodeStatusResponse
     {
         public string Mac {get; set;}
     }

@@ -21,9 +21,9 @@ jobs:
         tokenSuffix: '}'
         files: '["${{env.REPLACESETTINGS}}"]'
       env:
+        RABBIT_PASSWORD : ${{secrets.RABBIT_PASSWORD}}
         MYSQL_CONNECTION_STRING : ${{secrets.MYSQL_CONNECTION_STRING}}
-        NOTIFICATION_PASSWORD : ${{secrets.NOTIFICATION_PASSWORD}}
-        NOTIFICATION_EMAIL : ${{secrets.NOTIFICATION_EMAIL}}
+        INFLUXDB_TOKEN : ${{secrets.INFLUXDB_TOKEN}}
     - 
       name: Replace Appsettings
       run: cp ${{env.REPLACESETTINGS}} ${{env.APPSETTINGS}}

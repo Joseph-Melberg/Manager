@@ -2,7 +2,7 @@ using System;
 
 namespace InterApi.ServiceModels
 {
-    public class NodeStatus
+    public class NodeStatusResponse
     {
         public string Name {get; set;}
 

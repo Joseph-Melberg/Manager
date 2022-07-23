@@ -13,7 +13,6 @@ namespace Inter.DomainServices.Tests;
 public class LifeAlertServiceTests 
 {
     private Mock<ILifeAlertInfrastructureService> _infra;
-    private Mock<IEmailRecipientConfiguration> _emailConfig;
     private Mock<ILifeAlertRateConfiguration> _rateConfig;
     private LifeAlertService _service;
     private string _mac = "mac address";
@@ -66,12 +65,10 @@ public class LifeAlertServiceTests
 
         _infra = new Mock<ILifeAlertInfrastructureService>();
         _rateConfig = new Mock<ILifeAlertRateConfiguration>();
-        _emailConfig = new Mock<IEmailRecipientConfiguration>();
 
         _rateConfig.Setup(_ => _.Rate).Returns(_rate);
-        _emailConfig.Setup(_ => _.Recipient).Returns(_email);
 
-        _service = new LifeAlertService(_infra.Object,_rateConfig.Object,_emailConfig.Object);
+        _service = new LifeAlertService(_infra.Object,_rateConfig.Object);
     }
     [TestMethod]
     public async Task LifeAlertService_ProcessNodeUp_Standard()
@@ -89,28 +86,8 @@ public class LifeAlertServiceTests
         };
 
         _infra.Verify(_ => _.UpdateNodeAsync(It.Is<Heartbeat>(r => CompareHeartbeat(expected,r))),Times.Once);
-        _infra.Verify(_ => _.SendMessage(It.Is<string>(s => String.Compare(s, _email)==0),It.IsAny<string>(),It.IsAny<string>()),Times.Once);
-    }
-
-    [TestMethod]
-    public async Task LifeAlertService_ProcessNodeUp_StandardException()
-    {
-        _infra.Setup( _ => _.GetStatusesAsync()).Returns(Task.FromResult(new List<Heartbeat>(){_deadNodeBecameAlive}));
-        _infra.Setup( _ => _.SendMessage(It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>())).Throws(new Exception());
-
-
-        await _service.Do();
-
-        var expected = new Heartbeat()
-        {
-            announced = true,
-            mac = _mac,
-            name = _nodeName,
-            online = true
-        };
-
-        _infra.Verify(_ => _.UpdateNodeAsync(It.Is<Heartbeat>(r => CompareHeartbeat(expected,r))),Times.Once);
-        _infra.Verify(_ => _.SendMessage(It.Is<string>(s => String.Compare(s, _email)==0),It.IsAny<string>(),It.IsAny<string>()),Times.Once);
+        _infra.Verify(_ => _.MarkStateAsync(It.Is<NodeStatus>(_ => _.Online == false)),Times.Once);
+        _infra.Verify(_ => _.MarkStateAsync(It.Is<NodeStatus>(_ => _.Online == true)),Times.Once);
     }
 
     [TestMethod]
@@ -129,26 +106,11 @@ public class LifeAlertServiceTests
         };
 
         _infra.Verify(_ => _.UpdateNodeAsync(It.Is<Heartbeat>(r => CompareHeartbeat(expected,r))),Times.Once);
+        
+        _infra.Verify(_ => _.MarkStateAsync(It.Is<NodeStatus>(_ => _.Online == false)),Times.Once);
+        _infra.Verify(_ => _.MarkStateAsync(It.Is<NodeStatus>(_ => _.Online == true)),Times.Once);
     }
 
-    [TestMethod]
-    public async Task LifeAlertService_ProcessNodeDown_StandardException()
-    {
-        _infra.Setup( _ => _.GetStatusesAsync()).Returns(Task.FromResult(new List<Heartbeat>(){_livingNodeDied}));
-        _infra.Setup( _ => _.SendMessage(It.IsAny<string>(),It.IsAny<string>(),It.IsAny<string>())).Throws(new Exception());
-
-        await _service.Do();
-
-        var expected = new Heartbeat()
-        {
-            announced = false,
-            mac = _mac,
-            name = _nodeName,
-            online = false
-        };
-
-        _infra.Verify(_ => _.UpdateNodeAsync(It.Is<Heartbeat>(r => CompareHeartbeat(expected,r))),Times.Once);
-    }
 
     [TestMethod]
     public async Task LifeAlertService_NothingHappened()
@@ -158,6 +120,7 @@ public class LifeAlertServiceTests
         await _service.Do();
 
         _infra.Verify(_ => _.UpdateNodeAsync(It.IsAny<Heartbeat>()),Times.Never);
+        _infra.Verify(_ => _.MarkStateAsync(It.IsAny<NodeStatus>()),Times.Never);
     }
     private static bool CompareHeartbeat(Heartbeat expected, Heartbeat actual)
     {

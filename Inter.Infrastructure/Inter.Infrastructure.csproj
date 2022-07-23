@@ -7,7 +7,7 @@
 		<Folder Include="Corral\"/>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7"/>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Inter.Domain\Inter.Domain.csproj"/>

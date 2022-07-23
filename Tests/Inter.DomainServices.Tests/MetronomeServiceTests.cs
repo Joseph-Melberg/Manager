@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Inter.Common.Clock;
-using Inter.Common.Configuration;
-using Inter.Domain;
 using Inter.Infrastructure.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
