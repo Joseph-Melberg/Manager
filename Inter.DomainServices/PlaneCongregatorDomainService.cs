@@ -5,14 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Inter.Domain;
 using System;
-using System.Diagnostics;
 
 namespace Inter.DomainServices;
 
-public class PlaneCongregatorService : IPlaneCongregatorService
+public class PlaneCongregatorDomainService : IPlaneCongregatorDomainService
 {
     private readonly IPlaneCongregatorInfrastructureService _infrastructure;
-    public PlaneCongregatorService(IPlaneCongregatorInfrastructureService infrastructure)
+    public PlaneCongregatorDomainService(IPlaneCongregatorInfrastructureService infrastructure)
     {
         _infrastructure = infrastructure;
     }

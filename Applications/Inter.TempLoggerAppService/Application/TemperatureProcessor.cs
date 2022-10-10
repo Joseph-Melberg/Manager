@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using Inter.DomainServices.Core;
 using Inter.TempLoggerAppService.Mappers;
@@ -12,16 +13,16 @@ using Melberg.Infrastructure.Rabbit.Translator;
 namespace Inter.TempLoggerAppService.Application;
 public class TemperatureProcessor : IStandardConsumer
 {
-    private readonly ITemperatureListenerService _service;
+    private readonly ITemperatureListenerDomainService _service;
     private readonly IJsonToObjectTranslator<TemperatureMessage> _translator;
     public TemperatureProcessor(
-        ITemperatureListenerService service,
+        ITemperatureListenerDomainService service,
         IJsonToObjectTranslator<TemperatureMessage> translator)
     {
         _translator = translator;
         _service = service;
     }
-    public async Task ConsumeMessageAsync(Message message)
+    public async Task ConsumeMessageAsync(Message message, CancellationToken ct)
     {
         Stopwatch watch = new Stopwatch();
         watch.Start();

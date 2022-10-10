@@ -8,11 +8,11 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace Inter.DomainServices;
-public class LifeAlertService : ILifeAlertService
+public class LifeAlertDomainService : ILifeAlertDomainService
 {
     private readonly ILifeAlertInfrastructureService _infra;
     private readonly ILifeAlertRateConfiguration _rateConfig;
-    public LifeAlertService(
+    public LifeAlertDomainService(
         ILifeAlertInfrastructureService infrastructureService,
         ILifeAlertRateConfiguration rateConfiguration
     )
@@ -70,7 +70,7 @@ public class LifeAlertService : ILifeAlertService
     private async Task MarkStateChange(string name, bool finalStatus) 
     {
        await _infra.MarkStateAsync(new NodeStatus() {Name = name, Online = !finalStatus}); 
-       await Task.Delay(100);
+       await Task.Delay(1000);
        await _infra.MarkStateAsync(new NodeStatus() {Name = name, Online = finalStatus}); 
     } 
 

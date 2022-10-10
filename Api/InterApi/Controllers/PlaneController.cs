@@ -12,8 +12,8 @@ namespace InterApi.Controllers
     [Route("[controller]")]
     public class PlaneController : ControllerBase
     {
-        private IPlaneApiService _service;
-        public PlaneController(IPlaneApiService service)
+        private IPlaneApiDomainService _service;
+        public PlaneController(IPlaneApiDomainService service)
         {
             _service = service;
         }

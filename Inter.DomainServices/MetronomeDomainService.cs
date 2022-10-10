@@ -7,11 +7,11 @@ using Inter.Infrastructure.Core;
 
 namespace Inter.DomainServices;
 
-public class MetronomeService : IMetronomeService
+public class MetronomeDomainService : IMetronomeDomainService
 {
     private readonly IClock _clock;
     private readonly IMetronomeInfrastructureService _infrastructureService;
-    public MetronomeService(
+    public MetronomeDomainService(
         IMetronomeInfrastructureService infrastructureService,
         IClock clock)
     {

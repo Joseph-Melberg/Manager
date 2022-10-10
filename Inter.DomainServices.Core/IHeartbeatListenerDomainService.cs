@@ -2,7 +2,7 @@
 using Inter.Domain;
 
 namespace Inter.DomainServices.Core;
-public interface ILogListenerService
+public interface IHeartbeatListenerDomainService
 {
-    Task Process(LogMessage message);
+    Task Process(HeartbeatPayload message);
 }

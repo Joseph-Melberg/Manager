@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 
 namespace Inter.DomainServices.Core;
-public interface ILifeAlertService
+public interface ILifeAlertDomainService
 {
     Task Do();
 }

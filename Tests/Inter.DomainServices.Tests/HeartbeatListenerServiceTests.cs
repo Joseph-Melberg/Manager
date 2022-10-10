@@ -11,7 +11,7 @@ namespace Inter.DomainServices.Tests;
 public class HeartbeatListenerServiceTests 
 {
     private Mock<IHeartbeatListenerInfrastructureService> _infra;
-    private HeartbeatListenerService _service;
+    private HeartbeatListenerDomainService _service;
 
     private static string _nodeName = "NODE";
     private static Heartbeat _noRecord = null;
@@ -28,7 +28,7 @@ public class HeartbeatListenerServiceTests
     public void Initialize()
     {
         _infra = new Mock<IHeartbeatListenerInfrastructureService>();
-        _service = new HeartbeatListenerService(_infra.Object);
+        _service = new HeartbeatListenerDomainService(_infra.Object);
     }
 
     [TestMethod]

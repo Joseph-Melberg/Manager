@@ -8,10 +8,10 @@ namespace Inter.PlaneCongregatorService.Application;
 
 public class Processor : IStandardConsumer
 {
-    private readonly IPlaneCongregatorService _service;
+    private readonly IPlaneCongregatorDomainService _service;
     private readonly IJsonToObjectTranslator<TickMessage> _translator;
     public Processor(
-        IPlaneCongregatorService service,
+        IPlaneCongregatorDomainService service,
         IJsonToObjectTranslator<TickMessage> translator
     ) 
     { 
@@ -19,7 +19,7 @@ public class Processor : IStandardConsumer
         _translator = translator;    
     }
 
-    public async Task ConsumeMessageAsync(Message message)
+    public async Task ConsumeMessageAsync(Message message, CancellationToken ct)
     {
         var tickMessage = _translator.Translate(message);
 

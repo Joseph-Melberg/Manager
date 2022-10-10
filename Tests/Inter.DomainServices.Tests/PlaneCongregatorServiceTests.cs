@@ -11,7 +11,7 @@ namespace Inter.DomainServices.Tests;
 public class PlaneCongregatorServiceTests
 {
     private Mock<IPlaneCongregatorInfrastructureService> _infra;
-    private PlaneCongregatorService _service;
+    private PlaneCongregatorDomainService _service;
 
     [TestInitialize]
     public void Initialize()
@@ -20,7 +20,7 @@ public class PlaneCongregatorServiceTests
 
 
 
-        _service = new PlaneCongregatorService(_infra.Object);
+        _service = new PlaneCongregatorDomainService(_infra.Object);
     }
 
     [TestMethod]

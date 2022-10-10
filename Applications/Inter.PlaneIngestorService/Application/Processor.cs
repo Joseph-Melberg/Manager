@@ -12,17 +12,17 @@ namespace Inter.PlaneIngestorService.Application;
 
 public class Processor : IStandardConsumer
 {
-    private readonly IPlaneIngestorService _service;
+    private readonly IPlaneIngestorDomainService _service;
     private readonly IJsonToObjectTranslator<PlaneIngestionMessage> _translator;
     public Processor(
-        IPlaneIngestorService service,
+        IPlaneIngestorDomainService service,
         IJsonToObjectTranslator<PlaneIngestionMessage> translator
     ) 
     {
         _service = service;
         _translator = translator;
     } 
-    public async Task ConsumeMessageAsync(Message message)
+    public async Task ConsumeMessageAsync(Message message, CancellationToken ct)
     {
         try
         {

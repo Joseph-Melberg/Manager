@@ -4,10 +4,10 @@ using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 
 namespace Inter.DomainServices;
-public class TemperatureListenerService : ITemperatureListenerService
+public class TemperatureListenerDomainService : ITemperatureListenerDomainService
 {
     private readonly ITemperatureListenerInfrastructureService _infraservice;
-    public TemperatureListenerService(ITemperatureListenerInfrastructureService infrastructureService)
+    public TemperatureListenerDomainService(ITemperatureListenerInfrastructureService infrastructureService)
     {
         _infraservice = infrastructureService;
     }

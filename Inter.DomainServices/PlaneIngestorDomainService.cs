@@ -8,10 +8,10 @@ using Inter.Infrastructure.Core;
 
 namespace Inter.DomainServices;
 
-public class PlaneIngestorService : IPlaneIngestorService
+public class PlaneIngestorDomainService : IPlaneIngestorDomainService
 {
     private readonly IPlaneIngestorInfrastructureService _infrastructure;
-    public PlaneIngestorService(IPlaneIngestorInfrastructureService infrastructureService)
+    public PlaneIngestorDomainService(IPlaneIngestorInfrastructureService infrastructureService)
     {
         _infrastructure = infrastructureService;
     }

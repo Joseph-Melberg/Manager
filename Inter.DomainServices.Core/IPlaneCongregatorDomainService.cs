@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 namespace Inter.DomainServices.Core;
 
-public interface IPlaneCongregatorService
+public interface IPlaneCongregatorDomainService
 {
     Task CongregatePlaneInfoAsync(long timestamp);
 }

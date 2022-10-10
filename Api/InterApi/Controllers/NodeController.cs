@@ -11,8 +11,8 @@ namespace InterApi.Controllers
     [Route("[controller]")]
     public class NodeController : ControllerBase
     {
-        private INodeApiService _service;
-        public NodeController( INodeApiService service)
+        private INodeApiDomainService _service;
+        public NodeController( INodeApiDomainService service)
         {
             _service = service;
         }

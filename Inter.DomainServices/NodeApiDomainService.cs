@@ -6,11 +6,11 @@ using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 
 namespace Inter.DomainServices;
-public class NodeApiService : INodeApiService
+public class NodeApiDomainService : INodeApiDomainService
 {
     private readonly INodeApiInfrastructureService _infra;
 
-    public NodeApiService(INodeApiInfrastructureService infra)
+    public NodeApiDomainService(INodeApiInfrastructureService infra)
     {
         _infra = infra;
     }

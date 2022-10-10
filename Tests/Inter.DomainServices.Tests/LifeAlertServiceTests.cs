@@ -14,7 +14,7 @@ public class LifeAlertServiceTests
 {
     private Mock<ILifeAlertInfrastructureService> _infra;
     private Mock<ILifeAlertRateConfiguration> _rateConfig;
-    private LifeAlertService _service;
+    private LifeAlertDomainService _service;
     private string _mac = "mac address";
     private string _nodeName = "Bob";
     private Heartbeat _livingNodeDied;
@@ -68,7 +68,7 @@ public class LifeAlertServiceTests
 
         _rateConfig.Setup(_ => _.Rate).Returns(_rate);
 
-        _service = new LifeAlertService(_infra.Object,_rateConfig.Object);
+        _service = new LifeAlertDomainService(_infra.Object,_rateConfig.Object);
     }
     [TestMethod]
     public async Task LifeAlertService_ProcessNodeUp_Standard()
