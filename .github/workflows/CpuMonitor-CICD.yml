@@ -67,7 +67,7 @@ jobs:
     needs: build-publish
     runs-on: ubuntu-latest
     env:
-      TAG: temperaturelistener
+      TAG: cpumonitor
     steps:
     - 
       name: Run SSH command
