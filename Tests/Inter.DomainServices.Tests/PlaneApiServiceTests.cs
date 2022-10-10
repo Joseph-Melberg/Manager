@@ -11,7 +11,7 @@ public class PlaneApiServiceTests
 {
     private Mock<IPlaneApiInfrastructureService> _infra;
 
-    private PlaneApiService _service;
+    private PlaneApiDomainService _service;
     private PlaneFrame _frame;
 
     [TestInitialize]
@@ -30,7 +30,7 @@ public class PlaneApiServiceTests
 
         _infra.Setup(_ => _.GetFrameAsync(It.IsAny<long>())).Returns(Task.FromResult(_frame));
 
-        _service = new PlaneApiService(_infra.Object);
+        _service = new PlaneApiDomainService(_infra.Object);
     }
 
     [TestMethod]

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Inter.DomainServices.Core;
 
-public interface IMetronomeService
+public interface IMetronomeDomainService
 {
     Task StartAsync(CancellationToken cancellationToken);
 }

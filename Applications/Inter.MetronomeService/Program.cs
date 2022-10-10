@@ -15,7 +15,7 @@ class Program
     {
         RegisterServices();
 
-        var service = _serviceProvider.GetRequiredService<IMetronomeService>();
+        var service = _serviceProvider.GetRequiredService<IMetronomeDomainService>();
 
         await service.StartAsync(new System.Threading.CancellationToken());
 

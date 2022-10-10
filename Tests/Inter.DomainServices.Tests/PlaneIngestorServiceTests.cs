@@ -10,7 +10,7 @@ namespace Inter.DomainServices.Tests;
 public class PlaneIngestorServiceTests
 {
     private Mock<IPlaneIngestorInfrastructureService> _infraMock;
-    private PlaneIngestorService _service;
+    private PlaneIngestorDomainService _service;
     private PlaneFrame _frame;
     private TimeAnotatedPlane _plane;
 
@@ -32,7 +32,7 @@ public class PlaneIngestorServiceTests
         };
 
         _infraMock = new Mock<IPlaneIngestorInfrastructureService>();
-        _service = new PlaneIngestorService(_infraMock.Object);
+        _service = new PlaneIngestorDomainService(_infraMock.Object);
     }
 
     [TestMethod]

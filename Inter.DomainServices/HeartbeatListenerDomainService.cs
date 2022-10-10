@@ -5,10 +5,10 @@ using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 
 namespace Inter.DomainServices;
-public class HeartbeatListenerService : IHeartbeatListenerService
+public class HeartbeatListenerDomainService : IHeartbeatListenerDomainService
 {
     private readonly IHeartbeatListenerInfrastructureService _infraservice;
-    public HeartbeatListenerService(IHeartbeatListenerInfrastructureService infrastructureService)
+    public HeartbeatListenerDomainService(IHeartbeatListenerInfrastructureService infrastructureService)
     {
         _infraservice = infrastructureService;
     }

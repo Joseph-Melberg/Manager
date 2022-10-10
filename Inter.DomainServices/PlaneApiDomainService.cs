@@ -4,11 +4,11 @@ using Inter.Infrastructure.Core;
 using Inter.Domain;
 
 namespace Inter.DomainServices;
-public class PlaneApiService : IPlaneApiService
+public class PlaneApiDomainService : IPlaneApiDomainService
 {
     private readonly IPlaneApiInfrastructureService _infra;
 
-    public PlaneApiService(IPlaneApiInfrastructureService infrastructureService)
+    public PlaneApiDomainService(IPlaneApiInfrastructureService infrastructureService)
     {
         _infra = infrastructureService;
     }

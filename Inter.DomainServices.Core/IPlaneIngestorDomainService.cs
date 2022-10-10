@@ -3,7 +3,7 @@ using Inter.Domain;
 
 namespace Inter.DomainServices.Core;
 
-public interface IPlaneIngestorService
+public interface IPlaneIngestorDomainService
 {
     Task HandleMessageAsync(PlaneFrame frame);
 }

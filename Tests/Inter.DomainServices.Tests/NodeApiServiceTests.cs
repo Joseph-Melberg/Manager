@@ -12,7 +12,7 @@ namespace Inter.DomainServices.Tests;
 public class NodeApiServiceTests
 {
     private Mock<INodeApiInfrastructureService> _infra;
-    private NodeApiService _service;
+    private NodeApiDomainService _service;
     private DateTime _time = DateTime.UtcNow;
     private List<Heartbeat> _current;
     [TestInitialize]
@@ -41,7 +41,7 @@ public class NodeApiServiceTests
 
         _infra.Setup(_ => _.GetStatiAsync()).Returns(Task.FromResult(_current));
 
-        _service = new NodeApiService(_infra.Object);
+        _service = new NodeApiDomainService(_infra.Object);
     }
 
     [TestMethod]

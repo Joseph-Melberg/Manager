@@ -14,13 +14,13 @@ public class MetronomeServiceTests
     private Mock<IMetronomeInfrastructureService> _infra;
     private Mock<IClock> _clockMock;
     private DateTime _time;
-    private MetronomeService _service;
+    private MetronomeDomainService _service;
     [TestInitialize]
     public void Initialize()
     {
         _infra = new Mock<IMetronomeInfrastructureService>();
         _clockMock = new Mock<IClock>();
-        _service = new MetronomeService(_infra.Object,_clockMock.Object);
+        _service = new MetronomeDomainService(_infra.Object,_clockMock.Object);
     }
 
     [TestMethod]

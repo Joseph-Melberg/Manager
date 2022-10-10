@@ -10,7 +10,7 @@ namespace Inter.DomainServices.Tests;
 public class TemperatureListenerServiceTests
 {
     private Mock<ITemperatureListenerInfrastructureService> _infra;
-    private TemperatureListenerService _service;
+    private TemperatureListenerDomainService _service;
     private TemperatureMark _mark;
     [TestInitialize]
     public void TestInitialize()
@@ -21,7 +21,7 @@ public class TemperatureListenerServiceTests
         };
         _infra = new Mock<ITemperatureListenerInfrastructureService>();
 
-        _service = new TemperatureListenerService(_infra.Object);
+        _service = new TemperatureListenerDomainService(_infra.Object);
     }
 
     [TestMethod]

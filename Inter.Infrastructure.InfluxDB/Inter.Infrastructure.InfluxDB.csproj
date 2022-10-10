@@ -3,7 +3,7 @@
 		<ProjectReference Include="..\Inter.Infrastructure\Inter.Infrastructure.csproj"/>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.InfluxDB" Version="6.0.30"/>
+		<PackageReference Include="Melberg.Infrastructure.InfluxDB" Version="6.0.32" />
 	</ItemGroup>
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>

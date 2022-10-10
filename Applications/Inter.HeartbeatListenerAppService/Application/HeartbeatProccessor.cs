@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using Inter.DomainServices.Core;
 using Inter.HeartbeatListenerAppService.Mappers;
@@ -13,17 +14,17 @@ namespace Inter.HeartbeatListenerAppService.Application;
 public class HeartbeatProcessor : IStandardConsumer
 {
 
-    private readonly IHeartbeatListenerService _service;
+    private readonly IHeartbeatListenerDomainService _service;
     private readonly IJsonToObjectTranslator<HeartbeatMessage> _translator;
     public HeartbeatProcessor(
-        IHeartbeatListenerService service,
+        IHeartbeatListenerDomainService service,
         IJsonToObjectTranslator<HeartbeatMessage> translator
         )
     {
         _translator = translator;
         _service = service;
     }
-    public async Task ConsumeMessageAsync(Message message)
+    public async Task ConsumeMessageAsync(Message message, CancellationToken ct)
     {
         Console.WriteLine(" [x] Received {0} at {1}", message, DateTime.Now);
         Stopwatch watch = new Stopwatch();
