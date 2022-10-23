@@ -57,13 +57,13 @@ public class LifeAlertDomainService : ILifeAlertDomainService
         await _infra.UpdateNodeAsync(nodeState);
         return MarkStateChange(nodeState.name, nodeState.online);
     }
-    private async Task<Task> UpdateAndAnnounceLiveNodeAsync(Heartbeat nodeState)
+    private async Task UpdateAndAnnounceLiveNodeAsync(Heartbeat nodeState)
     {
         nodeState.announced = true;
         nodeState.online = true;
         Console.WriteLine($"{nodeState.name} is online");
         await _infra.UpdateNodeAsync(nodeState);
-        return MarkStateChange(nodeState.name, nodeState.online);
+        await MarkStateChange(nodeState.name, nodeState.online);
     }
 
     

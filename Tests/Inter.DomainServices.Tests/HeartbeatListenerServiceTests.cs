@@ -75,7 +75,6 @@ public class HeartbeatListenerServiceTests
             name = standardMessage.Name,
             online = true,
         };
-
         _infra.Verify(_ => _.UpdateAsync(It.Is<Heartbeat>(_ => CompareHeartbeat(expected,_))));
 
     }
