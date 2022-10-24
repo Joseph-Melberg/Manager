@@ -34,7 +34,7 @@ public class LifeAlertDomainService : ILifeAlertDomainService
         var announcedState = nodeState.announced;
         var isStale = IsStale(nodeState);
         var isAlive = nodeState.online;
-        if (true || (isAlive && isStale))
+        if (isAlive && isStale)
         {
             return UpdateAndAnnounceDeadNodeAsync(nodeState);
         }
