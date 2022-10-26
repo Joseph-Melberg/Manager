@@ -28,7 +28,8 @@ public class Processor : IStandardConsumer
                 _ => Encoding.UTF8.GetString(_.Value as byte[] ?? new byte[0]));
 
             var text = Encoding.UTF8.GetString(message.Body);
-            Console.WriteLine(dict["HOST"] + " " + dict["DATE"]+" " + dict["PRIORITY"] + " " + dict["PROGRAM"] + " " + dict["MESSAGE"]);
+            var hasProg = dict.TryGetValue("PROGRAM", out var prog);
+            Console.WriteLine(dict["HOST"] + " " + dict["DATE"]+" " + dict["PRIORITY"] + " " + (hasProg ? dict["PROGRAM"] + " " : "") + dict["MESSAGE"]);
             //await _service.HandleMessageAsync(package.ToDomain());
         }
         catch (Exception ex)
