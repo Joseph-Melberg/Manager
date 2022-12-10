@@ -7,7 +7,7 @@ public class Startup : IAppStartup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        ApplicationModule.AddKeepAlive(services);
+        //ApplicationModule.AddKeepAlive(services);
         Register.RegisterServices(services);
     }
 }
