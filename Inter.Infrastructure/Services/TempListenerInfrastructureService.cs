@@ -6,12 +6,11 @@ using Inter.Infrastructure.Corral;
 namespace Inter.Infrastructure.Services;
 public class TemperatureListenerInfrastructureService : ITemperatureListenerInfrastructureService
 {
-    private ITemperatureRepository _temperatureRepository;
-    public TemperatureListenerInfrastructureService(ITemperatureRepository temperatureRepository)
+    private ITemperatureMarkRepository _temperatureRepository;
+    public TemperatureListenerInfrastructureService(ITemperatureMarkRepository temperatureRepository)
     {
         _temperatureRepository = temperatureRepository;
     } 
-    public async Task InsertTemperatureAsync(TemperatureMark mark) => await _temperatureRepository.RecordTemperatureAsync(mark);
-
-    public async Task SaveRecordsAsync() => await _temperatureRepository.SaveRecordsAsync();
+    public Task InsertTemperatureAsync(TemperatureMark mark) =>
+	    _temperatureRepository.MarkTemperature(mark);
 }

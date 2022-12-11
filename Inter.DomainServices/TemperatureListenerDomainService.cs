@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
+using System.Linq;
 
 namespace Inter.DomainServices;
 public class TemperatureListenerDomainService : ITemperatureListenerDomainService
@@ -12,13 +13,6 @@ public class TemperatureListenerDomainService : ITemperatureListenerDomainServic
         _infraservice = infrastructureService;
     }
 
-    public async Task RecordTempAsync(TemperatureMark[] marks)
-    {
-        foreach(var mark in marks)
-        {
-            await _infraservice.InsertTemperatureAsync(mark);
-        }
-
-        await _infraservice.SaveRecordsAsync();
-    }
+    public Task RecordTempAsync(TemperatureMark[] marks) =>
+	Task.WhenAll(marks.Select(_ => _infraservice.InsertTemperatureAsync(_)));
 }

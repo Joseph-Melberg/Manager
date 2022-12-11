@@ -1,14 +1,13 @@
-using Inter.Dependency;
 using Inter.DomainServices;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
-using Inter.Infrastructure.MySQL.Contexts;
-using Inter.Infrastructure.MySQL.Repositories;
+using Inter.Infrastructure.InfluxDB.Contexts;
+using Inter.Infrastructure.InfluxDB.Repositories;
 using Inter.Infrastructure.Services;
 using Inter.TempLoggerAppService.Application;
 using Inter.TempLoggerAppService.Messages;
-using Melberg.Infrastructure.MySql;
+using Melberg.Infrastructure.InfluxDB;
 using Melberg.Infrastructure.Rabbit;
 using Melberg.Infrastructure.Rabbit.Translator;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,8 +24,8 @@ public class Register
 
         services.AddTransient<ITemperatureListenerInfrastructureService,TemperatureListenerInfrastructureService>();
 
-        MySqlModule.LoadSqlRepository<ITemperatureRepository,TemperatureRepository,TemperatureContext>(services);
        
+        InfluxDBModule.LoadInfluxDBRepository<ITemperatureMarkRepository,TemperatureMarkRepository, InfluxDBContext>(services);
         return services;
     }
 }

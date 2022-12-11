@@ -4,6 +4,7 @@
    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
    "version": "0.2.0",
    "configurations": [
+    
        {
         // Use IntelliSense to find out which attributes exist for C# debugging
         // Use hover for the description of the existing attributes
@@ -14,7 +15,7 @@
         "preLaunchTask": "build",
         "requireExactSource": false,
         // If you have changed target frameworks, make sure to update the program path.
-        "program": "${workspaceFolder}/Applications/Inter.CpuMonitorService/bin/Debug/netcoreapp6.0/Inter.CpuMonitorService.dll",
+        "program": "${workspaceFolder}/Applications/Inter.CpuMonitorService/bin/Debug/net6.0/Inter.CpuMonitorService.dll",
         "args": [],
         "cwd": "${workspaceFolder}/Applications/Inter.CpuMonitorService",
         // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
@@ -77,6 +78,23 @@
         // Use IntelliSense to find out which attributes exist for C# debugging
         // Use hover for the description of the existing attributes
         // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+        "name": "Temperature",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "build",
+        "requireExactSource": false,
+        // If you have changed target frameworks, make sure to update the program path.
+        "program": "${workspaceFolder}/Applications/Inter.TempLoggerAppService/bin/Debug/net6.0/Inter.TempLoggerAppService.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}/Applications/Inter.TempLoggerAppService",
+        // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
+        "console": "internalConsole",
+        "stopAtEntry": false
+        },
+       {
+        // Use IntelliSense to find out which attributes exist for C# debugging
+        // Use hover for the description of the existing attributes
+        // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
         "name": "Congregator",
         "type": "coreclr",
         "request": "launch",
@@ -120,23 +138,6 @@
         "program": "${workspaceFolder}/Applications/Inter.PlaneIngestorService/bin/Debug/net6.0/Inter.PlaneIngestorService.dll",
         "args": [],
         "cwd": "${workspaceFolder}/Applications/Inter.PlaneIngestorService",
-        // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
-        "console": "internalConsole",
-        "stopAtEntry": false
-    },
-       {
-        // Use IntelliSense to find out which attributes exist for C# debugging
-        // Use hover for the description of the existing attributes
-        // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
-        "name": "Temperature Listener",
-        "type": "coreclr",
-        "request": "launch",
-        "preLaunchTask": "build",
-        "requireExactSource": false,
-        // If you have changed target frameworks, make sure to update the program path.
-        "program": "${workspaceFolder}/Applications/Inter.TempLoggerAppService/bin/Debug/netcoreapp6.0/Inter.TempLoggerAppService.dll",
-        "args": [],
-        "cwd": "${workspaceFolder}/Applications/Inter.PlaneListenerService",
         // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
         "console": "internalConsole",
         "stopAtEntry": false

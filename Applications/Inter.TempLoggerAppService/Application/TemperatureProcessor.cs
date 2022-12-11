@@ -1,6 +1,5 @@
 using System;
 using System.Diagnostics;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Inter.DomainServices.Core;
@@ -27,7 +26,16 @@ public class TemperatureProcessor : IStandardConsumer
         Stopwatch watch = new Stopwatch();
         watch.Start();
         var payload = _translator.Translate(message);
-        await _service.RecordTempAsync(payload.ToDomain());
+        try
+        {
+            await _service.RecordTempAsync(payload.ToDomain());
+            
+        }
+        catch (System.Exception ex)
+        {
+            
+            throw;
+        }
         watch.Stop();
         Console.WriteLine($"Process took {watch.ElapsedMilliseconds}");
     }
