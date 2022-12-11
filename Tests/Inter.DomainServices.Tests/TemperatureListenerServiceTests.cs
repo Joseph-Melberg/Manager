@@ -32,6 +32,5 @@ public class TemperatureListenerServiceTests
         await _service.RecordTempAsync(input);
 
         _infra.Verify(_ => _.InsertTemperatureAsync(_mark),Times.Once);
-        _infra.Verify(_ => _.SaveRecordsAsync(), Times.Once());
     }
 }

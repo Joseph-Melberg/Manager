@@ -24,7 +24,7 @@ jobs:
         tokenSuffix: '}'
         files: '["${{env.REPLACESETTINGS}}"]'
       env:
-        MYSQL_CONNECTION_STRING : ${{secrets.MYSQL_CONNECTION_STRING}}
+        INFLUXDB_TOKEN : ${{secrets.INFLUXDB_TOKEN}}
         TEMPYSECURE_PASSWORD: ${{secrets.TEMPYSECURE_PASSWORD}}
     - 
       name: Replace Appsettings
