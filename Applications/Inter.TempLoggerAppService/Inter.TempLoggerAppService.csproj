@@ -4,11 +4,11 @@
 		<TargetFramework>netcoreapp6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.32" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0"/>
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
-		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1"/>
+		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.34" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="appsettings.json">
@@ -16,9 +16,10 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Inter.Dependency\Inter.Dependency.csproj"/>
-		<ProjectReference Include="..\..\Inter.DomainServices\Inter.DomainServices.csproj"/>
-		<ProjectReference Include="..\..\Inter.DomainServices.Core\Inter.DomainServices.Core.csproj"/>
-		<ProjectReference Include="..\..\Inter.Domain\Inter.Domain.csproj"/>
+		<ProjectReference Include="..\..\Inter.Dependency\Inter.Dependency.csproj" />
+		<ProjectReference Include="..\..\Inter.DomainServices\Inter.DomainServices.csproj" />
+		<ProjectReference Include="..\..\Inter.DomainServices.Core\Inter.DomainServices.Core.csproj" />
+		<ProjectReference Include="..\..\Inter.Domain\Inter.Domain.csproj" />
+		<ProjectReference Include="..\..\Inter.Infrastructure.InfluxDB\Inter.Infrastructure.InfluxDB.csproj" />
 	</ItemGroup>
 </Project>

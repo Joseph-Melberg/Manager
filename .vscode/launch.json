@@ -119,7 +119,7 @@
         // If you have changed target frameworks, make sure to update the program path.
         "program": "${workspaceFolder}/Applications/Inter.TempLoggerAppService/bin/Debug/netcoreapp6.0/Inter.TempLoggerAppService.dll",
         "args": [],
-        "cwd": "${workspaceFolder}/Applications/Inter.PlaneListenerService",
+        "cwd": "${workspaceFolder}/Applications/Inter.TempLoggerAppService",
         // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
         "console": "internalConsole",
         "stopAtEntry": false

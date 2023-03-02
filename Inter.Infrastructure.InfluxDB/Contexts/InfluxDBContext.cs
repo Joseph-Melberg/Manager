@@ -5,5 +5,5 @@ namespace Inter.Infrastructure.InfluxDB.Contexts;
 
 public class InfluxDBContext : DefaultContext
 {
-    public InfluxDBContext(IInfluxDBConfigurationProvider configurationProvider) : base(configurationProvider) { }
+    public InfluxDBContext(IStandardInfluxDBClientFactory factory) : base(factory) { }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.DomainServices.Core;
@@ -12,13 +13,5 @@ public class TemperatureListenerDomainService : ITemperatureListenerDomainServic
         _infraservice = infrastructureService;
     }
 
-    public async Task RecordTempAsync(TemperatureMark[] marks)
-    {
-        foreach(var mark in marks)
-        {
-            await _infraservice.InsertTemperatureAsync(mark);
-        }
-
-        await _infraservice.SaveRecordsAsync();
-    }
+    public Task RecordTempAsync(TemperatureMark[] marks) => Task.WhenAll(marks.Select(_ => _infraservice.InsertTemperatureAsync(_)).ToList()); 
 }

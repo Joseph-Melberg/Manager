@@ -1,7 +1,5 @@
-using Inter.CpuMonitorService.Messages;
 using Melberg.Application;
 using Melberg.Infrastructure.Rabbit;
-using Melberg.Infrastructure.Rabbit.Translator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.CpuMonitorService;
@@ -11,7 +9,14 @@ public class Startup : IAppStartup
     public void ConfigureServices(IServiceCollection services)
     {
         RabbitModule.RegisterConsumer<Processor>(services);
-        ApplicationModule.AddKeepAlive(services);
+        Console.Write("AAAA");
+        T();
+        //ApplicationModule.AddKeepAlive(services);
         Register.RegisterServices(services);
+    }
+
+    private void T()
+    {
+        var j = 1;
     }
 }

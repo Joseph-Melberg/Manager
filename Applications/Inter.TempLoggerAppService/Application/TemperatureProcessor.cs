@@ -20,6 +20,7 @@ public class TemperatureProcessor : IStandardConsumer
         IJsonToObjectTranslator<TemperatureMessage> translator)
     {
         _translator = translator;
+        var j = 1;
         _service = service;
     }
     public async Task ConsumeMessageAsync(Message message, CancellationToken ct)

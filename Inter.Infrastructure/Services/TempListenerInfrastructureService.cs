@@ -1,17 +1,14 @@
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Core;
-using Inter.Infrastructure.Corral;
 
 namespace Inter.Infrastructure.Services;
 public class TemperatureListenerInfrastructureService : ITemperatureListenerInfrastructureService
 {
-    private ITemperatureRepository _temperatureRepository;
-    public TemperatureListenerInfrastructureService(ITemperatureRepository temperatureRepository)
+    private readonly ITemperatureMarkRepository _temperatureMarkRepository;
+    public TemperatureListenerInfrastructureService(ITemperatureMarkRepository temperatureMarkRepository)
     {
-        _temperatureRepository = temperatureRepository;
+        _temperatureMarkRepository = temperatureMarkRepository;
     } 
-    public async Task InsertTemperatureAsync(TemperatureMark mark) => await _temperatureRepository.RecordTemperatureAsync(mark);
-
-    public async Task SaveRecordsAsync() => await _temperatureRepository.SaveRecordsAsync();
+    public async Task InsertTemperatureAsync(TemperatureMark mark) => await _temperatureMarkRepository.RecordTemperature(mark, System.Threading.CancellationToken.None);
 }
