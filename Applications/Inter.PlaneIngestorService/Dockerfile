@@ -8,4 +8,4 @@ ENTRYPOINT ["dotnet", "Inter.PlaneIngestorService.dll"]
 
 
 HEALTHCHECK  --interval=30s --timeout=3s --start-period=10s\
-  CMD wget --no-verbose --tries=1 --spider http://localhost:8180/health || exit 1
+  CMD wget --no-verbose --tries=1 http://localhost:8180/health -O /dev/null || exit 1
