@@ -7,7 +7,7 @@
 		<Folder Include="Application\"/>
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.34" />
+		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.39" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0"/>
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
 	</ItemGroup>
