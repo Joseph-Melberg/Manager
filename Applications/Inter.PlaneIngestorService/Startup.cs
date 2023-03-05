@@ -11,8 +11,6 @@ public class Startup : IAppStartup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        ApplicationModule.AddKeepAlive(services);
-
         RabbitModule.RegisterConsumer<Processor>(services);
         services.AddTransient<IJsonToObjectTranslator<PlaneIngestionMessage>,JsonToObjectTranslator<PlaneIngestionMessage>>();
         Register.RegisterServices(services);

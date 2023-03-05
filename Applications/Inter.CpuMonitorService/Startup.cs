@@ -11,7 +11,6 @@ public class Startup : IAppStartup
     public void ConfigureServices(IServiceCollection services)
     {
         RabbitModule.RegisterConsumer<Processor>(services);
-        ApplicationModule.AddKeepAlive(services);
         Register.RegisterServices(services);
     }
 }

@@ -16,13 +16,6 @@ public class Register
 {
     public static IServiceCollection RegisterServices(IServiceCollection services)
     {
-        services.AddTransient<IMetronomeDomainService,MetronomeDomainService>();
-        services.AddTransient<IClock,Clock>();
-        services.AddTransient<IMetronomeInfrastructureService,MetronomeInfrastructureService>();
-        services.AddTransient<IMinutePublisher,MinutePublisher>();
-        RabbitModule.RegisterPublisher<MinuteMessage>(services);
-        services.AddTransient<ITickPublisher,TickPublisher>();
-        RabbitModule.RegisterPublisher<TickMessage>(services);
         return services;
     }
 }
