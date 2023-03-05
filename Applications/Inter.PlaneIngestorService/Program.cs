@@ -6,8 +6,6 @@ class Program
 {
     static async Task Main()
     {
-        Console.Write("A");
-        await MelbergHost.CreateDefaultApp<Startup>().Build().StartAsync();
-
+        await MelbergHost.CreateDefaultApp<Startup>().Build().Begin(CancellationToken.None);
     }
 }

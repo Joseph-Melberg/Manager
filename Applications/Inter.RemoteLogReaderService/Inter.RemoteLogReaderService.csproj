@@ -7,13 +7,13 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Melberg.Application" Version="6.0.32" />
-		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.32" />
+		<PackageReference Include="Melberg.Application" Version="6.0.39" />
+		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.39" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 		<PackageReference Include="Newtonsoft.json" Version="13.0.1" />
-		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.32" />
+		<PackageReference Include="Melberg.Infrastructure.Rabbit" Version="6.0.39" />
 	</ItemGroup>
 
 	<ItemGroup>
