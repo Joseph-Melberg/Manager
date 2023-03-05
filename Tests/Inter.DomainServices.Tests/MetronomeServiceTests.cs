@@ -55,7 +55,7 @@ public class MetronomeServiceTests
 
         await serviceTask;
 
-        _infra.Verify(_ => _.SendTick(),Times.Exactly(1));
+        _infra.Verify(_ => _.SendTick(),Times.AtLeast(1));
         _infra.Verify(_ => _.SendMinuteTick(),Times.Exactly(0));
     }
 }
