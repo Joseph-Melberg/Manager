@@ -7,4 +7,4 @@ RUN apt-get update \
 LABEL deunhealth.restart.on.unhealthy: "true"
 
 HEALTHCHECK  --interval=30s --timeout=3s --start-period=10s\
-  CMD wget --no-verbose --tries=1 --spider http://localhost:8180/health || exit 1
+  CMD wget --no-verbose --tries=1 -O /dev/null http://localhost:8180/health
