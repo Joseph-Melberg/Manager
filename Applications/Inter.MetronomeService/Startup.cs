@@ -21,6 +21,7 @@ public class Startup : IAppStartup
         services.AddTransient<IMetronomeInfrastructureService,MetronomeInfrastructureService>();
         services.AddTransient<IMinutePublisher,MinutePublisher>();
         services.AddTransient<ITickPublisher,TickPublisher>();
+        services.AddHostedService<MetronomeApplicationService>();
         RabbitModule.RegisterPublisher<MinuteMessage>(services);
         RabbitModule.RegisterPublisher<TickMessage>(services);
     }
