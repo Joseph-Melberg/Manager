@@ -3,7 +3,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.32" />
+		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.39" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7"/>
 		<PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22"/>
 	</ItemGroup>
