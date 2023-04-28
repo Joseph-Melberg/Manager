@@ -1,5 +1,5 @@
-using Melberg.Application;
-using Melberg.Infrastructure.Rabbit;
+using MelbergFramework.Application;
+using MelbergFramework.Infrastructure.Rabbit;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.RemoteLogReaderService;

@@ -5,8 +5,8 @@ using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.Rabbit.Messages;
 using Inter.Infrastructure.Rabbit.Publishers;
-using Melberg.Application;
-using Melberg.Infrastructure.Rabbit;
+using MelbergFramework.Application;
+using MelbergFramework.Infrastructure.Rabbit;
 using Inter.Infrastructure.Services;
 using Microsoft.Extensions.DependencyInjection;
 

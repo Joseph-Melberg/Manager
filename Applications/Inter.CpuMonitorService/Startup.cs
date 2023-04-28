@@ -1,7 +1,7 @@
 using Inter.CpuMonitorService.Messages;
-using Melberg.Application;
-using Melberg.Infrastructure.Rabbit;
-using Melberg.Infrastructure.Rabbit.Translator;
+using MelbergFramework.Application;
+using MelbergFramework.Infrastructure.Rabbit;
+using MelbergFramework.Infrastructure.Rabbit.Translator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.CpuMonitorService;

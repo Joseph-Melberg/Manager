@@ -7,7 +7,7 @@ using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.Rabbit.Messages;
 using Inter.Infrastructure.Rabbit.Publishers;
 using Inter.Infrastructure.Services;
-using Melberg.Infrastructure.Rabbit;
+using MelbergFramework.Infrastructure.Rabbit;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.MetronomeService;

@@ -4,7 +4,7 @@ using Inter.Domain;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.InfluxDB.Contexts;
 using Inter.Infrastructure.InfluxDB.Mappers;
-using Melberg.Infrastructure.InfluxDB;
+using MelbergFramework.Infrastructure.InfluxDB;
 
 namespace Inter.Infrastructure.InfluxDB.Repositories;
 

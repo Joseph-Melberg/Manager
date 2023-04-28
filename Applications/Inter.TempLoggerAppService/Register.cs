@@ -7,9 +7,9 @@ using Inter.Infrastructure.InfluxDB.Repositories;
 using Inter.Infrastructure.Services;
 using Inter.TempLoggerAppService.Application;
 using Inter.TempLoggerAppService.Messages;
-using Melberg.Infrastructure.InfluxDB;
-using Melberg.Infrastructure.Rabbit;
-using Melberg.Infrastructure.Rabbit.Translator;
+using MelbergFramework.Infrastructure.InfluxDB;
+using MelbergFramework.Infrastructure.Rabbit;
+using MelbergFramework.Infrastructure.Rabbit.Translator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.TempLoggerAppService;

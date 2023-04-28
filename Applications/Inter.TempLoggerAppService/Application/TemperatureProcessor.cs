@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Inter.DomainServices.Core;
 using Inter.TempLoggerAppService.Mappers;
 using Inter.TempLoggerAppService.Messages;
-using Melberg.Infrastructure.Rabbit.Consumers;
-using Melberg.Infrastructure.Rabbit.Messages;
-using Melberg.Infrastructure.Rabbit.Translator;
+using MelbergFramework.Infrastructure.Rabbit.Consumers;
+using MelbergFramework.Infrastructure.Rabbit.Messages;
+using MelbergFramework.Infrastructure.Rabbit.Translator;
 
 namespace Inter.TempLoggerAppService.Application;
 public class TemperatureProcessor : IStandardConsumer

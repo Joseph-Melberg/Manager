@@ -1,4 +1,4 @@
-using Melberg.Application;
+using MelbergFramework.Application;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.LifeAlertAppService;

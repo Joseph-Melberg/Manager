@@ -1,15 +1,15 @@
 using Inter.PlaneCongregatorService.Application;
-using Melberg.Infrastructure.Rabbit;
+using MelbergFramework.Infrastructure.Rabbit;
 using Microsoft.Extensions.DependencyInjection;
-using Melberg.Infrastructure.Rabbit.Translator;
+using MelbergFramework.Infrastructure.Rabbit.Translator;
 using Inter.Infrastructure.Rabbit.Messages;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Core;
 using Inter.Infrastructure.Services;
 using Inter.Infrastructure.Corral;
-using Melberg.Infrastructure.InfluxDB;
+using MelbergFramework.Infrastructure.InfluxDB;
 using Inter.Infrastructure.InfluxDB.Contexts;
-using Melberg.Infrastructure.Redis;
+using MelbergFramework.Infrastructure.Redis;
 using Inter.Infrastructure.Redis.Repositories;
 using Inter.Infrastructure.Redis.Contexts;
 

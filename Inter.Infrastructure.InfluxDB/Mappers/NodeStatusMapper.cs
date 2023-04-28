@@ -1,6 +1,6 @@
 using System;
 using Inter.Domain;
-using Melberg.Infrastructure.InfluxDB;
+using MelbergFramework.Infrastructure.InfluxDB;
 
 namespace Inter.Infrastructure.InfluxDB.Mappers;
 

@@ -12,9 +12,9 @@ using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Services;
 using Inter.LifeAlertAppService.Application;
-using Melberg.Infrastructure.InfluxDB;
-using Melberg.Infrastructure.MySql;
-using Melberg.Infrastructure.Rabbit;
+using MelbergFramework.Infrastructure.InfluxDB;
+using MelbergFramework.Infrastructure.MySql;
+using MelbergFramework.Infrastructure.Rabbit;
 using Microsoft.Extensions.DependencyInjection;
 namespace Inter.LifeAlertAppService;
 public class Register

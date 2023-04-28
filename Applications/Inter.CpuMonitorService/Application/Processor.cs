@@ -1,9 +1,9 @@
 using Inter.CpuMonitorService.Mappers;
 using Inter.CpuMonitorService.Messages;
 using Inter.DomainServices.Core;
-using Melberg.Infrastructure.Rabbit.Consumers;
-using Melberg.Infrastructure.Rabbit.Messages;
-using Melberg.Infrastructure.Rabbit.Translator;
+using MelbergFramework.Infrastructure.Rabbit.Consumers;
+using MelbergFramework.Infrastructure.Rabbit.Messages;
+using MelbergFramework.Infrastructure.Rabbit.Translator;
 
 namespace Inter.CpuMonitorService;
 

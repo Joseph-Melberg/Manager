@@ -1,5 +1,5 @@
 using Inter.PlaneIngestorService.Models;
-using Melberg.Infrastructure.Rabbit.Messages;
+using MelbergFramework.Infrastructure.Rabbit.Messages;
 using Newtonsoft.Json;
 
 namespace Inter.PlaneIngestorService.Messages;
