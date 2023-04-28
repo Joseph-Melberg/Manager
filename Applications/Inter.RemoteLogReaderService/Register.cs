@@ -1,5 +1,5 @@
 using Inter.RemoteLogReaderService.Messsage;
-using Melberg.Infrastructure.Rabbit.Translator;
+using MelbergFramework.Infrastructure.Rabbit.Translator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.RemoteLogReaderService;

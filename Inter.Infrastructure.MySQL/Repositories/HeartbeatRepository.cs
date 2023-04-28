@@ -6,7 +6,7 @@ using Inter.Domain;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Mappers;
-using Melberg.Infrastructure.MySql;
+using MelbergFramework.Infrastructure.MySql;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inter.Infrastructure.MySQL.Repositories;

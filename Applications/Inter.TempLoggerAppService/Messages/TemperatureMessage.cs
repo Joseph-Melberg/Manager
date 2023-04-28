@@ -1,5 +1,5 @@
 using System;
-using Melberg.Infrastructure.Rabbit.Messages;
+using MelbergFramework.Infrastructure.Rabbit.Messages;
 
 namespace Inter.TempLoggerAppService.Messages;
 public class TemperatureMessage : StandardMessage 

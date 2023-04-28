@@ -1,4 +1,4 @@
-using Melberg.Infrastructure.InfluxDB;
+using MelbergFramework.Infrastructure.InfluxDB;
 using Inter.Infrastructure.InfluxDB.Contexts;
 using Inter.Infrastructure.InfluxDB.Mappers;
 using Inter.Infrastructure.Corral;

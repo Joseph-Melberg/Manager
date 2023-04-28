@@ -8,9 +8,9 @@ using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Repositories;
 using Inter.Infrastructure.Services;
-using Melberg.Infrastructure.MySql;
-using Melberg.Infrastructure.Rabbit;
-using Melberg.Infrastructure.Rabbit.Translator;
+using MelbergFramework.Infrastructure.MySql;
+using MelbergFramework.Infrastructure.Rabbit;
+using MelbergFramework.Infrastructure.Rabbit.Translator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.HeartbeatListenerAppService;

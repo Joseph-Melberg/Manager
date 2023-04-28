@@ -2,7 +2,7 @@
 using Inter.Domain;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
-using Melberg.Infrastructure.MySql;
+using MelbergFramework.Infrastructure.MySql;
 
 namespace Inter.Infrastructure.MySQL.Repositories;
 public class LogRepository : BaseRepository<LogContext>, ILogRepository

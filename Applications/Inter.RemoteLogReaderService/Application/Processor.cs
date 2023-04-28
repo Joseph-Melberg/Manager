@@ -1,8 +1,8 @@
 using Inter.RemoteLogReaderService.Messsage;
-using Melberg.Infrastructure.Rabbit.Consumers;
-using Melberg.Infrastructure.Rabbit.Messages;
+using MelbergFramework.Infrastructure.Rabbit.Consumers;
+using MelbergFramework.Infrastructure.Rabbit.Messages;
 using System.IO;
-using Melberg.Infrastructure.Rabbit.Translator;
+using MelbergFramework.Infrastructure.Rabbit.Translator;
 using Newtonsoft.Json;
 using System.Text;
 using Microsoft.Extensions.Logging;

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Redis.Contexts;
 using Inter.Infrastructure.Redis.Mappers;
-using Melberg.Infrastructure.Redis.Repository;
+using MelbergFramework.Infrastructure.Redis.Repository;
 
 namespace Inter.Infrastructure.Redis.Repositories;
 public class PlaneCacheRepository : RedisRepository<PlaneCacheContext>, IPlaneCacheRepository

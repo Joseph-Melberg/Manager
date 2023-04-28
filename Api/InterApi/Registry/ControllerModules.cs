@@ -4,7 +4,7 @@ using Inter.Infrastructure.Services;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Repositories;
-using Melberg.Infrastructure.MySql;
+using MelbergFramework.Infrastructure.MySql;
 
 namespace InterApi.Registry
 {

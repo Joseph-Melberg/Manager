@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Melberg.Application;
+using MelbergFramework.Application;
 
 namespace Inter.MetronomeService;
 class Program

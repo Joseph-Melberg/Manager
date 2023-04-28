@@ -3,8 +3,8 @@
 		<TargetFramework>netcoreapp6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Melberg.Infrastructure.Couchbase" Version="6.0.39" />
-		<PackageReference Include="Melberg.Infrastructure.MySql" Version="6.0.39" />
+		<PackageReference Include="MelbergFramework.Infrastructure.Couchbase" Version="6.0.48" />
+		<PackageReference Include="MelbergFramework.Infrastructure.MySql" Version="6.0.48" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.7"/>
 		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0"/>
 	</ItemGroup>

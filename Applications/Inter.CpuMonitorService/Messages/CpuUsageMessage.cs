@@ -1,4 +1,4 @@
-using Melberg.Infrastructure.Rabbit.Messages;
+using MelbergFramework.Infrastructure.Rabbit.Messages;
 
 namespace Inter.CpuMonitorService.Messages;
 

@@ -1,5 +1,5 @@
-using Melberg.Core.Redis;
-using Melberg.Infrastructure.Redis;
+using MelbergFramework.Core.Redis;
+using MelbergFramework.Infrastructure.Redis;
 
 namespace Inter.Infrastructure.Redis.Contexts;
 public class PlaneCacheContext : RedisContext

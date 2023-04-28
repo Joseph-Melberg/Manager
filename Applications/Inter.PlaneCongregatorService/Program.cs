@@ -1,5 +1,5 @@
-﻿using Melberg.Application;
-using Melberg.Infrastructure.Rabbit.Consumers;
+﻿using MelbergFramework.Application;
+using MelbergFramework.Infrastructure.Rabbit.Consumers;
 
 namespace Inter.PlaneCongregatorService;
 

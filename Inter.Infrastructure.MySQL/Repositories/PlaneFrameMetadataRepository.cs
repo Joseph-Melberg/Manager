@@ -3,7 +3,7 @@ using Inter.Domain;
 using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.MySQL.Contexts;
 using Inter.Infrastructure.MySQL.Mappers;
-using Melberg.Infrastructure.MySql;
+using MelbergFramework.Infrastructure.MySql;
 
 namespace Inter.Infrastructure.MySQL.Repositories;
 public class PlaneFrameMetadataRepository : BaseRepository<ReadWriteContext>, ILegacyPlaneFrameMetadataRepository

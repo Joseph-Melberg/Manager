@@ -10,10 +10,10 @@ using Inter.Infrastructure.Rabbit.Publishers;
 using Inter.Infrastructure.Redis.Contexts;
 using Inter.Infrastructure.Redis.Repositories;
 using Inter.Infrastructure.Services;
-using Melberg.Infrastructure.InfluxDB;
-using Melberg.Infrastructure.MySql;
-using Melberg.Infrastructure.Rabbit;
-using Melberg.Infrastructure.Redis;
+using MelbergFramework.Infrastructure.InfluxDB;
+using MelbergFramework.Infrastructure.MySql;
+using MelbergFramework.Infrastructure.Rabbit;
+using MelbergFramework.Infrastructure.Redis;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.Dependency;

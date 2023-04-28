@@ -6,8 +6,8 @@ using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.InfluxDB.Contexts;
 using Inter.Infrastructure.InfluxDB.Repositories;
 using Inter.Infrastructure.Services;
-using Melberg.Infrastructure.InfluxDB;
-using Melberg.Infrastructure.Rabbit.Translator;
+using MelbergFramework.Infrastructure.InfluxDB;
+using MelbergFramework.Infrastructure.Rabbit.Translator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.CpuMonitorService;

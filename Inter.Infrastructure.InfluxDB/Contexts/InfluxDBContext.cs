@@ -1,5 +1,5 @@
-using Melberg.Core.InfluxDB;
-using Melberg.Infrastructure.InfluxDB;
+using MelbergFramework.Core.InfluxDB;
+using MelbergFramework.Infrastructure.InfluxDB;
 
 namespace Inter.Infrastructure.InfluxDB.Contexts;
 

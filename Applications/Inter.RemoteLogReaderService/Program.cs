@@ -1,4 +1,4 @@
-﻿using Melberg.Application;
+﻿using MelbergFramework.Application;
 
 namespace Inter.RemoteLogReaderService;
 

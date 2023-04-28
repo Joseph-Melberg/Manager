@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Inter.DomainServices.Core;
-using Melberg.Application;
+using MelbergFramework.Application;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.LifeAlertAppService;
