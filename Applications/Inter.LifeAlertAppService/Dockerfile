@@ -4,7 +4,7 @@ WORKDIR /App
 ENTRYPOINT ["dotnet", "Inter.LifeAlertAppService.dll"]
 RUN apt-get update \ 
   && apt-get install -y wget
-LABEL deunhealth.restart.on.unhealthy: "true"
+LABEL deunhealth.restart.on.unhealthy "true"
 
 HEALTHCHECK  --interval=30s --timeout=3s --start-period=10s\
   CMD wget --no-verbose --tries=1 -O /dev/null http://localhost:8180/health
