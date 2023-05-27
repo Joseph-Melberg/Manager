@@ -26,13 +26,18 @@ public class Processor : IStandardConsumer
     {
         try
         {
+            var timer = new Stopwatch();
+            timer.Start();
             var package = _translator.Translate(message);
             if(package == null)
             {
                 throw new Exception($"Could not process {message}");
             }
-            Console.WriteLine("I am running");
-            await _service.HandleMessageAsync(package.ToDomain());
+            var domain = package.ToDomain();
+            await _service.HandleMessageAsync(domain);
+
+            var elapsed = timer.ElapsedMilliseconds;
+            Console.WriteLine($"Processing {domain.Source}_{domain.Antenna} took {elapsed}");
         }
         catch (Exception ex)
         {
