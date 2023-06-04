@@ -1,4 +1,4 @@
-name: Cpu Monitor CI-CD
+name: Metric Monitor CI-CD
 
 on:
   push:
