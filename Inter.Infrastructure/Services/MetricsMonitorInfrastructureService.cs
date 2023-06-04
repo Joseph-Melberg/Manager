@@ -5,11 +5,11 @@ using Inter.Infrastructure.Corral;
 
 namespace Inter.Infrastructure.Services;
 
-public class MetricsLoggerInfrastructureService : IMetricsLoggerInfrastructureService
+public class MetricMonitorInfrastructureService : IMetricMonitorInfrastructureService
 {
     private readonly IMetricMarkRepository _repository;
 
-    public MetricsLoggerInfrastructureService(IMetricMarkRepository repository) => 
+    public MetricMonitorInfrastructureService(IMetricMarkRepository repository) => 
         _repository = repository;
 
     public Task RecordMetricAsync(Metric metric) =>

@@ -1,7 +1,7 @@
 using Inter.Domain;
 using MelbergFramework.Infrastructure.Rabbit.Metrics;
 
-namespace Inter.MetricsLoggerAppService.Mappers;
+namespace Inter.MetricMonitorAppService.Mappers;
 
 public static class MetricMapper
 {

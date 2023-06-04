@@ -192,9 +192,9 @@
         "requireExactSource": false,
         "preLaunchTask": "build",
         // If you have changed target frameworks, make sure to update the program path.
-        "program": "${workspaceFolder}/Applications/Inter.MetricsLoggerAppService/bin/Debug/net6.0/Inter.MetricsLoggerAppService.dll",
+        "program": "${workspaceFolder}/Applications/Inter.MetricMonitorAppService/bin/Debug/net6.0/Inter.MetricMonitorAppService.dll",
         "args": [],
-        "cwd": "${workspaceFolder}/Applications/Inter.MetricsLoggerAppService",
+        "cwd": "${workspaceFolder}/Applications/Inter.MetricMonitorAppService",
         // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
         "console": "internalConsole",
         "stopAtEntry": false

@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Inter.Domain;
 
 namespace Inter.Infrastructure.Core;
-public interface IMetricsLoggerInfrastructureService
+public interface IMetricMonitorInfrastructureService
 {
     Task RecordMetricAsync(Metric metric);
 }

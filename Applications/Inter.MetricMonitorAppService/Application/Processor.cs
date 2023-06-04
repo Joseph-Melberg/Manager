@@ -1,19 +1,19 @@
 using Inter.DomainServices.Core;
-using Inter.MetricsLoggerAppService.Mappers;
+using Inter.MetricMonitorAppService.Mappers;
 using MelbergFramework.Infrastructure.Rabbit.Consumers;
 using MelbergFramework.Infrastructure.Rabbit.Messages;
 using MelbergFramework.Infrastructure.Rabbit.Metrics;
 using MelbergFramework.Infrastructure.Rabbit.Translator;
 
-namespace Inter.MetricsLoggerAppService.Application;
+namespace Inter.MetricMonitorAppService.Application;
 
 public class Processor : IStandardConsumer
 {
     private readonly IJsonToObjectTranslator<MetricMessage> _translator;
-    private readonly IMetricsLoggerDomainService _service;
+    private readonly IMetricMonitorDomainService _service;
     public Processor(
         IJsonToObjectTranslator<MetricMessage> translator,
-        IMetricsLoggerDomainService service)
+        IMetricMonitorDomainService service)
     {
         _service = service;
         _translator = translator;

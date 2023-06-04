@@ -3,17 +3,17 @@ name: Cpu Monitor CI-CD
 on:
   push:
     branches: [ master ]
-    paths: Applications/Inter.MetricsLoggerAppService/
+    paths: Applications/Inter.MetricMonitorAppService/
   workflow_dispatch:
 jobs:
 
   build-publish:
     runs-on: ubuntu-latest
     env:
-      DOCKERFILE: ./Applications/Inter.MetricsLoggerAppService/Dockerfile
-      PROJECT: ./Applications/Inter.MetricsLoggerAppService/Inter.MetricsLoggerAppService.csproj
-      APPSETTINGS: ./Applications/Inter.MetricsLoggerAppService/appsettings.json
-      REPLACESETTINGS: ./Applications/Inter.MetricsLoggerAppService/Deployment/appsettings.deploy.json 
+      DOCKERFILE: ./Applications/Inter.MetricMonitorAppService/Dockerfile
+      PROJECT: ./Applications/Inter.MetricMonitorAppService/Inter.MetricMonitorAppService.csproj
+      APPSETTINGS: ./Applications/Inter.MetricMonitorAppService/appsettings.json
+      REPLACESETTINGS: ./Applications/Inter.MetricMonitorAppService/Deployment/appsettings.deploy.json 
       TAG: metricmonitor 
     steps:
     - uses: actions/checkout@v2

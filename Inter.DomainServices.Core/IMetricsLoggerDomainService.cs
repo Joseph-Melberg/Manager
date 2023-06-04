@@ -3,7 +3,7 @@ using Inter.Domain;
 
 namespace Inter.DomainServices.Core;
 
-public interface IMetricsLoggerDomainService
+public interface IMetricMonitorDomainService
 {
     Task RecordMetricAsync( Metric metric);
 }

@@ -1,7 +1,7 @@
 using MelbergFramework.Application;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Inter.MetricsLoggerAppService;
+namespace Inter.MetricMonitorAppService;
 
 public class Startup : IAppStartup
 {

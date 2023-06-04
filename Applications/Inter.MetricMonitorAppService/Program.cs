@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MelbergFramework.Application;
 
-namespace Inter.MetricsLoggerAppService;
+namespace Inter.MetricMonitorAppService;
 
 class Program
 {

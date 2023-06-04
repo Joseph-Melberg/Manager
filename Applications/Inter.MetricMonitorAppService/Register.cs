@@ -5,14 +5,14 @@ using Inter.Infrastructure.Corral;
 using Inter.Infrastructure.InfluxDB.Contexts;
 using Inter.Infrastructure.InfluxDB.Repositories;
 using Inter.Infrastructure.Services;
-using Inter.MetricsLoggerAppService.Application;
+using Inter.MetricMonitorAppService.Application;
 using MelbergFramework.Infrastructure.InfluxDB;
 using MelbergFramework.Infrastructure.Rabbit;
 using MelbergFramework.Infrastructure.Rabbit.Metrics;
 using MelbergFramework.Infrastructure.Rabbit.Translator;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Inter.MetricsLoggerAppService;
+namespace Inter.MetricMonitorAppService;
 
 public static class Register
 {
@@ -24,7 +24,7 @@ public static class Register
             IMetricMarkRepository,
             MetricMarkRepository,
             InfluxDBContext>(catalog);
-        catalog.AddTransient<IMetricsLoggerDomainService, MetricsLoggerDomainService>();
-        catalog.AddTransient<IMetricsLoggerInfrastructureService, MetricsLoggerInfrastructureService>();
+        catalog.AddTransient<IMetricMonitorDomainService, MetricMonitorDomainService>();
+        catalog.AddTransient<IMetricMonitorInfrastructureService, MetricMonitorInfrastructureService>();
     }
 }
