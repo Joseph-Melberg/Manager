@@ -8,17 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MelbergFramework.Application" Version="6.0.50" />
+		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.50" />
 		<PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.50" />
-    <PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.50" />
+    <PackageReference Include="MelbergFramework.Application" Version="6.0.50" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Inter.DomainServices\Inter.DomainServices.csproj" />
-    <ProjectReference Include="..\..\Inter.DomainServices.Core\Inter.DomainServices.Core.csproj" />
     <ProjectReference Include="..\..\Inter.Domain\Inter.Domain.csproj" />
+    <ProjectReference Include="..\..\Inter.DomainServices\Inter.DomainServices.csproj" />
     <ProjectReference Include="..\..\Inter.Infrastructure\Inter.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Inter.Infrastructure.Core\Inter.Infrastructure.Core.csproj" />
+    <ProjectReference Include="..\..\Inter.DomainServices.Core\Inter.DomainServices.Core.csproj" />
     <ProjectReference Include="..\..\Inter.Infrastructure.InfluxDB\Inter.Infrastructure.InfluxDB.csproj" />
   </ItemGroup>
 

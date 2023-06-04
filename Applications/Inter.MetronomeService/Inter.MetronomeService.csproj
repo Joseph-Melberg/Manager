@@ -4,16 +4,16 @@
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-    	<PackageReference Include="MelbergFramework.Application" Version="6.0.48" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0"/>
-		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"/>
-		<PackageReference Include="RabbitMQ.Client" Version="6.4.0"/>
+    	<PackageReference Include="MelbergFramework.Application" Version="6.0.50" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
+		<PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Inter.DomainServices\Inter.DomainServices.csproj"/>
-		<ProjectReference Include="..\..\Inter.DomainServices.Core\Inter.DomainServices.Core.csproj"/>
-		<ProjectReference Include="..\..\Inter.Dependency\Inter.Dependency.csproj"/>
+		<ProjectReference Include="..\..\Inter.DomainServices\Inter.DomainServices.csproj" />
+		<ProjectReference Include="..\..\Inter.DomainServices.Core\Inter.DomainServices.Core.csproj" />
+		<ProjectReference Include="..\..\Inter.Dependency\Inter.Dependency.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="appsettings.json">

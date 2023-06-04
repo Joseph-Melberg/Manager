@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MelbergFramework.Application;
 
-namespace Inter.LifeAlertAppService;
+namespace Inter.MetricsLoggerAppService;
 
 class Program
 {
