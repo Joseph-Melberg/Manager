@@ -10,7 +10,7 @@ public class Startup : IAppStartup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        RabbitModule.RegisterConsumer<Processor>(services);
+        RabbitModule.RegisterConsumerWithMetrics<Processor>(services);
         Register.RegisterServices(services);
     }
 }
