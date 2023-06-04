@@ -10,7 +10,8 @@ public static class MetricMapper
     {
         var result = new InfluxDBDataModel("service_data");
 
-        result.Tags["application"] = metric.Application;
+        result.Measurement = "duration";
+        result.Tags["app"] = metric.Application;
         result.Fields["duration"] = metric.TimeInMS;
         result.Timestamp = ((DateTimeOffset)metric.TimeStamp).ToUnixTimeSeconds();
 
