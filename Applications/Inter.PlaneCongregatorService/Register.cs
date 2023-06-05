@@ -20,7 +20,7 @@ class Register
     public static IServiceCollection RegisterServices(IServiceCollection services)
     {
         
-        RabbitModule.RegisterConsumer<Processor>(services);
+        RabbitModule.RegisterConsumerWithMetrics<Processor>(services);
         services.AddTransient<IJsonToObjectTranslator<TickMessage>,JsonToObjectTranslator<TickMessage>>();
         services.AddTransient<IPlaneCongregatorDomainService,Inter.DomainServices.PlaneCongregatorDomainService>();
         services.AddTransient<IPlaneCongregatorInfrastructureService,PlaneCongregatorInfrastructureService>();

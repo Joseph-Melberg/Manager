@@ -6,14 +6,14 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="MelbergFramework.Application" Version="6.0.52" />
-		<PackageReference Include="MelbergFramework.Infrastructure.MySql" Version="6.0.52" />
-		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.52" />
+		<PackageReference Include="MelbergFramework.Application" Version="6.0.53" />
+		<PackageReference Include="MelbergFramework.Infrastructure.MySql" Version="6.0.53" />
+		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.53" />
 		<PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
 		<PackageReference Include="Newtonsoft.json" Version="13.0.1" />
-		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.52" />
+		<PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.53" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Update="appsettings.json">
