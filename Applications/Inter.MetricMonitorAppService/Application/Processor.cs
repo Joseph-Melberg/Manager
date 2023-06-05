@@ -19,7 +19,12 @@ public class Processor : IStandardConsumer
         _translator = translator;
     }
 
-    public Task ConsumeMessageAsync(Message message, CancellationToken ct) => 
-        _service.RecordMetricAsync(_translator.Translate(message).ToDomain());
+    public async Task ConsumeMessageAsync(Message message, CancellationToken ct) 
+    {
+        var mess = _translator.Translate(message).ToDomain();
+        Console.WriteLine($"{mess.TimeStamp}");
+        await _service.RecordMetricAsync(mess);
+    } 
+
 
 }

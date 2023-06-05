@@ -20,7 +20,7 @@ public static class PlaneFrameMetadataMapper
         result.Fields["total"] = metadata.Total;
         result.Fields["detailed"] = metadata.Detailed;
         
-        result.Timestamp = metadata.Timestamp.ClipSubSecond();
+        result.Timestamp = metadata.Timestamp;//.ClipSubSecond();
 
         return result;
     }
