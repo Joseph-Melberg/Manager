@@ -1,4 +1,5 @@
 using System;
+using Inter.Common;
 using Inter.Domain;
 using MelbergFramework.Infrastructure.InfluxDB;
 
@@ -17,7 +18,7 @@ public static class NodeStatusMapper
 
         result.Tags["hostname"] = status.Name;
         result.Fields["status"] = (status.Online) ? 1 : 0;
-        result.Timestamp = ((DateTimeOffset)DateTime.Now).ToUnixTimeSeconds();
+        result.Timestamp = DateTime.Now.ClipSubSecond();
 
         return result;
     }

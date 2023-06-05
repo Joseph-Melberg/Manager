@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<ItemGroup>
-		<ProjectReference Include="..\Inter.Infrastructure\Inter.Infrastructure.csproj"/>
+		<ProjectReference Include="..\Inter.Infrastructure\Inter.Infrastructure.csproj" />
+		<ProjectReference Include="..\Inter.Common\Inter.Common.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.52" />
+		<PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.53" />
 	</ItemGroup>
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>

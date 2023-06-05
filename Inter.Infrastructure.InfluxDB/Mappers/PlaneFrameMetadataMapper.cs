@@ -1,5 +1,5 @@
-using System;
 using Inter.Domain;
+using Inter.Common;
 using MelbergFramework.Infrastructure.InfluxDB;
 
 namespace Inter.Infrastructure.InfluxDB.Mappers;
@@ -19,7 +19,8 @@ public static class PlaneFrameMetadataMapper
         result.Tags["hostname"] = metadata.Hostname;
         result.Fields["total"] = metadata.Total;
         result.Fields["detailed"] = metadata.Detailed;
-        result.Timestamp = (long)metadata.Timestamp.Subtract(DateTime.UnixEpoch).TotalSeconds;
+        
+        result.Timestamp = metadata.Timestamp.ClipSubSecond();
 
         return result;
     }

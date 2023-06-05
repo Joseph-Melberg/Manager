@@ -17,7 +17,7 @@ public static class CpuUtilizationMapper
 
         result.Tags["hostname"] = usage.Host;
         result.Fields["usage"] = usage.Utilization;
-        result.Timestamp = ((DateTimeOffset)usage.TimeStamp).ToUnixTimeSeconds();
+        result.Timestamp = usage.TimeStamp;
 
         return result;
     }

@@ -13,7 +13,7 @@ public static class MetricMapper
         result.Measurement = "duration";
         result.Tags["app"] = metric.Application;
         result.Fields["duration"] = metric.TimeInMS;
-        result.Timestamp = ((DateTimeOffset)metric.TimeStamp).ToUnixTimeSeconds();
+        result.Timestamp = metric.TimeStamp;
 
         return result;
     }

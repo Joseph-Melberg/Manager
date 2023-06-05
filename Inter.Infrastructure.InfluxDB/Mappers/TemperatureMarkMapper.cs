@@ -1,5 +1,5 @@
-using System;
 using Inter.Domain;
+using Inter.Common;
 using MelbergFramework.Infrastructure.InfluxDB;
 
 namespace Inter.Infrastructure.InfluxDB.Mappers;
@@ -19,7 +19,7 @@ public static class TemperatureMarkMapper
     result.Measurement = "temperature";
 	result.Fields["temperature"] = mark.Temperature;
 	result.Tags["part"] = mark.PartName;
-        result.Timestamp = ((DateTimeOffset)mark.Timestamp).ToUnixTimeSeconds();
+    result.Timestamp = mark.Timestamp.ClipSubSecond();
 
 	return result;
     }
