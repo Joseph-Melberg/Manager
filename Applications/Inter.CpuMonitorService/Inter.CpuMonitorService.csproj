@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MelbergFramework.Application" Version="6.0.53" />
-		<PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.53" />
-    <PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.53" />
+    <PackageReference Include="MelbergFramework.Application" Version="6.0.54" />
+		<PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.54" />
+    <PackageReference Include="MelbergFramework.Infrastructure.Rabbit" Version="6.0.54" />
   </ItemGroup>
 
   <ItemGroup>
