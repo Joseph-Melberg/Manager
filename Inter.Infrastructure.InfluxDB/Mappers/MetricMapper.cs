@@ -12,7 +12,7 @@ public static class MetricMapper
 
         result.Measurement = "duration";
         result.Tags["app"] = metric.Application;
-        result.Fields["duration"] = metric.TimeInMS;
+        result.Fields["duration"] = metric.TimeInMS * 1000;
         result.Timestamp = metric.TimeStamp;
         var j = DateTime.UtcNow;
 
