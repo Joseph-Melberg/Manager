@@ -14,7 +14,6 @@ public static class MetricMapper
         result.Tags["app"] = metric.Application;
         result.Fields["duration"] = metric.TimeInMS;
         result.Timestamp = metric.TimeStamp;
-        var j = DateTime.UtcNow;
 
         return result;
     }
