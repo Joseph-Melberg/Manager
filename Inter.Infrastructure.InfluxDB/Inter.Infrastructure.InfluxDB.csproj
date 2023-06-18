@@ -4,7 +4,7 @@
 		<ProjectReference Include="..\Inter.Common\Inter.Common.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.54" />
+		<PackageReference Include="MelbergFramework.Infrastructure.InfluxDB" Version="6.0.55" />
 	</ItemGroup>
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
