@@ -22,12 +22,14 @@ public class PlaneCongregatorDomainService : IPlaneCongregatorDomainService
         
         Console.WriteLine($"Congregating {offsetTimestamp}");
 
+        var planeCount = 0;
         var totalState = new Dictionary<string,TimeAnotatedPlane>();
 
         await foreach(var planeFrame in _infrastructure.CollectPlaneStatesAsync(offsetTimestamp))
         {
             foreach(var plane in planeFrame.Planes)
             {
+                planeCount++;
                 SafeAdd(totalState,plane);
             }
         }
@@ -47,16 +49,21 @@ public class PlaneCongregatorDomainService : IPlaneCongregatorDomainService
         
         var uploadCongregationTask = _infrastructure.UploadCongregatedPlanesAsync(congregatedFrame);
 
+        var uploadMetadataTask = SaveMetadata(congregatedFrame, planeCount);
+        await Task.WhenAll(uploadCongregationTask,uploadMetadataTask);
+    }
+
+    private Task SaveMetadata(PlaneFrame congregatedFrame, int planeCount)
+    {
         var metadata = new PlaneFrameMetadata();
         
-        metadata.Total = congregatedFrame.Planes.Count();
+        metadata.Total = planeCount;
         metadata.Detailed = congregatedFrame.Planes.Count();
         metadata.Antenna = congregatedFrame.Antenna;
         metadata.Hostname = congregatedFrame.Source;
         metadata.Timestamp = DateTime.UnixEpoch.AddSeconds(congregatedFrame.Now);
 
-        var uploadMetadataTask = _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
-        await Task.WhenAll(uploadCongregationTask,uploadMetadataTask);
+        return _infrastructure.UploadPlaneFrameMetadataAsync(metadata);
     }
 
     private T CompareUpdated<T>(T currentValue, T selectedValue, ulong? currentUpdated, ulong? selectedUpdated) =>

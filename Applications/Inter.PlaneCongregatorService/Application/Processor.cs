@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Inter.DomainServices.Core;
 using Inter.Infrastructure.Rabbit.Messages;
 using MelbergFramework.Infrastructure.Rabbit.Consumers;
@@ -22,18 +21,10 @@ public class Processor : IStandardConsumer
 
     public async Task ConsumeMessageAsync(Message message, CancellationToken ct)
     {
-        var sta = new Stopwatch();
-        sta.Start();
         var tickMessage = _translator.Translate(message);
 
         var timestamp = (long)Math.Floor(tickMessage.Timestamp.Subtract(DateTime.UnixEpoch).TotalSeconds);
 
         await _service.CongregatePlaneInfoAsync(timestamp);
-
-        sta.Stop();
-
-        Console.WriteLine(sta.ElapsedMilliseconds);
-        Console.WriteLine(sta.Elapsed);
-
     }
 }
