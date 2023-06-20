@@ -12,9 +12,7 @@ public class CpuUtilizationMarkRepository : BaseInfluxDBRepository<InfluxDBConte
 {
     public CpuUtilizationMarkRepository(InfluxDBContext context) : base(context) { }
 
-    public Task RecordUsageAsync(CpuUtilization usage, CancellationToken ct)
-    {
-        return Context.WritePointAsync(usage.ToDataModel(),"node_data","Inter");
-    }
+    public Task RecordUsageAsync(CpuUtilization usage, CancellationToken ct) =>
+        Context.WritePointAsync(usage.ToDataModel(),"node_data","Inter");
 }
  

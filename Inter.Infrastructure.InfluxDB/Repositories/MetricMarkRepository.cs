@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Inter.Domain;
 using Inter.Infrastructure.Corral;
@@ -10,6 +11,9 @@ namespace Inter.Infrastructure.InfluxDB.Repositories;
 public class MetricMarkRepository : BaseInfluxDBRepository<InfluxDBContext>, IMetricMarkRepository
 {
     public MetricMarkRepository(InfluxDBContext context) : base(context) { }
-    public Task MarkMetricAsync(Metric metric) =>
-        Context.WritePointAsync(metric.ToDataModel(),"service_data","Inter");
+    public Task MarkMetricAsync(Metric metric)
+    {
+        Console.WriteLine($"{metric.Application}:{metric.TimeInMS}");
+        return Context.WritePointAsync(metric.ToDataModel(),"service_data","Inter");
+    } 
 }

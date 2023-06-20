@@ -1,4 +1,6 @@
 ﻿using MelbergFramework.Application;
+using MelbergFramework.Infrastructure.Rabbit.Metrics;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Inter.PlaneCongregatorService;
 
@@ -8,9 +10,35 @@ class Program
     {
         var j = MelbergHost
             .CreateDefaultApp<Startup>()
-            .Build()
-            .Begin(CancellationToken.None);
+            .Build();
+           var p =  j.Services.GetService<IMetricPublisher>();
+           p.SendMetric(4000,DateTime.UtcNow);
+           await Task.Delay(10);
+           p.SendMetric(4000,DateTime.UtcNow);
+           await Task.Delay(10);
+           p.SendMetric(4000,DateTime.UtcNow);
+           await Task.Delay(10);
+           p.SendMetric(4000,DateTime.UtcNow);
+           await Task.Delay(10);
+           p.SendMetric(4000,DateTime.UtcNow);
+           await Task.Delay(10);
+           p.SendMetric(4000,DateTime.UtcNow);
+           await Task.Delay(10);
+           p.SendMetric(4000,DateTime.UtcNow);
+           await Task.Delay(10);
+           p.SendMetric(4000,DateTime.UtcNow);
+           await Task.Delay(10);
+           p.SendMetric(4000,DateTime.UtcNow);
+           await Task.Delay(10);
+           p.SendMetric(4000,DateTime.UtcNow);
+           p.SendMetric(4000,DateTime.UtcNow);
+           p.SendMetric(4000,DateTime.UtcNow);
+           p.SendMetric(4000,DateTime.UtcNow);
+           p.SendMetric(4000,DateTime.UtcNow);
+           p.SendMetric(4000,DateTime.UtcNow);
+           p.SendMetric(4000,DateTime.UtcNow);
+            //.Begin(CancellationToken.None);
 
-        await j;
+        //await j;
 }
     }

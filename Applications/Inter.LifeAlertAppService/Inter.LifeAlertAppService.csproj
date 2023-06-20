@@ -4,11 +4,11 @@
 		<TargetFramework>netcoreapp6.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="MelbergFramework.Application" Version="6.0.55" />
+		<PackageReference Include="MelbergFramework.Application" Version="6.0.56" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
 		<PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
-		<PackageReference Include="MelbergFramework.Infrastructure.MySql" Version="6.0.55" />
+		<PackageReference Include="MelbergFramework.Infrastructure.MySql" Version="6.0.56" />
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Inter.Domain\Inter.Domain.csproj" />

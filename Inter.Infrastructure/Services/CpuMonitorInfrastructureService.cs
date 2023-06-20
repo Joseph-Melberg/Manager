@@ -16,9 +16,6 @@ public class CpuMonitorInfrastructureService : ICpuMonitorInfrastructureService
         _markRepository = markRepository;
     }
 
-    public Task RecordAsync(CpuUtilization usage, CancellationToken ct)
-    {
-        //return Task.CompletedTask;
-        return _markRepository.RecordUsageAsync(usage, ct);
-    }
+    public Task RecordAsync(CpuUtilization usage, CancellationToken ct) =>
+        _markRepository.RecordUsageAsync(usage, ct);
 }

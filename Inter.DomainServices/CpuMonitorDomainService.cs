@@ -13,8 +13,6 @@ public class CpuMonitorDomainService : ICpuMonitorDomainService
     {
         _infra = infra;
     }
-    public Task RecordAsync(CpuUtilization usage, CancellationToken ct)
-    {
-        return _infra.RecordAsync(usage,ct);
-    }
+    public Task RecordAsync(CpuUtilization usage, CancellationToken ct) =>
+        _infra.RecordAsync(usage,ct);
 }
